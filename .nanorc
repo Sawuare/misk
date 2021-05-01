@@ -1,0 +1,84 @@
+set autoindent
+set casesensitive
+set nohelp
+set nowrap
+
+
+bind ^H help all
+bind ^Q exit all
+
+bind ^O insert main
+bind ^S savefile main
+bind ^W writeout main
+
+bind ^L gotoline main
+
+bind ^F whereis all
+bind ^B wherewas all
+bind ^G findnext all
+bind ^D findprevious all
+
+bind ^R replace all
+
+bind ^X cut all
+bind ^C copy all
+bind ^V paste all
+
+bind ^Z undo all
+bind ^Y redo all
+
+# Remove these when ^Z works
+bind M-Z undo all
+bind M-Y redo all
+
+bind M-C comment main
+
+bind M-H nohelp main
+bind M-P curpos main
+bind M-L linenumbers main
+bind M-W whitespacedisplay main
+
+
+syntax haskell "\.hs$"
+
+comment "--"
+
+# Error
+color brightyellow "\<(error|undefined)\>"
+
+# Keyword
+color brightmagenta "\<(as|hiding|qualified)\>"
+
+# Class
+color cyan "\<(Bounded|Enum|Eq|Floating|Fractional|Functor|Integral|Monad|Num|Ord|Read|Real|RealFloat|RealFrac|Show)\>"
+# Type
+color cyan "\<(Bool|Char|Double|Either|FilePath|Float|Int|Integer|IO|IOError|Maybe|Ordering|Rational|String|Word)\>"
+# Value
+color brightcyan "\<(False|True|Nothing|Just|Left|Right|LT|EQ|GT)\>"
+
+# Backquoted identifier
+color yellow "`[[:alpha:]_][[:alnum:]_']*`"
+
+# Reserved identifier
+color magenta "\<(case|class|data|default|deriving|do|else|foreign|if|import|in|infix|infixl|infixr|instance|let|module|newtype|of|then|type|where|_)\>"
+
+# Reserved operator
+color yellow "\.\.|:|=|\\|\||<-|->|@|~|=>"
+
+# Char
+color brightcyan "'([^'\]|\\[^&]+)'"
+# String
+color brightcyan ""([^"\]|\\.+)*""
+
+# Ordinary comment
+color brightwhite "--($|[^!#$%&*+./:<=>?@\^|~].*)"
+# Nested comment
+color brightwhite start="\{-" end="-}"
+# Pragma
+color brightmagenta start="\{-#" end="#-}"
+
+# Reminder
+color brightwhite,yellow "\<(FIXME|TODO|XXX)\>"
+
+# Trailing space
+color ,yellow "[[:space:]]+$"

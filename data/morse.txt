@@ -1,0 +1,33 @@
+Memory usage on Intel 64: 1012 B
+
+Complexity analysis:
+
+w = words
+l = letters mean
+
+S (w, l) = O(wl)
+ P
+
+T (w, l) = O(wl)
+ P
+
+Step count table for main loop:
+
+--------------------------------------------------------------
+Statement                       | Steps Frequency Total
+--------------------------------------------------------------
+int argi = 1;                   | 1     1         1
+                                |
+while (argi != argc) {          | 2     w + 1     2w + 2
+ char* arg = argv[argi++];      | 3     w         3w
+                                |
+ while (*arg) {                 | 2     wl + w    2wl + 2w
+  fputs(codev[*arg++], stdout); | 4     wl        4wl
+  fputc(' ', stdout);           | 1     wl        1wl
+ }                              |
+                                |
+ fputc('\n', stdout);           | 1     w         1w
+}                               |
+--------------------------------------------------------------
+Total                           |                 7wl + 8w + 3
+--------------------------------------------------------------
