@@ -21,7 +21,6 @@ static inline unsigned ddigits(unsigned n) {
 
 static inline unsigned get_letter_hue(char* s) {
 	switch (*s) {
-		case 'k': return FB_BLACK;
 		case 'r': return FB_RED;
 		case 'g': return FB_GREEN;
 		case 'b': return FB_BLUE;
@@ -77,66 +76,54 @@ int main(int argc, char* argv[argc + 1]) {
 	unsigned y_ddigits = ddigits(yres);
 	unsigned z_ddigits = ddigits(z);
 
-	unsigned filename_len = x_ddigits + y_ddigits + z_ddigits + 22;
+	unsigned filename_len = x_ddigits + y_ddigits + z_ddigits + 20;
 
-	char* filename = malloc(filename_len + 1);
+	char filename[filename_len + 1];
 
-	if (!filename)
+	if (sprintf(filename, "i%02ux%*uy%*uz%*u#%06x.fb.png", id, x_ddigits, xres, y_ddigits, yres, z_ddigits, z, hue) != filename_len)
 		return 1;
-
-	if (sprintf(filename, "i%02ux%*uy%*uz%*u#%08x.fb.png", id, x_ddigits, xres, y_ddigits, yres, z_ddigits, z, hue) != filename_len) {
-		free(filename);
-		return 2;
-	}
 
 	FILE* stream = fopen(filename, "wb");
 
-	if (!stream) {
-		free(filename);
-		return 3;
-	}
+	if (!stream)
+		return 2;
 
 	png_structp structp = png_create_write_struct(PNG_LIBPNG_VER_STRING, 0, 0, 0);
 
 	if (!structp) {
-		free(filename);
 		fclose(stream);
-		return 4;
+		return 3;
 	}
 
 	png_infop infop = png_create_info_struct(structp);
 
 	if (!infop) {
 		png_destroy_write_struct(&structp, 0);
-		free(filename);
 		fclose(stream);
-		return 5;
+		return 4;
 	}
 
 	if (setjmp(png_jmpbuf(structp))) {
 		png_destroy_write_struct(&structp, &infop);
-		free(filename);
 		fclose(stream);
-		return 6;
+		return 5;
 	}
 
 	png_init_io(structp, stream);
 
 	png_set_IHDR(structp, infop, xres, yres, 8, PNG_COLOR_TYPE_RGBA, PNG_INTERLACE_NONE, PNG_COMPRESSION_TYPE_BASE, PNG_FILTER_TYPE_BASE);
+//	png_set_filter(structp, PNG_FILTER_TYPE_BASE, PNG_FILTER_NONE);
 //	png_set_compression_level(structp, Z_BEST_COMPRESSION);
-//	png_set_filter(structp, 0, PNG_FILTER_NONE);
+	png_set_invert_alpha(structp);
 	png_set_bgr(structp);
 
-	unsigned* image = malloc(xres * yres * sizeof *image);
+	unsigned* image = calloc(xres * yres, sizeof *image);
 
 	if (!image) {
 		png_destroy_write_struct(&structp, &infop);
-		free(filename);
 		fclose(stream);
-		return 7;
+		return 6;
 	}
-
-	memset(image, 0, sizeof *image);
 
 	painters[id](xres, yres, z, hue, image);
 
@@ -154,7 +141,6 @@ int main(int argc, char* argv[argc + 1]) {
 	png_destroy_write_struct(&structp, &infop);
 
 	free(image);
-	free(filename);
 	fclose(stream);
 
 	return 0;

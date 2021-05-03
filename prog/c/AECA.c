@@ -8,21 +8,21 @@
 #define FILENAME "AECA.schar"
 
 int main(void) {
-	int seed, rule, gen_len, gen_cnt;
+	unsigned seed, rule, gen_len, gen_cnt;
 
 	printf("Seed: ");
-	scanf("%d", &seed);
+	scanf("%u", &seed);
 
 	printf("Rule: ");
-	scanf("%d", &rule);
+	scanf("%u", &rule);
 
 	printf("Generation length: ");
-	scanf("%d", &gen_len);
+	scanf("%u", &gen_len);
 
 	printf("Generation count: ");
-	scanf("%d", &gen_cnt);
+	scanf("%u", &gen_cnt);
 
-	int samples = gen_cnt * gen_len;
+	unsigned samples = gen_cnt * gen_len;
 
 	_Bool cells[gen_len];
 	_Bool clone[gen_len];
@@ -30,7 +30,7 @@ int main(void) {
 	if (seed) {
 		srand(seed);
 
-		for (int c = 0; c < gen_len; ++c)
+		for (unsigned c = 0; c < gen_len; ++c)
 			cells[c] = rand() & 1;
 	} else {
 		memset(cells, 0, sizeof cells);
@@ -39,8 +39,8 @@ int main(void) {
 
 	signed char* audio = malloc(samples);
 
-	for (int g = 0; g < gen_cnt; ++g) {
-		for (int c = 0; c < gen_len; ++c) {
+	for (unsigned g = 0; g < gen_cnt; ++g) {
+		for (unsigned c = 0; c < gen_len; ++c) {
 			audio[g * gen_len + c] = cells[c] ? SCHAR_MAX : SCHAR_MIN;
 
 			_Bool p = cells[c ? c - 1 : gen_len - 1];

@@ -14,7 +14,7 @@ int main(void) {
 	float sin_wave[N];
 	float sqr_wave[N];
 
-	for (int n = 0; n < N; ++n) {
+	for (unsigned n = 0; n < N; ++n) {
 		sin_wave[n] = sin(TAU * F * n / N);
 		sqr_wave[n] = SGN(sin_wave[n]);
 	}

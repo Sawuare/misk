@@ -1,4 +1,4 @@
-// fb.c - paint 1024x768x32 BGRA fb images
+// fb.c - paint fb images
 
 #include <fcntl.h>
 #include <getopt.h>
@@ -25,7 +25,6 @@ static inline void set_z_range(char* s, unsigned* first, unsigned* final) {
 
 static inline unsigned get_letter_hue(char* s) {
 	switch (*s) {
-		case 'k': return FB_BLACK;
 		case 'r': return FB_RED;
 		case 'g': return FB_GREEN;
 		case 'b': return FB_BLUE;
@@ -92,14 +91,14 @@ int main(int argc, char* argv[argc + 1]) {
 
 	tcsetattr(STDIN_FILENO, TCSANOW, &ntty);
 
-	fputs(DECTCEM("l") ED("2"), stdout);
+	fputs(DECTCEM("l") ED("2") CUP(), stdout);
 	fflush(stdout);
 
 	for (unsigned z = first_z; z >= first_z && z <= final_z;) {
 		painters[id](FB_XRES, FB_YRES, z, hue, buf);
 
 		if (counter) {
-			fprintf(stdout, CUP() "z: %u\n", z);
+			fprintf(stdout, "z: %u\r", z);
 			fflush(stdout);
 		}
 fgetc:

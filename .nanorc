@@ -2,6 +2,7 @@ set autoindent
 set casesensitive
 set nohelp
 set nowrap
+set smooth
 
 
 bind ^H help all
@@ -14,7 +15,6 @@ bind ^W writeout main
 bind ^L gotoline main
 
 bind ^F whereis all
-bind ^B wherewas all
 bind ^G findnext all
 bind ^D findprevious all
 

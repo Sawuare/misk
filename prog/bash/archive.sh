@@ -5,9 +5,9 @@
 function is_ok {
 	if [ $? ]
 	then
-		echo "OK"
+		echo "OK!"
 	else
-		echo "NOT OK"
+		exit
 	fi
 }
 

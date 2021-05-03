@@ -5,13 +5,13 @@
 #include <threads.h>
 
 int main(int argc, char* argv[argc + 1]) {
-	int len = atoi(argv[1]);
+	unsigned len = argv[1] ? atoi(argv[1]) : rand() % 127;
 
 	setbuf(stdout, 0);
 
 	putchar('8');
 
-	for (int i = 0; i < len; ++i) {
+	for (unsigned i = 0; i < len; ++i) {
 		thrd_sleep(&(struct timespec) {0, 999999999 / len}, 0);
 
 		putchar('=');

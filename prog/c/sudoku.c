@@ -8,12 +8,12 @@ int main(void) {
 	char grid[9][9];
 
 	// Formula by kanafutile
-	for (int i = 0; i < 9; ++i)
-		for (int j = 0; j < 9; ++j)
+	for (unsigned i = 0; i < 9; ++i)
+		for (unsigned j = 0; j < 9; ++j)
 			grid[i][j] = DDTOC(j / 3 + i / 3 * 3 + 1);
 
-	for (int i = 0; i < 9; ++i) {
-		for (int j = 0; j < 9; ++j) {
+	for (unsigned i = 0; i < 9; ++i) {
+		for (unsigned j = 0; j < 9; ++j) {
 			putchar(grid[i][j]);
 			putchar(' ');
 

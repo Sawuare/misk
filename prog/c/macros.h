@@ -6,11 +6,11 @@
 
 #define DDTOC(d) ((d) + '0')
 
-#define EVEN(i) (((i) & 0x1) == 0)
-#define  ODD(i) (((i) & 0x1) != 0)
+#define EVEN(i) (((i) & 0x1) == 0x0)
+#define  ODD(i) (((i) & 0x1) != 0x0)
 
-#define ISUPPER(l) (((l) & 0x20) == 0)
-#define ISLOWER(l) (((l) & 0x20) != 0)
+#define ISUPPER(l) (((l) & 0x20) == 0x0)
+#define ISLOWER(l) (((l) & 0x20) != 0x0)
 
 #define TOUPPER(l) ((l) & 0x5f)
 #define TOLOWER(l) ((l) | 0x20)
@@ -25,7 +25,6 @@
 #define ABS(x) ((x) < 0 ? -(x) : (x))
 
 #define SQR(x)  ((x) * (x))
-#define CUBE(x) ((x) * (x) * (x))
 
 #define SGN(x) CMPR(x, 0)
 

@@ -7,7 +7,6 @@ function is_ok {
 	then
 		echo "OK!"
 	else
-		echo "NOT OK!"
 		exit
 	fi
 }
