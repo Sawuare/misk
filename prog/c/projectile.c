@@ -10,10 +10,10 @@ int main(void) {
 	double angle, speed, peak, range, time;
 
 	printf("Angle (deg) = ");
-	scanf("%lf", &angle);
+	scanf("%lg", &angle);
 
 	printf("Speed (m/s) = ");
-	scanf("%lf", &speed);
+	scanf("%lg", &speed);
 
 	angle *= PI / 180;
 
@@ -21,7 +21,7 @@ int main(void) {
 	range = pow(speed, 2) * sin(2 * angle) / G0;
 	time  = 2 * speed * sin(angle) / G0;
 
-	printf("Peak  (m)   = %g\n", peak);
-	printf("Range (m)   = %g\n", range);
-	printf("Time  (s)   = %g\n", time);
+	printf("Peak  (m)   = %lg\n", peak);
+	printf("Range (m)   = %lg\n", range);
+	printf("Time  (s)   = %lg\n", time);
 }

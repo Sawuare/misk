@@ -23,13 +23,13 @@ int main(void) {
 
 	fputs(DECTCEM("l") ED("2"), stdout);
 
-	for (unsigned i = 0; i < ROW * COL; ++i) {
-		unsigned row = rand() % ROW + 1;
-		unsigned col = rand() % COL + 1;
-		unsigned clr = rand() % CLR;
-		unsigned chr = rand() % CHR;
+	for (int i = 0; i < ROW * COL; ++i) {
+		int row = rand() % ROW + 1;
+		int col = rand() % COL + 1;
+		int clr = rand() % CLR;
+		int chr = rand() % CHR;
 
-		fprintf(stdout, CUP("%u;%u") SGR("38;2;0;%u;0") "%c", row, col, clr, chr);
+		fprintf(stdout, CUP("%d;%d") SGR("38;2;0;%d;0") "%c", row, col, clr, chr);
 		fflush(stdout);
 
 		thrd_sleep(&(struct timespec) {0, 19531250}, 0);

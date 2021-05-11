@@ -111,9 +111,15 @@ int main(int argc, char* argv[argc + 1]) {
 
 	png_init_io(structp, stream);
 
+	png_text text = {0};
+
+	text.key = "Author";
+	text.text = "Sawuare";
+	text.compression = PNG_TEXT_COMPRESSION_NONE;
+
 	png_set_IHDR(structp, infop, xres, yres, 8, PNG_COLOR_TYPE_RGBA, PNG_INTERLACE_NONE, PNG_COMPRESSION_TYPE_BASE, PNG_FILTER_TYPE_BASE);
-//	png_set_filter(structp, PNG_FILTER_TYPE_BASE, PNG_FILTER_NONE);
 //	png_set_compression_level(structp, Z_BEST_COMPRESSION);
+	png_set_text(structp, infop, &text, 1);
 	png_set_invert_alpha(structp);
 	png_set_bgr(structp);
 

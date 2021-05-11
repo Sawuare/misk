@@ -4,8 +4,6 @@
 
 #define ARRLEN(a) (sizeof (a) / sizeof (a)[0])
 
-#define DDTOC(d) ((d) + '0')
-
 #define EVEN(i) (((i) & 0x1) == 0x0)
 #define  ODD(i) (((i) & 0x1) != 0x0)
 

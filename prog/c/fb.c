@@ -79,7 +79,7 @@ int main(int argc, char* argv[argc + 1]) {
 
 	int fbd = open(FB_PATH, O_RDWR);
 
-	unsigned* buf = mmap(0, FB_SIZE, PROT_WRITE, MAP_SHARED, fbd, 0);
+	unsigned* fbm = mmap(0, FB_SIZE, PROT_WRITE, MAP_SHARED, fbd, 0);
 
 	struct termios otty, ntty;
 
@@ -95,7 +95,7 @@ int main(int argc, char* argv[argc + 1]) {
 	fflush(stdout);
 
 	for (unsigned z = first_z; z >= first_z && z <= final_z;) {
-		painters[id](FB_XRES, FB_YRES, z, hue, buf);
+		painters[id](FB_XRES, FB_YRES, z, hue, fbm);
 
 		if (counter) {
 			fprintf(stdout, "z: %u\r", z);
@@ -131,6 +131,6 @@ quit:
 
 	tcsetattr(STDIN_FILENO, TCSANOW, &otty);
 
-	munmap(buf, FB_SIZE);
+	munmap(fbm, FB_SIZE);
 	close(fbd);
 }

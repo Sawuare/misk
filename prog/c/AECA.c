@@ -8,7 +8,7 @@
 #define FILENAME "AECA.schar"
 
 int main(void) {
-	unsigned seed, rule, gen_len, gen_cnt;
+	unsigned seed, rule, n_cells, n_generations;
 
 	printf("Seed: ");
 	scanf("%u", &seed);
@@ -16,36 +16,36 @@ int main(void) {
 	printf("Rule: ");
 	scanf("%u", &rule);
 
-	printf("Generation length: ");
-	scanf("%u", &gen_len);
+	printf("Number of cells: ");
+	scanf("%u", &n_cells);
 
-	printf("Generation count: ");
-	scanf("%u", &gen_cnt);
+	printf("Number of generations: ");
+	scanf("%u", &n_generations);
 
-	unsigned samples = gen_cnt * gen_len;
+	unsigned n_samples = n_generations * n_cells;
 
-	_Bool cells[gen_len];
-	_Bool clone[gen_len];
+	_Bool cells[n_cells];
+	_Bool clone[n_cells];
 
 	if (seed) {
 		srand(seed);
 
-		for (unsigned c = 0; c < gen_len; ++c)
+		for (unsigned c = 0; c < n_cells; ++c)
 			cells[c] = rand() & 1;
 	} else {
 		memset(cells, 0, sizeof cells);
-		cells[gen_len / 2] = 1;
+		cells[n_cells / 2] = 1;
 	}
 
-	signed char* audio = malloc(samples);
+	signed char* audio = malloc(n_samples);
 
-	for (unsigned g = 0; g < gen_cnt; ++g) {
-		for (unsigned c = 0; c < gen_len; ++c) {
-			audio[g * gen_len + c] = cells[c] ? SCHAR_MAX : SCHAR_MIN;
+	for (unsigned g = 0; g < n_generations; ++g) {
+		for (unsigned c = 0; c < n_cells; ++c) {
+			audio[g * n_cells + c] = cells[c] ? SCHAR_MAX : SCHAR_MIN;
 
-			_Bool p = cells[c ? c - 1 : gen_len - 1];
+			_Bool p = cells[c ? c - 1 : n_cells - 1];
 			_Bool q = cells[c];
-			_Bool r = cells[(c + 1) % gen_len];
+			_Bool r = cells[(c + 1) % n_cells];
 
 			clone[c] = rule >> (p << 2 | q << 1 | r) & 1;
 		}
@@ -54,9 +54,7 @@ int main(void) {
 	}
 
 	FILE* stream = fopen(FILENAME, "wb");
-
-	fwrite(audio, 1, samples, stream);
-
+	fwrite(audio, 1, n_samples, stream);
 	fclose(stream);
 
 	free(audio);

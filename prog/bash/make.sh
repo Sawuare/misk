@@ -27,29 +27,31 @@ cd ~/prog/c/
 
 echo -n "Compiling C programs...      "
 
-cc -std=c17 -fsyntax-only                        test.c &&
-cc -std=c17                     -O -o AECA       AECA.c &&
-cc -std=c17                     -O -o args       args.c &&
-cc -std=c17                     -O -o fb         fb.c &&
-cc -std=c17               -lpng -O -o fb2png     fb2png.c &&
-cc -std=c17                     -O -o fibonaccis fibonaccis.c &&
-cc -std=c17                     -O -o getendian  getendian.c &&
-cc -std=c17                     -O -o getlocale  getlocale.c &&
-cc -std=c17                     -O -o hacc       hacc.c &&
-cc -std=c17                     -O -o hello      hello.c &&
-cc -std=c17                     -O -o limits     limits.c &&
-cc -std=c17                     -O -o morse      morse.c &&
-cc -std=c17                     -O -o padovans   padovans.c &&
-cc -std=c17                     -O -o pp         pp.c &&
-cc -std=c17               -lm   -O -o projectile projectile.c &&
-cc -std=c17                     -O -o sudoku     sudoku.c &&
-cc -std=c17               -lm   -O -o waves      waves.c
+OPT="-std=c17 -O"
+
+cc $OPT       -fsyntax-only test.c &&
+
+cc $OPT       -o AECA       AECA.c &&
+cc $OPT       -o args       args.c &&
+cc $OPT       -o fb         fb.c &&
+cc $OPT -lpng -o fb2png     fb2png.c &&
+cc $OPT       -o fibonaccis fibonaccis.c &&
+cc $OPT       -o getendian  getendian.c &&
+cc $OPT       -o getlocale  getlocale.c &&
+cc $OPT       -o hacc       hacc.c &&
+cc $OPT       -o hello      hello.c &&
+cc $OPT       -o limits     limits.c &&
+cc $OPT       -o morse      morse.c &&
+cc $OPT       -o padovans   padovans.c &&
+cc $OPT       -o pp         pp.c &&
+cc $OPT -lm   -o projectile projectile.c &&
+cc $OPT -lm   -o waves      waves.c
 
 is_ok
 
 echo -n "Moving C programs...         "
 
-sudo mv AECA args fb fb2png fibonaccis getendian getlocale hacc hello limits morse padovans pp projectile sudoku waves /usr/local/bin/
+sudo mv AECA args fb fb2png fibonaccis getendian getlocale hacc hello limits morse padovans pp projectile waves /usr/local/bin/
 
 is_ok
 
@@ -83,6 +85,6 @@ cd ~/prog/python
 
 echo -n "Copying Python programs...   "
 
-sudo cp --preserve=ownership ECA.py MTS.py print.py /usr/local/bin/
+sudo cp --preserve=ownership ECA.py MTS.py print.py sudoku.py /usr/local/bin/
 
 is_ok

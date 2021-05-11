@@ -43,42 +43,29 @@ syntax haskell "\.hs$"
 
 comment "--"
 
-# Error
-color brightyellow "\<(error|undefined)\>"
+# Constructor identifier
+color brightcyan "\<([[:upper:]][[:alnum:]']*)\>"
 
-# Keyword
-color brightmagenta "\<(as|hiding|qualified)\>"
-
-# Class
-color cyan "\<(Bounded|Enum|Eq|Floating|Fractional|Functor|Integral|Monad|Num|Ord|Read|Real|RealFloat|RealFrac|Show)\>"
-# Type
-color cyan "\<(Bool|Char|Double|Either|FilePath|Float|Int|Integer|IO|IOError|Maybe|Ordering|Rational|String|Word)\>"
-# Value
-color brightcyan "\<(False|True|Nothing|Just|Left|Right|LT|EQ|GT)\>"
-
-# Backquoted identifier
-color yellow "`[[:alpha:]_][[:alnum:]_']*`"
+# Module identifier
+color brightcyan "\<(([[:upper:]][[:alnum:]']*.)*[[:upper:]][[:alnum:]']*)\>"
 
 # Reserved identifier
-color magenta "\<(case|class|data|default|deriving|do|else|foreign|if|import|in|infix|infixl|infixr|instance|let|module|newtype|of|then|type|where|_)\>"
+color brightmagenta "\<(case|class|data|default|deriving|do|else|foreign|if|import|in|infix|infixl|infixr|instance|let|module|newtype|of|then|type|where|_)\>"
 
 # Reserved operator
-color yellow "\.\.|:|=|\\|\||<-|->|@|~|=>"
+color brightyellow "\.\.|:|=|\\|\||<-|->|@|~|=>"
 
-# Char
-color brightcyan "'([^'\]|\\[^&]+)'"
+# Character
+color cyan "'([^'\]|\\[^&]+)'"
 # String
-color brightcyan ""([^"\]|\\.+)*""
+color cyan ""([^"\]|\\.+)*""
 
 # Ordinary comment
-color brightwhite "--($|[^!#$%&*+./:<=>?@\^|~].*)"
+color magenta "---*([^!#$%&*+./<=>?@\^|~:].*)?$"
 # Nested comment
-color brightwhite start="\{-" end="-}"
+color magenta start="\{-" end="-}"
 # Pragma
-color brightmagenta start="\{-#" end="#-}"
-
-# Reminder
-color brightwhite,yellow "\<(FIXME|TODO|XXX)\>"
+color magenta start="\{-#" end="#-}"
 
 # Trailing space
 color ,yellow "[[:space:]]+$"

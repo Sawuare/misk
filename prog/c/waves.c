@@ -7,23 +7,23 @@
 
 #define TAU 6.283185307
 
-#define F 440
-#define N 44100
+#define FREQ 440
+#define RATE 44100
 
 int main(void) {
-	float sin_wave[N];
-	float sqr_wave[N];
+	float sin_wave[RATE];
+	float sqr_wave[RATE];
 
-	for (unsigned n = 0; n < N; ++n) {
-		sin_wave[n] = sin(TAU * F * n / N);
-		sqr_wave[n] = SGN(sin_wave[n]);
+	for (unsigned i = 0; i < RATE; ++i) {
+		sin_wave[i] = sin(TAU * FREQ * i / RATE);
+		sqr_wave[i] = SGN(sin_wave[i]);
 	}
 
 	FILE* sin_stream = fopen("sin.flt", "wb");
 	FILE* sqr_stream = fopen("sqr.flt", "wb");
 
-	fwrite(sin_wave, sizeof *sin_wave, N, sin_stream);
-	fwrite(sqr_wave, sizeof *sqr_wave, N, sqr_stream);
+	fwrite(sin_wave, sizeof *sin_wave, RATE, sin_stream);
+	fwrite(sqr_wave, sizeof *sqr_wave, RATE, sqr_stream);
 
 	fclose(sin_stream);
 	fclose(sqr_stream);

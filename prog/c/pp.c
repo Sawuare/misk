@@ -11,7 +11,7 @@ int main(int argc, char* argv[argc + 1]) {
 
 	putchar('8');
 
-	for (unsigned i = 0; i < len; ++i) {
+	for (unsigned l = 0; l < len; ++l) {
 		thrd_sleep(&(struct timespec) {0, 999999999 / len}, 0);
 
 		putchar('=');

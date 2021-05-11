@@ -1,4 +1,4 @@
-// padovans.c - print all Padovan numbers < 2^64 - 1
+// padovans.c - print all Padovan numbers < 1 << 64
 
 #include <inttypes.h>
 #include <stdint.h>
@@ -9,6 +9,8 @@
 int main(void) {
 	uint64_t ps[N];
 
-	for (uint64_t n = 0; n < N; ++n)
-		printf("%" PRIu64 "\n", ps[n] = n == 0 || n == 1 || n == 2 ? 1 : ps[n - 2] + ps[n - 3]);
+	ps[0] = ps[1] = ps[2] = 1;
+
+	for (uint8_t n = 3; n < N; ++n)
+		printf("%" PRIu64 "\n", ps[n] = ps[n - 2] + ps[n - 3]);
 }

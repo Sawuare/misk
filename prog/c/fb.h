@@ -15,7 +15,7 @@
 #define FB_WHITE   0xffffff
 
 #define HUE(px) (px) * h
-#define GRAY(px) (px) % 0x100 * 0x010101
+#define SHADE(px) (px) % 0x100 * h / 0xff
 
 #define FORYX for (unsigned y = 0; y < yres; ++y) \
               for (unsigned x = 0; x < xres; ++x)
@@ -37,14 +37,14 @@ static painter* painters[] = {
 	p30, p31, p32,
 };
 
-// Group 0
+// Class 0
 
 PAINTER(00) {
 	FORYX
 		a[y * x] = HUE(1);
 }
 
-// Group 1
+// Class 1
 
 PAINTER(01) {
 	FORYX
@@ -66,7 +66,7 @@ PAINTER(04) {
 		a[y * xres + x] = HUE(!((x * y) & z));
 }
 
-// Group 2
+// Class 2
 
 PAINTER(05) {
 	FORYX
@@ -88,7 +88,7 @@ PAINTER(08) {
 		a[y * xres + x] = HUE(!((x * y) % z));
 }
 
-// Group 3
+// Class 3
 
 PAINTER(09) {
 	FORYX
@@ -110,7 +110,7 @@ PAINTER(12) {
 		a[y * xres + x] = HUE(!((x * x * y * y) & z));
 }
 
-// Group 4
+// Class 4
 
 PAINTER(13) {
 	FORYX
@@ -132,7 +132,7 @@ PAINTER(16) {
 		a[y * xres + x] = HUE(!((x * x * y * y) % z));
 }
 
-// Group 5
+// Class 5
 
 PAINTER(17) {
 	FORYX
@@ -144,6 +144,7 @@ PAINTER(18) {
 		a[y * xres + x] = HUE(!((x * (x | z) & y * (y | z)) & z));
 }
 
+// z == (1 << 2 * n + m) - (1 << n + 2)
 PAINTER(19) {
 	FORYX
 		a[y * xres + x] = HUE(!((x * (x ^ z) & y * (y ^ z)) & z));
@@ -154,7 +155,7 @@ PAINTER(20) {
 		a[y * xres + x] = HUE(!((x * (x * z) & y * (y * z)) & z));
 }
 
-// Group 6
+// Class 6
 
 PAINTER(21) {
 	FORYX
@@ -176,7 +177,7 @@ PAINTER(24) {
 		a[y * xres + x] = HUE(!((x * (x * z) & y * (y * z)) % z));
 }
 
-// Group 7
+// Class 7
 
 PAINTER(25) {
 	FORYX
@@ -198,29 +199,29 @@ PAINTER(28) {
 		a[y * xres + x] = HUE(!((x * (x * z) + y * (y * z)) % z));
 }
 
-// Group 8
+// Class 8
 
 PAINTER(29) {
 	FORYX
-		a[y * xres + x] = GRAY(x * (x & z) + y * (y & z));
+		a[y * xres + x] = SHADE(x * (x & z) + y * (y & z));
 }
 
 PAINTER(30) {
 	FORYX
-		a[y * xres + x] = GRAY(x * (x | z) + y * (y | z));
+		a[y * xres + x] = SHADE(x * (x | z) + y * (y | z));
 }
 
 PAINTER(31) {
 	FORYX
-		a[y * xres + x] = GRAY(x * (x ^ z) + y * (y ^ z));
+		a[y * xres + x] = SHADE(x * (x ^ z) + y * (y ^ z));
 }
 
 PAINTER(32) {
 	FORYX
-		a[y * xres + x] = GRAY(x * (x * z) + y * (y * z));
+		a[y * xres + x] = SHADE(x * (x * z) + y * (y * z));
 }
 
 #undef HUE
-#undef GRAY
+#undef SHADE
 #undef FORYX
 #undef PAINTER
