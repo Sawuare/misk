@@ -21,14 +21,14 @@ static inline unsigned ddigits(unsigned n) {
 
 static inline unsigned get_letter_hue(char* s) {
 	switch (*s) {
+		default :
+		case 'w': return FB_WHITE;
 		case 'r': return FB_RED;
 		case 'g': return FB_GREEN;
 		case 'b': return FB_BLUE;
 		case 'c': return FB_CYAN;
 		case 'm': return FB_MAGENTA;
 		case 'y': return FB_YELLOW;
-		case 'w': return FB_WHITE;
-		default : return FB_WHITE;
 	}
 }
 

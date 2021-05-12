@@ -35,23 +35,20 @@ cc $OPT       -o AECA       AECA.c &&
 cc $OPT       -o args       args.c &&
 cc $OPT       -o fb         fb.c &&
 cc $OPT -lpng -o fb2png     fb2png.c &&
-cc $OPT       -o fibonaccis fibonaccis.c &&
 cc $OPT       -o getendian  getendian.c &&
 cc $OPT       -o getlocale  getlocale.c &&
 cc $OPT       -o hacc       hacc.c &&
 cc $OPT       -o hello      hello.c &&
 cc $OPT       -o limits     limits.c &&
 cc $OPT       -o morse      morse.c &&
-cc $OPT       -o padovans   padovans.c &&
 cc $OPT       -o pp         pp.c &&
-cc $OPT -lm   -o projectile projectile.c &&
 cc $OPT -lm   -o waves      waves.c
 
 is_ok
 
 echo -n "Moving C programs...         "
 
-sudo mv AECA args fb fb2png fibonaccis getendian getlocale hacc hello limits morse padovans pp projectile waves /usr/local/bin/
+sudo mv AECA args fb fb2png getendian getlocale hacc hello limits morse pp waves /usr/local/bin/
 
 is_ok
 
@@ -85,6 +82,6 @@ cd ~/prog/python
 
 echo -n "Copying Python programs...   "
 
-sudo cp --preserve=ownership ECA.py MTS.py print.py sudoku.py /usr/local/bin/
+sudo cp --preserve=ownership ECA.py MTS.py fibonaccis.py hah.py padovans.py print.py projectile.py sudoku.py /usr/local/bin/
 
 is_ok

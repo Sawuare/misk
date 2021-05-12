@@ -1,6 +1,7 @@
 colorscheme vga
 
 set nocompatible
+set nowrap
 set autoindent
 set smartindent
 set incsearch

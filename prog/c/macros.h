@@ -12,17 +12,16 @@
 
 #define TOUPPER(l) ((l) & 0x5f)
 #define TOLOWER(l) ((l) | 0x20)
-#define TOGGLEC(l) ((l) ^ 0x20)
 
-#define MULPOW2(n, m) ((n) << (m))
-#define DIVPOW2(n, m) ((n) >> (m))
+#define MULPOW2(m, n) ((m) << (n))
+#define DIVPOW2(m, n) ((m) >> (n))
 
 #define STRING1(x) #x
 #define STRING2(x) STRING1(x)
 
 #define ABS(x) ((x) < 0 ? -(x) : (x))
 
-#define SQR(x)  ((x) * (x))
+#define SQR(x) ((x) * (x))
 
 #define SGN(x) CMPR(x, 0)
 
