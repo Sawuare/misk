@@ -4,12 +4,12 @@
 
 from math import radians, sin
 
-G0 = 9.80665
-
 angle = float(input('Angle (deg) = '))
 speed = float(input('Speed (m/s) = '))
 
 angle = radians(angle)
+
+G0 = 9.80665
 
 print(f'Peak  (m)   = {pow(speed * sin(angle), 2) / 2 / G0:g}')
 print(f'Range (m)   = {pow(speed, 2) * sin(2 * angle) / G0:g}')

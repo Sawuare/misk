@@ -48,10 +48,10 @@ int main(int argc, char* argv[argc + 1]) {
 	unsigned final_z = 1;
 	unsigned hue     = FB_WHITE;
 
-	int ch;
+	int chr;
 
-	while ((ch = getopt(argc, argv, "#:ch:i:s:z:")) != -1)
-		switch (ch) {
+	while ((chr = getopt(argc, argv, "#:ch:i:s:z:")) != -1)
+		switch (chr) {
 			case '#':
 				hue = get_base16_hue(optarg);
 				break;
@@ -75,6 +75,9 @@ int main(int argc, char* argv[argc + 1]) {
 			case 'z':
 				set_z_range(optarg, &first_z, &final_z);
 				break;
+
+			default:
+				return EXIT_FAILURE;
 		}
 
 	int fbd = open(FB_PATH, O_RDWR);

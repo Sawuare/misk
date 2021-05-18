@@ -32,6 +32,7 @@ OPT="-std=c17 -O"
 cc $OPT       -fsyntax-only test.c &&
 
 cc $OPT       -o AECA       AECA.c &&
+cc $OPT       -o amorse     amorse.c &&
 cc $OPT       -o args       args.c &&
 cc $OPT       -o fb         fb.c &&
 cc $OPT -lpng -o fb2png     fb2png.c &&
@@ -48,7 +49,7 @@ is_ok
 
 echo -n "Moving C programs...         "
 
-sudo mv AECA args fb fb2png getendian getlocale hacc hello limits morse pp waves /usr/local/bin/
+sudo mv AECA amorse args fb fb2png getendian getlocale hacc hello limits morse pp waves /usr/local/bin/
 
 is_ok
 

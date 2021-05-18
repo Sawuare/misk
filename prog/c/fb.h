@@ -5,6 +5,7 @@
 #define FB_SIZE 3145728
 #define FB_XRES 1024
 #define FB_YRES 768
+#define FB_BPS  8
 
 #define FB_RED     0xff0000
 #define FB_GREEN   0x00ff00

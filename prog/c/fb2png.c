@@ -9,8 +9,9 @@
 //#include <zlib.h>
 
 #include "fb.h"
+#include "macros.h"
 
-static inline unsigned ddigits(unsigned n) {
+static inline unsigned ddig(unsigned n) {
 	unsigned d = 1;
 
 	while (n /= 10)
@@ -43,10 +44,10 @@ int main(int argc, char* argv[argc + 1]) {
 	unsigned yres = FB_YRES;
 	unsigned hue  = FB_WHITE;
 
-	int ch;
+	int chr;
 
-	while ((ch = getopt(argc, argv, "#:h:i:x:y:z:")) != -1)
-		switch (ch) {
+	while ((chr = getopt(argc, argv, "#:h:i:x:y:z:")) != -1)
+		switch (chr) {
 			case '#':
 				hue = get_base16_hue(optarg);
 				break;
@@ -70,17 +71,20 @@ int main(int argc, char* argv[argc + 1]) {
 			case 'z':
 				z = strtoul(optarg, 0, 10);
 				break;
+
+			default:
+				return EXIT_FAILURE;
 		}
 
-	unsigned x_ddigits = ddigits(xres);
-	unsigned y_ddigits = ddigits(yres);
-	unsigned z_ddigits = ddigits(z);
+	unsigned ddig_x = ddig(xres);
+	unsigned ddig_y = ddig(yres);
+	unsigned ddig_z = ddig(z);
 
-	unsigned filename_len = x_ddigits + y_ddigits + z_ddigits + 20;
+	unsigned l_filename = ddig_x + ddig_y + ddig_z + 20;
 
-	char filename[filename_len + 1];
+	char filename[l_filename + 1];
 
-	if (sprintf(filename, "i%02ux%*uy%*uz%*u#%06x.fb.png", id, x_ddigits, xres, y_ddigits, yres, z_ddigits, z, hue) != filename_len)
+	if (sprintf(filename, "i%02ux%*uy%*uz%*u#%06x.fb.png", id, ddig_x, xres, ddig_y, yres, ddig_z, z, hue) != l_filename)
 		return 1;
 
 	FILE* stream = fopen(filename, "wb");
@@ -88,14 +92,14 @@ int main(int argc, char* argv[argc + 1]) {
 	if (!stream)
 		return 2;
 
-	png_structp structp = png_create_write_struct(PNG_LIBPNG_VER_STRING, 0, 0, 0);
+	png_struct* structp = png_create_write_struct(PNG_LIBPNG_VER_STRING, 0, 0, 0);
 
 	if (!structp) {
 		fclose(stream);
 		return 3;
 	}
 
-	png_infop infop = png_create_info_struct(structp);
+	png_info* infop = png_create_info_struct(structp);
 
 	if (!infop) {
 		png_destroy_write_struct(&structp, 0);
@@ -111,42 +115,53 @@ int main(int argc, char* argv[argc + 1]) {
 
 	png_init_io(structp, stream);
 
-	png_text text = {0};
+	png_text texts[] = {
+		{.key = "Author",   .text = "Sawuare", .compression = PNG_TEXT_COMPRESSION_NONE},
+		{.key = "Software", .text = "fb2png",  .compression = PNG_TEXT_COMPRESSION_NONE},
+	};
 
-	text.key = "Author";
-	text.text = "Sawuare";
-	text.compression = PNG_TEXT_COMPRESSION_NONE;
-
-	png_set_IHDR(structp, infop, xres, yres, 8, PNG_COLOR_TYPE_RGBA, PNG_INTERLACE_NONE, PNG_COMPRESSION_TYPE_BASE, PNG_FILTER_TYPE_BASE);
+	png_set_IHDR(structp, infop, xres, yres, FB_BPS, PNG_COLOR_TYPE_RGB, PNG_INTERLACE_NONE, PNG_COMPRESSION_TYPE_BASE, PNG_FILTER_TYPE_BASE);
+	png_set_text(structp, infop, texts, ARRLEN(texts));
+//	png_set_filter(structp, PNG_FILTER_TYPE_BASE, PNG_FILTER_SUB);
 //	png_set_compression_level(structp, Z_BEST_COMPRESSION);
-	png_set_text(structp, infop, &text, 1);
-	png_set_invert_alpha(structp);
-	png_set_bgr(structp);
 
-	unsigned* image = calloc(xres * yres, sizeof *image);
+	// Safe max res = 1 << 29
+	unsigned res = xres * yres;
 
-	if (!image) {
+	unsigned* original_image = calloc(res,  4);
+	png_byte* stripped_image = malloc(res * 3);
+
+	if (!original_image || !stripped_image) {
 		png_destroy_write_struct(&structp, &infop);
+		free(original_image);
+		free(stripped_image);
 		fclose(stream);
 		return 6;
 	}
 
-	painters[id](xres, yres, z, hue, image);
+	painters[id](xres, yres, z, hue, original_image);
 
-	png_bytep row_pointers[yres];
+	// Strip A from BGRA
+	for (unsigned i = 0, j = 0; i < res; i += 1, j += 3) {
+		stripped_image[j + 0] = original_image[i] >> 16 & 255; // R
+		stripped_image[j + 1] = original_image[i] >>  8 & 255; // G
+		stripped_image[j + 2] = original_image[i] >>  0 & 255; // B
+	}
+
+	png_byte* row_pointers[yres];
 
 	for (unsigned y = 0; y < yres; ++y)
-		row_pointers[y] = (png_bytep) (image + y * xres);
+		row_pointers[y] = stripped_image + xres * y * 3;
 
 	png_write_info(structp, infop);
 	png_write_image(structp, row_pointers);
 	png_write_end(structp, infop);
 
-	printf("fb2png: wrote '%s'\n", filename);
+	printf("Wrote %s\n", filename);
 
 	png_destroy_write_struct(&structp, &infop);
-
-	free(image);
+	free(original_image);
+	free(stripped_image);
 	fclose(stream);
 
 	return 0;
