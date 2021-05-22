@@ -21,10 +21,10 @@ int main(int argc, char* argv[argc + 1]) {
 	unsigned rule    = 120;
 	unsigned seed    = 1;
 
-	int chr;
+	int opt;
 
-	while ((chr = getopt(argc, argv, "c:g:r:s:")) != -1) {
-		switch (chr) {
+	while ((opt = getopt(argc, argv, "c:g:r:s:")) != -1) {
+		switch (opt) {
 			case 'c':
 				n_cells = strtoul(optarg, 0, 10);
 				break;

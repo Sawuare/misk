@@ -6,10 +6,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-//#include <zlib.h>
+#include <zlib.h>
 
 #include "fb.h"
-#include "macros.h"
 
 static inline unsigned ddig(unsigned n) {
 	unsigned d = 1;
@@ -20,23 +19,6 @@ static inline unsigned ddig(unsigned n) {
 	return d;
 }
 
-static inline unsigned get_letter_hue(char* s) {
-	switch (*s) {
-		default :
-		case 'w': return FB_WHITE;
-		case 'r': return FB_RED;
-		case 'g': return FB_GREEN;
-		case 'b': return FB_BLUE;
-		case 'c': return FB_CYAN;
-		case 'm': return FB_MAGENTA;
-		case 'y': return FB_YELLOW;
-	}
-}
-
-static inline unsigned get_base16_hue(char* s) {
-	return strtoul(s, 0, 16);
-}
-
 int main(int argc, char* argv[argc + 1]) {
 	unsigned id   = 0;
 	unsigned z    = 1;
@@ -44,12 +26,12 @@ int main(int argc, char* argv[argc + 1]) {
 	unsigned yres = FB_YRES;
 	unsigned hue  = FB_WHITE;
 
-	int chr;
+	int opt;
 
-	while ((chr = getopt(argc, argv, "#:h:i:x:y:z:")) != -1)
-		switch (chr) {
+	while ((opt = getopt(argc, argv, "#:h:i:x:y:z:")) != -1)
+		switch (opt) {
 			case '#':
-				hue = get_base16_hue(optarg);
+				hue = strtoul(optarg, 0, 16);
 				break;
 
 			case 'h':
@@ -122,10 +104,11 @@ int main(int argc, char* argv[argc + 1]) {
 
 	png_set_IHDR(structp, infop, xres, yres, FB_BPS, PNG_COLOR_TYPE_RGB, PNG_INTERLACE_NONE, PNG_COMPRESSION_TYPE_BASE, PNG_FILTER_TYPE_BASE);
 	png_set_text(structp, infop, texts, ARRLEN(texts));
-//	png_set_filter(structp, PNG_FILTER_TYPE_BASE, PNG_FILTER_SUB);
-//	png_set_compression_level(structp, Z_BEST_COMPRESSION);
+	png_set_filter(structp, PNG_FILTER_TYPE_BASE, FB_IS_HUE_XOR_RAMP(id) ? PNG_FILTER_NONE : PNG_FILTER_UP);
+	png_set_compression_level(structp, Z_DEFAULT_COMPRESSION);
+	png_set_compression_strategy(structp, Z_DEFAULT_STRATEGY);
 
-	// Safe max res = 1 << 29
+	// Safe max res == 1 << 29
 	unsigned res = xres * yres;
 
 	unsigned* original_image = calloc(res,  4);

@@ -13,47 +13,19 @@
 #include "ECMA-48.h"
 #include "fb.h"
 
-static inline void set_z_range(char* s, unsigned* first, unsigned* final) {
-	char* comma = strchr(s, ',');
-
-	if (comma) {
-		*first = strtoul(s, 0, 10);
-		*final = strtoul(comma + 1, 0, 10);
-	} else
-		*final = strtoul(s, 0, 10);
-}
-
-static inline unsigned get_letter_hue(char* s) {
-	switch (*s) {
-		default :
-		case 'w': return FB_WHITE;
-		case 'r': return FB_RED;
-		case 'g': return FB_GREEN;
-		case 'b': return FB_BLUE;
-		case 'c': return FB_CYAN;
-		case 'm': return FB_MAGENTA;
-		case 'y': return FB_YELLOW;
-	}
-}
-
-static inline unsigned get_base16_hue(char* s) {
-	return strtoul(s, 0, 16);
-}
-
 int main(int argc, char* argv[argc + 1]) {
 	_Bool    counter = 0;
 	unsigned id      = 0;
 	unsigned step    = 1;
-	unsigned first_z = 1;
-	unsigned final_z = 1;
+	unsigned z       = 1;
 	unsigned hue     = FB_WHITE;
 
-	int chr;
+	int opt;
 
-	while ((chr = getopt(argc, argv, "#:ch:i:s:z:")) != -1)
-		switch (chr) {
+	while ((opt = getopt(argc, argv, "#:ch:i:s:z:")) != -1)
+		switch (opt) {
 			case '#':
-				hue = get_base16_hue(optarg);
+				hue = strtoul(optarg, 0, 16);
 				break;
 
 			case 'c':
@@ -73,7 +45,7 @@ int main(int argc, char* argv[argc + 1]) {
 				break;
 
 			case 'z':
-				set_z_range(optarg, &first_z, &final_z);
+				z = strtoul(optarg, 0, 10);
 				break;
 
 			default:
@@ -97,7 +69,7 @@ int main(int argc, char* argv[argc + 1]) {
 	fputs(DECTCEM("l") ED("2") CUP(), stdout);
 	fflush(stdout);
 
-	for (unsigned z = first_z; z >= first_z && z <= final_z;) {
+	while (z) {
 		painters[id](FB_XRES, FB_YRES, z, hue, fbm);
 
 		if (counter) {

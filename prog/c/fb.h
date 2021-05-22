@@ -1,5 +1,7 @@
 // fb.h - constants and painters for a 1024x768x32 BGRA framebuffer
 
+#include "macros.h"
+
 #define FB_PATH "/dev/fb0"
 
 #define FB_SIZE 3145728
@@ -15,8 +17,10 @@
 #define FB_YELLOW  0xffff00
 #define FB_WHITE   0xffffff
 
-#define HUE(px) (px) * h
-#define SHADE(px) (px) % 0x100 * h / 0xff
+#define FB_IS_HUE_XOR_RAMP(id) ((id) < 29)
+
+#define HUE(px)  ((px) * h)
+#define RAMP(px) ((px) % 0x100 * h / 0xff)
 
 #define FORYX for (unsigned y = 0; y < yres; ++y) \
               for (unsigned x = 0; x < xres; ++x)
@@ -24,6 +28,19 @@
 #define PAINTER(id) static inline void p##id(unsigned xres, unsigned yres, unsigned z, unsigned h, unsigned a[])
 
 typedef void painter(unsigned, unsigned, unsigned, unsigned, unsigned[]);
+
+static inline unsigned get_letter_hue(char* s) {
+	switch (TOUPPER(*s)) {
+		default :
+		case 'W': return FB_WHITE;
+		case 'R': return FB_RED;
+		case 'G': return FB_GREEN;
+		case 'B': return FB_BLUE;
+		case 'C': return FB_CYAN;
+		case 'M': return FB_MAGENTA;
+		case 'Y': return FB_YELLOW;
+	}
+}
 
 static painter
 	p00, p01, p02, p03, p04, p05, p06, p07, p08, p09,
@@ -204,25 +221,25 @@ PAINTER(28) {
 
 PAINTER(29) {
 	FORYX
-		a[y * xres + x] = SHADE(x * (x & z) + y * (y & z));
+		a[y * xres + x] = RAMP(x * (x & z) + y * (y & z));
 }
 
 PAINTER(30) {
 	FORYX
-		a[y * xres + x] = SHADE(x * (x | z) + y * (y | z));
+		a[y * xres + x] = RAMP(x * (x | z) + y * (y | z));
 }
 
 PAINTER(31) {
 	FORYX
-		a[y * xres + x] = SHADE(x * (x ^ z) + y * (y ^ z));
+		a[y * xres + x] = RAMP(x * (x ^ z) + y * (y ^ z));
 }
 
 PAINTER(32) {
 	FORYX
-		a[y * xres + x] = SHADE(x * (x * z) + y * (y * z));
+		a[y * xres + x] = RAMP(x * (x * z) + y * (y * z));
 }
 
 #undef HUE
-#undef SHADE
+#undef RAMP
 #undef FORYX
 #undef PAINTER
