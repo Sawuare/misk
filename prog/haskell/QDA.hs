@@ -1,6 +1,7 @@
--- QDA.hs - Quantitative Data Analyzer
+-- QDA.hs - Quantitative Data Analyzer of a line of at least 2 space-delimited doubles
 
 import Data.List
+
 
 range    xs =  last xs - head xs
 midRange xs = (last xs + head xs) / 2

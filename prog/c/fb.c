@@ -73,7 +73,7 @@ int main(int argc, char* argv[argc + 1]) {
 		painters[id](FB_XRES, FB_YRES, z, hue, fbm);
 
 		if (counter) {
-			fprintf(stdout, "z: %u\r", z);
+			fprintf(stdout, "z = %u\r", z);
 			fflush(stdout);
 		}
 fgetc:

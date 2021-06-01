@@ -8,11 +8,11 @@ set smooth
 bind ^H help all
 bind ^Q exit all
 
-bind ^O insert main
-bind ^S savefile main
-bind ^W writeout main
+bind ^O insert all
+bind ^S savefile all
+bind ^W writeout all
 
-bind ^L gotoline main
+bind ^L gotoline all
 
 bind ^F whereis all
 bind ^G findnext all
@@ -27,7 +27,9 @@ bind ^V paste all
 bind ^Z undo all
 bind ^Y redo all
 
-# Remove these when ^Z works
+bind ^C cancel yesno
+
+# Workaround for the Linux console
 bind M-Z undo all
 bind M-Y redo all
 

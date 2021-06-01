@@ -1,6 +1,6 @@
 #! /usr/bin/env python3
 
-# ECA.py - Elementary Cellular Automata
+# ECA.py - Elementary Cellular Automata on a 1024x768x32 BGRA framebuffer
 
 import random
 import sys
@@ -19,7 +19,6 @@ clone = [0] * XRES
 
 if (SEED):
 	random.seed(SEED)
-
 	for x in range(XRES):
 		cells[x] = random.randint(0, 1)
 else:
