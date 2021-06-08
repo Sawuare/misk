@@ -1,15 +1,17 @@
-Memory usage on Intel 64: 1012 B
+morse.txt - performance analysis and measurement of morse
+
+Memory usage on Intel 64: 1012 bytes
 
 Complexity analysis:
 
-w = words
-l = letters mean
+ w = words
+ l = letters mean
 
-S (w, l) = O(wl)
- P
+ S (w, l) = O(1)
+  P
 
-T (w, l) = O(wl)
- P
+ T (w, l) = O(wl)
+  P
 
 Step count table for main loop:
 

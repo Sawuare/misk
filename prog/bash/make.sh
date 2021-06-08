@@ -1,6 +1,6 @@
 #! /bin/bash
 
-# make.sh - make and move programs and headers to /usr/local/
+# make.sh - make and move binaries and headers to /usr/local/
 
 function is_ok {
 	if [ $? ]
@@ -11,59 +11,74 @@ function is_ok {
 	fi
 }
 
+BIN=/usr/local/bin/
+INC=/usr/local/include/
+
 # Bash
+
+echo -n "Entering ~/prog/bash/     "
 
 cd ~/prog/bash/
 
-echo -n "Copying Bash programs...     "
+is_ok
 
-sudo cp --preserve=ownership archive.sh make.sh /usr/local/bin/
+echo -n "Copying Bash programs     "
+
+sudo cp --preserve=ownership *.sh $BIN
 
 is_ok
 
 # C
 
+echo -n "Entering ~/prog/c/        "
+
 cd ~/prog/c/
 
-echo -n "Compiling C programs...      "
+is_ok
+
+echo -n "Compiling C programs      "
 
 OPT="-std=c17 -O"
 
-cc $OPT       -fsyntax-only test.c &&
+cc $OPT       -fsyntax-only test.c      &&
 
-cc $OPT       -o AECA       AECA.c &&
-cc $OPT       -o amorse     amorse.c &&
-cc $OPT       -o args       args.c &&
-cc $OPT       -o fb         fb.c &&
-cc $OPT -lpng -o fb2png     fb2png.c &&
+cc $OPT       -o AECA       AECA.c      &&
+cc $OPT       -o amorse     amorse.c    &&
+cc $OPT       -o args       args.c      &&
+cc $OPT       -o fb         fb.c        &&
+cc $OPT -lpng -o fb2png     fb2png.c    &&
 cc $OPT       -o getendian  getendian.c &&
 cc $OPT       -o getlocale  getlocale.c &&
-cc $OPT       -o hacc       hacc.c &&
-cc $OPT       -o hello      hello.c &&
-cc $OPT       -o limits     limits.c &&
-cc $OPT       -o morse      morse.c &&
-cc $OPT       -o pp         pp.c &&
+cc $OPT       -o hacc       hacc.c      &&
+cc $OPT       -o hello      hello.c     &&
+cc $OPT       -o limits     limits.c    &&
+cc $OPT       -o morse      morse.c     &&
+cc $OPT       -o pp         pp.c        &&
 cc $OPT -lm   -o waves      waves.c
 
 is_ok
 
-echo -n "Moving C programs...         "
+echo -n "Moving C programs         "
 
-sudo mv AECA amorse args fb fb2png getendian getlocale hacc hello limits morse pp waves /usr/local/bin/
+sudo mv AECA amorse args fb fb2png getendian getlocale hacc hello limits morse pp waves $BIN
 
 is_ok
 
-echo -n "Copying C headers...         "
+echo -n "Copying C headers         "
 
-sudo cp --preserve=ownership DECTCEM.h ECMA-48.h fade.h fb.h macros.h /usr/local/include/
+sudo cp --preserve=ownership *.h $INC
 
 is_ok
 
 # Haskell
 
+echo -n "Entering ~/prog/haskell/  "
+
 cd ~/prog/haskell/
 
-echo -n "Compiling Haskell program... "
+is_ok
+
+echo -n "Compiling Haskell program "
 
 ghc -v0 -O -o QDA QDA.hs
 
@@ -71,18 +86,22 @@ is_ok
 
 rm QDA.hi QDA.o
 
-echo -n "Moving Haskell program...    "
+echo -n "Moving Haskell program    "
 
-sudo mv QDA /usr/local/bin/
+sudo mv QDA $BIN
 
 is_ok
 
 # Python
 
-cd ~/prog/python
+echo -n "Entering ~/prog/python/   "
 
-echo -n "Copying Python programs...   "
+cd ~/prog/python/
 
-sudo cp --preserve=ownership ECA.py MTS.py fibonaccis.py hah.py padovans.py print.py projectile.py sudoku.py /usr/local/bin/
+is_ok
+
+echo -n "Copying Python programs   "
+
+sudo cp --preserve=ownership *.py $BIN
 
 is_ok

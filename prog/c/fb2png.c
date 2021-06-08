@@ -1,4 +1,4 @@
-// fb2png.c - write fb.png images
+// fb2png.c - write fb images in the PNG format
 
 #include <getopt.h>
 #include <png.h>

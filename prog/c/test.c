@@ -8,4 +8,7 @@
 #error "No VLA!"
 #endif
 
+#include <limits.h>
+
+_Static_assert(CHAR_BIT == 8, "char is not 8 bits!");
 _Static_assert(sizeof (unsigned) == 4, "unsigned is not 4 bytes!");

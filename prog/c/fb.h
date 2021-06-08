@@ -162,7 +162,6 @@ PAINTER(18) {
 		a[y * xres + x] = HUE(!((x * (x | z) & y * (y | z)) & z));
 }
 
-// z == (1 << 2 * n + m) - (1 << n + 2)
 PAINTER(19) {
 	FORYX
 		a[y * xres + x] = HUE(!((x * (x ^ z) & y * (y ^ z)) & z));
