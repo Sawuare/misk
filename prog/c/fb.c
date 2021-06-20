@@ -1,10 +1,11 @@
 // fb.c - paint fb images
 
-#include <fcntl.h>
-#include <getopt.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+
+#include <fcntl.h>
+#include <getopt.h>
 #include <sys/mman.h>
 #include <termios.h>
 #include <unistd.h>

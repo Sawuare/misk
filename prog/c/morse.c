@@ -1,8 +1,8 @@
-// morse.c - encode arguments into adapted International Morse code
+// morse.c - encode arguments into printable adapted International Morse code
 
 #include <stdio.h>
 
-int main(int argc, char* argv[argc + 1]) {
+int main(int wordc, char* wordv[wordc + 1]) {
 	char* codev[123] = {0};
 
 	codev['A'] = codev['a'] = ".-";
@@ -57,16 +57,14 @@ int main(int argc, char* argv[argc + 1]) {
 	codev[ '+'] = ".-.-.";
 	codev[ '@'] = ".--.-.";
 
-	int argi = 1;
+	int wordi = 1;
 
-	while (argi != argc) {
-		char* arg = argv[argi++];
+	while (wordi != wordc) {
+		char* word = wordv[wordi++];
 
-		while (*arg) {
-			fputs(codev[*arg++], stdout);
-			fputc(' ', stdout);
+		while (*word) {
+			fputs(codev[*word++], stdout);
+			fputc(*word ? ' ' : '\n', stdout);
 		}
-
-		fputc('\n', stdout);
 	}
 }

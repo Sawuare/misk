@@ -13,7 +13,7 @@
 #define CLR 256
 #define CHR 128
 
-_Noreturn void bye(int unused) {
+_Noreturn static void bye(int unused) {
 	fputs(RIS, stdout);
 	exit(EXIT_FAILURE);
 }

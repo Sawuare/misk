@@ -1,1 +1,1 @@
-fb.txt - all about fb and fb2png
+fb.txt - all about fb, fb2png, and fbzs

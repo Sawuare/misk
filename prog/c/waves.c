@@ -1,30 +1,74 @@
-// waves.c - write standard sine and square waves
+// waves.c - write some standard waves in the FLAC format
 
-#include <math.h>
+// Amplitude = 0 dBFS
+// Depth     = 16 b
+// Frequency = 440 Hz
+// Rate      = 44100 Hz
+
 #include <stdio.h>
+#include <stdlib.h>
 
-#include "macros.h"
+#include <FLAC/stream_encoder.h>
 
-#define TAU 6.283185307
+#define MAX +32767
+#define MIN -32767
 
 #define FREQ 440
 #define RATE 44100
 
-int main(void) {
-	float sin_wave[RATE];
-	float sqr_wave[RATE];
+static FLAC__int32 wave[RATE];
+static FLAC__StreamEncoder* encoder;
 
-	for (unsigned i = 0; i < RATE; ++i) {
-		sin_wave[i] = sin(TAU * FREQ * i / RATE);
-		sqr_wave[i] = SGN(sin_wave[i]);
+static void write_wave(char* filename) {
+	FLAC__stream_encoder_set_verify(encoder, true);
+	FLAC__stream_encoder_set_channels(encoder, 1);
+	FLAC__stream_encoder_set_sample_rate(encoder, RATE);
+	FLAC__stream_encoder_set_bits_per_sample(encoder, 16);
+	FLAC__stream_encoder_set_compression_level(encoder, 5);
+	FLAC__stream_encoder_set_total_samples_estimate(encoder, RATE);
+
+	if (FLAC__stream_encoder_init_file(encoder, filename, 0, 0) != FLAC__STREAM_ENCODER_INIT_STATUS_OK)
+		exit(2);
+
+	if (!FLAC__stream_encoder_process_interleaved(encoder, wave, RATE))
+		exit(3);
+
+	if (!FLAC__stream_encoder_finish(encoder))
+		exit(4);
+
+	static int counter = 1;
+
+	printf("Wrote %d of 2: %s\n", counter++, filename);
+}
+
+int main(void) {
+	encoder = FLAC__stream_encoder_new();
+
+	if (!encoder)
+		return 1;
+
+	FLAC__int32 i, j, period_2 = RATE / FREQ / 2, period_4 = period_2 / 2;
+
+	// Sawtooth wave
+
+	// Square wave
+
+	for (i = 0; i < RATE; ++i)
+		wave[i] = i / period_2 % 2 ? MIN : MAX;
+
+	write_wave("sqr.flac");
+
+	// Triangle wave
+
+	for (i = 0; i < RATE; ++i) {
+		j = i % period_4 * (MAX / period_4);
+		j = i / period_4 % 2 ? MAX - j : j;
+		wave[i] = i / period_2 % 2 ? -j : j;
 	}
 
-	FILE* sin_stream = fopen("sin.flt", "wb");
-	FILE* sqr_stream = fopen("sqr.flt", "wb");
+	write_wave("tri.flac");
 
-	fwrite(sin_wave, sizeof *sin_wave, RATE, sin_stream);
-	fwrite(sqr_wave, sizeof *sqr_wave, RATE, sqr_stream);
+	FLAC__stream_encoder_delete(encoder);
 
-	fclose(sin_stream);
-	fclose(sqr_stream);
+	return 0;
 }

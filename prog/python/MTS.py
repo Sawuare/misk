@@ -1,6 +1,6 @@
 #! /usr/bin/env python3
 
-# MTS.py - MIDI Tuning Standard table of note number, notation, and frequency
+# MTS.py - print MIDI Tuning Standard table of note number, notation, and frequency
 
 pc = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B']
 

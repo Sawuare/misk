@@ -1,10 +1,14 @@
 // AECA.c - Audible Elementary Cellular Automata
 
-#include <getopt.h>
-#include <limits.h>
+// Amplitude = 0 dBFS
+// Depth     = 8 b
+// Rate      = 44100 Hz
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+
+#include <getopt.h>
 
 static inline unsigned ddig(unsigned n) {
 	unsigned d = 1;
@@ -64,7 +68,7 @@ int main(int argc, char* argv[argc + 1]) {
 
 	for (unsigned g = 0; g < n_gens; ++g) {
 		for (unsigned c = 0; c < n_cells; ++c) {
-			audio[g * n_cells + c] = cells[c] ? SCHAR_MAX : SCHAR_MIN;
+			audio[g * n_cells + c] = cells[c] ? 127 : -127;
 
 			_Bool p = cells[c ? c - 1 : n_cells - 1];
 			_Bool q = cells[c];
@@ -80,14 +84,14 @@ int main(int argc, char* argv[argc + 1]) {
 	unsigned ddig_g = ddig(n_gens);
 	unsigned ddig_s = ddig(seed);
 
-	unsigned l_filename = ddig_c + ddig_g + ddig_s + 18;
-	unsigned l_command = l_filename + 28;
+	unsigned l_filename = ddig_c + ddig_g + ddig_s + 19;
+	unsigned l_command = l_filename + 29;
 
-	char filename[l_filename + 1];
-	char command[l_command + 1];
+	char filename[l_filename];
+	char command[l_command];
 
-	sprintf(filename, "r%03uc%*ug%*us%*u.aeca.schar", rule, ddig_c, n_cells, ddig_g, n_gens, ddig_s, seed);
-	sprintf(command, "aplay -t raw -f S8 -r 44100 %s", filename);
+	snprintf(filename, l_filename, "r%03uc%*ug%*us%*u.aeca.schar", rule, ddig_c, n_cells, ddig_g, n_gens, ddig_s, seed);
+	snprintf(command, l_command, "aplay -t raw -f S8 -r 44100 %s", filename);
 
 	FILE* stream = fopen(filename, "wb");
 	fwrite(audio, 1, n_samples, stream);
@@ -95,5 +99,7 @@ int main(int argc, char* argv[argc + 1]) {
 
 	free(audio);
 
-	system(command);
+	if (system(0))
+		// Depend on aplay for playing raw audio
+		system(command);
 }

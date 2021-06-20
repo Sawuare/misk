@@ -1,6 +1,37 @@
-morse.txt - performance analysis and measurement of morse
+morse.txt - all about morse
 
-Memory usage on Intel 64: 1012 bytes
+morse encodes arguments into printable adapted International Morse code.
+Arguments are regarded as words consisting of letters.
+
+The following are the letters that may be used:
+
+ a b c d e f g h i j k l m n o p q r s t u v w x y z
+ A B C D E F G H I J K L M N O P Q R S T U V W X Y Z
+ 1 2 3 4 5 6 7 8 9 0
+ . , : ? ' - / ( ) " = + @
+
+morse prints signals consisting of dashes and dots.
+
+Spacing and length of the signals:
+
+ A dash is equal to a dot.
+ The space between the signals forming the same letter is equal to zero.
+ The space between two letters is equal to a SPACE.
+ The space between two words is equal to a NEWLINE.
+
+Example run:
+
+ Arguments:
+
+  Written on 2021-06-17
+
+ Output:
+
+ .-- .-. .. - - . -.
+ --- -.
+ ..--- ----- ..--- .---- -....- ----- -.... -....- .---- --...
+
+Memory usage on Intel 64: 1 kB.
 
 Complexity analysis:
 
@@ -15,21 +46,19 @@ Complexity analysis:
 
 Step count table for main loop:
 
---------------------------------------------------------------
-Statement                       | Steps Frequency Total
---------------------------------------------------------------
-int argi = 1;                   | 1     1         1
-                                |
-while (argi != argc) {          | 2     w + 1     2w + 2
- char* arg = argv[argi++];      | 3     w         3w
-                                |
- while (*arg) {                 | 2     wl + w    2wl + 2w
-  fputs(codev[*arg++], stdout); | 4     wl        4wl
-  fputc(' ', stdout);           | 1     wl        1wl
- }                              |
-                                |
- fputc('\n', stdout);           | 1     w         1w
-}                               |
---------------------------------------------------------------
-Total                           |                 7wl + 8w + 3
---------------------------------------------------------------
+-------------------------------------------------------------------
+Statement                            | Steps Frequency Total steps
+-------------------------------------------------------------------
+int wordi = 1;                       | 1     1         1
+                                     |
+while (wordi != wordc) {             | 2     w + 1     2w + 2
+ char* word = wordv[wordi++];        | 3     w         3w
+                                     |
+ while (*word) {                     | 2     wl + w    2wl + 2w
+  fputs(codev[*word++], stdout);     | 4     wl        4wl
+  fputc(*word ? ' ' : '\n', stdout); | 3     wl        3wl
+ }                                   |
+}                                    |
+-------------------------------------------------------------------
+Total                                | 15              9wl + 7w + 3
+-------------------------------------------------------------------

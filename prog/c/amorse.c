@@ -1,6 +1,10 @@
-// amorse.c - play adapted International Morse code
+// amorse.c - encode input into audible International Morse code
 
-#include <limits.h>
+// Amplitude = 0 dBFS
+// Depth     = 8 b
+// Frequency = 400 Hz
+// Rate      = 8000 HZ
+
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -51,25 +55,26 @@ int main(void)
 
 		signed char* audio = calloc(n_samples, 1);
 
-		unsigned cycle_2 = RATE / FREQ / 2;
+		unsigned period_2 = RATE / FREQ / 2;
 
 		unsigned i = 0;
 		unsigned j = 0;
 
 		cptr = cbuf;
 
+		// Generate square waves for '.' and '-' or skip the silence for ' ' and '\n'
 		while (*cptr) {
 			switch (*cptr) {
 				case '.':
 					for (j = 0; j < dit; ++j)
-						audio[i + j] = j / cycle_2 % 2 ? SCHAR_MAX : SCHAR_MIN;
+						audio[i + j] = j / period_2 % 2 ? -127 : 127;
 
 					i += dit;
 					break;
 
 				case '-':
 					for (j = 0; j < dah; ++j)
-						audio[i + j] = j / cycle_2 % 2 ? SCHAR_MAX : SCHAR_MIN;
+						audio[i + j] = j / period_2 % 2 ? -127 : 127;
 
 				case ' ':
 					i += dah;
@@ -92,7 +97,9 @@ int main(void)
 
 	fclose(stream);
 
-	system("aplay -t raw -f S8 " FILENAME);
+	if (system(0))
+		// Depend on aplay for playing raw audio
+		system("aplay -t raw -f S8 -r 8000 " FILENAME);
 
 	remove(FILENAME);
 }

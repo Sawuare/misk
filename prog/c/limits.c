@@ -1,4 +1,4 @@
-// limits.c - print all limits in limits.h
+// limits.c - print all limits in <limits.h>
 
 #include <inttypes.h>
 #include <limits.h>

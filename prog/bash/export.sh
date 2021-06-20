@@ -11,13 +11,13 @@ function is_ok {
 	fi
 }
 
-echo -n "Entering ~/data/ "
+echo "Entering ~/data/"
 
 cd ~/data/
 
 is_ok
 
-echo -n "Exporting data   "
+echo "Exporting data"
 
 MTS.py    > MTS.txt    &&
 fbzs.py                &&

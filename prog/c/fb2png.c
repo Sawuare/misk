@@ -1,11 +1,13 @@
 // fb2png.c - write fb images in the PNG format
 
-#include <getopt.h>
-#include <png.h>
 #include <setjmp.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+
+#include <getopt.h>
+
+#include <png.h>
 #include <zlib.h>
 
 #include "fb.h"
@@ -62,23 +64,22 @@ int main(int argc, char* argv[argc + 1]) {
 	unsigned ddig_y = ddig(yres);
 	unsigned ddig_z = ddig(z);
 
-	unsigned l_filename = ddig_x + ddig_y + ddig_z + 20;
+	unsigned l_filename = ddig_x + ddig_y + ddig_z + 21;
 
-	char filename[l_filename + 1];
+	char filename[l_filename];
 
-	if (sprintf(filename, "i%02ux%*uy%*uz%*u#%06x.fb.png", id, ddig_x, xres, ddig_y, yres, ddig_z, z, hue) != l_filename)
-		return 1;
+	snprintf(filename, l_filename, "i%02ux%*uy%*uz%*u#%06x.fb.png", id, ddig_x, xres, ddig_y, yres, ddig_z, z, hue);
 
 	FILE* stream = fopen(filename, "wb");
 
 	if (!stream)
-		return 2;
+		return 1;
 
 	png_struct* structp = png_create_write_struct(PNG_LIBPNG_VER_STRING, 0, 0, 0);
 
 	if (!structp) {
 		fclose(stream);
-		return 3;
+		return 2;
 	}
 
 	png_info* infop = png_create_info_struct(structp);
@@ -86,13 +87,13 @@ int main(int argc, char* argv[argc + 1]) {
 	if (!infop) {
 		png_destroy_write_struct(&structp, 0);
 		fclose(stream);
-		return 4;
+		return 3;
 	}
 
 	if (setjmp(png_jmpbuf(structp))) {
 		png_destroy_write_struct(&structp, &infop);
 		fclose(stream);
-		return 5;
+		return 4;
 	}
 
 	png_init_io(structp, stream);
@@ -119,7 +120,7 @@ int main(int argc, char* argv[argc + 1]) {
 		free(original_image);
 		free(stripped_image);
 		fclose(stream);
-		return 6;
+		return 5;
 	}
 
 	painters[id](xres, yres, z, hue, original_image);
