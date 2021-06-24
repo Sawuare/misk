@@ -1,7 +1,6 @@
-// fb.c - paint fb images
+// fb.c - paint fb images on the framebuffer
 
 #include <stdio.h>
-#include <stdlib.h>
 #include <string.h>
 
 #include <fcntl.h>
@@ -15,30 +14,30 @@
 #include "fb.h"
 
 int main(int argc, char* argv[argc + 1]) {
-	_Bool    counter = 0;
-	unsigned id      = 0;
-	unsigned step    = 1;
-	unsigned z       = 1;
-	unsigned hue     = FB_WHITE;
+	_Bool    line  = 0;
+	unsigned id    = 0;
+	unsigned step  = 1;
+	unsigned z     = 1;
+	unsigned color = FB_WHITE;
 
 	int opt;
 
-	while ((opt = getopt(argc, argv, "#:ch:i:s:z:")) != -1)
+	while ((opt = getopt(argc, argv, "#:c:i:ls:z:")) != -1)
 		switch (opt) {
 			case '#':
-				hue = strtoul(optarg, 0, 16);
+				color = fb_get_base16_color(optarg);
 				break;
 
 			case 'c':
-				counter = 1;
-				break;
-
-			case 'h':
-				hue = get_letter_hue(optarg);
+				color = fb_get_letter_color(optarg);
 				break;
 
 			case 'i':
 				id = strtoul(optarg, 0, 10);
+				break;
+
+			case 'l':
+				line = 1;
 				break;
 
 			case 's':
@@ -71,9 +70,9 @@ int main(int argc, char* argv[argc + 1]) {
 	fflush(stdout);
 
 	while (z) {
-		painters[id](FB_XRES, FB_YRES, z, hue, fbm);
+		fb_painters[id](FB_XRES, FB_YRES, z, color, fbm);
 
-		if (counter) {
+		if (line) {
 			fprintf(stdout, "z = %u\r", z);
 			fflush(stdout);
 		}
@@ -91,8 +90,8 @@ fgetc:
 				fscanf(stdin, "%u", &z);
 				break;
 
-			case 'c':
-				counter = !counter;
+			case 'l':
+				line = !line;
 				break;
 
 			case 'q':

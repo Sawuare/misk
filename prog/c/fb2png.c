@@ -2,7 +2,6 @@
 
 #include <setjmp.h>
 #include <stdio.h>
-#include <stdlib.h>
 #include <string.h>
 
 #include <getopt.h>
@@ -22,22 +21,22 @@ static inline unsigned ddig(unsigned n) {
 }
 
 int main(int argc, char* argv[argc + 1]) {
-	unsigned id   = 0;
-	unsigned z    = 1;
-	unsigned xres = FB_XRES;
-	unsigned yres = FB_YRES;
-	unsigned hue  = FB_WHITE;
+	unsigned id    = 0;
+	unsigned z     = 1;
+	unsigned xres  = FB_XRES;
+	unsigned yres  = FB_YRES;
+	unsigned color = FB_WHITE;
 
 	int opt;
 
-	while ((opt = getopt(argc, argv, "#:h:i:x:y:z:")) != -1)
+	while ((opt = getopt(argc, argv, "#:c:i:x:y:z:")) != -1)
 		switch (opt) {
 			case '#':
-				hue = strtoul(optarg, 0, 16);
+				color = fb_get_base16_color(optarg);
 				break;
 
-			case 'h':
-				hue = get_letter_hue(optarg);
+			case 'c':
+				color = fb_get_letter_color(optarg);
 				break;
 
 			case 'i':
@@ -68,7 +67,7 @@ int main(int argc, char* argv[argc + 1]) {
 
 	char filename[l_filename];
 
-	snprintf(filename, l_filename, "i%02ux%*uy%*uz%*u#%06x.fb.png", id, ddig_x, xres, ddig_y, yres, ddig_z, z, hue);
+	snprintf(filename, l_filename, "i%02ux%*uy%*uz%*u#%06x.fb.png", id, ddig_x, xres, ddig_y, yres, ddig_z, z, color);
 
 	FILE* stream = fopen(filename, "wb");
 
@@ -100,12 +99,12 @@ int main(int argc, char* argv[argc + 1]) {
 
 	png_text texts[] = {
 		{.key = "Author",   .text = "Sawuare", .compression = PNG_TEXT_COMPRESSION_NONE},
-		{.key = "Software", .text = "fb2png",  .compression = PNG_TEXT_COMPRESSION_NONE},
+		{.key = "Software", .text = "fb2png",  .compression = PNG_TEXT_COMPRESSION_NONE}
 	};
 
 	png_set_IHDR(structp, infop, xres, yres, FB_BPS, PNG_COLOR_TYPE_RGB, PNG_INTERLACE_NONE, PNG_COMPRESSION_TYPE_BASE, PNG_FILTER_TYPE_BASE);
 	png_set_text(structp, infop, texts, ARRLEN(texts));
-	png_set_filter(structp, PNG_FILTER_TYPE_BASE, FB_IS_HUE_XOR_RAMP(id) ? PNG_FILTER_NONE : PNG_FILTER_UP);
+	png_set_filter(structp, PNG_FILTER_TYPE_BASE, FB_IS_MONO_XOR_RAMP(id) ? PNG_FILTER_NONE : PNG_FILTER_UP);
 	png_set_compression_level(structp, Z_DEFAULT_COMPRESSION);
 	png_set_compression_strategy(structp, Z_DEFAULT_STRATEGY);
 
@@ -123,9 +122,9 @@ int main(int argc, char* argv[argc + 1]) {
 		return 5;
 	}
 
-	painters[id](xres, yres, z, hue, original_image);
+	fb_painters[id](xres, yres, z, color, original_image);
 
-	// Strip A from BGRA
+	// Convert BGRA to RGB
 	for (unsigned i = 0, j = 0; i < res; i += 1, j += 3) {
 		stripped_image[j + 0] = original_image[i] >> 16 & 255; // R
 		stripped_image[j + 1] = original_image[i] >>  8 & 255; // G

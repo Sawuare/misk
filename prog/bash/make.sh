@@ -40,7 +40,7 @@ echo "Compiling C programs"
 
 OPT="-std=c17 -march=native -O3"
 
-cc $OPT       -fsyntax-only test.c      &&
+cc $OPT        -fsyntax-only test.c      &&
 
 cc $OPT        -o AECA       AECA.c      &&
 cc $OPT        -o amorse     amorse.c    &&

@@ -27,7 +27,7 @@ int main(int argc, char* argv[argc + 1]) {
 
 	int opt;
 
-	while ((opt = getopt(argc, argv, "c:g:r:s:")) != -1) {
+	while ((opt = getopt(argc, argv, "c:g:r:s:")) != -1)
 		switch (opt) {
 			case 'c':
 				n_cells = strtoul(optarg, 0, 10);
@@ -48,7 +48,6 @@ int main(int argc, char* argv[argc + 1]) {
 			default:
 				return EXIT_FAILURE;
 		}
-	}
 
 	unsigned n_samples = n_gens * n_cells;
 

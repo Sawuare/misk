@@ -55,10 +55,7 @@ int main(void)
 
 		signed char* audio = calloc(n_samples, 1);
 
-		unsigned period_2 = RATE / FREQ / 2;
-
-		unsigned i = 0;
-		unsigned j = 0;
+		unsigned i = 0, period_2 = RATE / FREQ / 2;
 
 		cptr = cbuf;
 
@@ -66,14 +63,14 @@ int main(void)
 		while (*cptr) {
 			switch (*cptr) {
 				case '.':
-					for (j = 0; j < dit; ++j)
+					for (unsigned j = 0; j < dit; ++j)
 						audio[i + j] = j / period_2 % 2 ? -127 : 127;
 
 					i += dit;
 					break;
 
 				case '-':
-					for (j = 0; j < dah; ++j)
+					for (unsigned j = 0; j < dah; ++j)
 						audio[i + j] = j / period_2 % 2 ? -127 : 127;
 
 				case ' ':

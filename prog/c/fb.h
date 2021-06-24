@@ -1,5 +1,7 @@
 // fb.h - constants and painters for a 1024x768x32 BGRA framebuffer
 
+#include <stdlib.h>
+
 #include "macros.h"
 
 #define FB_PATH "/dev/fb0"
@@ -17,21 +19,24 @@
 #define FB_YELLOW  0xffff00
 #define FB_WHITE   0xffffff
 
-#define FB_IS_HUE_XOR_RAMP(id) ((id) < 29)
+#define FB_IS_MONO_XOR_RAMP(id) ((id) < 29)
 
-#define HUE(px)  ((px) * h)
-#define RAMP(px) ((px) % 0x100 * h / 0xff)
+#define PAINTER(id) static inline void fb_p##id(unsigned xres, unsigned yres, unsigned z, unsigned c, unsigned a[])
 
-#define FORYX for (unsigned y = 0; y < yres; ++y) \
-              for (unsigned x = 0; x < xres; ++x)
+#define FORYX \
+	for (unsigned y = 0; y < yres; ++y) \
+	for (unsigned x = 0; x < xres; ++x)
 
-#define PAINTER(id) static inline void p##id(unsigned xres, unsigned yres, unsigned z, unsigned h, unsigned a[])
+#define MONO(px) ((px) * c)
+#define RAMP(px) ((px) % 0x100 * c / 0xff)
 
-typedef void painter(unsigned, unsigned, unsigned, unsigned, unsigned[]);
+static inline unsigned fb_get_base16_color(char const* s) {
+	return strtoul(s, 0, 16) % 0x1000000;
+}
 
-static inline unsigned get_letter_hue(char* s) {
+static inline unsigned fb_get_letter_color(char const* s) {
 	switch (TOUPPER(*s)) {
-		default :
+		default:
 		case 'W': return FB_WHITE;
 		case 'R': return FB_RED;
 		case 'G': return FB_GREEN;
@@ -42,178 +47,165 @@ static inline unsigned get_letter_hue(char* s) {
 	}
 }
 
-static painter
-	p00, p01, p02, p03, p04, p05, p06, p07, p08, p09,
-	p10, p11, p12, p13, p14, p15, p16, p17, p18, p19,
-	p20, p21, p22, p23, p24, p25, p26, p27, p28, p29,
-	p30, p31, p32;
-
-static painter* painters[] = {
-	p00, p01, p02, p03, p04, p05, p06, p07, p08, p09,
-	p10, p11, p12, p13, p14, p15, p16, p17, p18, p19,
-	p20, p21, p22, p23, p24, p25, p26, p27, p28, p29,
-	p30, p31, p32,
-};
-
 // Class 0
 
-PAINTER(00) {
+PAINTER(0) {
 	FORYX
-		a[y * x] = HUE(1);
+		a[y * x] = MONO(1);
 }
 
 // Class 1
 
-PAINTER(01) {
+PAINTER(1) {
 	FORYX
-		a[y * xres + x] = HUE(!((x & y) & z));
+		a[y * xres + x] = MONO(!((x & y) & z));
 }
 
-PAINTER(02) {
+PAINTER(2) {
 	FORYX
-		a[y * xres + x] = HUE(!((x | y) & z));
+		a[y * xres + x] = MONO(!((x | y) & z));
 }
 
-PAINTER(03) {
+PAINTER(3) {
 	FORYX
-		a[y * xres + x] = HUE(!((x ^ y) & z));
+		a[y * xres + x] = MONO(!((x ^ y) & z));
 }
 
-PAINTER(04) {
+PAINTER(4) {
 	FORYX
-		a[y * xres + x] = HUE(!((x * y) & z));
+		a[y * xres + x] = MONO(!((x * y) & z));
 }
 
 // Class 2
 
-PAINTER(05) {
+PAINTER(5) {
 	FORYX
-		a[y * xres + x] = HUE(!((x & y) % z));
+		a[y * xres + x] = MONO(!((x & y) % z));
 }
 
-PAINTER(06) {
+PAINTER(6) {
 	FORYX
-		a[y * xres + x] = HUE(!((x | y) % z));
+		a[y * xres + x] = MONO(!((x | y) % z));
 }
 
-PAINTER(07) {
+PAINTER(7) {
 	FORYX
-		a[y * xres + x] = HUE(!((x ^ y) % z));
+		a[y * xres + x] = MONO(!((x ^ y) % z));
 }
 
-PAINTER(08) {
+PAINTER(8) {
 	FORYX
-		a[y * xres + x] = HUE(!((x * y) % z));
+		a[y * xres + x] = MONO(!((x * y) % z));
 }
 
 // Class 3
 
-PAINTER(09) {
+PAINTER(9) {
 	FORYX
-		a[y * xres + x] = HUE(!((x * x & y * y) & z));
+		a[y * xres + x] = MONO(!((x * x & y * y) & z));
 }
 
 PAINTER(10) {
 	FORYX
-		a[y * xres + x] = HUE(!((x * x | y * y) & z));
+		a[y * xres + x] = MONO(!((x * x | y * y) & z));
 }
 
 PAINTER(11) {
 	FORYX
-		a[y * xres + x] = HUE(!((x * x ^ y * y) & z));
+		a[y * xres + x] = MONO(!((x * x ^ y * y) & z));
 }
 
 PAINTER(12) {
 	FORYX
-		a[y * xres + x] = HUE(!((x * x * y * y) & z));
+		a[y * xres + x] = MONO(!((x * x * y * y) & z));
 }
 
 // Class 4
 
 PAINTER(13) {
 	FORYX
-		a[y * xres + x] = HUE(!((x * x & y * y) % z));
+		a[y * xres + x] = MONO(!((x * x & y * y) % z));
 }
 
 PAINTER(14) {
 	FORYX
-		a[y * xres + x] = HUE(!((x * x | y * y) % z));
+		a[y * xres + x] = MONO(!((x * x | y * y) % z));
 }
 
 PAINTER(15) {
 	FORYX
-		a[y * xres + x] = HUE(!((x * x ^ y * y) % z));
+		a[y * xres + x] = MONO(!((x * x ^ y * y) % z));
 }
 
 PAINTER(16) {
 	FORYX
-		a[y * xres + x] = HUE(!((x * x * y * y) % z));
+		a[y * xres + x] = MONO(!((x * x * y * y) % z));
 }
 
 // Class 5
 
 PAINTER(17) {
 	FORYX
-		a[y * xres + x] = HUE(!((x * (x & z) & y * (y & z)) & z));
+		a[y * xres + x] = MONO(!((x * (x & z) & y * (y & z)) & z));
 }
 
 PAINTER(18) {
 	FORYX
-		a[y * xres + x] = HUE(!((x * (x | z) & y * (y | z)) & z));
+		a[y * xres + x] = MONO(!((x * (x | z) & y * (y | z)) & z));
 }
 
 PAINTER(19) {
 	FORYX
-		a[y * xres + x] = HUE(!((x * (x ^ z) & y * (y ^ z)) & z));
+		a[y * xres + x] = MONO(!((x * (x ^ z) & y * (y ^ z)) & z));
 }
 
 PAINTER(20) {
 	FORYX
-		a[y * xres + x] = HUE(!((x * (x * z) & y * (y * z)) & z));
+		a[y * xres + x] = MONO(!((x * (x * z) & y * (y * z)) & z));
 }
 
 // Class 6
 
 PAINTER(21) {
 	FORYX
-		a[y * xres + x] = HUE(!((x * (x & z) & y * (y & z)) % z));
+		a[y * xres + x] = MONO(!((x * (x & z) & y * (y & z)) % z));
 }
 
 PAINTER(22) {
 	FORYX
-		a[y * xres + x] = HUE(!((x * (x | z) & y * (y | z)) % z));
+		a[y * xres + x] = MONO(!((x * (x | z) & y * (y | z)) % z));
 }
 
 PAINTER(23) {
 	FORYX
-		a[y * xres + x] = HUE(!((x * (x ^ z) & y * (y ^ z)) % z));
+		a[y * xres + x] = MONO(!((x * (x ^ z) & y * (y ^ z)) % z));
 }
 
 PAINTER(24) {
 	FORYX
-		a[y * xres + x] = HUE(!((x * (x * z) & y * (y * z)) % z));
+		a[y * xres + x] = MONO(!((x * (x * z) & y * (y * z)) % z));
 }
 
 // Class 7
 
 PAINTER(25) {
 	FORYX
-		a[y * xres + x] = HUE(!((x * (x & z) + y * (y & z)) % z));
+		a[y * xres + x] = MONO(!((x * (x & z) + y * (y & z)) % z));
 }
 
 PAINTER(26) {
 	FORYX
-		a[y * xres + x] = HUE(!((x * (x | z) + y * (y | z)) % z));
+		a[y * xres + x] = MONO(!((x * (x | z) + y * (y | z)) % z));
 }
 
 PAINTER(27) {
 	FORYX
-		a[y * xres + x] = HUE(!((x * (x ^ z) + y * (y ^ z)) % z));
+		a[y * xres + x] = MONO(!((x * (x ^ z) + y * (y ^ z)) % z));
 }
 
 PAINTER(28) {
 	FORYX
-		a[y * xres + x] = HUE(!((x * (x * z) + y * (y * z)) % z));
+		a[y * xres + x] = MONO(!((x * (x * z) + y * (y * z)) % z));
 }
 
 // Class 8
@@ -238,7 +230,14 @@ PAINTER(32) {
 		a[y * xres + x] = RAMP(x * (x * z) + y * (y * z));
 }
 
-#undef HUE
-#undef RAMP
-#undef FORYX
+static void (*fb_painters[])(unsigned, unsigned, unsigned, unsigned, unsigned[]) = {
+	fb_p0,  fb_p1,  fb_p2,  fb_p3,  fb_p4,  fb_p5,  fb_p6,  fb_p7,  fb_p8,  fb_p9,
+	fb_p10, fb_p11, fb_p12, fb_p13, fb_p14, fb_p15, fb_p16, fb_p17, fb_p18, fb_p19,
+	fb_p20, fb_p21, fb_p22, fb_p23, fb_p24, fb_p25, fb_p26, fb_p27, fb_p28, fb_p29,
+	fb_p30, fb_p31, fb_p32
+};
+
 #undef PAINTER
+#undef FORYX
+#undef MONO
+#undef RAMP
