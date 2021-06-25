@@ -1,5 +1,3 @@
-colorscheme vga
-
 set nocompatible
 set nowrap
 set autoindent
