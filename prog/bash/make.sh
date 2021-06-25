@@ -5,7 +5,7 @@
 function is_ok {
 	if [ $? ]
 	then
-		echo "OK!"
+		echo 'OK!'
 	else
 		exit
 	fi
@@ -16,13 +16,13 @@ INC=/usr/local/include/
 
 # Bash
 
-echo "Entering ~/prog/bash/"
+echo 'Entering ~/prog/bash/'
 
 cd ~/prog/bash/
 
 is_ok
 
-echo "Copying Bash programs"
+echo 'Copying Bash programs'
 
 sudo cp --preserve=ownership *.sh $BIN
 
@@ -30,15 +30,15 @@ is_ok
 
 # C
 
-echo "Entering ~/prog/c/"
+echo 'Entering ~/prog/c/'
 
 cd ~/prog/c/
 
 is_ok
 
-echo "Compiling C programs"
+echo 'Compiling C programs'
 
-OPT="-std=c11 -march=native -O3"
+OPT='-std=c11 -march=native -O3'
 
 cc $OPT        -fsyntax-only test.c      &&
 
@@ -59,13 +59,13 @@ cc $OPT -lFLAC -o waves      waves.c
 
 is_ok
 
-echo "Moving C programs"
+echo 'Moving C programs'
 
-sudo mv AECA amorse args fb fb2png getendian getlocale hacc hello limits morse pp waves $BIN
+sudo mv AECA amorse args ctime fb fb2png getendian getlocale hacc hello limits morse pp waves $BIN
 
 is_ok
 
-echo "Copying C headers"
+echo 'Copying C headers'
 
 sudo cp --preserve=ownership *.h $INC
 
@@ -73,13 +73,13 @@ is_ok
 
 # Haskell
 
-echo "Entering ~/prog/haskell/"
+echo 'Entering ~/prog/haskell/'
 
 cd ~/prog/haskell/
 
 is_ok
 
-echo "Compiling Haskell program"
+echo 'Compiling Haskell program'
 
 ghc -v0 -O -o QDA QDA.hs
 
@@ -87,7 +87,7 @@ is_ok
 
 rm QDA.hi QDA.o
 
-echo "Moving Haskell program"
+echo 'Moving Haskell program'
 
 sudo mv QDA $BIN
 
@@ -95,13 +95,13 @@ is_ok
 
 # Python
 
-echo "Entering ~/prog/python/"
+echo 'Entering ~/prog/python/'
 
 cd ~/prog/python/
 
 is_ok
 
-echo "Copying Python programs"
+echo 'Copying Python programs'
 
 sudo cp --preserve=ownership *.py $BIN
 

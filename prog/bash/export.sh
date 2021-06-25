@@ -5,19 +5,19 @@
 function is_ok {
 	if [ $? ]
 	then
-		echo "OK!"
+		echo 'OK!'
 	else
 		exit
 	fi
 }
 
-echo "Entering ~/data/"
+echo 'Entering ~/data/'
 
 cd ~/data/
 
 is_ok
 
-echo "Exporting data"
+echo 'Exporting data'
 
 MTS.py    > MTS.txt    &&
 fbzs.py                &&
