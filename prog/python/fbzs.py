@@ -8,10 +8,10 @@ def a19(f, m):
 	n = 0 if m >= 0 else -m + 1
 
 	while True:
-		x = 2 ** (2 * n + m) - 2 ** n
+		z = 2 ** (2 * n + m) - 2 ** n
 
-		if x <= Z_MAX:
-			print(x, end = ' ', file = f)
+		if z <= Z_MAX:
+			print(z, end = ' ', file = f)
 		else:
 			break
 

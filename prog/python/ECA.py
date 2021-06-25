@@ -2,8 +2,7 @@
 
 # ECA.py - Elementary Cellular Automata on a 1024x768x32 BGRA framebuffer
 
-import random
-import sys
+import random, sys
 
 RULE = int(input('Rule: '))
 SEED = int(input('Seed: '))
@@ -14,8 +13,8 @@ WHITE = b'\xff\xff\xff\x00'
 XRES = 1024
 YRES = 768
 
-cells = [0] * XRES
-clone = [0] * XRES
+cells = XRES * [0]
+clone = XRES * [0]
 
 if (SEED):
 	random.seed(SEED)

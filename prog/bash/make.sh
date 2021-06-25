@@ -38,13 +38,14 @@ is_ok
 
 echo "Compiling C programs"
 
-OPT="-std=c17 -march=native -O3"
+OPT="-std=c11 -march=native -O3"
 
 cc $OPT        -fsyntax-only test.c      &&
 
 cc $OPT        -o AECA       AECA.c      &&
 cc $OPT        -o amorse     amorse.c    &&
 cc $OPT        -o args       args.c      &&
+cc $OPT        -o ctime      ctime.c     &&
 cc $OPT        -o fb         fb.c        &&
 cc $OPT -lpng  -o fb2png     fb2png.c    &&
 cc $OPT        -o getendian  getendian.c &&

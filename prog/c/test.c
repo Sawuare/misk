@@ -1,10 +1,18 @@
-// test.c - test some conditional feature macros and static assertions
+// test.c - test some macros and static assertions
 
-#ifdef __STDC_NO_THREADS__
+#if __STDC__ != 1
+#error "Not a conforming implementation!"
+#endif
+
+#if __STDC_VERSION__ < 201112
+#error "Not a modern implementation!"
+#endif
+
+#if __STDC_NO_THREADS__ == 1
 #error "No thrd_sleep()!"
 #endif
 
-#ifdef __STDC_NO_VLA__
+#if __STDC_NO_VLA__ == 1
 #error "No VLA!"
 #endif
 
