@@ -56,29 +56,25 @@ int main(int argc, char* argv[argc + 1]) {
 				break;
 
 			default:
-				return EXIT_FAILURE;
+				return 1;
 		}
 
-	unsigned ddig_x = ddig(xres);
-	unsigned ddig_y = ddig(yres);
-	unsigned ddig_z = ddig(z);
-
-	unsigned l_filename = ddig_x + ddig_y + ddig_z + 21;
+	unsigned l_filename = ddig(id) + ddig(xres) + ddig(yres) + ddig(z) + 19;
 
 	char filename[l_filename];
 
-	snprintf(filename, l_filename, "i%02ux%*uy%*uz%*u#%06x.fb.png", id, ddig_x, xres, ddig_y, yres, ddig_z, z, color);
+	snprintf(filename, l_filename, "i%ux%uy%uz%u#%06x.fb.png", id, xres, yres, z, color);
 
 	FILE* stream = fopen(filename, "wb");
 
 	if (!stream)
-		return 1;
+		return 2;
 
 	png_struct* structp = png_create_write_struct(PNG_LIBPNG_VER_STRING, 0, 0, 0);
 
 	if (!structp) {
 		fclose(stream);
-		return 2;
+		return 3;
 	}
 
 	png_info* infop = png_create_info_struct(structp);
@@ -86,13 +82,13 @@ int main(int argc, char* argv[argc + 1]) {
 	if (!infop) {
 		png_destroy_write_struct(&structp, 0);
 		fclose(stream);
-		return 3;
+		return 4;
 	}
 
 	if (setjmp(png_jmpbuf(structp))) {
 		png_destroy_write_struct(&structp, &infop);
 		fclose(stream);
-		return 4;
+		return 5;
 	}
 
 	png_init_io(structp, stream);
@@ -119,7 +115,7 @@ int main(int argc, char* argv[argc + 1]) {
 		free(original_image);
 		free(stripped_image);
 		fclose(stream);
-		return 5;
+		return 6;
 	}
 
 	fb_painters[id](xres, yres, z, color, original_image);
@@ -140,12 +136,12 @@ int main(int argc, char* argv[argc + 1]) {
 	png_write_image(structp, row_pointers);
 	png_write_end(structp, infop);
 
-	printf("Wrote %s\n", filename);
-
 	png_destroy_write_struct(&structp, &infop);
 	free(original_image);
 	free(stripped_image);
 	fclose(stream);
+
+	printf("Wrote %s\n", filename);
 
 	return 0;
 }

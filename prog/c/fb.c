@@ -73,7 +73,7 @@ int main(int argc, char* argv[argc + 1]) {
 		fb_painters[id](FB_XRES, FB_YRES, z, color, fbm);
 
 		if (line) {
-			fprintf(stdout, "z = %u\r", z);
+			fprintf(stdout, "i%uz%u\r", id, z);
 			fflush(stdout);
 		}
 fgetc:
@@ -88,6 +88,10 @@ fgetc:
 
 			case 'z':
 				fscanf(stdin, "%u", &z);
+				break;
+
+			case 'i':
+				fscanf(stdin, "%u", &id);
 				break;
 
 			case 'l':

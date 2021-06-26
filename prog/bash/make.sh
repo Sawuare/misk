@@ -3,12 +3,7 @@
 # make.sh - make and move binaries and headers to /usr/local/
 
 function is_ok {
-	if [ $? ]
-	then
-		echo 'OK!'
-	else
-		exit
-	fi
+	[ $? ] || (echo 'NOT OK!'; exit)
 }
 
 BIN=/usr/local/bin/

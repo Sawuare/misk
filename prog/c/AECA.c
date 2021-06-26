@@ -79,22 +79,20 @@ int main(int argc, char* argv[argc + 1]) {
 		memcpy(cells, clone, sizeof clone);
 	}
 
-	unsigned ddig_c = ddig(n_cells);
-	unsigned ddig_g = ddig(n_gens);
-	unsigned ddig_s = ddig(seed);
-
-	unsigned l_filename = ddig_c + ddig_g + ddig_s + 19;
-	unsigned l_command = l_filename + 29;
+	unsigned l_filename = ddig(n_cells) + ddig(n_gens) + ddig(rule) + ddig(seed) + 16;
+	unsigned l_command = l_filename + 28;
 
 	char filename[l_filename];
 	char command[l_command];
 
-	snprintf(filename, l_filename, "r%03uc%*ug%*us%*u.aeca.schar", rule, ddig_c, n_cells, ddig_g, n_gens, ddig_s, seed);
+	snprintf(filename, l_filename, "c%ug%ur%us%u.aeca.schar", n_cells, n_gens, rule, seed);
 	snprintf(command, l_command, "aplay -t raw -f S8 -r 44100 %s", filename);
 
 	FILE* stream = fopen(filename, "wb");
 	fwrite(audio, 1, n_samples, stream);
 	fclose(stream);
+
+	printf("Wrote %s\n", filename);
 
 	free(audio);
 

@@ -3,12 +3,7 @@
 # export.sh - export data to ~/data/
 
 function is_ok {
-	if [ $? ]
-	then
-		echo 'OK!'
-	else
-		exit
-	fi
+	[ $? ] || (echo 'NOT OK!'; exit)
 }
 
 echo 'Entering ~/data/'
