@@ -1,7 +1,7 @@
 // fb.c - paint fb images on the framebuffer
 
 #include <stdio.h>
-#include <string.h>
+#include <stdlib.h>
 
 #include <fcntl.h>
 #include <getopt.h>
@@ -22,7 +22,7 @@ int main(int argc, char* argv[argc + 1]) {
 
 	int opt;
 
-	while ((opt = getopt(argc, argv, "#:c:i:ls:z:")) != -1)
+	while ((opt = getopt(argc, argv, "#:c:i:s:z:l")) != -1)
 		switch (opt) {
 			case '#':
 				color = fb_get_base16_color(optarg);
@@ -36,16 +36,16 @@ int main(int argc, char* argv[argc + 1]) {
 				id = strtoul(optarg, 0, 10);
 				break;
 
-			case 'l':
-				line = 1;
-				break;
-
 			case 's':
 				step = strtoul(optarg, 0, 10);
 				break;
 
 			case 'z':
 				z = strtoul(optarg, 0, 10);
+				break;
+
+			case 'l':
+				line = 1;
 				break;
 
 			default:

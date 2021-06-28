@@ -2,19 +2,15 @@
 
 # sudoku.py - print "sudoku" grid of subgrids filled sequentially with 1s to 9s
 
-from sys import stdout
-
 for row in range(9):
 	for col in range(9):
 		# Thanks to kanafutile
-		stdout.write(chr(ord('1') + col // 3 + row // 3 * 3))
-
-		stdout.write(' ')
+		print(chr(ord('1') + col // 3 + row // 3 * 3), end = ' ')
 
 		if col == 2 or col == 5:
-			stdout.write(' ')
+			print(' ', end = '')
 
-	stdout.write('\n')
+	print()
 
 	if row == 2 or row == 5:
-		stdout.write('\n')
+		print()

@@ -1,7 +1,7 @@
 // limits.c - print all limits in <limits.h>
 
-#include <inttypes.h>
 #include <limits.h>
+#include <stdint.h>
 #include <stdio.h>
 
 int main(void) {

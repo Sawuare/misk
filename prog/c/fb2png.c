@@ -2,7 +2,7 @@
 
 #include <setjmp.h>
 #include <stdio.h>
-#include <string.h>
+#include <stdlib.h>
 
 #include <getopt.h>
 
@@ -29,7 +29,7 @@ int main(int argc, char* argv[argc + 1]) {
 
 	int opt;
 
-	while ((opt = getopt(argc, argv, "#:c:i:x:y:z:")) != -1)
+	while ((opt = getopt(argc, argv, "#:c:i:x:y:z:v")) != -1)
 		switch (opt) {
 			case '#':
 				color = fb_get_base16_color(optarg);
@@ -54,6 +54,11 @@ int main(int argc, char* argv[argc + 1]) {
 			case 'z':
 				z = strtoul(optarg, 0, 10);
 				break;
+
+			case 'v':
+				printf("Compiled with libpng %s and using libpng %s\n", PNG_LIBPNG_VER_STRING, png_libpng_ver);
+				printf("Compiled with zlib %s and using zlib %s\n", ZLIB_VERSION, zlib_version);
+				return 0;
 
 			default:
 				return 1;
@@ -127,6 +132,8 @@ int main(int argc, char* argv[argc + 1]) {
 		stripped_image[j + 2] = original_image[i] >>  0 & 255; // B
 	}
 
+	free(original_image);
+
 	png_byte* row_pointers[yres];
 
 	for (unsigned y = 0; y < yres; ++y)
@@ -137,7 +144,6 @@ int main(int argc, char* argv[argc + 1]) {
 	png_write_end(structp, infop);
 
 	png_destroy_write_struct(&structp, &infop);
-	free(original_image);
 	free(stripped_image);
 	fclose(stream);
 

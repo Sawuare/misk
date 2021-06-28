@@ -2,7 +2,7 @@
 
 # ECA.py - Elementary Cellular Automata on a 1024x768x32 BGRA framebuffer
 
-import random, sys
+import random
 
 RULE = int(input('Rule: '))
 SEED = int(input('Seed: '))
@@ -24,8 +24,7 @@ else:
 	cells[XRES // 2] = 1
 
 # Disable cursor
-sys.stdout.write('\x1b[?25l')
-sys.stdout.flush()
+print('\x1b[?25l', end = '', flush = True)
 
 with open('/dev/fb0', 'wb') as fb:
 	for y in range(YRES):
@@ -43,4 +42,4 @@ with open('/dev/fb0', 'wb') as fb:
 input()
 
 # Enable cursor
-sys.stdout.write('\x1b[?25h')
+print('\x1b[?25h', end = '')

@@ -35,22 +35,22 @@ echo 'Compiling C programs'
 
 OPT='-std=c11 -march=native -O3'
 
-cc $OPT        -fsyntax-only test.c      &&
+cc $OPT           -fsyntax-only test.c      &&
 
-cc $OPT        -o AECA       AECA.c      &&
-cc $OPT        -o amorse     amorse.c    &&
-cc $OPT        -o args       args.c      &&
-cc $OPT        -o ctime      ctime.c     &&
-cc $OPT        -o fb         fb.c        &&
-cc $OPT -lpng  -o fb2png     fb2png.c    &&
-cc $OPT        -o getendian  getendian.c &&
-cc $OPT        -o getlocale  getlocale.c &&
-cc $OPT        -o hacc       hacc.c      &&
-cc $OPT        -o hello      hello.c     &&
-cc $OPT        -o limits     limits.c    &&
-cc $OPT        -o morse      morse.c     &&
-cc $OPT        -o pp         pp.c        &&
-cc $OPT -lFLAC -o waves      waves.c
+cc $OPT           -o AECA       AECA.c      &&
+cc $OPT           -o amorse     amorse.c    &&
+cc $OPT           -o args       args.c      &&
+cc $OPT           -o ctime      ctime.c     &&
+cc $OPT           -o fb         fb.c        &&
+cc $OPT -lpng -lz -o fb2png     fb2png.c    &&
+cc $OPT           -o getendian  getendian.c &&
+cc $OPT           -o getlocale  getlocale.c &&
+cc $OPT           -o hacc       hacc.c      &&
+cc $OPT           -o hello      hello.c     &&
+cc $OPT           -o limits     limits.c    &&
+cc $OPT           -o morse      morse.c     &&
+cc $OPT           -o pp         pp.c        &&
+cc $OPT -lFLAC    -o waves      waves.c
 
 is_ok
 
