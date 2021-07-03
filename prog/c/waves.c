@@ -1,9 +1,6 @@
 // waves.c - write some standard waves in the FLAC format
 
-// Amplitude = 0 dBFS
-// Depth     = 16 b
-// Frequency = 440 Hz
-// Rate      = 44100 Hz
+// Signed 16 bit, Rate 44100 Hz, Mono
 
 #include <stdio.h>
 #include <stdlib.h>

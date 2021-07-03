@@ -2,15 +2,11 @@
 
 # export.sh - export data to ~/data/
 
-function is_ok {
-	[ $? ] || (echo 'NOT OK!'; exit)
-}
+set -e
 
 echo 'Entering ~/data/'
 
 cd ~/data/
-
-is_ok
 
 echo 'Exporting data'
 
@@ -24,5 +20,3 @@ limits    > limits.txt &&
 print.py  > print.txt  &&
 sudoku.py > sudoku.txt &&
 waves
-
-is_ok

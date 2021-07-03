@@ -1,45 +1,44 @@
-// hacc.c - print random characters in random colors and positions over time
+// hacc.c - print random characters in random colors and positions until interrupted
 
 #include <signal.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <threads.h>
 
+#include <sys/ioctl.h>
+#include <unistd.h>
+
 #include "DECTCEM.h"
 #include "ECMA-48.h"
-
-#define ROW 48
-#define COL 128
-#define CLR 256
-#define CHR 128
-#define SEC 120
+#include "macros.h"
 
 _Noreturn static void bye(int unused) {
 	fputs(RIS, stdout);
 	exit(EXIT_FAILURE);
 }
 
-int main(void) {
+int main(int argc, char* argv[argc + 1]) {
 	srand(time(0));
 	signal(SIGINT, bye);
 
-	int area = ROW * COL;
-	struct timespec zzz = {.tv_nsec = 999999999 / area * SEC};
+	long ns = argv[1] ? atol(argv[1]) : 125000000;
+
+	struct timespec zzz = {.tv_nsec = CLMP(ns, 0, 999999999)};
+
+	struct winsize ws;
+	ioctl(STDOUT_FILENO, TIOCGWINSZ, &ws);
 
 	fputs(DECTCEM("l") ED("2"), stdout);
 
-	for (int a = 0; a < area; ++a) {
-		int row = rand() % ROW + 1;
-		int col = rand() % COL + 1;
-		int clr = rand() % CLR;
-		int chr = rand() % CHR;
+	for (EVER) {
+		int row = rand() % ws.ws_row + 1;
+		int col = rand() % ws.ws_col + 1;
+		int clr = rand() % 256;
+		int chr = rand() % 128;
 
 		fprintf(stdout, CUP("%d;%d") SGR("38;2;0;%d;0") "%c", row, col, clr, chr);
 		fflush(stdout);
 
 		thrd_sleep(&zzz, 0);
 	}
-
-	fgetc(stdin);
-	fputs(RIS, stdout);
 }

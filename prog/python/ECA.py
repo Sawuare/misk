@@ -1,6 +1,6 @@
 #! /usr/bin/env python3
 
-# ECA.py - Elementary Cellular Automata on a 1024x768x32 BGRA framebuffer
+# ECA.py - Elementary Cellular Automata on a 1376x768x32 BGRA framebuffer
 
 import random
 
@@ -10,7 +10,7 @@ SEED = int(input('Seed: '))
 BLACK = b'\x00\x00\x00\x00'
 WHITE = b'\xff\xff\xff\x00'
 
-XRES = 1024
+XRES = 1376
 YRES = 768
 
 cells = XRES * [0]

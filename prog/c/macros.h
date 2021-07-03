@@ -30,7 +30,7 @@
 
 #define DIM(x, y) MAX(x - y, 0)
 
-#define CLMP(lo, x, hi) MAX(lo, MIN(x, hi))
+#define CLMP(x, lo, hi) MAX(lo, MIN(x, hi))
 
 #define CMPR(x, y) ((x) < (y) ? -1 : (x) > (y) ? 1 : 0)
 

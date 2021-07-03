@@ -1,4 +1,4 @@
-// fb.h - constants and painters for a 1024x768x32 BGRA framebuffer
+// fb.h - constants and painters for a 1376x768x32 BGRA framebuffer
 
 #include <stdlib.h>
 
@@ -6,8 +6,8 @@
 
 #define FB_PATH "/dev/fb0"
 
-#define FB_SIZE 3145728
-#define FB_XRES 1024
+#define FB_SIZE 4227072
+#define FB_XRES 1376
 #define FB_YRES 768
 #define FB_BPS  8
 

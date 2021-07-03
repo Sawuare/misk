@@ -1,14 +1,11 @@
 // amorse.c - encode input into audible International Morse code
 
-// Amplitude = 0 dBFS
-// Depth     = 8 b
-// Frequency = 400 Hz
-// Rate      = 8000 HZ
+// Unsigned 8 bit, Rate 8000 Hz, Mono
 
 #include <stdio.h>
 #include <stdlib.h>
 
-#define FILENAME "amorse.schar"
+#define FILENAME "amorse.uchar"
 
 #define FREQ 400  // Exact
 #define RATE 8000 // Default aplay rate
@@ -53,7 +50,10 @@ int main(void)
 				n_samples += dit;
 		}
 
-		signed char* audio = calloc(n_samples, 1);
+		unsigned char* audio = malloc(n_samples);
+
+		for (unsigned i = 0; i < n_samples; ++i)
+			audio[i] = 128;
 
 		unsigned i = 0, period_2 = RATE / FREQ / 2;
 
@@ -64,14 +64,14 @@ int main(void)
 			switch (*cptr) {
 				case '.':
 					for (unsigned j = 0; j < dit; ++j)
-						audio[i + j] = j / period_2 % 2 ? -127 : 127;
+						audio[i + j] = j / period_2 % 2 ? 0 : 255;
 
 					i += dit;
 					break;
 
 				case '-':
 					for (unsigned j = 0; j < dah; ++j)
-						audio[i + j] = j / period_2 % 2 ? -127 : 127;
+						audio[i + j] = j / period_2 % 2 ? 0 : 255;
 
 				case ' ':
 					i += dah;
@@ -96,7 +96,7 @@ int main(void)
 
 	if (system(0))
 		// Depend on aplay for playing raw audio
-		system("aplay -t raw -f S8 -r 8000 " FILENAME);
+		system("aplay -t raw -f U8 -r 8000 " FILENAME);
 
 	remove(FILENAME);
 }

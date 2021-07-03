@@ -1,8 +1,6 @@
 // AECA.c - Audible Elementary Cellular Automata
 
-// Amplitude = 0 dBFS
-// Depth     = 8 b
-// Rate      = 44100 Hz
+// Unsigned 8 bit, Rate 44100 Hz, Mono
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -21,9 +19,9 @@ static inline unsigned ddig(unsigned n) {
 
 int main(int argc, char* argv[argc + 1]) {
 	unsigned n_cells = 1024;
-	unsigned n_gens  = 768;
-	unsigned rule    = 120;
-	unsigned seed    = 1;
+	unsigned n_gens  = 512;
+	unsigned rule    = 90;
+	unsigned seed    = 0;
 
 	int opt;
 
@@ -51,7 +49,7 @@ int main(int argc, char* argv[argc + 1]) {
 
 	unsigned n_samples = n_gens * n_cells;
 
-	signed char* audio = malloc(n_samples);
+	unsigned char* audio = malloc(n_samples);
 
 	_Bool cells[n_cells];
 	_Bool clone[n_cells];
@@ -67,7 +65,7 @@ int main(int argc, char* argv[argc + 1]) {
 
 	for (unsigned g = 0; g < n_gens; ++g) {
 		for (unsigned c = 0; c < n_cells; ++c) {
-			audio[g * n_cells + c] = cells[c] ? 127 : -127;
+			audio[g * n_cells + c] = cells[c] ? 255 : 0;
 
 			_Bool p = cells[c ? c - 1 : n_cells - 1];
 			_Bool q = cells[c];
@@ -85,8 +83,8 @@ int main(int argc, char* argv[argc + 1]) {
 	char filename[l_filename];
 	char command[l_command];
 
-	snprintf(filename, l_filename, "c%ug%ur%us%u.aeca.schar", n_cells, n_gens, rule, seed);
-	snprintf(command, l_command, "aplay -t raw -f S8 -r 44100 %s", filename);
+	snprintf(filename, l_filename, "c%ug%ur%us%u.aeca.uchar", n_cells, n_gens, rule, seed);
+	snprintf(command, l_command, "aplay -t raw -f U8 -r 44100 %s", filename);
 
 	FILE* stream = fopen(filename, "wb");
 	fwrite(audio, 1, n_samples, stream);

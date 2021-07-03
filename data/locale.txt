@@ -1,1 +1,1 @@
-C.UTF-8
+en_CA.UTF-8
