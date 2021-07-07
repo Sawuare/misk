@@ -19,6 +19,8 @@
 #define FB_YELLOW  0xffff00
 #define FB_WHITE   0xffffff
 
+#define FB_IS_VALID(id, z) ((id) < 33 && (z))
+
 #define FB_IS_MONO_XOR_RAMP(id) ((id) < 29)
 
 #define PAINTER(id) static inline void fb_p##id(unsigned xres, unsigned yres, unsigned z, unsigned c, unsigned a[])

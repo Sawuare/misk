@@ -10,6 +10,7 @@
 #include <zlib.h>
 
 #include "fb.h"
+#include "macros.h"
 
 static inline unsigned ddig(unsigned n) {
 	unsigned d = 1;
@@ -56,13 +57,18 @@ int main(int argc, char* argv[argc + 1]) {
 				break;
 
 			case 'v':
-				printf("Compiled with libpng %s and using libpng %s\n", PNG_LIBPNG_VER_STRING, png_libpng_ver);
-				printf("Compiled with zlib %s and using zlib %s\n", ZLIB_VERSION, zlib_version);
+				fprintf(stdout, "Compiled with libpng %s and using libpng %s\n", PNG_LIBPNG_VER_STRING, png_libpng_ver);
+				fprintf(stdout, "Compiled with zlib %s and using zlib %s\n", ZLIB_VERSION, zlib_version);
 				return 0;
 
 			default:
 				return 1;
 		}
+
+	if (!FB_IS_VALID(id, z)) {
+		fprintf(stderr, "%s: invalid ID or Z\n", argv[0]);
+		return 2;
+	}
 
 	unsigned l_filename = ddig(id) + ddig(xres) + ddig(yres) + ddig(z) + 19;
 
@@ -73,13 +79,13 @@ int main(int argc, char* argv[argc + 1]) {
 	FILE* stream = fopen(filename, "wb");
 
 	if (!stream)
-		return 2;
+		return 3;
 
 	png_struct* structp = png_create_write_struct(PNG_LIBPNG_VER_STRING, 0, 0, 0);
 
 	if (!structp) {
 		fclose(stream);
-		return 3;
+		return 4;
 	}
 
 	png_info* infop = png_create_info_struct(structp);
@@ -87,13 +93,13 @@ int main(int argc, char* argv[argc + 1]) {
 	if (!infop) {
 		png_destroy_write_struct(&structp, 0);
 		fclose(stream);
-		return 4;
+		return 5;
 	}
 
 	if (setjmp(png_jmpbuf(structp))) {
 		png_destroy_write_struct(&structp, &infop);
 		fclose(stream);
-		return 5;
+		return 6;
 	}
 
 	png_init_io(structp, stream);
@@ -120,7 +126,7 @@ int main(int argc, char* argv[argc + 1]) {
 		free(original_image);
 		free(stripped_image);
 		fclose(stream);
-		return 6;
+		return 7;
 	}
 
 	fb_painters[id](xres, yres, z, color, original_image);
@@ -147,7 +153,7 @@ int main(int argc, char* argv[argc + 1]) {
 	free(stripped_image);
 	fclose(stream);
 
-	printf("Wrote %s\n", filename);
+	fprintf(stdout, "Wrote '%s'\n", filename);
 
 	return 0;
 }

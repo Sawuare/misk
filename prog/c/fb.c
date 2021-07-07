@@ -52,9 +52,11 @@ int main(int argc, char* argv[argc + 1]) {
 				return EXIT_FAILURE;
 		}
 
-	int fbd = open(FB_PATH, O_RDWR);
+	int ret = EXIT_SUCCESS;
 
+	int fbd = open(FB_PATH, O_RDWR);
 	unsigned* fbm = mmap(0, FB_SIZE, PROT_WRITE, MAP_SHARED, fbd, 0);
+	close(fbd);
 
 	struct termios otty, ntty;
 
@@ -69,7 +71,7 @@ int main(int argc, char* argv[argc + 1]) {
 	fputs(DECTCEM("l") ED("2") CUP(), stdout);
 	fflush(stdout);
 
-	while (z) {
+	while (FB_IS_VALID(id, z)) {
 		fb_painters[id](FB_XRES, FB_YRES, z, color, fbm);
 
 		if (line) {
@@ -105,11 +107,16 @@ fgetc:
 				goto fgetc;
 		}
 	}
+
+	ret = EXIT_FAILURE;
+
+	fprintf(stderr, "%s: invalid ID or Z\n", argv[0]);
 quit:
-	fputs(DECTCEM("h"), stdout);
+	fputs(DECTCEM("h") EL("2"), stdout);
 
 	tcsetattr(STDIN_FILENO, TCSANOW, &otty);
 
 	munmap(fbm, FB_SIZE);
-	close(fbd);
+
+	return ret;
 }

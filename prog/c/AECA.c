@@ -77,20 +77,20 @@ int main(int argc, char* argv[argc + 1]) {
 		memcpy(cells, clone, sizeof clone);
 	}
 
-	unsigned l_filename = ddig(n_cells) + ddig(n_gens) + ddig(rule) + ddig(seed) + 16;
+	unsigned l_filename = ddig(n_cells) + ddig(n_gens) + ddig(rule) + ddig(seed) + 14;
 	unsigned l_command = l_filename + 28;
 
 	char filename[l_filename];
 	char command[l_command];
 
-	snprintf(filename, l_filename, "c%ug%ur%us%u.aeca.uchar", n_cells, n_gens, rule, seed);
+	snprintf(filename, l_filename, "c%ug%ur%us%u.aeca.pcm", n_cells, n_gens, rule, seed);
 	snprintf(command, l_command, "aplay -t raw -f U8 -r 44100 %s", filename);
 
 	FILE* stream = fopen(filename, "wb");
 	fwrite(audio, 1, n_samples, stream);
 	fclose(stream);
 
-	printf("Wrote %s\n", filename);
+	printf("Wrote '%s'\n", filename);
 
 	free(audio);
 

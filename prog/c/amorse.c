@@ -5,7 +5,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define FILENAME "amorse.uchar"
+#define FILENAME "amorse.pcm"
 
 #define FREQ 400  // Exact
 #define RATE 8000 // Default aplay rate
