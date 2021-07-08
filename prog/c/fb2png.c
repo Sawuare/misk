@@ -83,22 +83,18 @@ int main(int argc, char* argv[argc + 1]) {
 
 	png_struct* structp = png_create_write_struct(PNG_LIBPNG_VER_STRING, 0, 0, 0);
 
-	if (!structp) {
-		fclose(stream);
+	if (!structp)
 		return 4;
-	}
 
 	png_info* infop = png_create_info_struct(structp);
 
 	if (!infop) {
 		png_destroy_write_struct(&structp, 0);
-		fclose(stream);
 		return 5;
 	}
 
 	if (setjmp(png_jmpbuf(structp))) {
 		png_destroy_write_struct(&structp, &infop);
-		fclose(stream);
 		return 6;
 	}
 
@@ -125,7 +121,6 @@ int main(int argc, char* argv[argc + 1]) {
 		png_destroy_write_struct(&structp, &infop);
 		free(original_image);
 		free(stripped_image);
-		fclose(stream);
 		return 7;
 	}
 
@@ -154,6 +149,4 @@ int main(int argc, char* argv[argc + 1]) {
 	fclose(stream);
 
 	fprintf(stdout, "Wrote '%s'\n", filename);
-
-	return 0;
 }

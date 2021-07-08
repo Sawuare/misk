@@ -14,6 +14,9 @@ int main(void)
 {
 	FILE* stream = fopen(FILENAME, "wb");
 
+	if (!stream)
+		return 1;
+
 	unsigned dit = RATE / 10; // 100 ms
 	unsigned dah = 3 * dit;   // 300 ms
 	unsigned gap = 7 * dit;   // 700 ms
@@ -41,7 +44,7 @@ int main(void)
 					break;
 
 				default:
-					return EXIT_FAILURE;
+					return 2;
 			}
 
 			++cptr;
@@ -97,6 +100,4 @@ int main(void)
 	if (system(0))
 		// Depend on aplay for playing raw audio
 		system("aplay -t raw -f U8 -r 8000 " FILENAME);
-
-	remove(FILENAME);
 }

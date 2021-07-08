@@ -66,6 +66,4 @@ int main(void) {
 	write_wave("tri.flac");
 
 	FLAC__stream_encoder_delete(encoder);
-
-	return 0;
 }

@@ -44,7 +44,7 @@ int main(int argc, char* argv[argc + 1]) {
 				break;
 
 			default:
-				return EXIT_FAILURE;
+				return 1;
 		}
 
 	unsigned n_samples = n_gens * n_cells;
@@ -87,6 +87,12 @@ int main(int argc, char* argv[argc + 1]) {
 	snprintf(command, l_command, "aplay -t raw -f U8 -r 44100 %s", filename);
 
 	FILE* stream = fopen(filename, "wb");
+
+	if (!stream) {
+		free(audio);
+		return 2;
+	}
+
 	fwrite(audio, 1, n_samples, stream);
 	fclose(stream);
 

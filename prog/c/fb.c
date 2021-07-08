@@ -49,10 +49,10 @@ int main(int argc, char* argv[argc + 1]) {
 				break;
 
 			default:
-				return EXIT_FAILURE;
+				return 1;
 		}
 
-	int ret = EXIT_SUCCESS;
+	int ret = 0;
 
 	int fbd = open(FB_PATH, O_RDWR);
 	unsigned* fbm = mmap(0, FB_SIZE, PROT_WRITE, MAP_SHARED, fbd, 0);
@@ -80,6 +80,14 @@ int main(int argc, char* argv[argc + 1]) {
 		}
 fgetc:
 		switch (fgetc(stdin)) {
+			case '{':
+				--id;
+				break;
+
+			case '}':
+				++id;
+				break;
+
 			case '[':
 				z -= step;
 				break;
@@ -88,12 +96,12 @@ fgetc:
 				z += step;
 				break;
 
-			case 'z':
-				fscanf(stdin, "%u", &z);
-				break;
-
 			case 'i':
 				fscanf(stdin, "%u", &id);
+				break;
+
+			case 'z':
+				fscanf(stdin, "%u", &z);
 				break;
 
 			case 'l':
@@ -108,7 +116,7 @@ fgetc:
 		}
 	}
 
-	ret = EXIT_FAILURE;
+	ret = 2;
 
 	fprintf(stderr, "%s: invalid ID or Z\n", argv[0]);
 quit:

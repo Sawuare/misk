@@ -4,6 +4,10 @@
 #error "Not a conforming implementation!"
 #endif
 
+#if __STDC_HOSTED__ != 1
+#error "Not a hosted implementation!"
+#endif
+
 #if __STDC_VERSION__ < 201112
 #error "Not a modern implementation!"
 #endif

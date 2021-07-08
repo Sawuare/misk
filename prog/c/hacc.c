@@ -14,7 +14,7 @@
 
 _Noreturn static void bye(int unused) {
 	fputs(RIS, stdout);
-	exit(EXIT_FAILURE);
+	exit(0);
 }
 
 int main(int argc, char* argv[argc + 1]) {
