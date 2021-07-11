@@ -97,6 +97,8 @@ int main(void)
 
 	fclose(stream);
 
+	puts("Wrote '" FILENAME "'");
+
 	if (system(0))
 		// Depend on aplay for playing raw audio
 		system("aplay -t raw -f U8 -r 8000 " FILENAME);

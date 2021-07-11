@@ -2,4 +2,4 @@
 
 # hah.py
 
-print("\N{ARABIC LETTER HAH}")
+print('\N{ARABIC LETTER HAH}')

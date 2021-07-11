@@ -31,11 +31,11 @@ with open('/dev/fb0', 'wb') as fb:
 		for x in range(XRES):
 			fb.write(WHITE if cells[x] else BLACK)
 
-			P = cells[x - 1]
-			Q = cells[x]
-			R = cells[(x + 1) % XRES]
+			p = cells[x - 1]
+			q = cells[x]
+			r = cells[(x + 1) % XRES]
 
-			clone[x] = RULE >> (P << 2 | Q << 1 | R) & 1
+			clone[x] = RULE >> (p << 2 | q << 1 | r) & 1
 
 		cells = [*clone]
 

@@ -142,7 +142,7 @@ int main(int argc, char* argv[argc + 1]) {
 
 	png_write_info(structp, infop);
 	png_write_image(structp, row_pointers);
-	png_write_end(structp, infop);
+	png_write_end(structp, 0);
 
 	png_destroy_write_struct(&structp, &infop);
 	free(stripped_image);

@@ -60,7 +60,7 @@ cd ~/prog/haskell/
 
 echo 'Compiling Haskell program'
 
-ghc -v0 -O -o QDA QDA.hs
+ghc -v0 -O2 -o QDA QDA.hs
 
 rm QDA.hi QDA.o
 
