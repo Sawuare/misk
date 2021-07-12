@@ -1,11 +1,11 @@
-*
+/*
 
-!data/
-!docs/
-!prog/
+!/data/
+!/docs/
+!/prog/
 
-!.bash_aliases
-!.bashrc
-!.gitignore
-!.nanorc
-!.vimrc
+!/.bash_aliases
+!/.bashrc
+!/.gitignore
+!/.nanorc
+!/.vimrc

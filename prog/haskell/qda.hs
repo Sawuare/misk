@@ -1,4 +1,4 @@
--- QDA.hs - Quantitative Data Analyzer of a line of at least 2 space-delimited doubles
+-- qda.hs - Quantitative Data Analyzer of a line of at least 2 space-delimited doubles
 
 import Data.List
 

@@ -1,4 +1,4 @@
-// AECA.c - Audible Elementary Cellular Automata
+// aeca.c - Audible Elementary Cellular Automata
 
 // Unsigned 8 bit, Rate 44100 Hz, Mono
 

@@ -8,8 +8,8 @@
 #include <sys/ioctl.h>
 #include <unistd.h>
 
-#include "DECTCEM.h"
-#include "ECMA-48.h"
+#include "dectcem.h"
+#include "ecma-48.h"
 #include "macros.h"
 
 _Noreturn static void bye(int unused) {

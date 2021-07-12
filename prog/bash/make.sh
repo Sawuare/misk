@@ -29,7 +29,7 @@ OPT='-std=c11 -march=native -O3'
 
 cc $OPT -fsyntax-only test.c
 
-cc $OPT -o AECA       AECA.c
+cc $OPT -o aeca       aeca.c
 cc $OPT -o amorse     amorse.c
 cc $OPT -o args       args.c
 cc $OPT -o ctime      ctime.c
@@ -46,7 +46,7 @@ cc $OPT -o waves      waves.c     -lFLAC
 
 echo 'Moving C programs'
 
-sudo mv AECA amorse args ctime fb fb2png getendian getlocale hacc hello limits morse pp waves $BIN
+sudo mv aeca amorse args ctime fb fb2png getendian getlocale hacc hello limits morse pp waves $BIN
 
 echo 'Copying C headers'
 
@@ -60,13 +60,13 @@ cd ~/prog/haskell/
 
 echo 'Compiling Haskell program'
 
-ghc -v0 -O2 -o QDA QDA.hs
+ghc -v0 -O2 -o qda qda.hs
 
-rm QDA.hi QDA.o
+rm qda.hi qda.o
 
 echo 'Moving Haskell program'
 
-sudo mv QDA $BIN
+sudo mv qda $BIN
 
 # Python
 

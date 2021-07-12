@@ -1,6 +1,6 @@
 #! /usr/bin/env python3
 
-# ECA.py - Elementary Cellular Automata on a 1376x768x32 BGRA framebuffer
+# eca.py - Elementary Cellular Automata on a 1376x768x32 BGRA framebuffer
 
 import random
 

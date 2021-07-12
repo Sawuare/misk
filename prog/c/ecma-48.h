@@ -1,4 +1,4 @@
-// ECMA-48.h - control functions for coded character sets in 7-bit codes
+// ecma-48.h - control functions for coded character sets in 7-bit codes
 // https://www.ecma-international.org/publications-and-standards/standards/ecma-48
 
 // Elements of the C0 set

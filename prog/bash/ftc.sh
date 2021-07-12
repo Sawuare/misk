@@ -1,6 +1,6 @@
 #! /bin/bash
 
-# FTC.sh - File Tab Count
+# ftc.sh - File Tab Count
 
 for f in "$@"
 do

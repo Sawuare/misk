@@ -9,8 +9,8 @@
 #include <termios.h>
 #include <unistd.h>
 
-#include "DECTCEM.h"
-#include "ECMA-48.h"
+#include "dectcem.h"
+#include "ecma-48.h"
 #include "fb.h"
 
 int main(int argc, char* argv[argc + 1]) {
