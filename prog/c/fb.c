@@ -108,8 +108,8 @@ fgetc:
 				line = !line;
 				break;
 
-			case 'q':
-				goto quit;
+			case 'e':
+				goto exit;
 
 			default:
 				goto fgetc;
@@ -119,7 +119,7 @@ fgetc:
 	ret = 2;
 
 	fprintf(stderr, "%s: invalid ID or Z\n", argv[0]);
-quit:
+exit:
 	fputs(DECTCEM("h") EL("2"), stdout);
 
 	tcsetattr(STDIN_FILENO, TCSANOW, &otty);

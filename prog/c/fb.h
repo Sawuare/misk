@@ -2,8 +2,6 @@
 
 #include <stdlib.h>
 
-#include "macros.h"
-
 #define FB_PATH "/dev/fb0"
 
 #define FB_SIZE 4227072
@@ -37,15 +35,14 @@ static inline unsigned fb_get_base16_color(char const* s) {
 }
 
 static inline unsigned fb_get_letter_color(char const* s) {
-	switch (TOUPPER(*s)) {
-		default:
-		case 'W': return FB_WHITE;
-		case 'R': return FB_RED;
-		case 'G': return FB_GREEN;
-		case 'B': return FB_BLUE;
-		case 'C': return FB_CYAN;
-		case 'M': return FB_MAGENTA;
-		case 'Y': return FB_YELLOW;
+	switch (*s) {
+		case 'r': return FB_RED;
+		case 'g': return FB_GREEN;
+		case 'b': return FB_BLUE;
+		case 'c': return FB_CYAN;
+		case 'm': return FB_MAGENTA;
+		case 'y': return FB_YELLOW;
+		default:  return FB_WHITE;
 	}
 }
 
