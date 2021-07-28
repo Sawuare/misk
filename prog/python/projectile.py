@@ -1,6 +1,6 @@
 #! /usr/bin/env python3
 
-# projectile.py - dragless projectile motion analysis
+# projectile.py - analyze dragless projectile motion
 
 from math import radians, sin
 

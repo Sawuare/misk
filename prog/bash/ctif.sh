@@ -1,6 +1,6 @@
 #! /bin/bash
 
-# ftc.sh - File Tab Count
+# ctif.sh - count tabs in files
 
 for f in "$@"
 do

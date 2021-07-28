@@ -1,6 +1,6 @@
 #! /usr/bin/env python3
 
-# fbzs.py - write the interesting fb z sequences
+# fbzs.py - write the interesting fb Z sequences
 
 Z_MAX = 2 ** 32 - 1
 

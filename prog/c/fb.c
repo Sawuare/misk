@@ -55,8 +55,16 @@ int main(int argc, char* argv[argc + 1]) {
 	int ret = 0;
 
 	int fbd = open(FB_PATH, O_RDWR);
+
+	if (fbd == -1)
+		return 2;
+
 	unsigned* fbm = mmap(0, FB_SIZE, PROT_WRITE, MAP_SHARED, fbd, 0);
+
 	close(fbd);
+
+	if (fbm == MAP_FAILED)
+		return 3;
 
 	struct termios otty, ntty;
 
@@ -116,7 +124,7 @@ fgetc:
 		}
 	}
 
-	ret = 2;
+	ret = 4;
 
 	fprintf(stderr, "%s: invalid ID or Z\n", argv[0]);
 exit:

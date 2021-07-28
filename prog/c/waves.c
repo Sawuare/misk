@@ -1,4 +1,4 @@
-// waves.c - write some standard waves in the FLAC format
+// waves.c - write some audio waves in the FLAC format
 
 // Signed 16 bit, Rate 44100 Hz, Mono
 

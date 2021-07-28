@@ -1,4 +1,4 @@
-// test.c - test some macros and static assertions
+// test.c - test some standard macros and static assertions
 
 #if __STDC__ != 1
 #error "Not a conforming implementation!"
