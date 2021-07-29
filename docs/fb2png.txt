@@ -1,0 +1,48 @@
+NAME
+	fb2png - write fb images in the PNG format
+
+SYNOPSIS
+	fb2png [-# <base16-color>] [-c <letter-color>] [-i <id>] [-v] [-x <xres>] [-y <yres>] [-z <z>]
+
+OPTIONS
+	-# <base16-color>
+		The hexadecimal nonnegative integer <base16-color> specifies the painting color in the form rrggbb.
+		The default is white.
+
+	-c <letter-color>
+		The letter <letter-color> specifies the painting color and should be one of (r|g|b|c|m|y)
+		for red, green, blue, cyan, magenta, or yellow.
+		The default is white.
+
+	-i <id>
+		The decimal nonnegative integer <id> specifies the painter's ID and must be less than 33.
+		The default is 0.
+
+	-v
+		Print libpng and zlib versions then exit.
+
+	-x <xres>
+		The decimal positive integer <xres> specifies the image's horizontal resolution.
+		The default is 1376.
+
+	-y <yres>
+		The decimal positive integer <yres> specifies the image's vertical resolution.
+		The default is 768.
+
+	-z <z>
+		The decimal positive integer <z> specifies the painter's Z.
+		The default is 1.
+
+EXIT STATUS
+	0 if okay;
+	1 if an option is invalid;
+	2 if ID or Z is invalid;
+	3 if opening the stream fails;
+	4 if creating the libpng write struct fails;
+	5 if creating the libpng info struct fails;
+	6 if another libpng error occurs;
+	7 if allocating the image buffers fails;
+
+SEE ALSO
+	fb
+	fbzs

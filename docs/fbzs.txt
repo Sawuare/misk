@@ -1,0 +1,21 @@
+NAME
+	fbzs - write the interesting fb Z sequences
+
+SYNOPSIS
+	fbzs
+
+DESCRIPTION
+	The sequences are nonnegative integers less than 2 raised to 32,
+	separated by spaces, and written to the following files.
+
+		a19m-1.fb.txt
+		a19m0.fb.txt
+		a19m1.fb.txt
+		a19m2.fb.txt
+		a19m3.fb.txt
+
+	Where aNN denotes a sequence for an fb painter with ID NN.
+
+SEE ALSO
+	fb2png
+	fb

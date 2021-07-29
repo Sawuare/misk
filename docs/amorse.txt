@@ -1,0 +1,8 @@
+NAME
+	amorse - encode input into audible International Morse code
+
+SYNOPSIS
+	amorse
+
+SEE ALSO
+	morse
