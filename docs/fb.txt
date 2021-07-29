@@ -50,5 +50,4 @@ EXIT STATUS
 	4 if ID or Z is invalid;
 
 SEE ALSO
-	fb2png
-	fbzs
+	fb2png, fbzs

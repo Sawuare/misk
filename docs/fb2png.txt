@@ -44,5 +44,4 @@ EXIT STATUS
 	7 if allocating the image buffers fails;
 
 SEE ALSO
-	fb
-	fbzs
+	fb, fbzs
