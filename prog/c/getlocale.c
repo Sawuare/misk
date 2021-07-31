@@ -4,8 +4,8 @@
 #include <stdio.h>
 
 int main(void) {
-	char* locale = setlocale(LC_ALL, "");
+  char* locale = setlocale(LC_ALL, "");
 
-	if (locale)
-		puts(locale);
+  if (locale)
+    puts(locale);
 }

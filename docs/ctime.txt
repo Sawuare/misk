@@ -1,12 +1,12 @@
 NAME
-	ctime - print local time in the form Www Mmm dd hh:mm:ss yyyy
+  ctime - print local time in the form Www Mmm dd hh:mm:ss yyyy
 
 SYNOPSIS
-	ctime
+  ctime
 
 EXAMPLES
-	Output
-		Wed Dec 31 19:00:00 1969
+  Output
+    Wed Dec 31 19:00:00 1969
 
-	Output
-		Sun Jun  6 12:00:00 2021
+  Output
+    Sun Jun  6 12:00:00 2021

@@ -5,19 +5,19 @@
 from tkinter import *
 
 def calc(event):
-    k = float(k_entry.get())
+  k = float(k_entry.get())
 
-    c = k - 273.15
-    f = k * 1.8 - 459.67
-    r = k * 1.8
+  c = k - 273.15
+  f = k * 1.8 - 459.67
+  r = k * 1.8
 
-    c_entry.delete(0, END)
-    f_entry.delete(0, END)
-    r_entry.delete(0, END)
+  c_entry.delete(0, END)
+  f_entry.delete(0, END)
+  r_entry.delete(0, END)
 
-    c_entry.insert(0, round(c, 2))
-    f_entry.insert(0, round(f, 2))
-    r_entry.insert(0, round(r, 2))
+  c_entry.insert(0, round(c, 2))
+  f_entry.insert(0, round(f, 2))
+  r_entry.insert(0, round(r, 2))
 
 Tk().title('Temperature Converter')
 

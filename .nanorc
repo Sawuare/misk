@@ -1,6 +1,8 @@
 set autoindent
 set casesensitive
 set nohelp
+set tabsize 2
+set tabstospaces
 
 
 bind ^H help all

@@ -1,66 +1,66 @@
 NAME
-	morse - encode arguments into printable adapted International Morse code
+  morse - encode arguments into printable adapted International Morse code
 
 SYNOPSIS
-	morse [<word>] ...
+  morse [<word>] ...
 
 DESCRIPTION
-	morse regards arguments as words consisting of letters.
-	The following are the valid letters.
+  morse regards arguments as words consisting of letters.
+  The following are the valid letters.
 
-		a b c d e f g h i j k l m n o p q r s t u v w x y z
-		A B C D E F G H I J K L M N O P Q R S T U V W X Y Z
-		1 2 3 4 5 6 7 8 9 0
-		. , : ? ' - / ( ) " = + @
+    a b c d e f g h i j k l m n o p q r s t u v w x y z
+    A B C D E F G H I J K L M N O P Q R S T U V W X Y Z
+    1 2 3 4 5 6 7 8 9 0
+    . , : ? ' - / ( ) " = + @
 
-	morse prints signals consisting of dashes and dots.
-	The following is the spacing and length of the signals.
+  morse prints signals consisting of dashes and dots.
+  The following is the spacing and length of the signals.
 
-		A dash is equal to a dot.
-		The space between the signals forming the same letter is equal to zero.
-		The space between two letters is equal to a SPACE.
-		The space between two words is equal to a NEWLINE.
+    A dash is equal to a dot.
+    The space between the signals forming the same letter is equal to zero.
+    The space between two letters is equal to a SPACE.
+    The space between two words is equal to a NEWLINE.
 
 NOTES
-	Memory usage on Intel 64 is 1 KiB.
+  Memory usage on Intel 64 is 1 KiB.
 
-	The following is a complexity analysis.
+  The following is a complexity analysis.
 
-		w = words
-		l = letters mean
+    w = words
+    l = letters mean
 
-		S (w, l) = O(1)
-		 P
+    S (w, l) = O(1)
+     P
 
-		T (w, l) = O(wl)
-		 P
+    T (w, l) = O(wl)
+     P
 
-	The following is a step count table for the main loop.
+  The following is a step count table for the main loop.
 
-		-------------------------------------------------------------------
-		Statement                            | Steps Frequency Total steps
-		-------------------------------------------------------------------
-		int wordi = 1;                       | 1     1         1
-		                                     |
-		while (wordi != wordc) {             | 2     w + 1     2w + 2
-		 char* word = wordv[wordi++];        | 3     w         3w
-		                                     |
-		 while (*word) {                     | 2     wl + w    2wl + 2w
-		  fputs(codev[*word++], stdout);     | 4     wl        4wl
-		  fputc(*word ? ' ' : '\n', stdout); | 3     wl        3wl
-		 }                                   |
-		}                                    |
-		-------------------------------------------------------------------
-		Total                                | 15              9wl + 7w + 3
-		-------------------------------------------------------------------
+    ---------------------------------------------------------------------
+    Statement                              | Steps Frequency Total steps
+    ---------------------------------------------------------------------
+    int wordi = 1;                         | 1     1         1
+                                           |
+    while (wordi != wordc) {               | 2     w + 1     2w + 2
+      char* word = wordv[wordi++];         | 3     w         3w
+                                           |
+      while (*word) {                      | 2     wl + w    2wl + 2w
+        fputs(codev[*word++], stdout);     | 4     wl        4wl
+        fputc(*word ? ' ' : '\n', stdout); | 3     wl        3wl
+      }                                    |
+    }                                      |
+    ---------------------------------------------------------------------
+    Total                                  | 15              9wl + 7w + 3
+    ---------------------------------------------------------------------
 
 EXAMPLES
-	Invocation
-		morse Written on 2021-06-17
-	Output
-		.-- .-. .. - - . -.
-		--- -.
-		..--- ----- ..--- .---- -....- ----- -.... -....- .---- --...
+  Invocation
+    morse Written on 2021-06-17
+  Output
+    .-- .-. .. - - . -.
+    --- -.
+    ..--- ----- ..--- .---- -....- ----- -.... -....- .---- --...
 
 SEE ALSO
-	amorse
+  amorse

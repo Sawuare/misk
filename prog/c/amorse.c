@@ -11,94 +11,94 @@
 #define RATE 8000 // Default aplay rate
 
 int main(void) {
-	FILE* stream = fopen(FILENAME, "wb");
+  FILE* stream = fopen(FILENAME, "wb");
 
-	if (!stream)
-		return 1;
+  if (!stream)
+    return 1;
 
-	unsigned dit = RATE / 10; // 100 ms
-	unsigned dah = 3 * dit;   // 300 ms
-	unsigned gap = 7 * dit;   // 700 ms
+  unsigned dit = RATE / 10; // 100 ms
+  unsigned dah = 3 * dit;   // 300 ms
+  unsigned gap = 7 * dit;   // 700 ms
 
-	char cbuf[256];
+  char cbuf[256];
 
-	while (fgets(cbuf, sizeof cbuf, stdin)) {
-		unsigned n_samples = 0;
+  while (fgets(cbuf, sizeof cbuf, stdin)) {
+    unsigned n_samples = 0;
 
-		char* cptr = cbuf;
+    char* cptr = cbuf;
 
-		while (*cptr) {
-			switch (*cptr) {
-				case '.':
-					n_samples += dit;
-					break;
+    while (*cptr) {
+      switch (*cptr) {
+        case '.':
+          n_samples += dit;
+          break;
 
-				case '-':
-				case ' ':
-					n_samples += dah;
-					break;
+        case '-':
+        case ' ':
+          n_samples += dah;
+          break;
 
-				case '\n':
-					n_samples += gap;
-					break;
+        case '\n':
+          n_samples += gap;
+          break;
 
-				default:
-					return 2;
-			}
+        default:
+          return 2;
+      }
 
-			++cptr;
+      ++cptr;
 
-			if (*cptr == '.' || *cptr == '-')
-				n_samples += dit;
-		}
+      if (*cptr == '.' || *cptr == '-')
+        n_samples += dit;
+    }
 
-		unsigned char* audio = malloc(n_samples);
+    unsigned char* audio = malloc(n_samples);
 
-		for (unsigned i = 0; i < n_samples; ++i)
-			audio[i] = 128;
+    for (unsigned i = 0; i < n_samples; ++i)
+      audio[i] = 128;
 
-		unsigned i = 0, period_2 = RATE / FREQ / 2;
+    unsigned i = 0, period_2 = RATE / FREQ / 2;
 
-		cptr = cbuf;
+    cptr = cbuf;
 
-		// Generate square waves for '.' and '-' or skip the silence for ' ' and '\n'
-		while (*cptr) {
-			switch (*cptr) {
-				case '.':
-					for (unsigned j = 0; j < dit; ++j)
-						audio[i + j] = j / period_2 % 2 ? 0 : 255;
+    // Generate square waves for '.' and '-' or skip the silence for ' ' and '\n'
+    while (*cptr) {
+      switch (*cptr) {
+        case '.':
+          for (unsigned j = 0; j < dit; ++j)
+            audio[i + j] = j / period_2 % 2 ? 0 : 255;
 
-					i += dit;
-					break;
+          i += dit;
+          break;
 
-				case '-':
-					for (unsigned j = 0; j < dah; ++j)
-						audio[i + j] = j / period_2 % 2 ? 0 : 255;
+        case '-':
+          for (unsigned j = 0; j < dah; ++j)
+            audio[i + j] = j / period_2 % 2 ? 0 : 255;
 
-				case ' ':
-					i += dah;
-					break;
+        case ' ':
+          i += dah;
+          break;
 
-				case '\n':
-					i += gap;
-					break;
-			}
+        case '\n':
+          i += gap;
+          break;
+      }
 
-			++cptr;
+      ++cptr;
 
-			if (*cptr == '.' || *cptr == '-')
-				i += dit;
-		}
+      if (*cptr == '.' || *cptr == '-')
+        i += dit;
+    }
 
-		fwrite(audio, 1, n_samples, stream);
-		free(audio);
-	}
+    fwrite(audio, 1, n_samples, stream);
+    free(audio);
+  }
 
-	fclose(stream);
+  fclose(stream);
 
-	puts("Wrote '" FILENAME "'");
+  puts("Wrote '" FILENAME "'");
 
-	if (system(0))
-		// Depend on aplay for playing raw audio
-		system("aplay -t raw -f U8 -r 8000 " FILENAME);
+  if (system(0))
+    // Depend on aplay for playing raw audio
+    system("aplay -t raw -f U8 -r 8000 " FILENAME);
 }

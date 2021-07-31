@@ -4,5 +4,5 @@
 #include <time.h>
 
 int main(void) {
-	fputs(ctime(&((time_t) {time(0)})), stdout);
+  fputs(ctime(&((time_t) {time(0)})), stdout);
 }

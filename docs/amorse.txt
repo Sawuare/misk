@@ -1,8 +1,8 @@
 NAME
-	amorse - encode input into audible International Morse code
+  amorse - encode input into audible International Morse code
 
 SYNOPSIS
-	amorse
+  amorse
 
 SEE ALSO
-	morse
+  morse

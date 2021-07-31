@@ -17,27 +17,27 @@ cells = XRES * [0]
 clone = XRES * [0]
 
 if (SEED):
-	random.seed(SEED)
-	for x in range(XRES):
-		cells[x] = random.randint(0, 1)
+  random.seed(SEED)
+  for x in range(XRES):
+    cells[x] = random.randint(0, 1)
 else:
-	cells[XRES // 2] = 1
+  cells[XRES // 2] = 1
 
 # Disable cursor
 print('\x1b[?25l', end = '', flush = True)
 
 with open('/dev/fb0', 'wb') as fb:
-	for y in range(YRES):
-		for x in range(XRES):
-			fb.write(WHITE if cells[x] else BLACK)
+  for y in range(YRES):
+    for x in range(XRES):
+      fb.write(WHITE if cells[x] else BLACK)
 
-			p = cells[x - 1]
-			q = cells[x]
-			r = cells[(x + 1) % XRES]
+      p = cells[x - 1]
+      q = cells[x]
+      r = cells[(x + 1) % XRES]
 
-			clone[x] = RULE >> (p << 2 | q << 1 | r) & 1
+      clone[x] = RULE >> (p << 2 | q << 1 | r) & 1
 
-		cells = [*clone]
+    cells = [*clone]
 
 input()
 

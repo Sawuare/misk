@@ -1,30 +1,30 @@
 NAME
-	qda - the quantitative data analyzer
+  qda - the quantitative data analyzer
 
 SYNOPSIS
-	qda
+  qda
 
 DESCRIPTION
-	qda reads a line of space-separated doubles from standard input
-	and prints the following statistics to standard output.
+  qda reads a line of space-separated doubles from standard input
+  and prints the following statistics to standard output.
 
-		Count
-		Sum
-		Minimum
-		Maximum
-		Range
-		Mid-Range
-		First Quartile
-		Second Quartile
-		Third Quartile
-		Interquartile Range
-		Mid-Hinge
-		Arithmetic Mean
-		Quadratic Mean
-		Geometric Mean
-		Harmonic Mean
-		Variance
-		Standard Deviation
-		Relative Standard Deviation
-		Skewness
-		Kurtosis
+    Count
+    Sum
+    Minimum
+    Maximum
+    Range
+    Mid-Range
+    First Quartile
+    Second Quartile
+    Third Quartile
+    Interquartile Range
+    Mid-Hinge
+    Arithmetic Mean
+    Quadratic Mean
+    Geometric Mean
+    Harmonic Mean
+    Variance
+    Standard Deviation
+    Relative Standard Deviation
+    Skewness
+    Kurtosis
