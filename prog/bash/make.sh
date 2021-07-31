@@ -60,9 +60,7 @@ cd ~/prog/haskell/
 
 echo 'Compiling Haskell program'
 
-ghc -v0 -O2 -o qda qda.hs
-
-rm qda.hi qda.o
+ghc -no-keep-hi-files -no-keep-o-files -v0 -O2 -o qda qda.hs
 
 echo 'Moving Haskell program'
 

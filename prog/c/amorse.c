@@ -10,8 +10,7 @@
 #define FREQ 400  // Exact
 #define RATE 8000 // Default aplay rate
 
-int main(void)
-{
+int main(void) {
 	FILE* stream = fopen(FILENAME, "wb");
 
 	if (!stream)

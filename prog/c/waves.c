@@ -46,8 +46,6 @@ int main(void) {
 
 	FLAC__int32 i, j, period_2 = RATE / FREQ / 2, period_4 = period_2 / 2;
 
-	// Sawtooth wave
-
 	// Square wave
 
 	for (i = 0; i < RATE; ++i)

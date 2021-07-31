@@ -7,14 +7,21 @@ range    xs =  last xs - head xs
 midRange xs = (last xs + head xs) / 2
 
 
-q2 xs =
-    let len = length xs
-        mid = div len 2
-    in  if odd len then  xs !! mid
-                   else (xs !! mid + xs !! (mid - 1)) / 2
+q2 xs
+    | odd len   =  xs !! mid
+    | otherwise = (xs !! mid + xs !! (mid - 1)) / 2
+    where len = length xs
+          mid = div len 2
 
-q1 xs = q2 (take (length xs `div` 2) xs)
-q3 xs = q2 (drop (length xs - length xs `div` 2) xs)
+q1 xs
+    | len > 1   = q2 (take (len `div` 2) xs)
+    | otherwise = xs !! 0
+    where len = length xs
+
+q3 xs
+    | len > 1   = q2 (drop (len - len `div` 2) xs)
+    | otherwise = xs !! 0
+    where len = length xs
 
 iqr      xs =  q3 xs - q1 xs
 midHinge xs = (q3 xs + q1 xs) / 2

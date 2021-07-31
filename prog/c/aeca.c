@@ -58,7 +58,8 @@ int main(int argc, char* argv[argc + 1]) {
 		srand(seed);
 		for (unsigned c = 0; c < n_cells; ++c)
 			cells[c] = rand() & 1;
-	} else {
+	}
+	else {
 		memset(cells, 0, sizeof cells);
 		cells[n_cells / 2] = 1;
 	}
