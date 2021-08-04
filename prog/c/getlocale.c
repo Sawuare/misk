@@ -1,4 +1,4 @@
-// getlocale.c
+// getlocale.c - print the system locale
 
 #include <locale.h>
 #include <stdio.h>

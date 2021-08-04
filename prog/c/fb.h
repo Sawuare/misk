@@ -27,8 +27,8 @@
   for (unsigned y = 0; y < yres; ++y) \
   for (unsigned x = 0; x < xres; ++x)
 
-#define MONO(px) ((px) * c)
-#define RAMP(px) ((px) % 0x100 * c / 0xff)
+#define MONO(px) (px) * c
+#define RAMP(px) (px) % 0x100 * c / 0xff
 
 static inline unsigned fb_get_base16_color(char const* s) {
   return strtoul(s, 0, 16) % 0x1000000;
@@ -50,7 +50,7 @@ static inline unsigned fb_get_letter_color(char const* s) {
 
 PAINTER(0) {
   FORYX
-    a[y * x] = MONO(1);
+    a[y * x] = c;
 }
 
 // Class 1

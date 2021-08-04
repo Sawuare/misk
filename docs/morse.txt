@@ -2,7 +2,7 @@ NAME
   morse - encode arguments into printable adapted International Morse code
 
 SYNOPSIS
-  morse [<word>] ...
+  morse <word> ...
 
 DESCRIPTION
   morse regards arguments as words consisting of letters.
@@ -14,7 +14,7 @@ DESCRIPTION
     . , : ? ' - / ( ) " = + @
 
   morse prints signals consisting of dashes and dots.
-  The following is the spacing and length of the signals.
+  The following is the adapted spacing and length of the signals.
 
     A dash is equal to a dot.
     The space between the signals forming the same letter is equal to zero.

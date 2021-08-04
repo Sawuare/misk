@@ -2,7 +2,27 @@ NAME
   amorse - encode input into audible International Morse code
 
 SYNOPSIS
-  amorse
+  amorse [-f <Hz>] [-u <ms>]
+
+DESCRIPTION
+  The easiest way to use the program is to redirect morse output to amorse input.
+
+OPTIONS
+  -f <Hz>
+    The decimal positive integer <Hz> specifies the signal frequency in hertz.
+    The default is 400.
+
+  -u <ms>
+    The decimal positive integer <ms> specifies the unit duration in milliseconds.
+    The default is 100.
+
+EXIT STATUS
+  1 if an option is invalid;
+  2 if an option argument is invalid;
+  3 if opening the file fails;
+  4 if an input character is invalid;
+  5 if the host environment has no command processor;
+  0 otherwise;
 
 SEE ALSO
   morse

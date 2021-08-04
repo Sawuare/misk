@@ -1,0 +1,8 @@
+NAME
+  getlocale - print the system locale
+
+SYNOPSIS
+  getlocale
+
+DESCRIPTION
+  Nothing is printed if the system locale cannot be queried.

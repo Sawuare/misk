@@ -43,11 +43,11 @@ OPTIONS
     The default is 1.
 
 EXIT STATUS
-  0 if okay;
   1 if an option is invalid;
   2 if opening the framebuffer device failed;
   3 if mapping the framebuffer device failed;
   4 if ID or Z is invalid;
+  0 otherwise;
 
 SEE ALSO
   fb2png, fbzs

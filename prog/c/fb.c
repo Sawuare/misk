@@ -67,13 +67,9 @@ int main(int argc, char* argv[argc + 1]) {
     return 3;
 
   struct termios otty, ntty;
-
   tcgetattr(STDIN_FILENO, &otty);
-
   ntty = otty;
-
   ntty.c_lflag &= ~(ECHO | ICANON);
-
   tcsetattr(STDIN_FILENO, TCSANOW, &ntty);
 
   fputs(DECTCEM("l") ED("2") CUP(), stdout);
@@ -86,6 +82,7 @@ int main(int argc, char* argv[argc + 1]) {
       fprintf(stdout, "i%uz%u\r", id, z);
       fflush(stdout);
     }
+
 fgetc:
     switch (fgetc(stdin)) {
       case '{':
@@ -126,12 +123,9 @@ fgetc:
 
   ret = 4;
 
-  fprintf(stderr, "%s: invalid ID or Z\n", argv[0]);
 exit:
   fputs(DECTCEM("h") EL("2"), stdout);
-
   tcsetattr(STDIN_FILENO, TCSANOW, &otty);
-
   munmap(fbm, FB_SIZE);
 
   return ret;

@@ -1,0 +1,8 @@
+NAME
+  getendian - print the system endianness
+
+SYNOPSIS
+  getendian
+
+DESCRIPTION
+  Either "little" (for little-endian) or "big" (for big-endian) is printed.

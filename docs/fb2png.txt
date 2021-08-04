@@ -2,7 +2,7 @@ NAME
   fb2png - write fb images in the PNG format
 
 SYNOPSIS
-  fb2png [-# <base16-color>] [-c <letter-color>] [-i <id>] [-v] [-x <xres>] [-y <yres>] [-z <z>]
+  fb2png [-# <base16-color>] [-c <letter-color>] [-i <id>] [-v] [-x <x-px>] [-y <y-px>] [-z <z>]
 
 OPTIONS
   -# <base16-color>
@@ -21,12 +21,12 @@ OPTIONS
   -v
     Print libpng and zlib versions then exit.
 
-  -x <xres>
-    The decimal positive integer <xres> specifies the image's horizontal resolution.
+  -x <x-px>
+    The decimal positive integer <x-px> specifies the image's horizontal resolution in pixels.
     The default is 1376.
 
-  -y <yres>
-    The decimal positive integer <yres> specifies the image's vertical resolution.
+  -y <y-px>
+    The decimal positive integer <y-px> specifies the image's vertical resolution in pixels.
     The default is 768.
 
   -z <z>
@@ -34,14 +34,14 @@ OPTIONS
     The default is 1.
 
 EXIT STATUS
-  0 if okay;
   1 if an option is invalid;
-  2 if ID or Z is invalid;
-  3 if opening the stream fails;
+  2 if an option argument is invalid;
+  3 if opening the file fails;
   4 if creating the libpng write struct fails;
   5 if creating the libpng info struct fails;
   6 if another libpng error occurs;
   7 if allocating the image buffers fails;
+  0 otherwise;
 
 SEE ALSO
   fb, fbzs

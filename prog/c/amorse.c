@@ -5,20 +5,43 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#include <getopt.h>
+
 #define FILENAME "amorse.pcm"
 
-#define FREQ 400  // Exact
 #define RATE 8000 // Default aplay rate
 
-int main(void) {
+int main(int argc, char* argv[argc + 1]) {
+  unsigned freq = 400; // In Hz
+  unsigned unit = 100; // In ms
+
+  int opt;
+
+  while ((opt = getopt(argc, argv, "f:u:")) != -1)
+    switch (opt) {
+      case 'f':
+        freq = strtoul(optarg, 0, 10);
+        break;
+
+      case 'u':
+        unit = strtoul(optarg, 0, 10);
+        break;
+
+      default:
+        return 1;
+    }
+
+  if (!freq || !unit)
+    return 2;
+
   FILE* stream = fopen(FILENAME, "wb");
 
   if (!stream)
-    return 1;
+    return 3;
 
-  unsigned dit = RATE / 10; // 100 ms
-  unsigned dah = 3 * dit;   // 300 ms
-  unsigned gap = 7 * dit;   // 700 ms
+  unsigned dit = RATE * unit / 1000;
+  unsigned dah = 3 * dit;
+  unsigned gap = 7 * dit;
 
   char cbuf[256];
 
@@ -43,7 +66,7 @@ int main(void) {
           break;
 
         default:
-          return 2;
+          return 4;
       }
 
       ++cptr;
@@ -57,7 +80,7 @@ int main(void) {
     for (unsigned i = 0; i < n_samples; ++i)
       audio[i] = 128;
 
-    unsigned i = 0, period_2 = RATE / FREQ / 2;
+    unsigned i = 0, period_2 = RATE / freq / 2;
 
     cptr = cbuf;
 
@@ -98,7 +121,9 @@ int main(void) {
 
   puts("Wrote '" FILENAME "'");
 
+  // Depend on aplay for playing audio
   if (system(0))
-    // Depend on aplay for playing raw audio
     system("aplay -t raw -f U8 -r 8000 " FILENAME);
+  else
+    return 5;
 }

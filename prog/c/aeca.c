@@ -47,6 +47,9 @@ int main(int argc, char* argv[argc + 1]) {
         return 1;
     }
 
+  if (!n_cells || !n_gens || rule > 255)
+    return 2;
+
   unsigned n_samples = n_gens * n_cells;
 
   unsigned char* audio = malloc(n_samples);
@@ -91,7 +94,7 @@ int main(int argc, char* argv[argc + 1]) {
 
   if (!stream) {
     free(audio);
-    return 2;
+    return 3;
   }
 
   fwrite(audio, 1, n_samples, stream);
@@ -101,7 +104,9 @@ int main(int argc, char* argv[argc + 1]) {
 
   free(audio);
 
+  // Depend on aplay for playing audio
   if (system(0))
-    // Depend on aplay for playing raw audio
     system(command);
+  else
+    return 4;
 }

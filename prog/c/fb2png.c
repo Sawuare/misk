@@ -57,18 +57,16 @@ int main(int argc, char* argv[argc + 1]) {
         break;
 
       case 'v':
-        fprintf(stdout, "Compiled with libpng %s and using libpng %s\n", PNG_LIBPNG_VER_STRING, png_libpng_ver);
-        fprintf(stdout, "Compiled with zlib %s and using zlib %s\n", ZLIB_VERSION, zlib_version);
+        printf("Compiled with libpng %s and using libpng %s\n", PNG_LIBPNG_VER_STRING, png_libpng_ver);
+        printf("Compiled with zlib %s and using zlib %s\n", ZLIB_VERSION, zlib_version);
         return 0;
 
       default:
         return 1;
     }
 
-  if (!FB_IS_VALID(id, z)) {
-    fprintf(stderr, "%s: invalid ID or Z\n", argv[0]);
+  if (!FB_IS_VALID(id, z) || !xres || !yres)
     return 2;
-  }
 
   unsigned l_filename = ddig(id) + ddig(xres) + ddig(yres) + ddig(z) + 19;
 
@@ -148,5 +146,5 @@ int main(int argc, char* argv[argc + 1]) {
   free(stripped_image);
   fclose(stream);
 
-  fprintf(stdout, "Wrote '%s'\n", filename);
+  printf("Wrote '%s'\n", filename);
 }

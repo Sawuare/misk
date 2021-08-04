@@ -1,4 +1,4 @@
-// getendian.c
+// getendian.c - print the system endianness
 
 #include <stdio.h>
 
