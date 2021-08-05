@@ -15,7 +15,6 @@ fbzs.py
 getendian > endian.txt
 getlocale > locale.txt
 hah.py    > hah.txt
-hello     > hello.txt
 limits    > limits.txt
 mts.py    > mts.txt
 print.py  > print.txt

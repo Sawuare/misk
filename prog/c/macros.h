@@ -16,8 +16,8 @@
 #define MULPOW2(m, n) ((m) << (n))
 #define DIVPOW2(m, n) ((m) >> (n))
 
-#define STRING1(x) #x
-#define STRING2(x) STRING1(x)
+#define STRINGIZE1(x) #x
+#define STRINGIZE2(x) STRINGIZE1(x)
 
 #define ABS(x) ((x) < 0 ? -(x) : (x))
 
