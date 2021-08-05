@@ -1,4 +1,4 @@
-#! /bin/bash
+#! /bin/sh
 
 # export.sh - export data to ~/data/
 

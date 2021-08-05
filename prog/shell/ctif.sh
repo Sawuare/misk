@@ -1,4 +1,4 @@
-#! /bin/bash
+#! /bin/sh
 
 # ctif.sh - count tabs in files
 
@@ -7,11 +7,13 @@ then
   exit 1
 fi
 
+c=0
+
 for f in "$@"
 do
   if [ -f "$f" ] && [ -r "$f" ]
   then
-    ((c += $(tr -cd "\t" < "$f" | wc -c)))
+    c=$((c + $(tr -cd "\t" < "$f" | wc -c)))
   else
     exit 2
   fi

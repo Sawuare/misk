@@ -1,4 +1,4 @@
-#! /bin/bash
+#! /bin/sh
 
 # make.sh - make and move binaries and headers to /usr/local/
 
@@ -9,11 +9,11 @@ INC='/usr/local/include/'
 
 # Bash
 
-echo 'Entering ~/prog/bash/'
+echo 'Entering ~/prog/shell/'
 
-cd ~/prog/bash/
+cd ~/prog/shell/
 
-echo 'Copying Bash programs'
+echo 'Copying shell programs'
 
 sudo cp --preserve=ownership *.sh $BIN
 
