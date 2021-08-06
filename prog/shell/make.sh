@@ -64,8 +64,6 @@ echo 'Copying Python programs'
 
 sudo cp --preserve=ownership *.py $BIN
 
-echo 'Done'
-
 # Shell
 
 echo 'Entering ~/prog/shell/'
@@ -75,3 +73,5 @@ cd ~/prog/shell/
 echo 'Copying shell programs'
 
 sudo cp --preserve=ownership *.sh $BIN
+
+echo 'Done'
