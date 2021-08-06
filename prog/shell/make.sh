@@ -7,16 +7,6 @@ set -e
 BIN='/usr/local/bin/'
 INC='/usr/local/include/'
 
-# Bash
-
-echo 'Entering ~/prog/shell/'
-
-cd ~/prog/shell/
-
-echo 'Copying shell programs'
-
-sudo cp --preserve=ownership *.sh $BIN
-
 # C
 
 echo 'Entering ~/prog/c/'
@@ -75,3 +65,13 @@ echo 'Copying Python programs'
 sudo cp --preserve=ownership *.py $BIN
 
 echo 'Done'
+
+# Shell
+
+echo 'Entering ~/prog/shell/'
+
+cd ~/prog/shell/
+
+echo 'Copying shell programs'
+
+sudo cp --preserve=ownership *.sh $BIN
