@@ -57,14 +57,9 @@ int main(int wordc, char* wordv[wordc + 1]) {
   codev[ '+'] = ".-.-.";
   codev[ '@'] = ".--.-.";
 
-  int wordi = 1;
-
-  while (wordi != wordc) {
-    char* word = wordv[wordi++];
-
-    while (*word) {
-      fputs(codev[*word++], stdout);
-      fputc(*word ? ' ' : '\n', stdout);
+  while (*++wordv)
+    while (**wordv) {
+      fputs(codev[**wordv], stdout);
+      fputc(*++*wordv ? ' ' : '\n', stdout);
     }
-  }
 }

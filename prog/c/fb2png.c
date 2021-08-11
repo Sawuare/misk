@@ -126,9 +126,9 @@ int main(int argc, char* argv[argc + 1]) {
 
   // Convert BGRA to RGB
   for (unsigned i = 0, j = 0; i < res; i += 1, j += 3) {
-    stripped_image[j + 0] = original_image[i] >> 16 & 255; // R
+    stripped_image[j    ] = original_image[i] >> 16 & 255; // R
     stripped_image[j + 1] = original_image[i] >>  8 & 255; // G
-    stripped_image[j + 2] = original_image[i] >>  0 & 255; // B
+    stripped_image[j + 2] = original_image[i]       & 255; // B
   }
 
   free(original_image);

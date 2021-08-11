@@ -5,9 +5,9 @@ SYNOPSIS
   pp [<length>]
 
 DESCRIPTION
-  The character length of the penis is the decimal integer <length> if that is specified,
-  otherwise it is a random integer in the range [3, 80], with 3 being the minimum.
-  pp pauses for 1/length of a second between characters.
+  The character length of the penis is the decimal integer <length> if that is
+  specified, otherwise it is a random integer in the range [3, 80], with 3 being the
+  minimum. pp pauses for 1/length of a second between characters.
 
 EXAMPLES
   Invocation

@@ -5,8 +5,8 @@ SYNOPSIS
   fbzs
 
 DESCRIPTION
-  The sequences are nonnegative integers less than 2 raised to 32,
-  separated by spaces, and written to the following files.
+  The sequences are nonnegative integers less than 2 raised to 32, separated by
+  spaces, and written to the following files.
 
     a19m-1.fb.txt
     a19m0.fb.txt
