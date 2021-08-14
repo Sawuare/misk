@@ -13,13 +13,16 @@ DESCRIPTION
     1 2 3 4 5 6 7 8 9 0
     . , : ? ' - / ( ) " = + @
 
-  morse prints signals consisting of dashes and dots. The following is the adapted
-  spacing and length of the signals.
+  For performance, morse does not test for invalid letters and will probably crash if
+  any are given.
+
+  morse prints codes consisting of signals. A signal is either a dash or a dot. The
+  following is the adapted spacing and length of the signals.
 
     A dash is equal to a dot.
     The space between the signals forming the same letter is equal to zero.
-    The space between two letters is equal to a SPACE.
-    The space between two words is equal to a NEWLINE.
+    The space between two letters is equal to a space.
+    The space between two words is equal to a newline.
 
 NOTES
   The following performance observations are based on unoptimized Intel 64 assembly
@@ -27,8 +30,8 @@ NOTES
 
   Stack space used is 1008 bytes.
 
-  w = words
-  l = letters mean
+  Let w equal the number of words.
+  Let l equal the number of letters divided by w.
 
   The following is an operation count table for the main loop.
 
@@ -44,7 +47,7 @@ NOTES
     Total                                      | 31           24wl + 13w + 7
     ------------------------------------------------------------------------
 
-  The following is a complexity analysis.
+  The following are the space and time complexities.
 
     S (w, l) = O(1)
      P
@@ -53,12 +56,10 @@ NOTES
      P
 
 EXAMPLES
-  Invocation
-    morse Written on 2021-06-17
-  Output
-    .-- .-. .. - - . -.
-    --- -.
-    ..--- ----- ..--- .---- -....- ----- -.... -....- .---- --...
+  $ morse Written on 2021-06-17
+  .-- .-. .. - - . -.
+  --- -.
+  ..--- ----- ..--- .---- -....- ----- -.... -....- .---- --...
 
 SEE ALSO
   amorse

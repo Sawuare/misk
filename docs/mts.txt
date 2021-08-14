@@ -1,0 +1,9 @@
+NAME
+  mts.py - print table of MIDI-tuning-standard note number, notation, and frequency
+
+SYNOPSIS
+  mts.py
+
+DESCRIPTION
+  From left to right, the table contains the number, scientific pitch notation, and
+  frequency in hertz of MIDI notes.

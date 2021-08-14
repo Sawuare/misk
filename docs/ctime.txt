@@ -5,5 +5,5 @@ SYNOPSIS
   ctime
 
 EXAMPLES
-  Output
-    Sun Jun  6 12:00:00 2021
+  $ ctime
+  Sun Jun  6 12:00:00 2021

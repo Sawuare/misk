@@ -25,4 +25,4 @@ EXIT STATUS
   0 otherwise;
 
 SEE ALSO
-  morse
+  aplay(1)  morse

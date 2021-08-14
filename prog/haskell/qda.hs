@@ -1,4 +1,4 @@
--- qda.hs - the quantitative data analyzer
+-- qda.hs - a quantitative data analyzer
 
 import Data.List
 

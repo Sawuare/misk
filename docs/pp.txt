@@ -10,12 +10,8 @@ DESCRIPTION
   minimum. pp pauses for 1/length of a second between characters.
 
 EXAMPLES
-  Invocation
-    pp 0
-  Output
-    8=D
+  $ pp 0
+  8=D
 
-  Invocation
-    pp 5
-  Output
-    8===D
+  $ pp 5
+  8===D
