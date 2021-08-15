@@ -18,6 +18,8 @@ static inline unsigned ddig(unsigned n) {
 }
 
 int main(int argc, char* argv[argc + 1]) {
+  _Bool    delet   = 0;
+  _Bool    quiet   = 0;
   unsigned n_cells = 1024;
   unsigned n_gens  = 512;
   unsigned rule    = 90;
@@ -25,7 +27,7 @@ int main(int argc, char* argv[argc + 1]) {
 
   int opt;
 
-  while ((opt = getopt(argc, argv, "c:g:r:s:")) != -1)
+  while ((opt = getopt(argc, argv, "c:g:r:s:dq")) != -1)
     switch (opt) {
       case 'c':
         n_cells = strtoul(optarg, 0, 10);
@@ -41,6 +43,14 @@ int main(int argc, char* argv[argc + 1]) {
 
       case 's':
         seed = strtoul(optarg, 0, 10);
+        break;
+
+      case 'd':
+        delet = 1;
+        break;
+
+      case 'q':
+        quiet = 1;
         break;
 
       default:
@@ -82,13 +92,8 @@ int main(int argc, char* argv[argc + 1]) {
   }
 
   unsigned l_filename = ddig(n_cells) + ddig(n_gens) + ddig(rule) + ddig(seed) + 14;
-  unsigned l_command = l_filename + 28;
-
   char filename[l_filename];
-  char command[l_command];
-
   snprintf(filename, l_filename, "c%ug%ur%us%u.aeca.pcm", n_cells, n_gens, rule, seed);
-  snprintf(command, l_command, "aplay -t raw -f U8 -r 44100 %s", filename);
 
   FILE* stream = fopen(filename, "wb");
 
@@ -104,9 +109,18 @@ int main(int argc, char* argv[argc + 1]) {
 
   free(audio);
 
-  // Depend on aplay for playing audio
-  if (system(0))
-    system(command);
-  else
-    return 4;
+  if (!quiet)
+    if (system(0)) {
+      unsigned l_command = l_filename + 28;
+      char command[l_command];
+      snprintf(command, l_command, "aplay -t raw -f U8 -r 44100 %s", filename);
+      system(command);
+    }
+    else
+      return 4;
+
+  if (delet) {
+    remove(filename);
+    printf("Deleted '%s'\n", filename);
+  }
 }

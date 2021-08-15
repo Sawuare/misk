@@ -15,7 +15,7 @@ cd ~/prog/c/
 
 echo 'Compiling C programs'
 
-OPT='-std=c11 -march=native -O3'
+OPT='-std=c11 -march=native -O3 -Wno-dangling-else'
 
 cc $OPT -fsyntax-only test.c
 

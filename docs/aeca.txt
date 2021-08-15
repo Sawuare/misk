@@ -2,7 +2,7 @@ NAME
   aeca - play audible elementary cellular automata
 
 SYNOPSIS
-  aeca [-c <cells>] [-g <generations>] [-r <rule>] [-s <seed>]
+  aeca [-c <cells>] [-d] [-g <generations>] [-q] [-r <rule>] [-s <seed>]
 
 DESCRIPTION
   aeca generates generations of cells that evolve according to an elementary cellular
@@ -35,9 +35,15 @@ OPTIONS
     generation.
     The default is 1024.
 
+  -d
+    Delete the file after trying to play it.
+
   -g <generations>
     The decimal positive integer <generations> specifies the number of generations.
     The default is 512.
+
+  -q
+    Be quiet by not trying to play the file.
 
   -r <rule>
     The decimal nonnegative integer <rule> specifies the rule and should be less than

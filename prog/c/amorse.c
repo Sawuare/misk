@@ -12,12 +12,14 @@
 #define RATE 8000 // Default aplay rate
 
 int main(int argc, char* argv[argc + 1]) {
-  unsigned freq = 400; // In Hz
-  unsigned unit = 100; // In ms
+  _Bool    delet = 0;
+  _Bool    quiet = 0;
+  unsigned freq  = 400; // In Hz
+  unsigned unit  = 100; // In ms
 
   int opt;
 
-  while ((opt = getopt(argc, argv, "f:u:")) != -1)
+  while ((opt = getopt(argc, argv, "f:u:dq")) != -1)
     switch (opt) {
       case 'f':
         freq = strtoul(optarg, 0, 10);
@@ -25,6 +27,14 @@ int main(int argc, char* argv[argc + 1]) {
 
       case 'u':
         unit = strtoul(optarg, 0, 10);
+        break;
+
+      case 'd':
+        delet = 1;
+        break;
+
+      case 'q':
+        quiet = 1;
         break;
 
       default:
@@ -121,9 +131,14 @@ int main(int argc, char* argv[argc + 1]) {
 
   puts("Wrote '" FILENAME "'");
 
-  // Depend on aplay for playing audio
-  if (system(0))
-    system("aplay -t raw -f U8 -r 8000 " FILENAME);
-  else
-    return 5;
+  if (!quiet)
+    if (system(0))
+      system("aplay -t raw -f U8 -r 8000 " FILENAME);
+    else
+      return 5;
+
+  if (delet) {
+    remove(FILENAME);
+    puts("Deleted '" FILENAME "'");
+  }
 }

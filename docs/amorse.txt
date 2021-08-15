@@ -2,15 +2,21 @@ NAME
   amorse - encode input into audible International Morse code
 
 SYNOPSIS
-  amorse [-f <frequency>] [-u <unit>]
+  amorse [-d] [-f <frequency>] [-q] [-u <unit>]
 
 DESCRIPTION
   The easiest way to use the program is to redirect morse output to amorse input.
 
 OPTIONS
+  -d
+    Delete the file after trying to play it.
+
   -f <frequency>
     The decimal positive integer <frequency> specifies the signal frequency in hertz.
     The default is 400.
+
+  -q
+    Be quiet by not trying to play the file.
 
   -u <unit>
     The decimal positive integer <unit> specifies the unit duration in milliseconds.
