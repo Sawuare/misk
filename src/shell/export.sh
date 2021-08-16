@@ -14,11 +14,9 @@ echo 'Exporting data'
 fbzs.py
 getendian > endian.txt
 getlocale > locale.txt
-hah.py    > hah.txt
 limits    > limits.txt
 mts.py    > mts.txt
 print.py  > print.txt
-sudoku.py > sudoku.txt
 waves
 
 echo 'Done'
