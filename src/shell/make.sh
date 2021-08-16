@@ -1,6 +1,6 @@
 #! /bin/sh
 
-# make.sh - make and move binaries and headers to /usr/local/
+# make.sh - make and move/copy what is in ~/src/*/ to /usr/local/
 
 set -e
 
@@ -9,9 +9,9 @@ INC='/usr/local/include/'
 
 # C
 
-echo 'Entering ~/prog/c/'
+echo 'Entering ~/src/c/'
 
-cd ~/prog/c/
+cd ~/src/c/
 
 echo 'Compiling C programs'
 
@@ -42,9 +42,9 @@ sudo cp --preserve=ownership *.h $INC
 
 # Haskell
 
-echo 'Entering ~/prog/haskell/'
+echo 'Entering ~/src/haskell/'
 
-cd ~/prog/haskell/
+cd ~/src/haskell/
 
 echo 'Compiling Haskell program'
 
@@ -56,9 +56,9 @@ sudo mv qda $BIN
 
 # Python
 
-echo 'Entering ~/prog/python/'
+echo 'Entering ~/src/python/'
 
-cd ~/prog/python/
+cd ~/src/python/
 
 echo 'Copying Python programs'
 
@@ -66,9 +66,9 @@ sudo cp --preserve=ownership *.py $BIN
 
 # Shell
 
-echo 'Entering ~/prog/shell/'
+echo 'Entering ~/src/shell/'
 
-cd ~/prog/shell/
+cd ~/src/shell/
 
 echo 'Copying shell programs'
 
