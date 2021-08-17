@@ -1,12 +1,12 @@
 #! /bin/sh
 
-# export.sh - export data to ~/dat/
+# export.sh - export data of some programs to ../dat/
 
 set -e
 
-echo 'Entering ~/dat/'
+echo 'Entering ../dat/'
 
-cd ~/dat/
+cd ../dat/
 
 echo 'Exporting data'
 

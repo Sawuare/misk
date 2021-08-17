@@ -41,8 +41,4 @@ submit = Button(text='Submit')
 submit.bind('<Button-1>', calc)
 submit.pack()
 
-logo = PhotoImage(file='python-powered-w-140x56.png')
-
-Label(image=logo).pack()
-
 mainloop()
