@@ -1,6 +1,6 @@
 #! /bin/sh
 
-# make.sh - make some sources and get executables and headers to /usr/local/
+# build.sh - build some sources and get executables and headers to /usr/local/
 
 set -e
 
