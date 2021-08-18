@@ -129,7 +129,7 @@ int main(int argc, char* argv[argc + 1]) {
 
   fclose(stream);
 
-  puts("Wrote '" FILENAME "'");
+  puts("Wrote " FILENAME);
 
   if (!quiet)
     if (system(0))
@@ -139,6 +139,6 @@ int main(int argc, char* argv[argc + 1]) {
 
   if (delet) {
     remove(FILENAME);
-    puts("Deleted '" FILENAME "'");
+    puts("Deleted " FILENAME);
   }
 }

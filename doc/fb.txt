@@ -7,14 +7,14 @@ SYNOPSIS
 DESCRIPTION
   The following keys can be used to navigate and control fb.
 
-    '{' decrements ID;
-    '}' increments ID;
-    '[' decrements Z;
-    ']' increments Z;
-    'i' sets ID to the decimal nonnegative integer entered next;
-    'z' sets Z to the decimal positive integer entered next;
-    'l' toggles the status line;
-    'e' exits;
+    {  Decrements ID;
+    }  Increments ID;
+    [  Decrements Z;
+    ]  Increments Z;
+    i  Sets ID to the decimal nonnegative integer entered next;
+    z  Sets Z to the decimal positive integer entered next;
+    l  Toggles the status line;
+    e  Exits;
 
 OPTIONS
   -# <base16-color>

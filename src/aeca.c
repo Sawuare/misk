@@ -105,7 +105,7 @@ int main(int argc, char* argv[argc + 1]) {
   fwrite(audio, 1, n_samples, stream);
   fclose(stream);
 
-  printf("Wrote '%s'\n", filename);
+  printf("Wrote %s\n", filename);
 
   free(audio);
 
@@ -121,6 +121,6 @@ int main(int argc, char* argv[argc + 1]) {
 
   if (delet) {
     remove(filename);
-    printf("Deleted '%s'\n", filename);
+    printf("Deleted %s\n", filename);
   }
 }

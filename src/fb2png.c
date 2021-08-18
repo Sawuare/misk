@@ -146,5 +146,5 @@ int main(int argc, char* argv[argc + 1]) {
   free(stripped_image);
   fclose(stream);
 
-  printf("Wrote '%s'\n", filename);
+  printf("Wrote %s\n", filename);
 }

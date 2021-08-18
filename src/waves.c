@@ -35,7 +35,7 @@ static void write_wave(char* filename) {
 
   static int counter = 1;
 
-  printf("Wrote %d of 2: '%s'\n", counter++, filename);
+  printf("Wrote %d of 2: %s\n", counter++, filename);
 }
 
 int main(void) {
