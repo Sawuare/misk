@@ -4,14 +4,14 @@
 
 set -e
 
-BIN='/usr/local/bin/'
-INC='/usr/local/include/'
+BIN="/usr/local/bin/"
+INC="/usr/local/include/"
 
 # C
 
-echo 'Compiling C programs'
+echo "Compiling C programs"
 
-OPT='-std=c11 -march=native -O3 -Wno-dangling-else'
+OPT="-std=c11 -march=native -O3 -Wno-dangling-else"
 
 cc $OPT -fsyntax-only test.c
 
@@ -28,28 +28,28 @@ cc $OPT -o morse      morse.c
 cc $OPT -o pp         pp.c
 cc $OPT -o waves      waves.c     -lFLAC
 
-echo 'Moving C programs'
+echo "Moving C programs"
 
 sudo mv aeca amorse ctime fb fb2png getendian getlocale hacc limits morse pp waves $BIN
 
-echo 'Copying C headers'
+echo "Copying C headers"
 
 sudo cp --preserve=ownership *.h $INC
 
 # Haskell
 
-echo 'Compiling Haskell program'
+echo "Compiling Haskell program"
 
 ghc -no-keep-hi-files -no-keep-o-files -v0 -O2 -o qda qda.hs
 
-echo 'Moving Haskell program'
+echo "Moving Haskell program"
 
 sudo mv qda $BIN
 
 # Python
 
-echo 'Copying Python programs'
+echo "Copying Python programs"
 
 sudo cp --preserve=ownership *.py $BIN
 
-echo 'Done'
+echo "Done"

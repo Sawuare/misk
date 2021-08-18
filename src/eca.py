@@ -4,11 +4,11 @@
 
 import random
 
-RULE = int(input('Rule: '))
-SEED = int(input('Seed: '))
+RULE = int(input("Rule: "))
+SEED = int(input("Seed: "))
 
-BLACK = b'\x00\x00\x00\x00'
-WHITE = b'\xff\xff\xff\x00'
+BLACK = b"\x00\x00\x00\x00"
+WHITE = b"\xff\xff\xff\x00"
 
 XRES = 1376
 YRES = 768
@@ -24,9 +24,9 @@ else:
   cells[XRES // 2] = 1
 
 # Disable cursor
-print('\x1b[?25l', end = '', flush = True)
+print("\x1b[?25l", end = "", flush = True)
 
-with open('/dev/fb0', 'wb') as fb:
+with open("/dev/fb0", "wb") as fb:
   for y in range(YRES):
     for x in range(XRES):
       fb.write(WHITE if cells[x] else BLACK)
@@ -42,4 +42,4 @@ with open('/dev/fb0', 'wb') as fb:
 input()
 
 # Enable cursor
-print('\x1b[?25h', end = '')
+print("\x1b[?25h", end = "")

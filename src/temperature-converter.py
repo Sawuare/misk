@@ -19,26 +19,26 @@ def calc(event):
   f_entry.insert(0, round(f, 2))
   r_entry.insert(0, round(r, 2))
 
-Tk().title('Temperature Converter')
+Tk().title("Temperature Converter")
 
-Label(text='K').pack()
+Label(text="K").pack()
 k_entry = Entry(justify=CENTER)
 k_entry.pack()
 
-Label(text='°C').pack()
+Label(text="°C").pack()
 c_entry = Entry(justify=CENTER)
 c_entry.pack()
 
-Label(text='°F').pack()
+Label(text="°F").pack()
 f_entry = Entry(justify=CENTER)
 f_entry.pack()
 
-Label(text='°R').pack()
+Label(text="°R").pack()
 r_entry = Entry(justify=CENTER)
 r_entry.pack()
 
-submit = Button(text='Submit')
-submit.bind('<Button-1>', calc)
+submit = Button(text="Submit")
+submit.bind("<Button-1>", calc)
 submit.pack()
 
 mainloop()

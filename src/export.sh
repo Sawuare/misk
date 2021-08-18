@@ -4,11 +4,11 @@
 
 set -e
 
-echo 'Entering ../dat/'
+echo "Entering ../dat/"
 
 cd ../dat/
 
-echo 'Exporting data'
+echo "Exporting data"
 
 # Assume make.sh has been run
 fbzs.py
@@ -19,4 +19,4 @@ mts.py    > mts.txt
 print.py  > print.txt
 waves
 
-echo 'Done'
+echo "Done"

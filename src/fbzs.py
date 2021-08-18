@@ -22,21 +22,21 @@ def a19(f, m):
   print(*zs, file = f)
 
 # https://oeis.org/A059153
-with open('a19m-1.fb.txt', 'w') as f:
+with open("a19m-1.fb.txt", "w") as f:
   a19(f, -1)
 
 # https://oeis.org/A020522
-with open('a19m0.fb.txt', 'w') as f:
+with open("a19m0.fb.txt", "w") as f:
   a19(f, 0)
 
 # https://oeis.org/A171476
-with open('a19m1.fb.txt', 'w') as f:
+with open("a19m1.fb.txt", "w") as f:
   a19(f, 1)
 
 # https://oeis.org/A171499
-with open('a19m2.fb.txt', 'w') as f:
+with open("a19m2.fb.txt", "w") as f:
   a19(f, 2)
 
 # https://oeis.org/A171472
-with open('a19m3.fb.txt', 'w') as f:
+with open("a19m3.fb.txt", "w") as f:
   a19(f, 3)
