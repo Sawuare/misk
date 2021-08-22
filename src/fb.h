@@ -1,4 +1,4 @@
-// fb.h - constants and painters for a 1376x768x32 BGRA framebuffer
+// fb.h - fb painters and macros for a 1376x768x32 BGRA framebuffer
 
 #include <stdlib.h>
 
@@ -7,7 +7,6 @@
 #define FB_SIZE 4227072
 #define FB_XRES 1376
 #define FB_YRES 768
-#define FB_BPS  8
 
 #define FB_RED     0xff0000
 #define FB_GREEN   0x00ff00

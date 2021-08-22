@@ -111,9 +111,9 @@ int main(int argc, char* argv[argc + 1]) {
 
   if (!quiet)
     if (system(0)) {
-      unsigned l_command = l_filename + 28;
+      unsigned l_command = l_filename + 33;
       char command[l_command];
-      snprintf(command, l_command, "aplay -t raw -f U8 -r 44100 %s", filename);
+      snprintf(command, l_command, "aplay -t raw -f U8 -r 44100 -c 1 %s", filename);
       system(command);
     }
     else

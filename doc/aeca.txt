@@ -15,7 +15,7 @@ DESCRIPTION
 
   aeca does that by invoking the external program aplay as follows.
 
-    aplay -t raw -f U8 -r 44100 <filename>
+    aplay -t raw -f U8 -r 44100 -c 1 <filename>
 
   Evolutions start from either a fixed state or a random state that is seeded
   manually. The former tend to sound tonal, while the latter tend to sound atonal.
@@ -26,7 +26,7 @@ DESCRIPTION
 
     aeca -c 1024 -g 512 -r 90 -s 0
 
-  A file generated with a nonzero seed could be irreproducible on different systems
+  A file generated from a random state could be irreproducible on different systems
   because of a possibly different implementation of the random number generator used.
 
 OPTIONS

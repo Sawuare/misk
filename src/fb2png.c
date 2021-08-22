@@ -69,9 +69,7 @@ int main(int argc, char* argv[argc + 1]) {
     return 2;
 
   unsigned l_filename = ddig(id) + ddig(xres) + ddig(yres) + ddig(z) + 19;
-
   char filename[l_filename];
-
   snprintf(filename, l_filename, "i%ux%uy%uz%u#%06x.fb.png", id, xres, yres, z, color);
 
   FILE* stream = fopen(filename, "wb");
@@ -103,7 +101,7 @@ int main(int argc, char* argv[argc + 1]) {
     {.key = "Software", .text = "fb2png",  .compression = PNG_TEXT_COMPRESSION_NONE}
   };
 
-  png_set_IHDR(structp, infop, xres, yres, FB_BPS, PNG_COLOR_TYPE_RGB, PNG_INTERLACE_NONE, PNG_COMPRESSION_TYPE_BASE, PNG_FILTER_TYPE_BASE);
+  png_set_IHDR(structp, infop, xres, yres, 8, PNG_COLOR_TYPE_RGB, PNG_INTERLACE_NONE, PNG_COMPRESSION_TYPE_BASE, PNG_FILTER_TYPE_BASE);
   png_set_text(structp, infop, texts, ARRLEN(texts));
   png_set_filter(structp, PNG_FILTER_TYPE_BASE, FB_IS_MONO_XOR_RAMP(id) ? PNG_FILTER_NONE : PNG_FILTER_UP);
   png_set_compression_level(structp, Z_DEFAULT_COMPRESSION);

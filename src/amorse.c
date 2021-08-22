@@ -133,7 +133,7 @@ int main(int argc, char* argv[argc + 1]) {
 
   if (!quiet)
     if (system(0))
-      system("aplay -t raw -f U8 -r 8000 " FILENAME);
+      system("aplay -t raw -f U8 -r 8000 -c 1 " FILENAME);
     else
       return 5;
 
