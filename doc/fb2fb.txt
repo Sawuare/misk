@@ -1,11 +1,11 @@
 NAME
-  fb - paint fb images on the framebuffer
+  fb2fb - paint fb images on the framebuffer
 
 SYNOPSIS
-  fb [-# <base16-color>] [-c <letter-color>] [-i <id>] [-l] [-s <step>] [-z <z>]
+  fb2fb [-# <base16-color>] [-c <letter-color>] [-i <id>] [-l] [-s <step>] [-z <z>]
 
 DESCRIPTION
-  The following keys can be used to navigate and control fb.
+  The following keys can be used to navigate and control fb2fb.
 
     {  Decrements ID;
     }  Increments ID;

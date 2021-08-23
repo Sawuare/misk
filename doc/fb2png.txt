@@ -49,4 +49,4 @@ EXIT STATUS
   0 otherwise;
 
 SEE ALSO
-  fb  fbzs
+  fb2fb  fbzs

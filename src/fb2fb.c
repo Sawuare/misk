@@ -1,4 +1,4 @@
-// fb.c - paint fb images on the framebuffer
+// fb2fb.c - paint fb images on the framebuffer
 
 #include <stdio.h>
 #include <stdlib.h>

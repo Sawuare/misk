@@ -31,28 +31,28 @@ NOTES
   Stack space used is 1008 bytes.
 
   Let w equal the number of words.
-  Let l equal the number of letters divided by w.
+  Let l equal the number of letters.
 
   The following is an operation count table for the main loop.
 
-    ------------------------------------------------------------------------
+    -----------------------------------------------------------------------
     Statement                                  | Op Frequency Total op
-    ------------------------------------------------------------------------
+    -----------------------------------------------------------------------
     while (*++wordv)                           | 7  w + 1     7w + 7
-      while (**wordv) {                        | 6  wl + w    6wl + 6w
-        fputs(codev[**wordv], stdout);         | 6  wl        6wl
-        fputc(*++*wordv ? ' ' : '\n', stdout); | 12 wl        12wl
+      while (**wordv) {                        | 6  l + w     6l + 6w
+        fputs(codev[**wordv], stdout);         | 6  l         6l
+        fputc(*++*wordv ? ' ' : '\n', stdout); | 12 l         12l
       }                                        |
-    ------------------------------------------------------------------------
-    Total                                      | 31           24wl + 13w + 7
-    ------------------------------------------------------------------------
+    -----------------------------------------------------------------------
+    Total                                      | 31           24l + 13w + 7
+    -----------------------------------------------------------------------
 
   The following are the space and time complexities.
 
     S (w, l) = O(1)
      P
 
-    T (w, l) = O(wl)
+    T (w, l) = O(l)
      P
 
 EXAMPLES
