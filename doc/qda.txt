@@ -8,7 +8,7 @@ DESCRIPTION
   qda reads a line of space-separated numbers then prints the following statistics.
 
     Count
-    Sum
+    Total
     Minimum
     Maximum
     Range

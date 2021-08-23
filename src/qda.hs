@@ -2,72 +2,64 @@
 
 import Data.List
 
-
-range    xs =  last xs - head xs
-midRange xs = (last xs + head xs) / 2
-
-
-q2 xs
-  | odd len   =  xs !! mid
+median xs count
+  | odd count =  xs !! mid
   | otherwise = (xs !! mid + xs !! (mid - 1)) / 2
-  where len = length xs
-        mid = div len 2
-
-q1 xs
-  | len > 1   = q2 (take (len `div` 2) xs)
-  | otherwise = xs !! 0
-  where len = length xs
-
-q3 xs
-  | len > 1   = q2 (drop (len - len `div` 2) xs)
-  | otherwise = xs !! 0
-  where len = length xs
-
-iqr      xs =  q3 xs - q1 xs
-midHinge xs = (q3 xs + q1 xs) / 2
-
-
-am xs = sum xs / fromIntegral (length xs)
-
-gm xs = product xs ** recip (fromIntegral (length xs))
-
-qm xs = sqrt (sum [x * x | x <- xs] / fromIntegral (length xs))
-
-hm xs = recip (sum [recip x | x <- xs] / fromIntegral (length xs))
-
-
-var xs = sum [(x - am xs) ** 2 | x <- xs] / fromIntegral (length xs)
-
-sd xs = sqrt (var xs)
-
-rsd xs = sd xs / abs (am xs)
-
-
-skewness xs = sum [(x - am xs) ** 3 | x <- xs] / fromIntegral (length xs) / sd xs ** 3
-kurtosis xs = sum [(x - am xs) ** 4 | x <- xs] / fromIntegral (length xs) / sd xs ** 4
-
+  where mid = div count 2
 
 main = do
-  str <- getLine
-  let ds = sort (map read (words str)) :: [Double]
+  line <- getLine
 
-  putStrLn ("                      Count = " ++ show (length ds))
-  putStrLn ("                        Sum = " ++ show (sum ds))
-  putStrLn ("                    Minimum = " ++ show (head ds))
-  putStrLn ("                    Maximum = " ++ show (last ds))
-  putStrLn ("                      Range = " ++ show (range ds))
-  putStrLn ("                  Mid-Range = " ++ show (midRange ds))
-  putStrLn ("             First Quartile = " ++ show (q1 ds))
-  putStrLn ("            Second Quartile = " ++ show (q2 ds))
-  putStrLn ("             Third Quartile = " ++ show (q3 ds))
-  putStrLn ("        Interquartile Range = " ++ show (iqr ds))
-  putStrLn ("                  Mid-Hinge = " ++ show (midHinge ds))
-  putStrLn ("            Arithmetic Mean = " ++ show (am ds))
-  putStrLn ("             Quadratic Mean = " ++ show (qm ds))
-  putStrLn ("             Geometric Mean = " ++ show (gm ds))
-  putStrLn ("              Harmonic Mean = " ++ show (hm ds))
-  putStrLn ("                   Variance = " ++ show (var ds))
-  putStrLn ("         Standard Deviation = " ++ show (sd ds))
-  putStrLn ("Relative Standard Deviation = " ++ show (rsd ds))
-  putStrLn ("                   Skewness = " ++ show (skewness ds))
-  putStrLn ("                   Kurtosis = " ++ show (kurtosis ds))
+  let ds = sort (map read (words line)) :: [Double]
+
+  let count = length ds
+  let total = sum ds
+
+  let min = head ds
+  let max = last ds
+
+  let range    =  max - min
+  let midRange = (max + min) / 2
+
+  let half = div count 2
+
+  let q2 = median ds count
+
+  let q1 = if count == 1 then q2 else median (take half ds) half
+  let q3 = if count == 1 then q2 else median (drop (count - half) ds) half
+
+  let iqr      =  q3 - q1
+  let midHinge = (q3 + q1) / 2
+
+  let am = total / fromIntegral count
+  let gm = product ds ** recip (fromIntegral count)
+  let qm = sqrt (sum [d * d | d <- ds] / fromIntegral count)
+  let hm = recip (sum [recip d | d <- ds] / fromIntegral count)
+
+  let var = sum [(d - am) ** 2 | d <- ds] / fromIntegral count
+  let sd  = sqrt var
+  let rsd = sd / abs am
+
+  let skewness = sum [(d - am) ** 3 | d <- ds] / fromIntegral count / sd ** 3
+  let kurtosis = sum [(d - am) ** 4 | d <- ds] / fromIntegral count / sd ** 4
+
+  putStrLn ("                      Count = " ++ show count)
+  putStrLn ("                      Total = " ++ show total)
+  putStrLn ("                    Minimum = " ++ show min)
+  putStrLn ("                    Maximum = " ++ show max)
+  putStrLn ("                      Range = " ++ show range)
+  putStrLn ("                  Mid-Range = " ++ show midRange)
+  putStrLn ("             First Quartile = " ++ show q1)
+  putStrLn ("            Second Quartile = " ++ show q2)
+  putStrLn ("             Third Quartile = " ++ show q3)
+  putStrLn ("        Interquartile Range = " ++ show iqr)
+  putStrLn ("                  Mid-Hinge = " ++ show midHinge)
+  putStrLn ("            Arithmetic Mean = " ++ show am)
+  putStrLn ("             Quadratic Mean = " ++ show qm)
+  putStrLn ("             Geometric Mean = " ++ show gm)
+  putStrLn ("              Harmonic Mean = " ++ show hm)
+  putStrLn ("                   Variance = " ++ show var)
+  putStrLn ("         Standard Deviation = " ++ show sd)
+  putStrLn ("Relative Standard Deviation = " ++ show rsd)
+  putStrLn ("                   Skewness = " ++ show skewness)
+  putStrLn ("                   Kurtosis = " ++ show kurtosis)
