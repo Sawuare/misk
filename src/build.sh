@@ -18,7 +18,7 @@ cc $OPT -fsyntax-only test.c
 cc $OPT -o aeca       aeca.c
 cc $OPT -o amorse     amorse.c
 cc $OPT -o ctime      ctime.c
-cc $OPT -o fb         fb.c
+cc $OPT -o fb2fb      fb2fb.c
 cc $OPT -o fb2png     fb2png.c    -lpng -lz
 cc $OPT -o getendian  getendian.c
 cc $OPT -o getlocale  getlocale.c
@@ -30,7 +30,7 @@ cc $OPT -o waves      waves.c     -lFLAC
 
 echo "Moving C programs"
 
-sudo mv aeca amorse ctime fb fb2png getendian getlocale hacc limits morse pp waves $BIN
+sudo mv aeca amorse ctime fb2fb fb2png getendian getlocale hacc limits morse pp waves $BIN
 
 echo "Copying C headers"
 

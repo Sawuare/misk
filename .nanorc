@@ -6,7 +6,7 @@ set tabstospaces
 
 
 bind ^H help all
-bind ^Q exit all
+bind ^E exit all
 
 bind ^O insert all
 bind ^S savefile all
@@ -63,7 +63,7 @@ color cyan "'([^'\]|\\[^&]+)'"
 color cyan ""([^"\]|\\.+)*""
 
 # Ordinary comment
-color magenta "---*([^!#$%&*+./<=>?@\^|~:].*)?$"
+color magenta "---*([^!#$%&*+./<=>?@\^|~:-].*)?$"
 # Nested comment
 color magenta start="\{-" end="-}"
 # Pragma
