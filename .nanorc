@@ -66,8 +66,6 @@ color cyan ""([^"\]|\\.+)*""
 color magenta "---*([^!#$%&*+./<=>?@\^|~:-].*)?$"
 # Nested comment
 color magenta start="\{-" end="-}"
-# Pragma
-color magenta start="\{-#" end="#-}"
 
 # Trailing space
 color ,yellow "[[:space:]]+$"
