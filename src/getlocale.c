@@ -8,4 +8,6 @@ int main(void) {
 
   if (locale)
     puts(locale);
+  else
+    return 1;
 }

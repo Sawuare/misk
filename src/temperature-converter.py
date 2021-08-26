@@ -4,7 +4,7 @@
 
 from tkinter import *
 
-def calc(event):
+def convert(event):
   k = float(k_entry.get())
 
   c = k - 273.15
@@ -21,24 +21,25 @@ def calc(event):
 
 Tk().title("Temperature Converter")
 
-Label(text="K").pack()
-k_entry = Entry(justify=CENTER)
+Label(text = "K").pack()
+k_entry = Entry(justify = CENTER)
+k_entry.bind("<Return>", convert)
 k_entry.pack()
 
-Label(text="°C").pack()
-c_entry = Entry(justify=CENTER)
+Label(text = "°C").pack()
+c_entry = Entry(justify = CENTER)
 c_entry.pack()
 
-Label(text="°F").pack()
-f_entry = Entry(justify=CENTER)
+Label(text = "°F").pack()
+f_entry = Entry(justify = CENTER)
 f_entry.pack()
 
-Label(text="°R").pack()
-r_entry = Entry(justify=CENTER)
+Label(text = "°R").pack()
+r_entry = Entry(justify = CENTER)
 r_entry.pack()
 
-submit = Button(text="Submit")
-submit.bind("<Button-1>", calc)
-submit.pack()
+button = Button(text = "Convert")
+button.bind("<Button-1>", convert)
+button.pack()
 
 mainloop()

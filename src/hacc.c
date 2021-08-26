@@ -23,10 +23,15 @@ int main(int argc, char* argv[argc + 1]) {
 
   long ns = argv[1] ? atol(argv[1]) : 125000000;
 
-  struct timespec zzz = {.tv_nsec = CLMP(ns, 0, 999999999)};
+  if (ns < 0 || ns > 999999999)
+    return 1;
+
+  struct timespec zzz = {.tv_nsec = ns};
 
   struct winsize ws;
-  ioctl(STDOUT_FILENO, TIOCGWINSZ, &ws);
+
+  if (ioctl(STDOUT_FILENO, TIOCGWINSZ, &ws) == -1)
+    return 2;
 
   fputs(DECTCEM("l") ED("2"), stdout);
 

@@ -5,4 +5,8 @@ SYNOPSIS
   getlocale
 
 DESCRIPTION
-  Nothing is printed if the system locale cannot be queried.
+  Nothing is printed if querying the locale fails.
+
+EXIT STATUS
+  1 if querying the locale fails;
+  0 otherwise;

@@ -1,4 +1,4 @@
-// waves.c - write some audio waves in the FLAC format
+// waves.c - write some fixed audio waves in the FLAC format
 
 // Signed 16 bit, Rate 44100 Hz, Mono
 
@@ -10,8 +10,8 @@
 #define MAX +32767
 #define MIN -32767
 
-#define FREQ 440
 #define RATE 44100
+#define FREQ 440
 
 static FLAC__int32 wave[RATE];
 static FLAC__StreamEncoder* encoder;
@@ -21,7 +21,7 @@ static void write_wave(char* filename) {
   FLAC__stream_encoder_set_channels(encoder, 1);
   FLAC__stream_encoder_set_sample_rate(encoder, RATE);
   FLAC__stream_encoder_set_bits_per_sample(encoder, 16);
-  FLAC__stream_encoder_set_compression_level(encoder, 5);
+  FLAC__stream_encoder_set_compression_level(encoder, 0);
   FLAC__stream_encoder_set_total_samples_estimate(encoder, RATE);
 
   if (FLAC__stream_encoder_init_file(encoder, filename, 0, 0) != FLAC__STREAM_ENCODER_INIT_STATUS_OK)

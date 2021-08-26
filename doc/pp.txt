@@ -5,13 +5,12 @@ SYNOPSIS
   pp [<length>]
 
 DESCRIPTION
-  The character length of the penis is the decimal integer <length> if that is
-  specified, otherwise it is a random integer in the range [3, 80], with 3 being the
-  minimum. pp pauses for 1/length of a second between characters.
+  If given, the decimal integer <length>, which must be greater than or equal to 3,
+  specifies the character length of the penis, which is otherwise a random integer in
+  the range [3, 85].
 
-EXAMPLES
-  $ pp 0
-  8=D
+  pp pauses for 1/length of a second between characters.
 
-  $ pp 5
-  8===D
+EXIT STATUS
+  1 if the argument is invalid;
+  0 otherwise;
