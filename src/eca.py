@@ -1,15 +1,17 @@
 #! /usr/bin/env python3
 
-# eca.py - paint elementary cellular automata on a 1376x768x32 BGRA framebuffer
+# eca.py - paint elementary cellular automata on the framebuffer
 
 import random
 
 RULE = int(input("Rule: "))
 SEED = int(input("Seed: "))
 
+# UNPORTABLE
 BLACK = b"\x00\x00\x00\x00"
 WHITE = b"\xff\xff\xff\x00"
 
+# UNPORTABLE
 XRES = 1376
 YRES = 768
 

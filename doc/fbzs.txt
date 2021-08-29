@@ -1,5 +1,5 @@
 NAME
-  fbzs - write the interesting fb Z sequences
+  fbzs - write some interesting fb Z sequences
 
 SYNOPSIS
   fbzs

@@ -1,5 +1,5 @@
 NAME
-  print.py - print table of printable ASCII characters in bin, oct, dec, and hex
+  print.py - print a table of printable ASCII characters in bin, oct, dec, and hex
 
 SYNOPSIS
   print.py

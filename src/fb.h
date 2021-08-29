@@ -1,13 +1,15 @@
-// fb.h - fb painters and macros for a 1376x768x32 BGRA framebuffer
+// fb.h - fb painters and macros for the framebuffer
 
 #include <stdlib.h>
 
 #define FB_PATH "/dev/fb0"
 
+// UNPORTABLE
 #define FB_SIZE 4227072
 #define FB_XRES 1376
 #define FB_YRES 768
 
+// UNPORTABLE
 #define FB_RED     0xff0000
 #define FB_GREEN   0x00ff00
 #define FB_BLUE    0x0000ff
@@ -16,6 +18,7 @@
 #define FB_YELLOW  0xffff00
 #define FB_WHITE   0xffffff
 
+// UNPORTABLE
 #define FB_PX_TO_R_BYTE(px) ((px) >> 16 & 255)
 #define FB_PX_TO_G_BYTE(px) ((px) >>  8 & 255)
 #define FB_PX_TO_B_BYTE(px) ((px)       & 255)
@@ -30,9 +33,11 @@
   for (unsigned y = 0; y < yres; ++y) \
   for (unsigned x = 0; x < xres; ++x)
 
+// UNPORTABLE
 #define MONO(px) (px) * c
 #define RAMP(px) (px) % 256 * c / 255
 
+// UNPORTABLE
 static inline unsigned fb_rrggbb_to_color(char const* s) {
   return strtoul(s, 0, 16);
 }

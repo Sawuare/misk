@@ -1,5 +1,5 @@
 NAME
-  mts.py - print table of MIDI-tuning-standard note number, notation, and frequency
+  mts.py - print a table of MIDI-tuning-standard note number, notation, and frequency
 
 SYNOPSIS
   mts.py

@@ -1,6 +1,6 @@
 #! /usr/bin/env python3
 
-# sudoku.py - print "sudoku" grid of subgrids filled sequentially with 1s to 9s
+# sudoku.py - print a "sudoku" grid of subgrids filled sequentially with 1s to 9s
 
 for row in range(9):
   for col in range(9):
