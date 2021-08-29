@@ -17,4 +17,4 @@ DESCRIPTION
   Where aNN denotes a sequence for an fb painter with ID NN.
 
 SEE ALSO
-  fb2fb  fb2png
+  fb2fb.txt  fb2png.txt

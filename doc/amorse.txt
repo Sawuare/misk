@@ -51,4 +51,4 @@ EXIT STATUS
   0 otherwise;
 
 SEE ALSO
-  aplay(1)  morse
+  aplay(1)  morse.txt

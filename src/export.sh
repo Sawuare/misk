@@ -10,7 +10,7 @@ cd ../dat/
 
 echo "Exporting data"
 
-# Assume make.sh has been run
+# Assume build.sh has been executed
 fbzs.py
 getendian > endian.txt
 getlocale > locale.txt

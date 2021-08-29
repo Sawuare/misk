@@ -6,3 +6,6 @@ SYNOPSIS
 
 DESCRIPTION
   Either "little" (for little-endian) or "big" (for big-endian) is printed.
+
+SEE ALSO
+  getlocale.txt

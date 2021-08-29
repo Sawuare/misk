@@ -56,4 +56,4 @@ NOTES
      P
 
 SEE ALSO
-  amorse
+  amorse.txt

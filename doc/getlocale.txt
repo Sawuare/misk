@@ -10,3 +10,6 @@ DESCRIPTION
 EXIT STATUS
   1 if querying the locale fails;
   0 otherwise;
+
+SEE ALSO
+  getendian.txt

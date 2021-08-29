@@ -56,4 +56,4 @@ EXIT STATUS
   0 otherwise;
 
 SEE ALSO
-  fb2png  fbzs
+  fb2png.txt  fbzs.txt

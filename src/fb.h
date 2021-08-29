@@ -16,9 +16,9 @@
 #define FB_YELLOW  0xffff00
 #define FB_WHITE   0xffffff
 
-#define FB_PX_TO_R_BYTE(px) ((px) >> 0x10 & 0xff)
-#define FB_PX_TO_G_BYTE(px) ((px) >> 0x08 & 0xff)
-#define FB_PX_TO_B_BYTE(px) ((px)         & 0xff)
+#define FB_PX_TO_R_BYTE(px) ((px) >> 16 & 255)
+#define FB_PX_TO_G_BYTE(px) ((px) >>  8 & 255)
+#define FB_PX_TO_B_BYTE(px) ((px)       & 255)
 
 #define FB_IS_VALID(id, z) ((id) < 33 && (z))
 
@@ -31,10 +31,10 @@
   for (unsigned x = 0; x < xres; ++x)
 
 #define MONO(px) (px) * c
-#define RAMP(px) (px) % 0x100 * c / 0xff
+#define RAMP(px) (px) % 256 * c / 255
 
 static inline unsigned fb_rrggbb_to_color(char const* s) {
-  return strtoul(s, 0, 0x10) % 0x1000000;
+  return strtoul(s, 0, 16);
 }
 
 static inline unsigned fb_letter_to_color(char const* s) {
