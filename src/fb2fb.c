@@ -25,11 +25,11 @@ int main(int argc, char* argv[argc + 1]) {
   while ((opt = getopt(argc, argv, "#:c:i:s:z:l")) != -1)
     switch (opt) {
       case '#':
-        color = fb_get_base16_color(optarg);
+        color = fb_rrggbb_to_color(optarg);
         break;
 
       case 'c':
-        color = fb_get_letter_color(optarg);
+        color = fb_letter_to_color(optarg);
         break;
 
       case 'i':

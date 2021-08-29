@@ -17,8 +17,11 @@ DESCRIPTION
 
     aplay -t raw -f U8 -r 44100 -c 1 <filename>
 
+  Playing and keeping the file is optional. See the -d and -q options.
+
   Evolutions start from either a fixed state or a random state that is seeded
   manually. The former tend to sound tonal, while the latter tend to sound atonal.
+  See the -s option.
 
   The aeca file has a filename that encodes how it was generated. For example, a file
   with the filename c1024g512r90s0.aeca.pcm can be reproduced by an invocation

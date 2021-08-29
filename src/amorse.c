@@ -12,21 +12,21 @@
 #define RATE 8000 // Default aplay rate
 
 int main(int argc, char* argv[argc + 1]) {
-  _Bool    delet = 0;
-  _Bool    quiet = 0;
-  unsigned freq  = 400; // In Hz
-  unsigned unit  = 100; // In ms
+  _Bool    delet     = 0;
+  _Bool    quiet     = 0;
+  unsigned frequency = 400; // In Hz
+  unsigned length    = 100; // In ms
 
   int opt;
 
-  while ((opt = getopt(argc, argv, "f:u:dq")) != -1)
+  while ((opt = getopt(argc, argv, "f:l:dq")) != -1)
     switch (opt) {
       case 'f':
-        freq = strtoul(optarg, 0, 10);
+        frequency = strtoul(optarg, 0, 10);
         break;
 
-      case 'u':
-        unit = strtoul(optarg, 0, 10);
+      case 'l':
+        length = strtoul(optarg, 0, 10);
         break;
 
       case 'd':
@@ -41,7 +41,7 @@ int main(int argc, char* argv[argc + 1]) {
         return 1;
     }
 
-  if (!freq || !unit)
+  if (!frequency || !length)
     return 2;
 
   FILE* stream = fopen(FILENAME, "wb");
@@ -49,7 +49,7 @@ int main(int argc, char* argv[argc + 1]) {
   if (!stream)
     return 3;
 
-  unsigned dit = RATE * unit / 1000;
+  unsigned dit = RATE * length / 1000;
   unsigned dah = 3 * dit;
   unsigned gap = 7 * dit;
 
@@ -90,7 +90,7 @@ int main(int argc, char* argv[argc + 1]) {
     for (unsigned i = 0; i < n_samples; ++i)
       audio[i] = 128;
 
-    unsigned i = 0, period_2 = RATE / freq / 2;
+    unsigned i = 0, period_2 = RATE / frequency / 2;
 
     cptr = cbuf;
 

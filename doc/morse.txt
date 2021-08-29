@@ -16,8 +16,8 @@ DESCRIPTION
   For performance, morse does not test for invalid letters and will probably crash if
   any are given.
 
-  morse prints codes consisting of signals. A signal is either a dash or a dot. The
-  following is the adapted spacing and length of the signals.
+  morse prints signals consisting of dots and dashes. The following is the adapted
+  spacing and length of the signals.
 
     A dash is equal to a dot.
     The space between the signals forming the same letter is equal to zero.
@@ -54,12 +54,6 @@ NOTES
 
     T (w, l) = O(l)
      P
-
-EXAMPLES
-  $ morse Written on 2021-06-17
-  .-- .-. .. - - . -.
-  --- -.
-  ..--- ----- ..--- .---- -....- ----- -.... -....- .---- --...
 
 SEE ALSO
   amorse

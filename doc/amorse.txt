@@ -2,24 +2,44 @@ NAME
   amorse - encode input into audible International Morse code
 
 SYNOPSIS
-  amorse [-d] [-f <frequency>] [-q] [-u <unit>]
+  amorse [-d] [-f <frequency>] [-l <length>] [-q]
 
 DESCRIPTION
-  The easiest way to use the program is to redirect morse output to amorse input.
+  amorse reads signals consisting of dots and dashes in the same format printed by
+  the sister program morse. amorse encodes said signals into audible ones; square
+  waves of max amplitude. The following is the standard spacing and length of the
+  signals.
+
+    A dash is equal to three dots.
+    The space between the signals forming the same letter is equal to one dot.
+    The space between two letters is equal to three dots.
+    The space between two words is equal to seven dots.
+
+  As you can see, the dot is the basic unit of length here. See the -l option.
+
+  amorse writes the signals to a file named amorse.pcm with the following format.
+
+    Unsigned 8 bit, Rate 8000 Hz, Mono
+
+  amorse tries to play the file by invoking the external program aplay as follows.
+
+    aplay -t raw -f U8 -r 8000 -c 1 amorse.pcm
+
+  Playing and keeping the file is optional. See the -d and -q options.
 
 OPTIONS
   -d
     Delete the file after trying to play it.
 
   -f <frequency>
-    The decimal positive integer <frequency> specifies the signal frequency in hertz.
+    The decimal positive integer <frequency> specifies the wave frequency in hertz.
     The default is 400.
 
   -q
     Be quiet by not trying to play the file.
 
-  -u <unit>
-    The decimal positive integer <unit> specifies the unit duration in milliseconds.
+  -l <length>
+    The decimal positive integer <length> specifies the dot length in milliseconds.
     The default is 100.
 
 EXIT STATUS

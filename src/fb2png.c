@@ -33,11 +33,11 @@ int main(int argc, char* argv[argc + 1]) {
   while ((opt = getopt(argc, argv, "#:c:i:x:y:z:v")) != -1)
     switch (opt) {
       case '#':
-        color = fb_get_base16_color(optarg);
+        color = fb_rrggbb_to_color(optarg);
         break;
 
       case 'c':
-        color = fb_get_letter_color(optarg);
+        color = fb_letter_to_color(optarg);
         break;
 
       case 'i':
@@ -122,11 +122,11 @@ int main(int argc, char* argv[argc + 1]) {
 
   fb_painters[id](xres, yres, z, color, original_image);
 
-  // Convert BGRA to RGB
+  // Convert to RGB
   for (unsigned i = 0, j = 0; i < res; i += 1, j += 3) {
-    stripped_image[j    ] = original_image[i] >> 16 & 255; // R
-    stripped_image[j + 1] = original_image[i] >>  8 & 255; // G
-    stripped_image[j + 2] = original_image[i]       & 255; // B
+    stripped_image[j    ] = FB_PX_TO_R_BYTE(original_image[i]);
+    stripped_image[j + 1] = FB_PX_TO_G_BYTE(original_image[i]);
+    stripped_image[j + 2] = FB_PX_TO_B_BYTE(original_image[i]);
   }
 
   free(original_image);

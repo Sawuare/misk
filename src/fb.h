@@ -16,6 +16,10 @@
 #define FB_YELLOW  0xffff00
 #define FB_WHITE   0xffffff
 
+#define FB_PX_TO_R_BYTE(px) ((px) >> 0x10 & 0xff)
+#define FB_PX_TO_G_BYTE(px) ((px) >> 0x08 & 0xff)
+#define FB_PX_TO_B_BYTE(px) ((px)         & 0xff)
+
 #define FB_IS_VALID(id, z) ((id) < 33 && (z))
 
 #define FB_IS_MONO_XOR_RAMP(id) ((id) < 29)
@@ -29,11 +33,11 @@
 #define MONO(px) (px) * c
 #define RAMP(px) (px) % 0x100 * c / 0xff
 
-static inline unsigned fb_get_base16_color(char const* s) {
-  return strtoul(s, 0, 16) % 0x1000000;
+static inline unsigned fb_rrggbb_to_color(char const* s) {
+  return strtoul(s, 0, 0x10) % 0x1000000;
 }
 
-static inline unsigned fb_get_letter_color(char const* s) {
+static inline unsigned fb_letter_to_color(char const* s) {
   switch (*s) {
     case 'r': return FB_RED;
     case 'g': return FB_GREEN;

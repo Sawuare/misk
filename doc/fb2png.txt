@@ -2,19 +2,19 @@ NAME
   fb2png - write fb images in the PNG format
 
 SYNOPSIS
-  fb2png [-# <base16-color>] [-c <letter-color>] [-i <id>] [-v] [-x <x-px>]
+  fb2png [-# <color-rrggbb>] [-c <color-letter>] [-i <id>] [-v] [-x <x-px>]
          [-y <y-px>] [-z <z>]
 
 OPTIONS
-  -# <base16-color>
-    The hexadecimal nonnegative integer <base16-color> specifies the painting color
+  -# <color-rrggbb>
+    The hexadecimal nonnegative integer <color-rrggbb> specifies the painting color
     in the form rrggbb.
-    The default is white.
+    The default is ffffff.
 
-  -c <letter-color>
-    The letter <letter-color> specifies the painting color and should be one of
-    (r|g|b|c|m|y) for red, green, blue, cyan, magenta, or yellow.
-    The default is white.
+  -c <color-letter>
+    The letter <color-letter> specifies the painting color and should be one of
+    (r|g|b|c|m|y|w) for red, green, blue, cyan, magenta, yellow, or white.
+    The default is w.
 
   -i <id>
     The decimal nonnegative integer <id> specifies the painter's ID and must be less
