@@ -67,4 +67,4 @@ EXIT STATUS
   0 otherwise;
 
 SEE ALSO
-  aplay(1)  eca.txt
+  aplay(1), eca.txt

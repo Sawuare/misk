@@ -1,0 +1,14 @@
+NAME
+  eca.py - paint elementary cellular automata on the framebuffer
+
+SYNOPSIS
+  eca.py
+
+DESCRIPTION
+  eca.py requires permission to read and write the Linux framebuffer device /dev/fb0,
+  and that might require being the superuser or being in the video group.
+
+  eca.py must be executed in the Linux console (i.e. TERM=linux).
+
+SEE ALSO
+  fb2fb.txt

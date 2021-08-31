@@ -5,8 +5,8 @@ SYNOPSIS
   fb2fb [-# <color-rrggbb>] [-c <color-letter>] [-i <id>] [-l] [-s <step>] [-z <z>]
 
 DESCRIPTION
-  fb2fb requires permission to read and write the Linux framebuffer device /dev/fb0.
-  That might require being the superuser or being in the video group.
+  fb2fb requires permission to read and write the Linux framebuffer device /dev/fb0,
+  and that might require being the superuser or being in the video group.
 
   fb2fb must be executed in the Linux console (i.e. TERM=linux).
 
@@ -56,4 +56,4 @@ EXIT STATUS
   0 otherwise;
 
 SEE ALSO
-  fb2png.txt  fbzs.txt
+  eca.txt, fb2png.txt, fbzs.txt

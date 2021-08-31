@@ -1,0 +1,13 @@
+NAME
+  build.sh - build some sources and get executables and headers to /usr/local/
+
+SYNOPSIS
+  build.sh
+
+DESCRIPTION
+  This POSIX shell script must be executed from ../src/. It requires permission to
+  write and execute /usr/local/bin/ and /usr/local/include, and that might require
+  being the superuser.
+
+SEE ALSO
+  export.txt

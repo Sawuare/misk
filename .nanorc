@@ -5,40 +5,28 @@ set tabsize 2
 set tabstospaces
 
 
-bind ^H help all
+bind ^C copy all
+bind ^D findprevious all
 bind ^E exit all
-
-bind ^O insert all
-bind ^S savefile all
-bind ^W writeout all
-
-bind ^L gotoline all
-
 bind ^F whereis all
 bind ^G findnext all
-bind ^D findprevious all
-
-bind ^R replace all
-
-bind ^X cut all
-bind ^C copy all
-bind ^V paste all
-
-bind ^Z undo all
-bind ^Y redo all
-
+bind ^H help all
 bind ^K cancel all
+bind ^L gotoline all
+bind ^R replace all
+bind ^S savefile all
+bind ^V paste all
+bind ^X cut all
+bind ^Y redo all
+bind ^Z undo all
 
+bind M-C comment all
+bind M-L linenumbers all
+bind M-P curpos all
+bind M-W whitespacedisplay all
 # Workaround for the Linux console
-bind M-Z undo all
 bind M-Y redo all
-
-bind M-C comment main
-
-bind M-H nohelp main
-bind M-P curpos main
-bind M-L linenumbers main
-bind M-W whitespacedisplay main
+bind M-Z undo all
 
 
 syntax haskell "\.hs$"

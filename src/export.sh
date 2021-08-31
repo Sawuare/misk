@@ -1,6 +1,6 @@
 #! /bin/sh
 
-# export.sh - export data of some programs to ../dat/
+# export.sh - export the output of some programs to ../dat/
 
 set -e
 
@@ -10,7 +10,7 @@ cd ../dat/
 
 echo "Exporting data"
 
-# Assume build.sh has been executed
+# Assume that build.sh has been executed
 fbzs.py
 getendian > endian.txt
 getlocale > locale.txt

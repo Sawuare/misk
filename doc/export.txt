@@ -1,0 +1,20 @@
+NAME
+  export.sh - export the output of some programs to ../dat/
+
+SYNOPSIS
+  export.sh
+
+DESCRIPTION
+  This POSIX shell script must be executed from ../src/. It exports the output of the
+  following programs, assuming that build.sh has been executed.
+
+    fbzs.py
+    getendian
+    getlocale
+    limits
+    mts.py
+    print.py
+    waves
+
+SEE ALSO
+  build.txt

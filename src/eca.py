@@ -4,8 +4,8 @@
 
 import random
 
-RULE = int(input("Rule: "))
-SEED = int(input("Seed: "))
+RULE = int(input("Rule = "))
+SEED = int(input("Seed = "))
 
 # UNPORTABLE
 BLACK = b"\x00\x00\x00\x00"
