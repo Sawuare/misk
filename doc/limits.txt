@@ -1,5 +1,5 @@
 NAME
-  limits - print every limit in <limits.h>
+  limits - print every standard limit in <limits.h>
 
 SYNOPSIS
   limits

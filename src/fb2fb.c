@@ -72,7 +72,7 @@ int main(int argc, char* argv[argc + 1]) {
   ntty.c_lflag &= ~(ECHO | ICANON);
   tcsetattr(STDIN_FILENO, TCSANOW, &ntty);
 
-  fputs(DECTCEM("l") ED("2") CUP(), stdout);
+  fputs(DECTCEM("l") CUP(), stdout);
   fflush(stdout);
 
   while (FB_IS_VALID(id, z)) {
@@ -124,7 +124,7 @@ fgetc:
   ret = 4;
 
 exit:
-  fputs(DECTCEM("h") EL("2"), stdout);
+  fputs(DECTCEM("h") ED("3"), stdout);
   tcsetattr(STDIN_FILENO, TCSANOW, &otty);
   munmap(fbm, FB_SIZE);
 

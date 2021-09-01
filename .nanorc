@@ -29,6 +29,13 @@ bind M-Y redo all
 bind M-Z undo all
 
 
+include /usr/local/share/nano/c.nanorc
+include /usr/local/share/nano/nanohelp.nanorc
+include /usr/local/share/nano/nanorc.nanorc
+include /usr/local/share/nano/python.nanorc
+include /usr/local/share/nano/sh.nanorc
+
+
 syntax haskell "\.hs$"
 
 comment "--"

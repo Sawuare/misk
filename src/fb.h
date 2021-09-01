@@ -10,6 +10,7 @@
 #define FB_YRES 768
 
 // UNPORTABLE
+#define FB_BLACK   0x000000
 #define FB_RED     0xff0000
 #define FB_GREEN   0x00ff00
 #define FB_BLUE    0x0000ff
@@ -57,8 +58,10 @@ static inline unsigned fb_letter_to_color(char const* s) {
 // Class 0
 
 PAINTER(0) {
-  FORYX
+  FORYX {
+    a[y * xres + x] = FB_BLACK;
     a[y * x] = c;
+  }
 }
 
 // Class 1

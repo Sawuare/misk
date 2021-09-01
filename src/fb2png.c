@@ -110,7 +110,7 @@ int main(int argc, char* argv[argc + 1]) {
   // Safe max res == 1 << 29
   unsigned res = xres * yres;
 
-  unsigned* original_image = calloc(res,  4);
+  unsigned* original_image = malloc(res * 4);
   png_byte* stripped_image = malloc(res * 3);
 
   if (!original_image || !stripped_image) {
