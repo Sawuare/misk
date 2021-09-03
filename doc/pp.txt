@@ -1,5 +1,5 @@
 NAME
-  pp - print a penis over time
+  pp - print a penis incrementally
 
 SYNOPSIS
   pp [<length>]

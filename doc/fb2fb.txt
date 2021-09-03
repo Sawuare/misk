@@ -10,7 +10,7 @@ DESCRIPTION
 
   fb2fb must be executed in the Linux console (i.e. TERM=linux).
 
-  The following keys can be used to navigate and control fb2fb during execution.
+  The following keys can be used to navigate and control fb2fb during execution:
 
     { decrements ID;
     } increments ID;

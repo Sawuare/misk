@@ -1,4 +1,4 @@
-// pp.c - print a penis over time
+// pp.c - print a penis incrementally
 
 #include <stdio.h>
 #include <stdlib.h>

@@ -5,13 +5,13 @@ SYNOPSIS
   projectile.py
 
 DESCRIPTION
-  The program prompts for the following launch details of a projectile.
+  The program prompts for the following launch details of a projectile:
 
     1. Angle in degrees.
     2. Speed in meters per second.
 
   Then it prints the following flight details of the projectile, assuming no drag and
-  a standard acceleration due to gravity of 9.80665 meters per second per second.
+  a standard acceleration due to gravity of 9.80665 meters per second per second:
 
     1. Peak in meters.
     2. Range in meters.

@@ -2,64 +2,64 @@
 
 #include <stdio.h>
 
-int main(int wordc, char* wordv[wordc + 1]) {
-  char* codev[123] = {0};
+int main(int argc, char* argv[argc + 1]) {
+  char* sigv[123] = {0};
 
-  codev['A'] = codev['a'] = ".-";
-  codev['B'] = codev['b'] = "-...";
-  codev['C'] = codev['c'] = "-.-.";
-  codev['D'] = codev['d'] = "-..";
-  codev['E'] = codev['e'] = ".";
-  codev['F'] = codev['f'] = "..-.";
-  codev['G'] = codev['g'] = "--.";
-  codev['H'] = codev['h'] = "....";
-  codev['I'] = codev['i'] = "..";
-  codev['J'] = codev['j'] = ".---";
-  codev['K'] = codev['k'] = "-.-";
-  codev['L'] = codev['l'] = ".-..";
-  codev['M'] = codev['m'] = "--";
-  codev['N'] = codev['n'] = "-.";
-  codev['O'] = codev['o'] = "---";
-  codev['P'] = codev['p'] = ".--.";
-  codev['Q'] = codev['q'] = "--.-";
-  codev['R'] = codev['r'] = ".-.";
-  codev['S'] = codev['s'] = "...";
-  codev['T'] = codev['t'] = "-";
-  codev['U'] = codev['u'] = "..-";
-  codev['V'] = codev['v'] = "...-";
-  codev['W'] = codev['w'] = ".--";
-  codev['X'] = codev['x'] = "-..-";
-  codev['Y'] = codev['y'] = "-.--";
-  codev['Z'] = codev['z'] = "--..";
+  sigv['A'] = sigv['a'] = ".-";
+  sigv['B'] = sigv['b'] = "-...";
+  sigv['C'] = sigv['c'] = "-.-.";
+  sigv['D'] = sigv['d'] = "-..";
+  sigv['E'] = sigv['e'] = ".";
+  sigv['F'] = sigv['f'] = "..-.";
+  sigv['G'] = sigv['g'] = "--.";
+  sigv['H'] = sigv['h'] = "....";
+  sigv['I'] = sigv['i'] = "..";
+  sigv['J'] = sigv['j'] = ".---";
+  sigv['K'] = sigv['k'] = "-.-";
+  sigv['L'] = sigv['l'] = ".-..";
+  sigv['M'] = sigv['m'] = "--";
+  sigv['N'] = sigv['n'] = "-.";
+  sigv['O'] = sigv['o'] = "---";
+  sigv['P'] = sigv['p'] = ".--.";
+  sigv['Q'] = sigv['q'] = "--.-";
+  sigv['R'] = sigv['r'] = ".-.";
+  sigv['S'] = sigv['s'] = "...";
+  sigv['T'] = sigv['t'] = "-";
+  sigv['U'] = sigv['u'] = "..-";
+  sigv['V'] = sigv['v'] = "...-";
+  sigv['W'] = sigv['w'] = ".--";
+  sigv['X'] = sigv['x'] = "-..-";
+  sigv['Y'] = sigv['y'] = "-.--";
+  sigv['Z'] = sigv['z'] = "--..";
 
-  codev['1'] = ".----";
-  codev['2'] = "..---";
-  codev['3'] = "...--";
-  codev['4'] = "....-";
-  codev['5'] = ".....";
-  codev['6'] = "-....";
-  codev['7'] = "--...";
-  codev['8'] = "---..";
-  codev['9'] = "----.";
-  codev['0'] = "-----";
+  sigv['1'] = ".----";
+  sigv['2'] = "..---";
+  sigv['3'] = "...--";
+  sigv['4'] = "....-";
+  sigv['5'] = ".....";
+  sigv['6'] = "-....";
+  sigv['7'] = "--...";
+  sigv['8'] = "---..";
+  sigv['9'] = "----.";
+  sigv['0'] = "-----";
 
-  codev[ '.'] = ".-.-.-";
-  codev[ ','] = "--..--";
-  codev[ ':'] = "---...";
-  codev[ '?'] = "..--..";
-  codev['\''] = ".----.";
-  codev[ '-'] = "-....-";
-  codev[ '/'] = "-..-.";
-  codev[ '('] = "-.--.";
-  codev[ ')'] = "-.--.-";
-  codev['\"'] = ".-..-.";
-  codev[ '='] = "-...-";
-  codev[ '+'] = ".-.-.";
-  codev[ '@'] = ".--.-.";
+  sigv[ '.'] = ".-.-.-";
+  sigv[ ','] = "--..--";
+  sigv[ ':'] = "---...";
+  sigv[ '?'] = "..--..";
+  sigv['\''] = ".----.";
+  sigv[ '-'] = "-....-";
+  sigv[ '/'] = "-..-.";
+  sigv[ '('] = "-.--.";
+  sigv[ ')'] = "-.--.-";
+  sigv['\"'] = ".-..-.";
+  sigv[ '='] = "-...-";
+  sigv[ '+'] = ".-.-.";
+  sigv[ '@'] = ".--.-.";
 
-  while (*++wordv)
-    while (**wordv) {
-      fputs(codev[**wordv], stdout);
-      fputc(*++*wordv ? ' ' : '\n', stdout);
+  while (*++argv)
+    while (**argv) {
+      fputs(sigv[**argv], stdout);
+      fputc(*++*argv ? ' ' : '\n', stdout);
     }
 }
