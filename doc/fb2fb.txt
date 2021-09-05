@@ -6,11 +6,11 @@ SYNOPSIS
 
 DESCRIPTION
   fb2fb requires permission to read and write the Linux framebuffer device /dev/fb0,
-  and that might require being the superuser or being in the video group.
+  which likely requires being the superuser or being in the video group.
 
   fb2fb must be executed in the Linux console (i.e. TERM=linux).
 
-  The following keys can be used to navigate and control fb2fb during execution:
+  These keys can be used to navigate and control fb2fb during execution:
 
     { decrements ID;
     } increments ID;
@@ -38,7 +38,7 @@ OPTIONS
     The default is 0.
 
   -l
-    Turn on the status line.
+    Enable the status line.
 
   -s <step>
     The decimal nonnegative integer <step> specifies the Z decrement/increment step.
@@ -54,6 +54,10 @@ EXIT STATUS
   3 if mapping /dev/fb0 failed;
   4 if ID or Z is invalid;
   0 otherwise;
+
+BUGS
+  The source fb.h is unportable; it makes assumptions about the framebuffer. For easy
+  adjustment, the assumptions are marked as UNPORTABLE.
 
 SEE ALSO
   eca.txt, fb2png.txt, fbzs.txt

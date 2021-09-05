@@ -5,8 +5,7 @@ SYNOPSIS
   morse <word> ...
 
 DESCRIPTION
-  morse regards arguments as words consisting of letters. The following are the valid
-  letters:
+  morse regards arguments as words consisting of these valid letters:
 
     a b c d e f g h i j k l m n o p q r s t u v w x y z
     A B C D E F G H I J K L M N O P Q R S T U V W X Y Z
@@ -16,8 +15,8 @@ DESCRIPTION
   For performance, morse does not test for invalid letters and will probably crash if
   any are given.
 
-  morse prints signals consisting of dots and dashes. The following is the adapted
-  spacing and length of the signals:
+  morse prints signals consisting of dots and dashes. This is the adapted spacing and
+  length of the signals:
 
     A dash is equal to a dot.
     The space between the signals forming the same letter is equal to zero.
@@ -33,7 +32,7 @@ NOTES
   Let w equal the number of words.
   Let l equal the number of letters.
 
-  The following is an operation count table for the main loop:
+  This is an operation count table for the main loop:
 
     ----------------------------------------------------------------------
     Statement                                 | Op Frequency Total op
@@ -47,7 +46,7 @@ NOTES
     Total                                     | 31           24l + 13w + 7
     ----------------------------------------------------------------------
 
-  The following are the space and time complexities:
+  These are the space and time complexities:
 
     S (w, l) = O(1)
      P

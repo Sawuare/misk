@@ -1,13 +1,27 @@
 NAME
-  build.sh - build some sources and get executables and headers to /usr/local/
+  build.sh - build some programs and get executables and headers to /usr/local/
 
 SYNOPSIS
   build.sh
 
 DESCRIPTION
-  This POSIX shell script must be executed from ../src/. It requires permission to
-  write and execute /usr/local/bin/ and /usr/local/include, and that might require
-  being the superuser.
+  build.sh must be executed from ../src/. It requires permission to write and execute
+  /usr/local/bin/ and /usr/local/include/, which likely requires being the superuser.
+
+  Some programs depend on some of these compilers and libraries:
+
+    cc  (as either Clang or GCC)
+    ghc (as the Galsgow Haskell Compiler)
+
+    tkinter
+    libFLAC
+    libpng
+    zlib
+
+  To install them on Debian or a derivative of it, execute this command line:
+
+    apt install clang ghc python3-tk libflac8 libflac-dev libpng16-16 libpng-dev \
+    zlib1g zlib1g-dev
 
 SEE ALSO
   export.txt

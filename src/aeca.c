@@ -103,11 +103,10 @@ int main(int argc, char* argv[argc + 1]) {
   }
 
   fwrite(audio, 1, n_samples, stream);
+  free(audio);
   fclose(stream);
 
   printf("Wrote %s\n", filename);
-
-  free(audio);
 
   if (!quiet)
     if (system(0)) {

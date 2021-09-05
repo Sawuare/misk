@@ -5,8 +5,8 @@ SYNOPSIS
   export.sh
 
 DESCRIPTION
-  This POSIX shell script must be executed from ../src/. It exports the output of the
-  following programs, assuming that build.sh has been executed:
+  export.sh must be executed from ../src/. It exports the output of these programs,
+  assuming that build.sh has been executed:
 
     fbzs.py
     getendian

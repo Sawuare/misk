@@ -1,6 +1,6 @@
 #! /bin/env python3
 
-# temperature-converter.py - convert temperature from K to °C, °F, and °R
+# k2cfr.py - convert temperature from kelvin to Celsius, Fahrenheit, and Rankine
 
 from tkinter import *
 
@@ -19,22 +19,22 @@ def convert(event):
   f_entry.insert(0, round(f, 2))
   r_entry.insert(0, round(r, 2))
 
-Tk().title("Temperature Converter")
+Tk().title("k2cfr")
 
-Label(text = "K").pack()
+Label(text = "Kelvin").pack()
 k_entry = Entry(justify = CENTER)
 k_entry.bind("<Return>", convert)
 k_entry.pack()
 
-Label(text = "°C").pack()
+Label(text = "Celsius").pack()
 c_entry = Entry(justify = CENTER)
 c_entry.pack()
 
-Label(text = "°F").pack()
+Label(text = "Fahrenheit").pack()
 f_entry = Entry(justify = CENTER)
 f_entry.pack()
 
-Label(text = "°R").pack()
+Label(text = "Rankine").pack()
 r_entry = Entry(justify = CENTER)
 r_entry.pack()
 

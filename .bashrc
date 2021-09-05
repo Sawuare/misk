@@ -11,9 +11,9 @@ shopt -s histappend
 shopt -u checkwinsize
 
 if [ -x /usr/bin/tput ] && tput setaf 1 &> /dev/null; then
-  PS1="\[\e[35m\]\A \[\e[33m\]\l \[\e[32m\]\u \[\e[36m\]\h \[\e[34m\]\w \[\e[37m\]\\$ \[\e[39m\]"
+  PS1="\[\e[33m\]\l \[\e[32m\]\u \[\e[36m\]\h \[\e[34m\]\w \[\e[37m\]\\$ \[\e[39m\]"
 else
-  PS1="\A \l \u \h \w \\$ "
+  PS1="\l \u \h \w \\$ "
 fi
 
 if [ -x /usr/bin/dircolors ]; then

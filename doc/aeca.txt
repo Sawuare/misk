@@ -9,11 +9,11 @@ DESCRIPTION
   automata rule. The generations are concatenated and converted to a raw audio stream
   consisting of unsigned 8 bit samples. Dead cells become samples with amplitude 0,
   and alive cells become samples with amplitude 255. aeca writes the stream to a file
-  and tries to play it as if it has the following format:
+  and tries to play it as if it has this format:
 
     Unsigned 8 bit, Rate 44100 Hz, Mono
 
-  aeca does that by invoking the external program aplay as follows:
+  aeca does that by invoking the external program aplay:
 
     aplay -t raw -f U8 -r 44100 -c 1 <filename>
 
@@ -25,7 +25,7 @@ DESCRIPTION
 
   The aeca file has a filename that encodes how it was generated. For example, a file
   with the filename c1024g512r90s0.aeca.pcm can be reproduced by an invocation
-  equivalent to the following:
+  equivalent to this:
 
     aeca -c 1024 -g 512 -r 90 -s 0
 

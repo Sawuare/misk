@@ -6,7 +6,7 @@ SYNOPSIS
 
 DESCRIPTION
   The sequences are nonnegative integers less than 2 raised to 32, separated by
-  spaces, and written to the following files:
+  spaces, and written to these files:
 
     a19n1.fb.txt
     a19p0.fb.txt

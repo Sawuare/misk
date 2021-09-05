@@ -1,9 +1,0 @@
-NAME
-  temperature-converter.py - convert temperature from K to °C, °F, and °R
-
-SYNOPSIS
-  temperature-converter.py
-
-DESCRIPTION
-  Insert a temperature in kelvin (K) then hit <Return> or the button to convert it to
-  degrees Celsius (°C), degrees Fahrenheit (°F), and degrees Rankine (°R).
