@@ -63,9 +63,11 @@ int main(int argc, char* argv[argc + 1]) {
   unsigned n_samples = n_gens * n_cells;
 
   unsigned char* audio = malloc(n_samples);
+  unsigned char* cells = malloc(n_cells);
+  unsigned char* clone = malloc(n_cells);
 
-  _Bool cells[n_cells];
-  _Bool clone[n_cells];
+  if (!(audio && cells && clone))
+    return 3;
 
   if (seed) {
     srand(seed);
@@ -73,7 +75,7 @@ int main(int argc, char* argv[argc + 1]) {
       cells[c] = rand() & 1;
   }
   else {
-    memset(cells, 0, sizeof cells);
+    memset(cells, 0, n_cells);
     cells[n_cells / 2] = 1;
   }
 
@@ -81,15 +83,18 @@ int main(int argc, char* argv[argc + 1]) {
     for (unsigned c = 0; c < n_cells; ++c) {
       audio[g * n_cells + c] = cells[c] ? 255 : 0;
 
-      _Bool p = cells[c ? c - 1 : n_cells - 1];
-      _Bool q = cells[c];
-      _Bool r = cells[(c + 1) % n_cells];
+      unsigned char p = cells[c ? c - 1 : n_cells - 1];
+      unsigned char q = cells[c];
+      unsigned char r = cells[(c + 1) % n_cells];
 
       clone[c] = rule >> (p << 2 | q << 1 | r) & 1;
     }
 
-    memcpy(cells, clone, sizeof clone);
+    memcpy(cells, clone, n_cells);
   }
+
+  free(cells);
+  free(clone);
 
   unsigned l_filename = ddig(n_cells) + ddig(n_gens) + ddig(rule) + ddig(seed) + 14;
   char filename[l_filename];
@@ -99,16 +104,16 @@ int main(int argc, char* argv[argc + 1]) {
 
   if (!stream) {
     free(audio);
-    return 3;
+    return 4;
   }
 
   fwrite(audio, 1, n_samples, stream);
-  free(audio);
   fclose(stream);
+  free(audio);
 
   printf("Wrote %s\n", filename);
 
-  if (!quiet)
+  if (!quiet) {
     if (system(0)) {
       unsigned l_command = l_filename + 33;
       char command[l_command];
@@ -116,7 +121,8 @@ int main(int argc, char* argv[argc + 1]) {
       system(command);
     }
     else
-      return 4;
+      return 5;
+  }
 
   if (delet) {
     remove(filename);

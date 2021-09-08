@@ -76,6 +76,8 @@ int main(int argc, char* argv[argc + 1]) {
           break;
 
         default:
+          fclose(stream);
+          remove(FILENAME);
           return 4;
       }
 
@@ -86,6 +88,12 @@ int main(int argc, char* argv[argc + 1]) {
     }
 
     unsigned char* audio = malloc(n_samples);
+
+    if (!audio) {
+      fclose(stream);
+      remove(FILENAME);
+      return 5;
+    }
 
     for (unsigned i = 0; i < n_samples; ++i)
       audio[i] = 128;
@@ -131,11 +139,12 @@ int main(int argc, char* argv[argc + 1]) {
 
   puts("Wrote " FILENAME);
 
-  if (!quiet)
+  if (!quiet) {
     if (system(0))
       system("aplay -t raw -f U8 -r 8000 -c 1 " FILENAME);
     else
-      return 5;
+      return 6;
+  }
 
   if (delet) {
     remove(FILENAME);

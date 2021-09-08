@@ -68,30 +68,30 @@ int main(int argc, char* argv[argc + 1]) {
   if (!FB_IS_VALID(id, z) || !xres || !yres)
     return 2;
 
+  png_struct* structp = png_create_write_struct(PNG_LIBPNG_VER_STRING, 0, 0, 0);
+  png_info* infop = png_create_info_struct(structp);
+
+  if (!structp || !infop) {
+    png_destroy_write_struct(&structp, &infop);
+    return 3;
+  }
+
   unsigned l_filename = ddig(id) + ddig(xres) + ddig(yres) + ddig(z) + 19;
   char filename[l_filename];
   snprintf(filename, l_filename, "i%ux%uy%uz%u#%06x.fb.png", id, xres, yres, z, color);
 
   FILE* stream = fopen(filename, "wb");
 
-  if (!stream)
-    return 3;
-
-  png_struct* structp = png_create_write_struct(PNG_LIBPNG_VER_STRING, 0, 0, 0);
-
-  if (!structp)
+  if (!stream) {
+    png_destroy_write_struct(&structp, &infop);
     return 4;
-
-  png_info* infop = png_create_info_struct(structp);
-
-  if (!infop) {
-    png_destroy_write_struct(&structp, 0);
-    return 5;
   }
 
   if (setjmp(png_jmpbuf(structp))) {
     png_destroy_write_struct(&structp, &infop);
-    return 6;
+    fclose(stream);
+    remove(filename);
+    return 5;
   }
 
   png_init_io(structp, stream);
@@ -117,7 +117,9 @@ int main(int argc, char* argv[argc + 1]) {
     png_destroy_write_struct(&structp, &infop);
     free(original_image);
     free(stripped_image);
-    return 7;
+    fclose(stream);
+    remove(filename);
+    return 6;
   }
 
   fb_painters[id](xres, yres, z, color, original_image);

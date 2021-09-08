@@ -11,7 +11,7 @@ INC="/usr/local/include/"
 
 echo "Compiling C programs"
 
-OPT="-std=c11 -march=native -O3 -Wno-dangling-else"
+OPT="-std=c11 -march=native -O3"
 
 cc $OPT -fsyntax-only test.c
 

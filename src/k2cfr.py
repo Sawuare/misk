@@ -1,4 +1,4 @@
-#! /bin/env python3
+#! /usr/bin/env python3
 
 # k2cfr.py - convert temperature from kelvin to Celsius, Fahrenheit, and Rankine
 

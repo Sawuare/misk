@@ -8,10 +8,12 @@ DESCRIPTION
   build.sh must be executed from ../src/. It requires permission to write and execute
   /usr/local/bin/ and /usr/local/include/, which likely requires being the superuser.
 
-  Some programs depend on some of these compilers and libraries:
+  Some programs depend on some of these compilers, interpreters, and libraries:
 
     cc  (as either Clang or GCC)
     ghc (as the Galsgow Haskell Compiler)
+
+    python3
 
     tkinter
     libFLAC
@@ -20,8 +22,8 @@ DESCRIPTION
 
   To install them on Debian or a derivative of it, execute this command line:
 
-    apt install clang ghc python3-tk libflac8 libflac-dev libpng16-16 libpng-dev \
-    zlib1g zlib1g-dev
+    apt install clang ghc python3 python3-tk libflac8 libflac-dev libpng16-16 \
+    libpng-dev zlib1g zlib1g-dev
 
 SEE ALSO
   export.txt
