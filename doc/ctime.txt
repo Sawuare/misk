@@ -6,4 +6,4 @@ SYNOPSIS
 
 EXAMPLES
   $ ctime
-  Sun Jun  6 12:00:00 2021
+  Sun Jun  6 13:00:00 2021

@@ -23,9 +23,8 @@ DESCRIPTION
   manually. The former tend to sound tonal, while the latter tend to sound atonal.
   See the -s option.
 
-  The aeca file has a filename that encodes how it was generated. For example, a file
-  with the filename c1024g512r90s0.aeca.pcm can be reproduced by an invocation
-  equivalent to this:
+  The file has a name that encodes how it was produced. For example, a file with the
+  name c1024g512r90s0.aeca.pcm can be reproduced by an invocation equivalent to this:
 
     aeca -c 1024 -g 512 -r 90 -s 0
 

@@ -66,7 +66,7 @@ int main(int argc, char* argv[argc + 1]) {
   unsigned char* cells = malloc(n_cells);
   unsigned char* clone = malloc(n_cells);
 
-  if (!(audio && cells && clone))
+  if (!audio || !cells || !clone)
     return 3;
 
   if (seed) {

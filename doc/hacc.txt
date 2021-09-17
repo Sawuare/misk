@@ -2,15 +2,15 @@ NAME
   hacc - print random characters in random colors and positions until interrupted
 
 SYNOPSIS
-  hacc [<zzz>]
+  hacc [<pause>]
 
 DESCRIPTION
   hacc prints up to 128 different characters in up to 256 different shades of green
   over the entire terminal window.
 
-  If given, the decimal integer <zzz>, which must be in the range [0, 999999999],
-  specifies in nanoseconds the pause duration between characters, which is otherwise
-  125000000 nanoseconds.
+  If given, the decimal integer <pause>, which must be in the range [0, 999999999],
+  specifies in nanoseconds the pause between characters, which is otherwise 125000000
+  nanoseconds.
 
   If interrupted, such as with Ctrl+C (^C), hacc resets the terminal to its initial
   state then exits.

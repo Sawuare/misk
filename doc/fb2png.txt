@@ -2,8 +2,20 @@ NAME
   fb2png - write fb images in the PNG format
 
 SYNOPSIS
-  fb2png [-# <color-rrggbb>] [-c <color-letter>] [-i <id>] [-v] [-x <x-px>]
+  fb2png [-# <color-rrggbb>] [-c <color-letter>] [-i <ID>] [-v] [-x <x-px>]
          [-y <y-px>] [-z <z>]
+
+DESCRIPTION
+  fb images are algorithmic patterns painted by painters. There are 33 painters with
+  each having a serial identifier (ID) and parameters: Z value, color, horizontal
+  resolution, and vertical resolution. Different painters paint different patterns.
+  Varying the Z value of a painter varies its pattern.
+
+  fb2png writes an fb image to a 24-bit RGB, non-interlaced PNG file. The file has a
+  name that encodes how it was produced. For example, a file with the name
+  i0x1376y768z1#ffffff.fb.png can be reproduced by an invocation equivalent to this:
+
+    fb2png -i 0 -x 1376 -y 768 -z 1 -# ffffff
 
 OPTIONS
   -# <color-rrggbb>
@@ -16,8 +28,8 @@ OPTIONS
     (r|g|b|c|m|y|w) for red, green, blue, cyan, magenta, yellow, or white.
     The default is w.
 
-  -i <id>
-    The decimal nonnegative integer <id> specifies the painter's ID and must be less
+  -i <ID>
+    The decimal nonnegative integer <ID> specifies the painter's ID and must be less
     than 33.
     The default is 0.
 

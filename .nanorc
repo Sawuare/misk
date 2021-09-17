@@ -29,6 +29,7 @@ bind M-Y redo all
 bind M-Z undo all
 
 
+include /usr/local/share/nano/asm.nanorc
 include /usr/local/share/nano/c.nanorc
 include /usr/local/share/nano/nanohelp.nanorc
 include /usr/local/share/nano/nanorc.nanorc
@@ -41,16 +42,16 @@ syntax haskell "\.hs$"
 comment "--"
 
 # Constructor identifier
-color brightcyan "\<([[:upper:]][[:alnum:]']*)\>"
+color lightcyan "\<([[:upper:]][[:alnum:]']*)\>"
 
 # Module identifier
-color brightcyan "\<(([[:upper:]][[:alnum:]']*.)*[[:upper:]][[:alnum:]']*)\>"
+color lightcyan "\<(([[:upper:]][[:alnum:]']*.)*[[:upper:]][[:alnum:]']*)\>"
 
 # Reserved identifier
-color brightmagenta "\<(case|class|data|default|deriving|do|else|foreign|if|import|in|infix|infixl|infixr|instance|let|module|newtype|of|then|type|where|_)\>"
+color lightmagenta "\<(case|class|data|default|deriving|do|else|foreign|if|import|in|infix|infixl|infixr|instance|let|module|newtype|of|then|type|where|_)\>"
 
 # Reserved operator
-color brightyellow "\.\.|:|=|\\|\||<-|->|@|~|=>"
+color lightyellow "\.\.|:|=|\\|\||<-|->|@|~|=>"
 
 # Character
 color cyan "'([^'\]|\\[^&]+)'"

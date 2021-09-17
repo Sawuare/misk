@@ -2,7 +2,7 @@ NAME
   fb2fb - paint fb images on the framebuffer
 
 SYNOPSIS
-  fb2fb [-# <color-rrggbb>] [-c <color-letter>] [-i <id>] [-l] [-s <step>] [-z <z>]
+  fb2fb [-# <color-rrggbb>] [-c <color-letter>] [-i <ID>] [-l] [-s <step>] [-z <z>]
 
 DESCRIPTION
   fb2fb requires permission to read and write the Linux framebuffer device /dev/fb0,
@@ -32,8 +32,8 @@ OPTIONS
     (r|g|b|c|m|y|w) for red, green, blue, cyan, magenta, yellow, or white.
     The default is w.
 
-  -i <id>
-    The decimal nonnegative integer <id> specifies the painter's ID and must be less
+  -i <ID>
+    The decimal nonnegative integer <ID> specifies the painter's ID and must be less
     than 33.
     The default is 0.
 
