@@ -16,13 +16,13 @@
 int main(int argc, char* argv[argc + 1]) {
   _Bool    line  = 0;
   unsigned id    = 0;
+  unsigned j     = 1;
   unsigned step  = 1;
-  unsigned z     = 1;
   unsigned color = FB_WHITE;
 
   int opt;
 
-  while ((opt = getopt(argc, argv, "#:c:i:s:z:l")) != -1)
+  while ((opt = getopt(argc, argv, "#:c:i:j:s:l")) != -1)
     switch (opt) {
       case '#':
         color = fb_rrggbb_to_color(optarg);
@@ -36,12 +36,12 @@ int main(int argc, char* argv[argc + 1]) {
         id = strtoul(optarg, 0, 10);
         break;
 
-      case 's':
-        step = strtoul(optarg, 0, 10);
+      case 'j':
+        j = strtoul(optarg, 0, 10);
         break;
 
-      case 'z':
-        z = strtoul(optarg, 0, 10);
+      case 's':
+        step = strtoul(optarg, 0, 10);
         break;
 
       case 'l':
@@ -75,11 +75,11 @@ int main(int argc, char* argv[argc + 1]) {
   fputs(DECTCEM("l") CUP(), stdout);
   fflush(stdout);
 
-  while (FB_IS_VALID(id, z)) {
-    fb_painters[id](FB_XRES, FB_YRES, z, color, fbm);
+  while (FB_IS_VALID(id, j)) {
+    fb_painters[id](j, color, FB_XRES, FB_YRES, fbm);
 
     if (line) {
-      fprintf(stdout, "i%uz%u\r", id, z);
+      fprintf(stdout, "i%uj%u\r", id, j);
       fflush(stdout);
     }
 
@@ -94,19 +94,19 @@ fgetc:
         break;
 
       case '[':
-        z -= step;
+        j -= step;
         break;
 
       case ']':
-        z += step;
+        j += step;
         break;
 
       case 'i':
         fscanf(stdin, "%u", &id);
         break;
 
-      case 'z':
-        fscanf(stdin, "%u", &z);
+      case 'j':
+        fscanf(stdin, "%u", &j);
         break;
 
       case 'l':

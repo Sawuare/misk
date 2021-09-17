@@ -23,14 +23,14 @@ static inline unsigned ddig(unsigned n) {
 
 int main(int argc, char* argv[argc + 1]) {
   unsigned id    = 0;
-  unsigned z     = 1;
+  unsigned j     = 1;
   unsigned xres  = FB_XRES;
   unsigned yres  = FB_YRES;
   unsigned color = FB_WHITE;
 
   int opt;
 
-  while ((opt = getopt(argc, argv, "#:c:i:x:y:z:v")) != -1)
+  while ((opt = getopt(argc, argv, "#:c:i:j:x:y:v")) != -1)
     switch (opt) {
       case '#':
         color = fb_rrggbb_to_color(optarg);
@@ -44,16 +44,16 @@ int main(int argc, char* argv[argc + 1]) {
         id = strtoul(optarg, 0, 10);
         break;
 
+      case 'j':
+        j = strtoul(optarg, 0, 10);
+        break;
+
       case 'x':
         xres = strtoul(optarg, 0, 10);
         break;
 
       case 'y':
         yres = strtoul(optarg, 0, 10);
-        break;
-
-      case 'z':
-        z = strtoul(optarg, 0, 10);
         break;
 
       case 'v':
@@ -65,7 +65,7 @@ int main(int argc, char* argv[argc + 1]) {
         return 1;
     }
 
-  if (!FB_IS_VALID(id, z) || !xres || !yres)
+  if (!FB_IS_VALID(id, j) || !xres || !yres)
     return 2;
 
   png_struct* structp = png_create_write_struct(PNG_LIBPNG_VER_STRING, 0, 0, 0);
@@ -76,9 +76,9 @@ int main(int argc, char* argv[argc + 1]) {
     return 3;
   }
 
-  unsigned l_filename = ddig(id) + ddig(xres) + ddig(yres) + ddig(z) + 19;
+  unsigned l_filename = ddig(id) + ddig(j) + ddig(xres) + ddig(yres) + 19;
   char filename[l_filename];
-  snprintf(filename, l_filename, "i%ux%uy%uz%u#%06x.fb.png", id, xres, yres, z, color);
+  snprintf(filename, l_filename, "i%uj%ux%uy%u#%06x.fb.png", id, j, xres, yres, color);
 
   FILE* stream = fopen(filename, "wb");
 
@@ -122,7 +122,7 @@ int main(int argc, char* argv[argc + 1]) {
     return 6;
   }
 
-  fb_painters[id](xres, yres, z, color, original_image);
+  fb_painters[id](j, color, xres, yres, original_image);
 
   // Convert to RGB
   for (unsigned i = 0, j = 0; i < res; i += 1, j += 3) {

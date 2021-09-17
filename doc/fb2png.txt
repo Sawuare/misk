@@ -2,20 +2,20 @@ NAME
   fb2png - write fb images in the PNG format
 
 SYNOPSIS
-  fb2png [-# <color-rrggbb>] [-c <color-letter>] [-i <ID>] [-v] [-x <x-px>]
-         [-y <y-px>] [-z <z>]
+  fb2png [-# <color-rrggbb>] [-c <color-letter>] [-i <ID>] [-j <j>] [-v] [-x <x-px>]
+         [-y <y-px>]
 
 DESCRIPTION
   fb images are algorithmic patterns painted by painters. There are 33 painters with
-  each having a serial identifier (ID) and parameters: Z value, color, horizontal
+  each having a serial identifier (ID) and parameters: j value, color, horizontal
   resolution, and vertical resolution. Different painters paint different patterns.
-  Varying the Z value of a painter varies its pattern.
+  Varying the j value of a painter varies its pattern.
 
   fb2png writes an fb image to a 24-bit RGB, non-interlaced PNG file. The file has a
   name that encodes how it was produced. For example, a file with the name
-  i0x1376y768z1#ffffff.fb.png can be reproduced by an invocation equivalent to this:
+  i0j1x1376y768#ffffff.fb.png can be reproduced by an invocation equivalent to this:
 
-    fb2png -i 0 -x 1376 -y 768 -z 1 -# ffffff
+    fb2png -i 0 -j 1 -x 1376 -y 768 -# ffffff
 
 OPTIONS
   -# <color-rrggbb>
@@ -33,6 +33,10 @@ OPTIONS
     than 33.
     The default is 0.
 
+  -j <j>
+    The decimal positive integer <j> specifies the painter's j.
+    The default is 1.
+
   -v
     Print libpng and zlib versions then exit.
 
@@ -46,10 +50,6 @@ OPTIONS
     pixels.
     The default is 768.
 
-  -z <z>
-    The decimal positive integer <z> specifies the painter's Z.
-    The default is 1.
-
 EXIT STATUS
   1 if an option is invalid;
   2 if an option argument is invalid;
@@ -60,4 +60,4 @@ EXIT STATUS
   0 otherwise;
 
 SEE ALSO
-  fb2fb.txt, fbzs.txt
+  fb2fb.txt, fbjs.txt

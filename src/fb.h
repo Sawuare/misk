@@ -24,11 +24,11 @@
 #define FB_PX_TO_G_BYTE(px) ((px) >>  8 & 255)
 #define FB_PX_TO_B_BYTE(px) ((px)       & 255)
 
-#define FB_IS_VALID(id, z) ((id) < 33 && (z))
+#define FB_IS_VALID(id, j) ((id) < 33 && (j))
 
 #define FB_IS_MONO_XOR_RAMP(id) ((id) < 29)
 
-#define PAINTER(id) static inline void fb_p##id(unsigned xres, unsigned yres, unsigned z, unsigned c, unsigned a[])
+#define PAINTER(id) static inline void fb_p##id(unsigned j, unsigned c, unsigned xres, unsigned yres, unsigned a[])
 
 #define FORYX \
   for (unsigned y = 0; y < yres; ++y) \
@@ -68,176 +68,176 @@ PAINTER(0) {
 
 PAINTER(1) {
   FORYX
-    a[y * xres + x] = MONO(!((x & y) & z));
+    a[y * xres + x] = MONO(!((x & y) & j));
 }
 
 PAINTER(2) {
   FORYX
-    a[y * xres + x] = MONO(!((x | y) & z));
+    a[y * xres + x] = MONO(!((x | y) & j));
 }
 
 PAINTER(3) {
   FORYX
-    a[y * xres + x] = MONO(!((x ^ y) & z));
+    a[y * xres + x] = MONO(!((x ^ y) & j));
 }
 
 PAINTER(4) {
   FORYX
-    a[y * xres + x] = MONO(!((x * y) & z));
+    a[y * xres + x] = MONO(!((x * y) & j));
 }
 
 // Class 2
 
 PAINTER(5) {
   FORYX
-    a[y * xres + x] = MONO(!((x & y) % z));
+    a[y * xres + x] = MONO(!((x & y) % j));
 }
 
 PAINTER(6) {
   FORYX
-    a[y * xres + x] = MONO(!((x | y) % z));
+    a[y * xres + x] = MONO(!((x | y) % j));
 }
 
 PAINTER(7) {
   FORYX
-    a[y * xres + x] = MONO(!((x ^ y) % z));
+    a[y * xres + x] = MONO(!((x ^ y) % j));
 }
 
 PAINTER(8) {
   FORYX
-    a[y * xres + x] = MONO(!((x * y) % z));
+    a[y * xres + x] = MONO(!((x * y) % j));
 }
 
 // Class 3
 
 PAINTER(9) {
   FORYX
-    a[y * xres + x] = MONO(!((x * x & y * y) & z));
+    a[y * xres + x] = MONO(!((x * x & y * y) & j));
 }
 
 PAINTER(10) {
   FORYX
-    a[y * xres + x] = MONO(!((x * x | y * y) & z));
+    a[y * xres + x] = MONO(!((x * x | y * y) & j));
 }
 
 PAINTER(11) {
   FORYX
-    a[y * xres + x] = MONO(!((x * x ^ y * y) & z));
+    a[y * xres + x] = MONO(!((x * x ^ y * y) & j));
 }
 
 PAINTER(12) {
   FORYX
-    a[y * xres + x] = MONO(!((x * x * y * y) & z));
+    a[y * xres + x] = MONO(!((x * x * y * y) & j));
 }
 
 // Class 4
 
 PAINTER(13) {
   FORYX
-    a[y * xres + x] = MONO(!((x * x & y * y) % z));
+    a[y * xres + x] = MONO(!((x * x & y * y) % j));
 }
 
 PAINTER(14) {
   FORYX
-    a[y * xres + x] = MONO(!((x * x | y * y) % z));
+    a[y * xres + x] = MONO(!((x * x | y * y) % j));
 }
 
 PAINTER(15) {
   FORYX
-    a[y * xres + x] = MONO(!((x * x ^ y * y) % z));
+    a[y * xres + x] = MONO(!((x * x ^ y * y) % j));
 }
 
 PAINTER(16) {
   FORYX
-    a[y * xres + x] = MONO(!((x * x * y * y) % z));
+    a[y * xres + x] = MONO(!((x * x * y * y) % j));
 }
 
 // Class 5
 
 PAINTER(17) {
   FORYX
-    a[y * xres + x] = MONO(!((x * (x & z) & y * (y & z)) & z));
+    a[y * xres + x] = MONO(!((x * (x & j) & y * (y & j)) & j));
 }
 
 PAINTER(18) {
   FORYX
-    a[y * xres + x] = MONO(!((x * (x | z) & y * (y | z)) & z));
+    a[y * xres + x] = MONO(!((x * (x | j) & y * (y | j)) & j));
 }
 
 PAINTER(19) {
   FORYX
-    a[y * xres + x] = MONO(!((x * (x ^ z) & y * (y ^ z)) & z));
+    a[y * xres + x] = MONO(!((x * (x ^ j) & y * (y ^ j)) & j));
 }
 
 PAINTER(20) {
   FORYX
-    a[y * xres + x] = MONO(!((x * (x * z) & y * (y * z)) & z));
+    a[y * xres + x] = MONO(!((x * (x * j) & y * (y * j)) & j));
 }
 
 // Class 6
 
 PAINTER(21) {
   FORYX
-    a[y * xres + x] = MONO(!((x * (x & z) & y * (y & z)) % z));
+    a[y * xres + x] = MONO(!((x * (x & j) & y * (y & j)) % j));
 }
 
 PAINTER(22) {
   FORYX
-    a[y * xres + x] = MONO(!((x * (x | z) & y * (y | z)) % z));
+    a[y * xres + x] = MONO(!((x * (x | j) & y * (y | j)) % j));
 }
 
 PAINTER(23) {
   FORYX
-    a[y * xres + x] = MONO(!((x * (x ^ z) & y * (y ^ z)) % z));
+    a[y * xres + x] = MONO(!((x * (x ^ j) & y * (y ^ j)) % j));
 }
 
 PAINTER(24) {
   FORYX
-    a[y * xres + x] = MONO(!((x * (x * z) & y * (y * z)) % z));
+    a[y * xres + x] = MONO(!((x * (x * j) & y * (y * j)) % j));
 }
 
 // Class 7
 
 PAINTER(25) {
   FORYX
-    a[y * xres + x] = MONO(!((x * (x & z) + y * (y & z)) % z));
+    a[y * xres + x] = MONO(!((x * (x & j) + y * (y & j)) % j));
 }
 
 PAINTER(26) {
   FORYX
-    a[y * xres + x] = MONO(!((x * (x | z) + y * (y | z)) % z));
+    a[y * xres + x] = MONO(!((x * (x | j) + y * (y | j)) % j));
 }
 
 PAINTER(27) {
   FORYX
-    a[y * xres + x] = MONO(!((x * (x ^ z) + y * (y ^ z)) % z));
+    a[y * xres + x] = MONO(!((x * (x ^ j) + y * (y ^ j)) % j));
 }
 
 PAINTER(28) {
   FORYX
-    a[y * xres + x] = MONO(!((x * (x * z) + y * (y * z)) % z));
+    a[y * xres + x] = MONO(!((x * (x * j) + y * (y * j)) % j));
 }
 
 // Class 8
 
 PAINTER(29) {
   FORYX
-    a[y * xres + x] = RAMP(x * (x & z) + y * (y & z));
+    a[y * xres + x] = RAMP(x * (x & j) + y * (y & j));
 }
 
 PAINTER(30) {
   FORYX
-    a[y * xres + x] = RAMP(x * (x | z) + y * (y | z));
+    a[y * xres + x] = RAMP(x * (x | j) + y * (y | j));
 }
 
 PAINTER(31) {
   FORYX
-    a[y * xres + x] = RAMP(x * (x ^ z) + y * (y ^ z));
+    a[y * xres + x] = RAMP(x * (x ^ j) + y * (y ^ j));
 }
 
 PAINTER(32) {
   FORYX
-    a[y * xres + x] = RAMP(x * (x * z) + y * (y * z));
+    a[y * xres + x] = RAMP(x * (x * j) + y * (y * j));
 }
 
 static void (*fb_painters[])(unsigned, unsigned, unsigned, unsigned, unsigned[]) = {

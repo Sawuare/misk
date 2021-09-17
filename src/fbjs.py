@@ -1,25 +1,25 @@
 #! /usr/bin/env python3
 
-# fbzs.py - write some interesting fb Z sequences
+# fbjs.py - write some interesting fb j sequences
 
-Z_MAX = 2 ** 32 - 1
+J_MAX = 2 ** 32 - 1
 
 def a19(f, m):
   n = 0 if m >= 0 else -m + 1
 
-  zs = []
+  js = []
 
   while True:
-    z = 2 ** (2 * n + m) - 2 ** n
+    j = 2 ** (2 * n + m) - 2 ** n
 
-    if z <= Z_MAX:
-      zs.append(z)
+    if j <= J_MAX:
+      js.append(j)
     else:
       break
 
     n += 1
 
-  print(*zs, file = f)
+  print(*js, file = f)
 
 # https://oeis.org/A059153
 with open("a19n1.fb.txt", "w") as f:

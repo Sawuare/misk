@@ -2,7 +2,7 @@ NAME
   fb2fb - paint fb images on the framebuffer
 
 SYNOPSIS
-  fb2fb [-# <color-rrggbb>] [-c <color-letter>] [-i <ID>] [-l] [-s <step>] [-z <z>]
+  fb2fb [-# <color-rrggbb>] [-c <color-letter>] [-i <ID>] [-j <j>] [-l] [-s <step>]
 
 DESCRIPTION
   fb2fb requires permission to read and write the Linux framebuffer device /dev/fb0,
@@ -14,10 +14,10 @@ DESCRIPTION
 
     { decrements ID;
     } increments ID;
-    [ decrements Z;
-    ] increments Z;
+    [ decrements j;
+    ] increments j;
     i sets ID to the decimal nonnegative integer entered next;
-    z sets Z to the decimal positive integer entered next;
+    j sets j to the decimal positive integer entered next;
     l toggles the status line;
     e exits;
 
@@ -37,22 +37,22 @@ OPTIONS
     than 33.
     The default is 0.
 
+  -j <j>
+    The decimal positive integer <j> specifies the painter's j.
+    The default is 1.
+
   -l
     Enable the status line.
 
   -s <step>
-    The decimal nonnegative integer <step> specifies the Z decrement/increment step.
-    The default is 1.
-
-  -z <z>
-    The decimal positive integer <z> specifies the painter's Z.
+    The decimal nonnegative integer <step> specifies the j decrement/increment step.
     The default is 1.
 
 EXIT STATUS
   1 if an option is invalid;
   2 if opening /dev/fb0 failed;
   3 if mapping /dev/fb0 failed;
-  4 if ID or Z is invalid;
+  4 if ID or j is invalid;
   0 otherwise;
 
 BUGS
@@ -60,4 +60,4 @@ BUGS
   adjustment, the assumptions are marked as UNPORTABLE.
 
 SEE ALSO
-  eca.txt, fb2png.txt, fbzs.txt
+  eca.txt, fb2png.txt, fbjs.txt

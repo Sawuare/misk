@@ -11,7 +11,7 @@ cd ../dat/
 echo "Exporting data"
 
 # Assume that build.sh has been executed
-fbzs.py
+fbjs.py
 mts.py   > mts.txt
 print.py > print.txt
 waves
