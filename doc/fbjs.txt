@@ -13,8 +13,23 @@ DESCRIPTION
     a19p1.fb.txt
     a19p2.fb.txt
     a19p3.fb.txt
+    a19p4.fb.txt
+    a19p5.fb.txt
+    a19p6.fb.txt
+    a19p7.fb.txt
+    a19p8.fb.txt
+    a19p9.fb.txt
 
   Where aNN denotes a sequence for an fb painter with ID NN.
+
+  The first 5 sequences are these sequences in the On-Line Encyclopedia of Integer
+  Sequences (OEIS):
+
+    https://oeis.org/A059153
+    https://oeis.org/A020522
+    https://oeis.org/A171476
+    https://oeis.org/A171499
+    https://oeis.org/A171472
 
 SEE ALSO
   fb2fb.txt, fb2png.txt
