@@ -1,5 +1,5 @@
 NAME
-  fb2fb - paint fb images on the framebuffer
+  fb2fb - paint fb images on the Linux framebuffer device
 
 SYNOPSIS
   fb2fb [-# <color-rrggbb>] [-c <color-letter>] [-i <ID>] [-j <j>] [-l] [-s <step>]

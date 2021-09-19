@@ -13,9 +13,9 @@ DESCRIPTION
 
   fb2png writes an fb image to a 24-bit RGB, non-interlaced PNG file. The file has a
   name that encodes how it was produced. For example, a file with the name
-  i0j1x1376y768#ffffff.fb.png can be reproduced by an invocation equivalent to this:
+  i0j1x256y256#ffffff.fb.png can be reproduced by an invocation equivalent to this:
 
-    fb2png -i 0 -j 1 -x 1376 -y 768 -# ffffff
+    fb2png -i 0 -j 1 -x 256 -y 256 -# ffffff
 
 OPTIONS
   -# <color-rrggbb>
@@ -43,12 +43,12 @@ OPTIONS
   -x <x-px>
     The decimal positive integer <x-px> specifies the image's horizontal resolution
     in pixels.
-    The default is 1376.
+    The default is 256.
 
   -y <y-px>
     The decimal positive integer <y-px> specifies the image's vertical resolution in
     pixels.
-    The default is 768.
+    The default is 256.
 
 EXIT STATUS
   1 if an option is invalid;

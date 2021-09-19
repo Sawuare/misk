@@ -1,4 +1,4 @@
-// amorse.c - encode input into audible adapted International Morse code
+// amorse.c - encode input into audio adapted International Morse code
 
 // Unsigned 8 bit, Rate 8000 Hz, Mono
 

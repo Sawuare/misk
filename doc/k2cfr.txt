@@ -5,5 +5,5 @@ SYNOPSIS
   k2cfr.py
 
 DESCRIPTION
-  Insert a temperature in kelvin then hit <Return> or the button to convert it to
-  degrees Celsius, degrees Fahrenheit, and degrees Rankine.
+  Enter a temperature in kelvin to convert it to degrees Celsius, degrees Fahrenheit,
+  and degrees Rankine.

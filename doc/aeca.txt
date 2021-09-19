@@ -1,5 +1,5 @@
 NAME
-  aeca - play audible elementary cellular automata
+  aeca - play audio elementary cellular automata
 
 SYNOPSIS
   aeca [-c <cells>] [-d] [-g <generations>] [-q] [-r <rule>] [-s <seed>]
@@ -24,9 +24,9 @@ DESCRIPTION
   See the -s option.
 
   The file has a name that encodes how it was produced. For example, a file with the
-  name c1024g512r90s0.aeca.pcm can be reproduced by an invocation equivalent to this:
+  name c256g256r60s0.aeca.pcm can be reproduced by an invocation equivalent to this:
 
-    aeca -c 1024 -g 512 -r 90 -s 0
+    aeca -c 256 -g 256 -r 60 -s 0
 
   A file generated from a random state could be irreproducible on different systems
   because of a possibly different implementation of the random number generator used.
@@ -35,14 +35,14 @@ OPTIONS
   -c <cells>
     The decimal positive integer <cells> specifies the number of cells in a
     generation.
-    The default is 1024.
+    The default is 256.
 
   -d
     Delete the file after trying to play it.
 
   -g <generations>
     The decimal positive integer <generations> specifies the number of generations.
-    The default is 512.
+    The default is 256.
 
   -q
     Be quiet by not trying to play the file.
@@ -50,7 +50,7 @@ OPTIONS
   -r <rule>
     The decimal nonnegative integer <rule> specifies the rule and should be less than
     256.
-    The default is 90.
+    The default is 60.
 
   -s <seed>
     The decimal nonnegative integer <seed> specifies the seed used to randomize the

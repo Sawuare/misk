@@ -1,5 +1,0 @@
-NAME
-  sudoku.py - print a "sudoku" grid of subgrids filled sequentially with 1s to 9s
-
-SYNOPSIS
-  sudoku.py

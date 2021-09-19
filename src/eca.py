@@ -1,6 +1,6 @@
 #! /usr/bin/env python3
 
-# eca.py - paint elementary cellular automata on the framebuffer
+# eca.py - paint elementary cellular automata on the Linux framebuffer device
 
 import random
 

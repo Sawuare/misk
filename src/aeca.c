@@ -1,4 +1,4 @@
-// aeca.c - play audible elementary cellular automata
+// aeca.c - play audio elementary cellular automata
 
 // Unsigned 8 bit, Rate 44100 Hz, Mono
 
@@ -20,9 +20,9 @@ static inline unsigned ddig(unsigned n) {
 int main(int argc, char* argv[argc + 1]) {
   _Bool    delet   = 0;
   _Bool    quiet   = 0;
-  unsigned n_cells = 1024;
-  unsigned n_gens  = 512;
-  unsigned rule    = 90;
+  unsigned n_cells = 256;
+  unsigned n_gens  = 256;
+  unsigned rule    = 60;
   unsigned seed    = 0;
 
   int opt;
