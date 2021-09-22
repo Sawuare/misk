@@ -11,7 +11,7 @@ DESCRIPTION
   resolution, and vertical resolution. Different painters paint different patterns.
   Varying the j value of a painter varies its pattern.
 
-  fb2png writes an fb image to a 24-bit RGB, non-interlaced PNG file. The file has a
+  fb2png writes a fb image to a 24-bit RGB, non-interlaced PNG file. The file has a
   name that encodes how it was produced. For example, a file with the name
   i0j1x256y256#ffffff.fb.png can be reproduced by an invocation equivalent to this:
 

@@ -20,7 +20,7 @@ DESCRIPTION
     a19p8.fb.txt
     a19p9.fb.txt
 
-  Where aNN denotes a sequence for an fb painter with ID NN.
+  Where aNN denotes a sequence for a fb painter with ID NN.
 
   The first 5 sequences are these sequences in the On-Line Encyclopedia of Integer
   Sequences (OEIS):

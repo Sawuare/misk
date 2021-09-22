@@ -20,7 +20,7 @@ DESCRIPTION
 
     Unsigned 8 bit, Rate 8000 Hz, Mono
 
-  amorse tries to play the file by invoking the external program aplay:
+  amorse tries to play the file by invoking the external program "aplay":
 
     aplay -t raw -f U8 -r 8000 -c 1 amorse.pcm
 

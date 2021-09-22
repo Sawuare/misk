@@ -13,7 +13,7 @@ DESCRIPTION
 
     Unsigned 8 bit, Rate 44100 Hz, Mono
 
-  aeca does that by invoking the external program aplay:
+  aeca does that by invoking the external program "aplay":
 
     aplay -t raw -f U8 -r 44100 -c 1 <filename>
 
