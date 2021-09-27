@@ -3,12 +3,12 @@ case $- in
     *) return;;
 esac
 
-HISTSIZE="1000"
-HISTFILESIZE="2000"
-HISTCONTROL="ignoreboth"
-
-shopt -s histappend
 shopt -u checkwinsize
+shopt -s histappend
+
+HISTCONTROL="ignoreboth"
+HISTFILESIZE="2000"
+HISTSIZE="1000"
 
 if [ -x /usr/bin/tput ] && tput setaf 1 &> /dev/null; then
   PS1="\[\e[33m\]\l \[\e[32m\]\u \[\e[34m\]\w \[\e[37m\]\\$ \[\e[39m\]"

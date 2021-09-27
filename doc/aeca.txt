@@ -48,14 +48,14 @@ OPTIONS
     Be quiet by not trying to play the file.
 
   -r <rule>
-    The decimal nonnegative integer <rule> specifies the rule and should be less than
+    The decimal nonnegative integer <rule> specifies the rule and must be less than
     256.
     The default is 60.
 
   -s <seed>
     The decimal nonnegative integer <seed> specifies the seed used to randomize the
-    1st generation. The seed 0 does not randomize the 1st generation but instead
-    places only 1 alive cell in the middle of it.
+    1st generation. The seed 0 is special; it does not randomize the 1st generation
+    but instead places only 1 alive cell in the middle of it.
     The default is 0.
 
 EXIT STATUS

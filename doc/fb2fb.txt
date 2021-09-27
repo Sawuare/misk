@@ -8,7 +8,7 @@ DESCRIPTION
   fb2fb requires permission to read and write the Linux framebuffer device /dev/fb0,
   which likely requires being the superuser or being in the video group.
 
-  fb2fb must be executed in the Linux console (i.e. TERM=linux).
+  fb2fb should be executed in the Linux console (i.e. TERM=linux).
 
   These keys can be used to navigate and control fb2fb during execution:
 

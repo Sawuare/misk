@@ -8,7 +8,7 @@ DESCRIPTION
   eca.py requires permission to write the Linux framebuffer device /dev/fb0, which
   likely requires being the superuser or being in the video group.
 
-  eca.py must be executed in the Linux console (i.e. TERM=linux).
+  eca.py should be executed in the Linux console (i.e. TERM=linux).
 
 BUGS
   The source eca.py is unportable; it makes assumptions about the framebuffer. For

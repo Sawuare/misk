@@ -21,10 +21,10 @@ These are the folders and files in here:
     *.sh -> POSIX shell scripts
 
   .bashrc
-    Bash configuration file.
+    My Bash configuration file.
 
   .nanorc
-    Nano configuration file.
+    My nano configuration file.
 
   LICENSE.txt
     The MIT license under which everything else is licensed.
@@ -34,9 +34,9 @@ These are the folders and files in here:
 
 For a one-line description of every program, execute this command line:
 
-  sed -n -s 2p doc/*
+  awk "FNR==2;FNR==3{nextfile}" doc/*
 
 To get started, read doc/build.txt then execute src/build.sh to build and install
 everything automatically or read it to learn how individual programs are compiled.
 
-Questions, comments, and contributions are welcome! Send them to sawuare@gmail.com.
+Questions and comments are welcome! Send them to sawuare@gmail.com.
