@@ -79,12 +79,12 @@ int main(int argc, char* argv[argc + 1]) {
     fb_painters[id](j, color, FB_XRES, FB_YRES, fbm);
 
     if (line) {
-      fprintf(stdout, "i%uj%u\r", id, j);
+      printf("i%uj%u\r", id, j);
       fflush(stdout);
     }
 
-fgetc:
-    switch (fgetc(stdin)) {
+getchar:
+    switch (getchar()) {
       case '{':
         --id;
         break;
@@ -102,11 +102,11 @@ fgetc:
         break;
 
       case 'i':
-        fscanf(stdin, "%u", &id);
+        scanf("%u", &id);
         break;
 
       case 'j':
-        fscanf(stdin, "%u", &j);
+        scanf("%u", &j);
         break;
 
       case 'l':
@@ -117,7 +117,7 @@ fgetc:
         goto exit;
 
       default:
-        goto fgetc;
+        goto getchar;
     }
   }
 

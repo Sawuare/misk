@@ -60,6 +60,6 @@ int main(int argc, char* argv[argc + 1]) {
   while (*++argv)
     while (**argv) {
       fputs(sigv[**argv], stdout);
-      fputc(*++*argv ? ' ' : '\n', stdout);
+      putchar(*++*argv ? ' ' : '\n');
     }
 }

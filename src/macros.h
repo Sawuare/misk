@@ -1,7 +1,5 @@
 // macros.h - miscellaneous useful macros
 
-#define EVER ;;
-
 #define ARRLEN(a) (sizeof (a) / sizeof (a)[0])
 
 #define EVEN(i) (((i) & 1) == 0)

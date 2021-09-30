@@ -10,7 +10,6 @@
 
 #include "dectcem.h"
 #include "ecma-48.h"
-#include "macros.h"
 
 _Noreturn static void bye(int unused) {
   fputs(RIS, stdout);
@@ -35,13 +34,13 @@ int main(int argc, char* argv[argc + 1]) {
 
   fputs(DECTCEM("l") ED("2"), stdout);
 
-  for (EVER) {
+  while (1) {
     int row = rand() % ws.ws_row + 1;
     int col = rand() % ws.ws_col + 1;
     int clr = rand() % 256;
     int chr = rand() % 128;
 
-    fprintf(stdout, CUP("%d;%d") SGR("38;2;0;%d;0") "%c", row, col, clr, chr);
+    printf(CUP("%d;%d") SGR("38;2;0;%d;0") "%c", row, col, clr, chr);
     fflush(stdout);
 
     thrd_sleep(&zzz, 0);
