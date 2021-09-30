@@ -1,10 +1,12 @@
 NAME
-  fbjs - write some interesting fb j sequences
+  fbjs - write some interesting fb j-sequences
 
 SYNOPSIS
   fbjs
 
 DESCRIPTION
+  For a description of fb j-values, see the beginning of fb2fb.txt.
+
   The sequences are nonnegative integers less than 2 raised to 32, separated by
   spaces, and written to these files:
 

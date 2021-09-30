@@ -9,9 +9,6 @@ DESCRIPTION
   assuming that build.sh has been executed:
 
     fbjs.py
-    getendian
-    getlocale
-    limits
     mts.py
     print.py
     waves

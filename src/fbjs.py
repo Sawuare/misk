@@ -1,6 +1,6 @@
 #! /usr/bin/env python3
 
-# fbjs.py - write some interesting fb j sequences
+# fbjs.py - write some interesting fb j-sequences
 
 J_MAX = 2 ** 32 - 1
 

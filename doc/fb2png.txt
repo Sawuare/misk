@@ -2,14 +2,11 @@ NAME
   fb2png - write fb images in the PNG format
 
 SYNOPSIS
-  fb2png [-# <color-rrggbb>] [-c <color-letter>] [-i <ID>] [-j <j>] [-v] [-x <x-px>]
-         [-y <y-px>]
+  fb2png [-# <color-rrggbb>] [-c <color-letter>] [-i <ID>] [-j <j-value>] [-v]
+         [-x <x-px>] [-y <y-px>]
 
 DESCRIPTION
-  fb images are algorithmic patterns painted by painters. There are 33 painters with
-  each having a serial identifier (ID) and parameters: j value, color, horizontal
-  resolution, and vertical resolution. Different painters paint different patterns.
-  Varying the j value of a painter varies its pattern.
+  For a description of fb images, see the beginning of fb2fb.txt.
 
   fb2png writes a fb image to a 24-bit RGB, non-interlaced PNG file. The file has a
   name that encodes how it was produced. For example, a file with the name
@@ -33,8 +30,8 @@ OPTIONS
     than 33.
     The default is 0.
 
-  -j <j>
-    The decimal positive integer <j> specifies the painter's j.
+  -j <j-value>
+    The decimal positive integer <j-value> specifies the painter's j-value.
     The default is 1.
 
   -v
