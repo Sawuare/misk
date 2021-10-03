@@ -17,7 +17,7 @@ static inline unsigned ddig(unsigned n) {
   return d;
 }
 
-int main(int argc, char* argv[argc + 1]) {
+int main(int argc, char *argv[argc + 1]) {
   _Bool    delet   = 0;
   _Bool    quiet   = 0;
   unsigned n_cells = 256;
@@ -62,9 +62,9 @@ int main(int argc, char* argv[argc + 1]) {
 
   unsigned n_samples = n_gens * n_cells;
 
-  unsigned char* audio = malloc(n_samples);
-  unsigned char* cells = malloc(n_cells);
-  unsigned char* clone = malloc(n_cells);
+  unsigned char *audio = malloc(n_samples);
+  unsigned char *cells = malloc(n_cells);
+  unsigned char *clone = malloc(n_cells);
 
   if (!audio || !cells || !clone)
     return 3;
@@ -100,7 +100,7 @@ int main(int argc, char* argv[argc + 1]) {
   char filename[l_filename];
   snprintf(filename, l_filename, "c%ug%ur%us%u.aeca.pcm", n_cells, n_gens, rule, seed);
 
-  FILE* stream = fopen(filename, "wb");
+  FILE *stream = fopen(filename, "wb");
 
   if (!stream) {
     free(audio);

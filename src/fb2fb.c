@@ -13,7 +13,7 @@
 #include "ecma-48.h"
 #include "fb.h"
 
-int main(int argc, char* argv[argc + 1]) {
+int main(int argc, char *argv[argc + 1]) {
   _Bool    line  = 0;
   unsigned id    = 0;
   unsigned j     = 1;
@@ -59,7 +59,7 @@ int main(int argc, char* argv[argc + 1]) {
   if (fbd == -1)
     return 2;
 
-  unsigned* fbm = mmap(0, FB_SIZE, PROT_WRITE, MAP_SHARED, fbd, 0);
+  unsigned *fbm = mmap(0, FB_SIZE, PROT_WRITE, MAP_SHARED, fbd, 0);
 
   close(fbd);
 

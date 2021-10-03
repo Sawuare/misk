@@ -16,7 +16,7 @@ _Noreturn static void bye(int unused) {
   exit(0);
 }
 
-int main(int argc, char* argv[argc + 1]) {
+int main(int argc, char *argv[argc + 1]) {
   srand(time(0));
   signal(SIGINT, bye);
 

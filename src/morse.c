@@ -2,8 +2,8 @@
 
 #include <stdio.h>
 
-int main(int argc, char* argv[argc + 1]) {
-  char* sigv[123] = {0};
+int main(int argc, char *argv[argc + 1]) {
+  char *sigv[123] = {0};
 
   sigv['A'] = sigv['a'] = ".-";
   sigv['B'] = sigv['b'] = "-...";

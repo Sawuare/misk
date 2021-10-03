@@ -14,9 +14,9 @@
 #define FREQ 440
 
 static FLAC__int32 wave[RATE];
-static FLAC__StreamEncoder* encoder;
+static FLAC__StreamEncoder *encoder;
 
-static void write_wave(char* filename) {
+static void write_wave(char *filename) {
   FLAC__stream_encoder_set_verify(encoder, true);
   FLAC__stream_encoder_set_channels(encoder, 1);
   FLAC__stream_encoder_set_sample_rate(encoder, RATE);

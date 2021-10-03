@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include <threads.h>
 
-int main(int argc, char* argv[argc + 1]) {
+int main(int argc, char *argv[argc + 1]) {
   srand(time(0));
   setbuf(stdout, 0);
 

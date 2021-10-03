@@ -21,7 +21,7 @@ static inline unsigned ddig(unsigned n) {
   return d;
 }
 
-int main(int argc, char* argv[argc + 1]) {
+int main(int argc, char *argv[argc + 1]) {
   unsigned id    = 0;
   unsigned j     = 1;
   unsigned xres  = 256;
@@ -68,8 +68,8 @@ int main(int argc, char* argv[argc + 1]) {
   if (!FB_IS_VALID(id, j) || !xres || !yres)
     return 2;
 
-  png_struct* structp = png_create_write_struct(PNG_LIBPNG_VER_STRING, 0, 0, 0);
-  png_info* infop = png_create_info_struct(structp);
+  png_struct *structp = png_create_write_struct(PNG_LIBPNG_VER_STRING, 0, 0, 0);
+  png_info *infop = png_create_info_struct(structp);
 
   if (!structp || !infop) {
     png_destroy_write_struct(&structp, &infop);
@@ -80,7 +80,7 @@ int main(int argc, char* argv[argc + 1]) {
   char filename[l_filename];
   snprintf(filename, l_filename, "i%uj%ux%uy%u#%06x.fb.png", id, j, xres, yres, color);
 
-  FILE* stream = fopen(filename, "wb");
+  FILE *stream = fopen(filename, "wb");
 
   if (!stream) {
     png_destroy_write_struct(&structp, &infop);
@@ -110,8 +110,8 @@ int main(int argc, char* argv[argc + 1]) {
   // Safe max res == 1 << 29
   unsigned res = xres * yres;
 
-  unsigned* original_image = malloc(res * 4);
-  png_byte* stripped_image = malloc(res * 3);
+  unsigned *original_image = malloc(res * 4);
+  png_byte *stripped_image = malloc(res * 3);
 
   if (!original_image || !stripped_image) {
     png_destroy_write_struct(&structp, &infop);
@@ -133,7 +133,7 @@ int main(int argc, char* argv[argc + 1]) {
 
   free(original_image);
 
-  png_byte* row_pointers[yres];
+  png_byte *row_pointers[yres];
 
   for (unsigned y = 0; y < yres; ++y)
     row_pointers[y] = stripped_image + xres * y * 3;

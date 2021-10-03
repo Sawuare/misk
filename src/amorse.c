@@ -11,7 +11,7 @@
 
 #define RATE 8000 // Default aplay rate
 
-int main(int argc, char* argv[argc + 1]) {
+int main(int argc, char *argv[argc + 1]) {
   _Bool    delet     = 0;
   _Bool    quiet     = 0;
   unsigned frequency = 400; // In Hz
@@ -44,7 +44,7 @@ int main(int argc, char* argv[argc + 1]) {
   if (!frequency || !length)
     return 2;
 
-  FILE* stream = fopen(FILENAME, "wb");
+  FILE *stream = fopen(FILENAME, "wb");
 
   if (!stream)
     return 3;
@@ -58,7 +58,7 @@ int main(int argc, char* argv[argc + 1]) {
   while (fgets(cbuf, sizeof cbuf, stdin)) {
     unsigned n_samples = 0;
 
-    char* cptr = cbuf;
+    char *cptr = cbuf;
 
     while (*cptr) {
       switch (*cptr) {
@@ -87,7 +87,7 @@ int main(int argc, char* argv[argc + 1]) {
         n_samples += dit;
     }
 
-    unsigned char* audio = malloc(n_samples);
+    unsigned char *audio = malloc(n_samples);
 
     if (!audio) {
       fclose(stream);
