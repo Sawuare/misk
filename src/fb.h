@@ -39,11 +39,11 @@
 #define RAMP(px) (px) % 256 * c / 255
 
 // UNPORTABLE
-static inline unsigned fb_rrggbb_to_color(char const *s) {
+static inline unsigned fb_rrggbb_to_color(const char *s) {
   return strtoul(s, 0, 16);
 }
 
-static inline unsigned fb_letter_to_color(char const *s) {
+static inline unsigned fb_letter_to_color(const char *s) {
   switch (*s) {
     case 'r': return FB_RED;
     case 'g': return FB_GREEN;

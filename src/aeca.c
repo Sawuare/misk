@@ -18,23 +18,23 @@ static inline unsigned ddig(unsigned n) {
 }
 
 int main(int argc, char *argv[]) {
-  _Bool    delet   = 0;
-  _Bool    quiet   = 0;
-  unsigned n_cells = 256;
-  unsigned n_gens  = 256;
-  unsigned rule    = 60;
-  unsigned seed    = 0;
+  _Bool    delet      = 0;
+  _Bool    quiet      = 0;
+  unsigned cell_count = 256;
+  unsigned gen_count  = 256;
+  unsigned rule       = 60;
+  unsigned seed       = 0;
 
   int opt;
 
   while ((opt = getopt(argc, argv, "c:g:r:s:dq")) != -1)
     switch (opt) {
       case 'c':
-        n_cells = strtoul(optarg, 0, 10);
+        cell_count = strtoul(optarg, 0, 10);
         break;
 
       case 'g':
-        n_gens = strtoul(optarg, 0, 10);
+        gen_count = strtoul(optarg, 0, 10);
         break;
 
       case 'r':
@@ -57,48 +57,48 @@ int main(int argc, char *argv[]) {
         return 1;
     }
 
-  if (!n_cells || !n_gens || rule > 255)
+  if (!cell_count || !gen_count || rule > 255)
     return 2;
 
-  unsigned n_samples = n_gens * n_cells;
+  unsigned sample_count = gen_count * cell_count;
 
-  unsigned char *audio = malloc(n_samples);
-  unsigned char *cells = malloc(n_cells);
-  unsigned char *clone = malloc(n_cells);
+  unsigned char *audio = malloc(sample_count);
+  unsigned char *cells = malloc(cell_count);
+  unsigned char *clone = malloc(cell_count);
 
   if (!audio || !cells || !clone)
     return 3;
 
   if (seed) {
     srand(seed);
-    for (unsigned c = 0; c < n_cells; ++c)
+    for (unsigned c = 0; c < cell_count; ++c)
       cells[c] = rand() & 1;
   }
   else {
-    memset(cells, 0, n_cells);
-    cells[n_cells / 2] = 1;
+    memset(cells, 0, cell_count);
+    cells[cell_count / 2] = 1;
   }
 
-  for (unsigned g = 0; g < n_gens; ++g) {
-    for (unsigned c = 0; c < n_cells; ++c) {
-      audio[g * n_cells + c] = cells[c] ? 255 : 0;
+  for (unsigned g = 0; g < gen_count; ++g) {
+    for (unsigned c = 0; c < cell_count; ++c) {
+      audio[g * cell_count + c] = cells[c] ? 255 : 0;
 
-      unsigned char p = cells[c ? c - 1 : n_cells - 1];
+      unsigned char p = cells[c ? c - 1 : cell_count - 1];
       unsigned char q = cells[c];
-      unsigned char r = cells[(c + 1) % n_cells];
+      unsigned char r = cells[(c + 1) % cell_count];
 
       clone[c] = rule >> (p << 2 | q << 1 | r) & 1;
     }
 
-    memcpy(cells, clone, n_cells);
+    memcpy(cells, clone, cell_count);
   }
 
   free(cells);
   free(clone);
 
-  unsigned l_filename = ddig(n_cells) + ddig(n_gens) + ddig(rule) + ddig(seed) + 14;
-  char filename[l_filename];
-  snprintf(filename, l_filename, "c%ug%ur%us%u.aeca.pcm", n_cells, n_gens, rule, seed);
+  unsigned filename_size = ddig(cell_count) + ddig(gen_count) + ddig(rule) + ddig(seed) + 14;
+  char filename[filename_size];
+  snprintf(filename, filename_size, "c%ug%ur%us%u.aeca.pcm", cell_count, gen_count, rule, seed);
 
   FILE *stream = fopen(filename, "wb");
 
@@ -107,7 +107,7 @@ int main(int argc, char *argv[]) {
     return 4;
   }
 
-  fwrite(audio, 1, n_samples, stream);
+  fwrite(audio, 1, sample_count, stream);
   fclose(stream);
   free(audio);
 
@@ -115,9 +115,9 @@ int main(int argc, char *argv[]) {
 
   if (!quiet) {
     if (system(0)) {
-      unsigned l_command = l_filename + 33;
-      char command[l_command];
-      snprintf(command, l_command, "aplay -t raw -f U8 -r 44100 -c 1 %s", filename);
+      unsigned command_size = filename_size + 33;
+      char command[command_size];
+      snprintf(command, command_size, "aplay -t raw -f U8 -r 44100 -c 1 %s", filename);
       system(command);
     }
     else

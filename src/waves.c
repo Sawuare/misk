@@ -16,7 +16,7 @@
 static FLAC__int32 wave[RATE];
 static FLAC__StreamEncoder *encoder;
 
-static void write_wave(char *filename) {
+static void write_wave(const char *filename) {
   FLAC__stream_encoder_set_verify(encoder, true);
   FLAC__stream_encoder_set_channels(encoder, 1);
   FLAC__stream_encoder_set_sample_rate(encoder, RATE);
@@ -44,7 +44,8 @@ int main(void) {
   if (!encoder)
     return 1;
 
-  FLAC__int32 i, j, period_2 = RATE / FREQ / 2, period_4 = period_2 / 2;
+  FLAC__int32 i, j;
+  FLAC__int32 period_2 = RATE / FREQ / 2, period_4 = period_2 / 2;
 
   // Square wave
 

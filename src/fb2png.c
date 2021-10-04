@@ -76,9 +76,9 @@ int main(int argc, char *argv[]) {
     return 3;
   }
 
-  unsigned l_filename = ddig(id) + ddig(j) + ddig(xres) + ddig(yres) + 19;
-  char filename[l_filename];
-  snprintf(filename, l_filename, "i%uj%ux%uy%u#%06x.fb.png", id, j, xres, yres, color);
+  unsigned filename_size = ddig(id) + ddig(j) + ddig(xres) + ddig(yres) + 19;
+  char filename[filename_size];
+  snprintf(filename, filename_size, "i%uj%ux%uy%u#%06x.fb.png", id, j, xres, yres, color);
 
   FILE *stream = fopen(filename, "wb");
 

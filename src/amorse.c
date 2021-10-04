@@ -56,23 +56,23 @@ int main(int argc, char *argv[]) {
   char cbuf[256];
 
   while (fgets(cbuf, sizeof cbuf, stdin)) {
-    unsigned n_samples = 0;
+    unsigned sample_count = 0;
 
     char *cptr = cbuf;
 
     while (*cptr) {
       switch (*cptr) {
         case '.':
-          n_samples += dit;
+          sample_count += dit;
           break;
 
         case '-':
         case ' ':
-          n_samples += dah;
+          sample_count += dah;
           break;
 
         case '\n':
-          n_samples += gap;
+          sample_count += gap;
           break;
 
         default:
@@ -84,10 +84,10 @@ int main(int argc, char *argv[]) {
       ++cptr;
 
       if (*cptr == '.' || *cptr == '-')
-        n_samples += dit;
+        sample_count += dit;
     }
 
-    unsigned char *audio = malloc(n_samples);
+    unsigned char *audio = malloc(sample_count);
 
     if (!audio) {
       fclose(stream);
@@ -95,10 +95,11 @@ int main(int argc, char *argv[]) {
       return 5;
     }
 
-    for (unsigned i = 0; i < n_samples; ++i)
+    for (unsigned i = 0; i < sample_count; ++i)
       audio[i] = 128;
 
-    unsigned i = 0, period_2 = RATE / frequency / 2;
+    unsigned i = 0;
+    unsigned period_2 = RATE / frequency / 2;
 
     cptr = cbuf;
 
@@ -131,7 +132,7 @@ int main(int argc, char *argv[]) {
         i += dit;
     }
 
-    fwrite(audio, 1, n_samples, stream);
+    fwrite(audio, 1, sample_count, stream);
     free(audio);
   }
 
