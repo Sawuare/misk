@@ -21,7 +21,7 @@ static inline unsigned ddig(unsigned n) {
   return d;
 }
 
-int main(int argc, char *argv[argc + 1]) {
+int main(int argc, char *argv[]) {
   unsigned id    = 0;
   unsigned j     = 1;
   unsigned xres  = 256;

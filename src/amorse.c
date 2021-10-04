@@ -11,7 +11,7 @@
 
 #define RATE 8000 // Default aplay rate
 
-int main(int argc, char *argv[argc + 1]) {
+int main(int argc, char *argv[]) {
   _Bool    delet     = 0;
   _Bool    quiet     = 0;
   unsigned frequency = 400; // In Hz

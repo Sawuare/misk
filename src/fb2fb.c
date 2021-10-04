@@ -13,7 +13,7 @@
 #include "ecma-48.h"
 #include "fb.h"
 
-int main(int argc, char *argv[argc + 1]) {
+int main(int argc, char *argv[]) {
   _Bool    line  = 0;
   unsigned id    = 0;
   unsigned j     = 1;

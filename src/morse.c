@@ -2,7 +2,7 @@
 
 #include <stdio.h>
 
-int main(int argc, char *argv[argc + 1]) {
+int main(int argc, char *argv[]) {
   char *sigv[123] = {0};
 
   sigv['A'] = sigv['a'] = ".-";

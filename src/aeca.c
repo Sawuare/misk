@@ -17,7 +17,7 @@ static inline unsigned ddig(unsigned n) {
   return d;
 }
 
-int main(int argc, char *argv[argc + 1]) {
+int main(int argc, char *argv[]) {
   _Bool    delet   = 0;
   _Bool    quiet   = 0;
   unsigned n_cells = 256;
