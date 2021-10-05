@@ -65,7 +65,9 @@ int main(int argc, char *argv[]) {
         return 1;
     }
 
-  if (!FB_IS_VALID(id, j) || !xres || !yres)
+  unsigned res = xres * yres;
+
+  if (!FB_IS_VALID(id, j) || !res || res > 1 << 30)
     return 2;
 
   png_struct *structp = png_create_write_struct(PNG_LIBPNG_VER_STRING, 0, 0, 0);
@@ -106,9 +108,6 @@ int main(int argc, char *argv[]) {
   png_set_filter(structp, PNG_FILTER_TYPE_BASE, FB_IS_MONO_XOR_RAMP(id) ? PNG_FILTER_NONE : PNG_FILTER_UP);
   png_set_compression_level(structp, Z_DEFAULT_COMPRESSION);
   png_set_compression_strategy(structp, Z_DEFAULT_STRATEGY);
-
-  // Safe max res == 1 << 29
-  unsigned res = xres * yres;
 
   unsigned *original_image = malloc(res * 4);
   png_byte *stripped_image = malloc(res * 3);

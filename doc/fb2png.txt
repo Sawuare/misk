@@ -14,6 +14,8 @@ DESCRIPTION
 
     fb2png -i 0 -j 1 -x 256 -y 256 -# ffffff
 
+  Image resolutions greater than a gibipixel (i.e. 1073741824 pixels) are invalid.
+
 OPTIONS
   -# <color-rrggbb>
     The hexadecimal nonnegative integer <color-rrggbb> specifies the painting color
