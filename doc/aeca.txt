@@ -17,7 +17,7 @@ DESCRIPTION
 
     aplay -t raw -f U8 -r 44100 -c 1 <filename>
 
-  Playing and keeping the file is optional. See the -d and -q options.
+  Playing and keeping the file is optional. See the -q and -d options.
 
   Evolutions start from either a fixed state or a random state that is seeded
   manually. The former tend to sound tonal, while the latter tend to sound atonal.

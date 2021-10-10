@@ -7,8 +7,8 @@ SYNOPSIS
 DESCRIPTION
   These are the waves and the files they are written to:
 
-    square wave   -> sqr.flac
-    triangle wave -> tri.flac
+    Square wave   -> sqr.flac
+    Triangle wave -> tri.flac
 
   Each wave has an amplitude of 0 dBFS, a duration of 1 s, and a frequency of 440 Hz.
 

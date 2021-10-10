@@ -9,7 +9,7 @@ DESCRIPTION
   fb images are algorithmic patterns painted by painters. There are 33 painters with
   each having a serial identifier (ID) and parameters: j-value, color, horizontal
   resolution, and vertical resolution. Different painters paint different patterns.
-  Varying the j-value of a painter varies its pattern.
+  Varying the j-value of a painter varies its pattern (except for the first painter).
 
   fb2fb requires permission to read and write the Linux framebuffer device /dev/fb0,
   which likely requires being the superuser or being in the video group.

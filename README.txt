@@ -1,6 +1,6 @@
 Here is my hobby software, including programs about audio, images, patterns, physics,
 mathematics, utility, and fun, and modules useful for other programs. Some of them
-use features of C, less use features of POSIX, and even less use features of Linux.
+use features of POSIX, less use features of C, and even less use features of Linux.
 The external program "aplay", an ALSA utility, is recommended but not a dependency.
 
 These are the folders and files in here:

@@ -25,7 +25,7 @@ if (SEED):
 else:
   cells[XRES // 2] = 1
 
-# Disable the cursor
+# Disable the text cursor
 print("\x1b[?25l", end = "", flush = True)
 
 with open("/dev/fb0", "wb") as fb:
@@ -43,5 +43,5 @@ with open("/dev/fb0", "wb") as fb:
 
 input()
 
-# Enable the cursor and clear the screen
+# Enable the text cursor and clear the screen
 print("\x1b[?25h\x1b[3J", end = "")
