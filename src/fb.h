@@ -24,7 +24,7 @@
 #define FB_PX_TO_G_BYTE(px) ((px) >>  8 & 255)
 #define FB_PX_TO_B_BYTE(px) ((px)       & 255)
 
-#define FB_IS_VALID(id, j) ((id) < 33 && (j))
+#define FB_IS_VALID(id, j) ((id) < 37 && (j))
 
 #define FB_IS_MONO_XOR_RAMP(id) ((id) < 29)
 
@@ -200,42 +200,64 @@ PAINTER(24) {
 
 PAINTER(25) {
   FORYX
-    a[y * xres + x] = MONO(!((x * (x & j) + y * (y & j)) % j));
+    a[y * xres + x] = MONO(!((x * (x & j) + y * (y & j)) & j));
 }
 
 PAINTER(26) {
   FORYX
-    a[y * xres + x] = MONO(!((x * (x | j) + y * (y | j)) % j));
+    a[y * xres + x] = MONO(!((x * (x | j) + y * (y | j)) & j));
 }
 
 PAINTER(27) {
   FORYX
-    a[y * xres + x] = MONO(!((x * (x ^ j) + y * (y ^ j)) % j));
+    a[y * xres + x] = MONO(!((x * (x ^ j) + y * (y ^ j)) & j));
 }
 
 PAINTER(28) {
   FORYX
-    a[y * xres + x] = MONO(!((x * (x * j) + y * (y * j)) % j));
+    a[y * xres + x] = MONO(!((x * (x * j) + y * (y * j)) & j));
 }
 
 // Class 8
 
 PAINTER(29) {
   FORYX
-    a[y * xres + x] = RAMP(x * (x & j) + y * (y & j));
+    a[y * xres + x] = MONO(!((x * (x & j) + y * (y & j)) % j));
 }
 
 PAINTER(30) {
   FORYX
-    a[y * xres + x] = RAMP(x * (x | j) + y * (y | j));
+    a[y * xres + x] = MONO(!((x * (x | j) + y * (y | j)) % j));
 }
 
 PAINTER(31) {
   FORYX
-    a[y * xres + x] = RAMP(x * (x ^ j) + y * (y ^ j));
+    a[y * xres + x] = MONO(!((x * (x ^ j) + y * (y ^ j)) % j));
 }
 
 PAINTER(32) {
+  FORYX
+    a[y * xres + x] = MONO(!((x * (x * j) + y * (y * j)) % j));
+}
+
+// Class 9
+
+PAINTER(33) {
+  FORYX
+    a[y * xres + x] = RAMP(x * (x & j) + y * (y & j));
+}
+
+PAINTER(34) {
+  FORYX
+    a[y * xres + x] = RAMP(x * (x | j) + y * (y | j));
+}
+
+PAINTER(35) {
+  FORYX
+    a[y * xres + x] = RAMP(x * (x ^ j) + y * (y ^ j));
+}
+
+PAINTER(36) {
   FORYX
     a[y * xres + x] = RAMP(x * (x * j) + y * (y * j));
 }
@@ -244,7 +266,7 @@ static void (*fb_painters[])(unsigned, unsigned, unsigned, unsigned, unsigned[])
   fb_p0,  fb_p1,  fb_p2,  fb_p3,  fb_p4,  fb_p5,  fb_p6,  fb_p7,  fb_p8,  fb_p9,
   fb_p10, fb_p11, fb_p12, fb_p13, fb_p14, fb_p15, fb_p16, fb_p17, fb_p18, fb_p19,
   fb_p20, fb_p21, fb_p22, fb_p23, fb_p24, fb_p25, fb_p26, fb_p27, fb_p28, fb_p29,
-  fb_p30, fb_p31, fb_p32
+  fb_p30, fb_p31, fb_p32, fb_p33, fb_p34, fb_p35, fb_p36
 };
 
 #undef PAINTER

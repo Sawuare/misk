@@ -6,7 +6,7 @@ SYNOPSIS
         [-s <step>]
 
 DESCRIPTION
-  fb images are algorithmic patterns painted by painters. There are 33 painters with
+  fb images are algorithmic patterns painted by painters. There are 37 painters with
   each having a serial identifier (ID) and parameters: j-value, color, horizontal
   resolution, and vertical resolution. Different painters paint different patterns.
   Varying the j-value of a painter varies its pattern (except for the first painter).
@@ -40,7 +40,7 @@ OPTIONS
 
   -i <ID>
     The decimal nonnegative integer <ID> specifies the painter's ID and must be less
-    than 33.
+    than 37.
     The default is 0.
 
   -j <j-value>

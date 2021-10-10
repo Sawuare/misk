@@ -29,7 +29,7 @@ OPTIONS
 
   -i <ID>
     The decimal nonnegative integer <ID> specifies the painter's ID and must be less
-    than 33.
+    than 37.
     The default is 0.
 
   -j <j-value>
