@@ -10,17 +10,17 @@ DESCRIPTION
   The sequences are nonnegative integers less than 2 raised to 32, separated by
   spaces, and written to these files:
 
-    a19n1.fb.txt
-    a19p0.fb.txt
-    a19p1.fb.txt
-    a19p2.fb.txt
-    a19p3.fb.txt
-    a19p4.fb.txt
-    a19p5.fb.txt
-    a19p6.fb.txt
-    a19p7.fb.txt
-    a19p8.fb.txt
-    a19p9.fb.txt
+    a19n1.fbjs.txt
+    a19p0.fbjs.txt
+    a19p1.fbjs.txt
+    a19p2.fbjs.txt
+    a19p3.fbjs.txt
+    a19p4.fbjs.txt
+    a19p5.fbjs.txt
+    a19p6.fbjs.txt
+    a19p7.fbjs.txt
+    a19p8.fbjs.txt
+    a19p9.fbjs.txt
 
   Where aNN denotes a sequence for a fb painter with ID NN.
 

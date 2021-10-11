@@ -22,39 +22,39 @@ def a19(f, m):
   print(*js, file = f)
 
 # https://oeis.org/A059153
-with open("a19n1.fb.txt", "w") as f:
+with open("a19n1.fbjs.txt", "w") as f:
   a19(f, -1)
 
 # https://oeis.org/A020522
-with open("a19p0.fb.txt", "w") as f:
+with open("a19p0.fbjs.txt", "w") as f:
   a19(f, 0)
 
 # https://oeis.org/A171476
-with open("a19p1.fb.txt", "w") as f:
+with open("a19p1.fbjs.txt", "w") as f:
   a19(f, 1)
 
 # https://oeis.org/A171499
-with open("a19p2.fb.txt", "w") as f:
+with open("a19p2.fbjs.txt", "w") as f:
   a19(f, 2)
 
 # https://oeis.org/A171472
-with open("a19p3.fb.txt", "w") as f:
+with open("a19p3.fbjs.txt", "w") as f:
   a19(f, 3)
 
-with open("a19p4.fb.txt", "w") as f:
+with open("a19p4.fbjs.txt", "w") as f:
   a19(f, 4)
 
-with open("a19p5.fb.txt", "w") as f:
+with open("a19p5.fbjs.txt", "w") as f:
   a19(f, 5)
 
-with open("a19p6.fb.txt", "w") as f:
+with open("a19p6.fbjs.txt", "w") as f:
   a19(f, 6)
 
-with open("a19p7.fb.txt", "w") as f:
+with open("a19p7.fbjs.txt", "w") as f:
   a19(f, 7)
 
-with open("a19p8.fb.txt", "w") as f:
+with open("a19p8.fbjs.txt", "w") as f:
   a19(f, 8)
 
-with open("a19p9.fb.txt", "w") as f:
+with open("a19p9.fbjs.txt", "w") as f:
   a19(f, 9)
