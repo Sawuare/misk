@@ -79,11 +79,12 @@ int main(int argc, char *argv[]) {
     fb_painters[id](j, color, FB_XRES, FB_YRES, fbm);
 
     if (line) {
+print:
       printf("i%uj%u\r", id, j);
       fflush(stdout);
     }
 
-getchar:
+get:
     switch (getchar()) {
       case '{':
         --id;
@@ -110,14 +111,19 @@ getchar:
         break;
 
       case 'l':
-        line = !line;
-        break;
+        if (line) {
+          line = 0;
+          break;
+        }
+
+        line = 1;
+        goto print;
 
       case 'e':
         goto exit;
 
       default:
-        goto getchar;
+        goto get;
     }
   }
 

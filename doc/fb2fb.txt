@@ -31,28 +31,28 @@ OPTIONS
   -# <color-rrggbb>
     The hexadecimal nonnegative integer <color-rrggbb> specifies the painting color
     in the form rrggbb.
-    The default is ffffff.
+    Defaults to ffffff.
 
   -c <color-letter>
     The letter <color-letter> specifies the painting color and should be one of
     (r|g|b|c|m|y|w) for red, green, blue, cyan, magenta, yellow, or white.
-    The default is w.
+    Defaults to w.
 
   -i <ID>
     The decimal nonnegative integer <ID> specifies the painter's ID and must be less
     than 37.
-    The default is 0.
+    Defaults to 0.
 
   -j <j-value>
     The decimal positive integer <j-value> specifies the painter's j-value.
-    The default is 1.
+    Defaults to 1.
 
   -l
     Enable the status line.
 
   -s <step>
     The decimal nonnegative integer <step> specifies the j-value decrement/increment.
-    The default is 1.
+    Defaults to 1.
 
 EXIT STATUS
   1 if an option is invalid;

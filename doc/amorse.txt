@@ -32,14 +32,14 @@ OPTIONS
 
   -f <frequency>
     The decimal positive integer <frequency> specifies the wave frequency in hertz.
-    The default is 400.
+    Defaults to 400.
 
   -q
     Be quiet by not trying to play the file.
 
   -l <length>
     The decimal positive integer <length> specifies the dot length in milliseconds.
-    The default is 100.
+    Defaults to 100.
 
 EXIT STATUS
   1 if an option is invalid;
