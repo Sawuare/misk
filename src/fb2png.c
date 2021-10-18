@@ -24,8 +24,8 @@ static inline unsigned ddig(unsigned n) {
 int main(int argc, char *argv[]) {
   unsigned id    = 0;
   unsigned j     = 1;
-  unsigned xres  = 256;
-  unsigned yres  = 256;
+  unsigned xres  = 512;
+  unsigned yres  = 512;
   unsigned color = FB_WHITE;
 
   int opt;

@@ -6,10 +6,11 @@ SYNOPSIS
         [-s <step>]
 
 DESCRIPTION
-  fb images are algorithmic patterns painted by painters. There are 37 painters with
+  fb images are algorithmic patterns painted by painters. There are 40 painters with
   each having a serial identifier (ID) and parameters: j-value, color, horizontal
   resolution, and vertical resolution. Different painters paint different patterns.
   Varying the j-value of a painter varies its pattern (except for the first painter).
+  Painters 1, 2, and 3 do nothing; they are reserved for future implementation.
 
   fb2fb requires permission to read and write the Linux framebuffer device /dev/fb0,
   which likely requires being the superuser or being in the video group.
@@ -40,7 +41,7 @@ OPTIONS
 
   -i <ID>
     The decimal nonnegative integer <ID> specifies the painter's ID and must be less
-    than 37.
+    than 40.
     Defaults to 0.
 
   -j <j-value>
