@@ -23,7 +23,7 @@ static inline unsigned ddig(unsigned n) {
 
 int main(int argc, char *argv[]) {
   unsigned id    = 0;
-  unsigned j     = 1;
+  unsigned j     = 0;
   unsigned xres  = 512;
   unsigned yres  = 512;
   unsigned color = FB_WHITE;
@@ -67,7 +67,7 @@ int main(int argc, char *argv[]) {
 
   unsigned res = xres * yres;
 
-  if (!FB_IS_VALID(id, j) || !res || res > 1 << 30)
+  if (!fb_is_valid(id, j) || !res || res > 1 << 30)
     return 2;
 
   png_struct *structp = png_create_write_struct(PNG_LIBPNG_VER_STRING, 0, 0, 0);

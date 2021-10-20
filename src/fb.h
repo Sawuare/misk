@@ -24,8 +24,6 @@
 #define FB_PX_TO_G_BYTE(px) ((px) >>  8 & 255)
 #define FB_PX_TO_B_BYTE(px) ((px)       & 255)
 
-#define FB_IS_VALID(id, j) ((id) < 40 && (j))
-
 #define FB_IS_MONO_XOR_RAMP(id) ((id) < 36)
 
 #define PAINTER(id) static inline void fb_p##id(unsigned j, unsigned c, unsigned xres, unsigned yres, unsigned a[])
@@ -53,6 +51,21 @@ static inline unsigned fb_letter_to_color(const char *s) {
     case 'y': return FB_YELLOW;
     default:  return FB_WHITE;
   }
+}
+
+static inline _Bool fb_is_valid(unsigned id, unsigned j) {
+  if (id > 39)
+    return 0;
+
+  if (j)
+    return 1;
+
+  unsigned class = id / 4;
+
+  if (class == 2 || class == 4 || class == 6 || class == 8)
+    return 0;
+
+  return 1;
 }
 
 // Class 0

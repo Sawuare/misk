@@ -13,10 +13,12 @@
 #include "ecma-48.h"
 #include "fb.h"
 
+#define PRINTL(id, j, warning) printf("i%-10u j%-10u " warning "\r", id, j)
+
 int main(int argc, char *argv[]) {
   _Bool    line  = 0;
   unsigned id    = 0;
-  unsigned j     = 1;
+  unsigned j     = 0;
   unsigned step  = 1;
   unsigned color = FB_WHITE;
 
@@ -52,8 +54,6 @@ int main(int argc, char *argv[]) {
         return 1;
     }
 
-  int ret = 0;
-
   int fbd = open(FB_PATH, O_RDWR);
 
   if (fbd == -1)
@@ -72,17 +72,22 @@ int main(int argc, char *argv[]) {
   ntty.c_lflag &= ~(ECHO | ICANON);
   tcsetattr(STDIN_FILENO, TCSANOW, &ntty);
 
-  fputs(DECTCEM("l") CUP(), stdout);
-  fflush(stdout);
+  setbuf(stdout, 0);
 
-  while (FB_IS_VALID(id, j)) {
-    fb_painters[id](j, color, FB_XRES, FB_YRES, fbm);
+  fputs(DECTCEM("l") ED("1") CUP(), stdout);
 
-    if (line) {
-print:
-      printf("i%uj%u\r", id, j);
-      fflush(stdout);
+  while (1) {
+    if (fb_is_valid(id, j)) {
+      fb_painters[id](j, color, FB_XRES, FB_YRES, fbm);
     }
+    else {
+      PRINTL(id, j, "N/A");
+      goto get;
+    }
+
+    if (line)
+print:
+      PRINTL(id, j, "   ");
 
 get:
     switch (getchar()) {
@@ -127,12 +132,8 @@ get:
     }
   }
 
-  ret = 4;
-
 exit:
   fputs(DECTCEM("h") ED("3"), stdout);
   tcsetattr(STDIN_FILENO, TCSANOW, &otty);
   munmap(fbm, FB_SIZE);
-
-  return ret;
 }

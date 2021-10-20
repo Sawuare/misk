@@ -28,6 +28,9 @@ DESCRIPTION
     l toggles the status line;
     e exits;
 
+  The status line shows the ID and j-value. If the ID is not available or the j-value
+  is not applicable, a warning line is automatically printed.
+
 OPTIONS
   -# <color-rrggbb>
     The hexadecimal nonnegative integer <color-rrggbb> specifies the painting color
@@ -45,8 +48,8 @@ OPTIONS
     Defaults to 0.
 
   -j <j-value>
-    The decimal positive integer <j-value> specifies the painter's j-value.
-    Defaults to 1.
+    The decimal nonnegative integer <j-value> specifies the painter's j-value.
+    Defaults to 0.
 
   -l
     Enable the status line.
@@ -59,7 +62,6 @@ EXIT STATUS
   1 if an option is invalid;
   2 if opening /dev/fb0 failed;
   3 if mapping /dev/fb0 failed;
-  4 if the ID or j-value are invalid;
   0 otherwise;
 
 BUGS
