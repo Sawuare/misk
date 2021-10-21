@@ -35,12 +35,12 @@ int main(int argc, char *argv[]) {
   fputs(DECTCEM("l") ED("2"), stdout);
 
   while (1) {
-    int row = rand() % ws.ws_row + 1;
-    int col = rand() % ws.ws_col + 1;
-    int clr = rand() % 256;
-    int chr = rand() % 128;
+    int row = rand() % ws.ws_row +  1;
+    int col = rand() % ws.ws_col +  1;
+    int clr = rand() %         8 + 30;
+    int chr = rand() %        94 + 33;
 
-    printf(CUP("%d;%d") SGR("38;2;0;%d;0") "%c", row, col, clr, chr);
+    printf(CUP("%d;%d") SGR("%d") "%c", row, col, clr, chr);
     fflush(stdout);
 
     thrd_sleep(&zzz, 0);

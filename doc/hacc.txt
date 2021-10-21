@@ -5,8 +5,8 @@ SYNOPSIS
   hacc [<pause>]
 
 DESCRIPTION
-  hacc prints up to 128 different characters in up to 256 different shades of green
-  over the entire terminal window.
+  The characters are the graphic ASCII characters. The colors are black, red, green,
+  yellow, blue, magenta, cyan, and white.
 
   If given, the decimal integer <pause>, which must be in the range [0, 999999999],
   specifies in nanoseconds the pause between characters, which is otherwise 125000000
