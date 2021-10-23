@@ -22,6 +22,7 @@ static inline unsigned ddig(unsigned n) {
 }
 
 int main(int argc, char *argv[]) {
+  _Bool    best  = 0;
   unsigned id    = 0;
   unsigned j     = 0;
   unsigned xres  = 512;
@@ -30,7 +31,7 @@ int main(int argc, char *argv[]) {
 
   int opt;
 
-  while ((opt = getopt(argc, argv, "#:c:i:j:x:y:v")) != -1)
+  while ((opt = getopt(argc, argv, "#:c:i:j:x:y:vz")) != -1)
     switch (opt) {
       case '#':
         color = fb_rrggbb_to_color(optarg);
@@ -60,6 +61,10 @@ int main(int argc, char *argv[]) {
         printf("Compiled with libpng %s and using libpng %s\n", PNG_LIBPNG_VER_STRING, png_libpng_ver);
         printf("Compiled with zlib %s and using zlib %s\n", ZLIB_VERSION, zlib_version);
         return 0;
+
+      case 'z':
+        best = 1;
+        break;
 
       default:
         return 1;
@@ -106,7 +111,7 @@ int main(int argc, char *argv[]) {
   png_set_IHDR(structp, infop, xres, yres, 8, PNG_COLOR_TYPE_RGB, PNG_INTERLACE_NONE, PNG_COMPRESSION_TYPE_BASE, PNG_FILTER_TYPE_BASE);
   png_set_text(structp, infop, texts, ARRLEN(texts));
   png_set_filter(structp, PNG_FILTER_TYPE_BASE, FB_IS_MONO_XOR_RAMP(id) ? PNG_FILTER_NONE : PNG_FILTER_UP);
-  png_set_compression_level(structp, Z_DEFAULT_COMPRESSION);
+  png_set_compression_level(structp, best ? Z_BEST_COMPRESSION : Z_DEFAULT_COMPRESSION);
   png_set_compression_strategy(structp, Z_DEFAULT_STRATEGY);
 
   unsigned *original_image = malloc(res * 4);

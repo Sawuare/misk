@@ -3,7 +3,7 @@ NAME
 
 SYNOPSIS
   fb2png [-# <color-rrggbb>] [-c <color-letter>] [-i <ID>] [-j <j-value>] [-v]
-         [-x <x-px>] [-y <y-px>]
+         [-x <x-px>] [-y <y-px>] [-z]
 
 DESCRIPTION
   For a description of fb images, see the beginning of fb2fb.txt.
@@ -48,6 +48,10 @@ OPTIONS
     The decimal positive integer <y-px> specifies the image's vertical resolution in
     pixels.
     Defaults to 512.
+
+  -z
+    Use the best compression level instead of the default.
+    The compression is lossless, so expect the same image in more time and less size.
 
 EXIT STATUS
   1 if an option is invalid;
