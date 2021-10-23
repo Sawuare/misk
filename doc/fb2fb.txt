@@ -34,7 +34,7 @@ DESCRIPTION
 OPTIONS
   -# <color-rrggbb>
     The hexadecimal nonnegative integer <color-rrggbb> specifies the painting color
-    in the form rrggbb.
+    in the form rrggbb. Leading 0s may be omitted.
     Defaults to ffffff.
 
   -c <color-letter>
@@ -60,8 +60,9 @@ OPTIONS
 
 EXIT STATUS
   1 if an option is invalid;
-  2 if opening /dev/fb0 failed;
-  3 if mapping /dev/fb0 failed;
+  2 if an option argument is invalid;
+  3 if opening /dev/fb0 failed;
+  4 if mapping /dev/fb0 failed;
   0 otherwise;
 
 BUGS

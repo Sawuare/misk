@@ -98,7 +98,7 @@ int main(int argc, char *argv[]) {
 
   unsigned filename_size = ddig(cell_count) + ddig(gen_count) + ddig(rule) + ddig(seed) + 14;
   char filename[filename_size];
-  snprintf(filename, filename_size, "c%ug%ur%us%u.aeca.pcm", cell_count, gen_count, rule, seed);
+  sprintf(filename, "c%ug%ur%us%u.aeca.pcm", cell_count, gen_count, rule, seed);
 
   FILE *stream = fopen(filename, "wb");
 
@@ -115,9 +115,8 @@ int main(int argc, char *argv[]) {
 
   if (!quiet) {
     if (system(0)) {
-      unsigned command_size = filename_size + 33;
-      char command[command_size];
-      snprintf(command, command_size, "aplay -t raw -f U8 -r 44100 -c 1 %s", filename);
+      char command[filename_size + 33];
+      sprintf(command, "aplay -t raw -f U8 -r 44100 -c 1 %s", filename);
       system(command);
     }
     else

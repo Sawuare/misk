@@ -19,7 +19,7 @@ DESCRIPTION
 OPTIONS
   -# <color-rrggbb>
     The hexadecimal nonnegative integer <color-rrggbb> specifies the painting color
-    in the form rrggbb.
+    in the form rrggbb. Leading 0s may be omitted.
     Defaults to ffffff.
 
   -c <color-letter>

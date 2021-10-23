@@ -72,7 +72,7 @@ int main(int argc, char *argv[]) {
 
   unsigned res = xres * yres;
 
-  if (!fb_is_valid(id, j) || !res || res > 1 << 30)
+  if (!fb_is_valid(id, j) || !res || res > 1 << 30 || color > 0xffffff)
     return 2;
 
   png_struct *structp = png_create_write_struct(PNG_LIBPNG_VER_STRING, 0, 0, 0);
@@ -83,9 +83,8 @@ int main(int argc, char *argv[]) {
     return 3;
   }
 
-  unsigned filename_size = ddig(id) + ddig(j) + ddig(xres) + ddig(yres) + 19;
-  char filename[filename_size];
-  snprintf(filename, filename_size, "i%uj%ux%uy%u#%06x.fb.png", id, j, xres, yres, color);
+  char filename[ddig(id) + ddig(j) + ddig(xres) + ddig(yres) + 19];
+  sprintf(filename, "i%uj%ux%uy%u#%06x.fb.png", id, j, xres, yres, color);
 
   FILE *stream = fopen(filename, "wb");
 

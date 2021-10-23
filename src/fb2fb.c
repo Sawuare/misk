@@ -54,17 +54,20 @@ int main(int argc, char *argv[]) {
         return 1;
     }
 
+  if (color > 0xffffff)
+    return 2;
+
   int fbd = open(FB_PATH, O_RDWR);
 
   if (fbd == -1)
-    return 2;
+    return 3;
 
   unsigned *fbm = mmap(0, FB_SIZE, PROT_WRITE, MAP_SHARED, fbd, 0);
 
   close(fbd);
 
   if (fbm == MAP_FAILED)
-    return 3;
+    return 4;
 
   struct termios otty, ntty;
   tcgetattr(STDIN_FILENO, &otty);
