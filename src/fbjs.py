@@ -4,7 +4,7 @@
 
 J_MAX = 2 ** 32 - 1
 
-def a19(f, m):
+def a22(f, m):
   n = 0 if m >= 0 else -m + 1
 
   js = []
@@ -22,39 +22,39 @@ def a19(f, m):
   print(*js, file = f)
 
 # https://oeis.org/A059153
-with open("a19n1.fbjs.txt", "w") as f:
-  a19(f, -1)
+with open("a22n1.fbjs.txt", "w") as f:
+  a22(f, -1)
 
 # https://oeis.org/A020522
-with open("a19p0.fbjs.txt", "w") as f:
-  a19(f, 0)
+with open("a22p0.fbjs.txt", "w") as f:
+  a22(f, 0)
 
 # https://oeis.org/A171476
-with open("a19p1.fbjs.txt", "w") as f:
-  a19(f, 1)
+with open("a22p1.fbjs.txt", "w") as f:
+  a22(f, 1)
 
 # https://oeis.org/A171499
-with open("a19p2.fbjs.txt", "w") as f:
-  a19(f, 2)
+with open("a22p2.fbjs.txt", "w") as f:
+  a22(f, 2)
 
 # https://oeis.org/A171472
-with open("a19p3.fbjs.txt", "w") as f:
-  a19(f, 3)
+with open("a22p3.fbjs.txt", "w") as f:
+  a22(f, 3)
 
-with open("a19p4.fbjs.txt", "w") as f:
-  a19(f, 4)
+with open("a22p4.fbjs.txt", "w") as f:
+  a22(f, 4)
 
-with open("a19p5.fbjs.txt", "w") as f:
-  a19(f, 5)
+with open("a22p5.fbjs.txt", "w") as f:
+  a22(f, 5)
 
-with open("a19p6.fbjs.txt", "w") as f:
-  a19(f, 6)
+with open("a22p6.fbjs.txt", "w") as f:
+  a22(f, 6)
 
-with open("a19p7.fbjs.txt", "w") as f:
-  a19(f, 7)
+with open("a22p7.fbjs.txt", "w") as f:
+  a22(f, 7)
 
-with open("a19p8.fbjs.txt", "w") as f:
-  a19(f, 8)
+with open("a22p8.fbjs.txt", "w") as f:
+  a22(f, 8)
 
-with open("a19p9.fbjs.txt", "w") as f:
-  a19(f, 9)
+with open("a22p9.fbjs.txt", "w") as f:
+  a22(f, 9)
