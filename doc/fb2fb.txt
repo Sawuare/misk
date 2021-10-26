@@ -9,7 +9,7 @@ DESCRIPTION
   fb images are algorithmic patterns painted by painters. There are 40 painters with
   each having a serial identifier (ID) and parameters: j-value, color, horizontal
   resolution, and vertical resolution. Different painters paint different patterns.
-  Varying the j-value of a painter varies its pattern (except for the first painter).
+  Varying the j-value of a painter varies its pattern (except for painter 0).
   Painters 1, 2, and 3 do nothing; they are reserved for future implementation.
 
   fb2fb requires permission to read and write the Linux framebuffer device /dev/fb0,
@@ -23,8 +23,8 @@ DESCRIPTION
     } increments the ID;
     [ decrements the j-value;
     ] increments the j-value;
-    i sets the ID to the decimal nonnegative integer entered next;
-    j sets the j-value to the decimal positive integer entered next;
+    i sets the ID to the nonnegative integer entered next;
+    j sets the j-value to the nonnegative integer entered next;
     l toggles the status line;
     e exits;
 
@@ -43,19 +43,18 @@ OPTIONS
     Defaults to w.
 
   -i <ID>
-    The decimal nonnegative integer <ID> specifies the painter's ID and must be less
-    than 40.
+    The nonnegative integer <ID> specifies the painter's ID and must be less than 40.
     Defaults to 0.
 
   -j <j-value>
-    The decimal nonnegative integer <j-value> specifies the painter's j-value.
+    The nonnegative integer <j-value> specifies the painter's j-value.
     Defaults to 0.
 
   -l
     Enable the status line.
 
   -s <step>
-    The decimal nonnegative integer <step> specifies the j-value decrement/increment.
+    The nonnegative integer <step> specifies the j-value decrement/increment.
     Defaults to 1.
 
 EXIT STATUS

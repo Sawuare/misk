@@ -31,14 +31,14 @@ OPTIONS
     Delete the file after trying to play it.
 
   -f <frequency>
-    The decimal positive integer <frequency> specifies the wave frequency in hertz.
+    The positive integer <frequency> specifies the wave frequency in hertz.
     Defaults to 400.
 
   -q
     Be quiet by not trying to play the file.
 
   -l <length>
-    The decimal positive integer <length> specifies the dot length in milliseconds.
+    The positive integer <length> specifies the dot length in milliseconds.
     Defaults to 100.
 
 EXIT STATUS

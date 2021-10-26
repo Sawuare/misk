@@ -5,12 +5,12 @@ SYNOPSIS
   eca.py
 
 DESCRIPTION
-  Given a rule and a seed as decimal nonnegative integers, eca.py paints an
-  elementary cellular automaton on the screen. Horizontal generations of cells are
-  painted vertically from top to bottom, with dead cells in black and alive cells in
-  white. The seed is used to randomize the 1st generation. The seed 0 is special; it
-  does not randomize the 1st generation but instead places only 1 alive cell in the
-  middle of it.
+  Given a rule and a seed as nonnegative integers, eca.py paints an elementary
+  cellular automaton on the screen. Horizontal generations of cells are painted
+  vertically from top to bottom, with dead cells in black and alive cells in white.
+  The seed is used to randomize the 1st generation. The seed 0 is special; it does
+  not randomize the 1st generation but instead places only 1 alive cell in the middle
+  of it.
 
   eca.py requires permission to write the Linux framebuffer device /dev/fb0, which
   likely requires being the superuser or being in the video group.
