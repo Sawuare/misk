@@ -1,5 +1,5 @@
 NAME
-  fb2png - write fb images in the PNG format
+  fb2png - write a fb image in the PNG format
 
 SYNOPSIS
   fb2png [-# <color-rrggbb>] [-c <color-letter>] [-i <ID>] [-j <j-value>] [-v]

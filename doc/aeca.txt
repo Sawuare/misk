@@ -17,11 +17,11 @@ DESCRIPTION
 
     aplay -t raw -f U8 -r 44100 -c 1 <filename>
 
-  Playing and keeping the file is optional. See the -q and -d options.
+  Playing and keeping the file is optional. See the options -q and -d.
 
   Evolutions start from either a fixed state or a random state that is seeded
   manually. The former tend to sound tonal, while the latter tend to sound atonal.
-  See the -s option.
+  See the option -s.
 
   The file has a name that encodes how it was produced. For example, a file with the
   name c256g256r60s0.aeca.pcm can be reproduced by an invocation equivalent to this:

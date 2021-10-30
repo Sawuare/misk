@@ -1,4 +1,4 @@
-// fb2png.c - write fb images in the PNG format
+// fb2png.c - write a fb image in the PNG format
 
 #include <setjmp.h>
 #include <stdio.h>

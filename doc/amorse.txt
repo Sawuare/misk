@@ -14,7 +14,7 @@ DESCRIPTION
     The space between two letters is equal to three dots.
     The space between two words is equal to seven dots.
 
-  As you can see, the dot is the basic unit of length here. See the -l option.
+  As you can see, the dot is the basic unit of length here. See the option -l.
 
   amorse writes the signals to a file named amorse.pcm with this format:
 
@@ -24,7 +24,7 @@ DESCRIPTION
 
     aplay -t raw -f U8 -r 8000 -c 1 amorse.pcm
 
-  Playing and keeping the file is optional. See the -d and -q options.
+  Playing and keeping the file is optional. See the options -q and -d.
 
 OPTIONS
   -d

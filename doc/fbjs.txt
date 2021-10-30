@@ -22,7 +22,7 @@ DESCRIPTION
     a22p8.fbjs.txt
     a22p9.fbjs.txt
 
-  Where aNN denotes a sequence for a fb painter with ID NN.
+  Where "aN" denotes a sequence for a fb painter whose ID is N.
 
   The first 5 sequences are these sequences in the On-Line Encyclopedia of Integer
   Sequences (OEIS):
