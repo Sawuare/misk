@@ -17,9 +17,6 @@ _Noreturn static void bye(int unused) {
 }
 
 int main(int argc, char *argv[]) {
-  srand(time(0));
-  signal(SIGINT, bye);
-
   long ns = argv[1] ? atol(argv[1]) : 125000000;
 
   if (ns < 0 || ns > 999999999)
@@ -31,6 +28,9 @@ int main(int argc, char *argv[]) {
 
   if (ioctl(STDOUT_FILENO, TIOCGWINSZ, &ws) == -1)
     return 2;
+
+  srand(time(0));
+  signal(SIGINT, bye);
 
   fputs(DECTCEM("l") ED("2"), stdout);
 
