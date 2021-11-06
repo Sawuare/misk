@@ -5,7 +5,7 @@ SYNOPSIS
   fbjs
 
 DESCRIPTION
-  For a description of fb j-values, see the beginning of fb2fb.txt.
+  For a description of fb j-values, see the beginning of fb.txt.
 
   The sequences are nonnegative integers less than 2 raised to 32, separated by
   spaces, and written to these files:
@@ -34,4 +34,4 @@ DESCRIPTION
     https://oeis.org/A171472
 
 SEE ALSO
-  fb2fb.txt, fb2png.txt
+  fb2fb.txt, fb2png.txt, fb.txt

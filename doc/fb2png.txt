@@ -6,7 +6,7 @@ SYNOPSIS
          [-x <x-px>] [-y <y-px>] [-z]
 
 DESCRIPTION
-  For a description of fb images, see the beginning of fb2fb.txt.
+  For a description of fb images, see the beginning of fb.txt.
 
   fb2png writes a fb image to a 24-bit RGB, non-interlaced PNG file. The file has a
   name that encodes how it was produced. For example, a file with the name
@@ -62,4 +62,4 @@ EXIT STATUS
   0 otherwise;
 
 SEE ALSO
-  fb2fb.txt, fbjs.txt
+  fb2fb.txt, fbjs.txt, fb.txt

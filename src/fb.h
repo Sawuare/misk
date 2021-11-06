@@ -1,4 +1,4 @@
-// fb.h - fb painters and macros for the framebuffer
+// fb.h - code for fb images and macros for the framebuffer
 
 #include <stdlib.h>
 

@@ -6,11 +6,7 @@ SYNOPSIS
         [-s <step>]
 
 DESCRIPTION
-  fb images are algorithmic patterns painted by painters. There are 40 painters with
-  each having a serial identifier (ID) and parameters: j-value, color, horizontal
-  resolution, and vertical resolution. Different painters paint different patterns.
-  Varying the j-value of a painter varies its pattern (except for painter 0).
-  Painters 1, 2, and 3 do nothing; they are reserved for future implementation.
+  For a description of fb images, see the beginning of fb.txt.
 
   fb2fb requires permission to read and write the Linux framebuffer device /dev/fb0,
   which likely requires being the superuser or being in the video group.
@@ -69,4 +65,4 @@ BUGS
   adjustment, the assumptions are marked as UNPORTABLE.
 
 SEE ALSO
-  eca.txt, fb2png.txt, fbjs.txt
+  eca.txt, fb2png.txt, fbjs.txt, fb.txt

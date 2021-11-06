@@ -27,7 +27,7 @@ These are the folders and files in here:
     My nano configuration file.
 
   LICENSE.txt
-    The MIT license under which everything else is licensed.
+    The MIT License under which everything else is licensed.
 
   README.txt
     This file.

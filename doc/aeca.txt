@@ -52,8 +52,8 @@ OPTIONS
 
   -s <seed>
     The nonnegative integer <seed> specifies the seed used to randomize the 1st
-    generation. The seed 0 is special; it does not randomize the 1st generation but
-    instead places only 1 alive cell in the middle of it.
+    generation. Seed 0 is special; it does not randomize the 1st generation but
+    instead places only 1 alive cell in its middle.
     Defaults to 0.
 
 EXIT STATUS
