@@ -2,19 +2,19 @@ NAME
   fb2png - write a fb image in the PNG format
 
 SYNOPSIS
-  fb2png [-# <color-rrggbb>] [-c <color-letter>] [-i <ID>] [-j <j-value>] [-v]
-         [-x <x-px>] [-y <y-px>] [-z]
+  fb2png [-# <color-rrggbb>] [-c <color-letter>] [-h <height>] [-i <ID>]
+         [-j <j-value>] [-v] [-w <width>] [-z]
 
 DESCRIPTION
   For a description of fb images, see the beginning of fb.txt.
 
   fb2png writes a fb image to a 24-bit RGB, non-interlaced PNG file. The file has a
   name that encodes how it was produced. For example, a file with the name
-  i0j0x512y512#ffffff.fb.png can be reproduced by an invocation equivalent to this:
+  i0j0w512h512#ffffff.fb.png can be reproduced by an invocation equivalent to this:
 
-    fb2png -i 0 -j 0 -x 512 -y 512 -# ffffff
+    fb2png -i 0 -j 0 -w 512 -h 512 -# ffffff
 
-  Image resolutions greater than a gibipixel (i.e. 1073741824 pixels) are invalid.
+  Image areas greater than a gibipixel (i.e. 1073741824 pixels) are invalid.
 
 OPTIONS
   -# <color-rrggbb>
@@ -27,6 +27,10 @@ OPTIONS
     (r|g|b|c|m|y|w) for red, green, blue, cyan, magenta, yellow, or white.
     Defaults to w.
 
+  -h <height>
+    The positive integer <height> specifies the image's height in pixels.
+    Defaults to 512.
+
   -i <ID>
     The nonnegative integer <ID> specifies the painter's ID and must be less than 40.
     Defaults to 0.
@@ -38,14 +42,8 @@ OPTIONS
   -v
     Print libpng and zlib versions then exit.
 
-  -x <x-px>
-    The positive integer <x-px> specifies the image's horizontal resolution
-    in pixels.
-    Defaults to 512.
-
-  -y <y-px>
-    The positive integer <y-px> specifies the image's vertical resolution in
-    pixels.
+  -w <width>
+    The positive integer <width> specifies the image's width in pixels.
     Defaults to 512.
 
   -z

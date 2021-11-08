@@ -6,11 +6,11 @@ SYNOPSIS
 
 DESCRIPTION
   fb images are painted by painters, which are functions of these parameters: a
-  canvas, its horizontal and vertical resolutions, a color, and a j-value. Painters
-  produce patterns using arithmetic, bitwise, and logical operators on the canvas
-  coordinates, the color, and the j-value. Different painters produce different
-  patterns, while different j-values vary the patterns. Every painter is identified
-  by a serial ID: "pN" and "painter N" denote a painter whose ID is N.
+  canvas, its width and height, a color, and a j-value. Painters produce patterns
+  using arithmetic, bitwise, and logical operators on the canvas coordinates, the
+  color, and the j-value. Different painters produce different patterns, while
+  different j-values vary the patterns. Every painter is identified by a serial ID:
+  "pN" and "painter N" denote a painter whose ID is N.
 
   There are 40 painters, 0 through 39, divided into 10 classes, 0 through 9. Painters
   in classes 2, 4, 6, and 8 divide by the j-value, so j-value 0 is invalid for them.

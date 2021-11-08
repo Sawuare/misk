@@ -22,16 +22,16 @@ static inline unsigned ddig(unsigned n) {
 }
 
 int main(int argc, char *argv[]) {
-  _Bool    best  = 0;
-  unsigned id    = 0;
-  unsigned j     = 0;
-  unsigned xres  = 512;
-  unsigned yres  = 512;
-  unsigned color = FB_WHITE;
+  _Bool    best   = 0;
+  unsigned id     = 0;
+  unsigned j      = 0;
+  unsigned width  = 512;
+  unsigned height = 512;
+  unsigned color  = FB_WHITE;
 
   int opt;
 
-  while ((opt = getopt(argc, argv, "#:c:i:j:x:y:vz")) != -1)
+  while ((opt = getopt(argc, argv, "#:c:i:j:w:h:vz")) != -1)
     switch (opt) {
       case '#':
         color = fb_rrggbb_to_color(optarg);
@@ -49,12 +49,12 @@ int main(int argc, char *argv[]) {
         j = strtoul(optarg, 0, 10);
         break;
 
-      case 'x':
-        xres = strtoul(optarg, 0, 10);
+      case 'w':
+        width = strtoul(optarg, 0, 10);
         break;
 
-      case 'y':
-        yres = strtoul(optarg, 0, 10);
+      case 'h':
+        height = strtoul(optarg, 0, 10);
         break;
 
       case 'v':
@@ -70,9 +70,9 @@ int main(int argc, char *argv[]) {
         return 1;
     }
 
-  unsigned res = xres * yres;
+  unsigned area = width * height;
 
-  if (!fb_is_valid(id, j) || !res || res > 1 << 30 || color > 0xffffff)
+  if (!fb_is_valid(id, j) || !area || area > 1 << 30 || color > 0xffffff)
     return 2;
 
   png_struct *structp = png_create_write_struct(PNG_LIBPNG_VER_STRING, 0, 0, 0);
@@ -83,8 +83,8 @@ int main(int argc, char *argv[]) {
     return 3;
   }
 
-  char filename[ddig(id) + ddig(j) + ddig(xres) + ddig(yres) + 19];
-  sprintf(filename, "i%uj%ux%uy%u#%06x.fb.png", id, j, xres, yres, color);
+  char filename[ddig(id) + ddig(j) + ddig(width) + ddig(height) + 19];
+  sprintf(filename, "i%uj%uw%uh%u#%06x.fb.png", id, j, width, height, color);
 
   FILE *stream = fopen(filename, "wb");
 
@@ -107,14 +107,14 @@ int main(int argc, char *argv[]) {
     {.key = "Software", .text = "fb2png",  .compression = PNG_TEXT_COMPRESSION_NONE}
   };
 
-  png_set_IHDR(structp, infop, xres, yres, 8, PNG_COLOR_TYPE_RGB, PNG_INTERLACE_NONE, PNG_COMPRESSION_TYPE_BASE, PNG_FILTER_TYPE_BASE);
+  png_set_IHDR(structp, infop, width, height, 8, PNG_COLOR_TYPE_RGB, PNG_INTERLACE_NONE, PNG_COMPRESSION_TYPE_BASE, PNG_FILTER_TYPE_BASE);
   png_set_text(structp, infop, texts, ARRLEN(texts));
   png_set_filter(structp, PNG_FILTER_TYPE_BASE, FB_IS_MONO_XOR_RAMP(id) ? PNG_FILTER_NONE : PNG_FILTER_UP);
   png_set_compression_level(structp, best ? Z_BEST_COMPRESSION : Z_DEFAULT_COMPRESSION);
   png_set_compression_strategy(structp, Z_DEFAULT_STRATEGY);
 
-  unsigned *original_image = malloc(res * 4);
-  png_byte *stripped_image = malloc(res * 3);
+  unsigned *original_image = malloc(area * 4);
+  png_byte *stripped_image = malloc(area * 3);
 
   if (!original_image || !stripped_image) {
     png_destroy_write_struct(&structp, &infop);
@@ -125,10 +125,10 @@ int main(int argc, char *argv[]) {
     return 6;
   }
 
-  fb_painters[id](j, color, xres, yres, original_image);
+  fb_painters[id](j, color, width, height, original_image);
 
   // Convert to RGB
-  for (unsigned i = 0, j = 0; i < res; i += 1, j += 3) {
+  for (unsigned i = 0, j = 0; i < area; i += 1, j += 3) {
     stripped_image[j    ] = FB_PX_TO_R_BYTE(original_image[i]);
     stripped_image[j + 1] = FB_PX_TO_G_BYTE(original_image[i]);
     stripped_image[j + 2] = FB_PX_TO_B_BYTE(original_image[i]);
@@ -136,10 +136,10 @@ int main(int argc, char *argv[]) {
 
   free(original_image);
 
-  png_byte *row_pointers[yres];
+  png_byte *row_pointers[height];
 
-  for (unsigned y = 0; y < yres; ++y)
-    row_pointers[y] = stripped_image + xres * y * 3;
+  for (unsigned y = 0; y < height; ++y)
+    row_pointers[y] = stripped_image + width * y * 3;
 
   png_write_info(structp, infop);
   png_write_image(structp, row_pointers);

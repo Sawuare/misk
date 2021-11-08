@@ -81,7 +81,7 @@ int main(int argc, char *argv[]) {
 
   while (1) {
     if (fb_is_valid(id, j)) {
-      fb_painters[id](j, color, FB_XRES, FB_YRES, fbm);
+      fb_painters[id](j, color, FB_WIDTH, FB_HEIGHT, fbm);
     }
     else {
       PRINTL(id, j, "N/A");

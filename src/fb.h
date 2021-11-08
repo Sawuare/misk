@@ -5,9 +5,9 @@
 #define FB_PATH "/dev/fb0"
 
 // UNPORTABLE
-#define FB_SIZE 4227072
-#define FB_XRES 1376
-#define FB_YRES 768
+#define FB_SIZE   4227072
+#define FB_WIDTH  1376
+#define FB_HEIGHT 768
 
 // UNPORTABLE
 #define FB_BLACK   0x000000
@@ -26,11 +26,11 @@
 
 #define FB_IS_MONO_XOR_RAMP(id) ((id) < 36)
 
-#define PAINTER(id) static inline void fb_p##id(unsigned j, unsigned color, unsigned xres, unsigned yres, unsigned canvas[])
+#define PAINTER(id) static inline void fb_p##id(unsigned j, unsigned color, unsigned width, unsigned height, unsigned canvas[])
 
 #define FORYX \
-  for (unsigned y = 0; y < yres; ++y) \
-  for (unsigned x = 0; x < xres; ++x)
+  for (unsigned y = 0; y < height; ++y) \
+  for (unsigned x = 0; x < width;  ++x)
 
 // UNPORTABLE
 #define MONO(px) !(px) * color
@@ -72,7 +72,7 @@ static inline _Bool fb_is_valid(unsigned id, unsigned j) {
 
 PAINTER(0) {
   FORYX {
-    canvas[y * xres + x] = FB_BLACK;
+    canvas[y * width + x] = FB_BLACK;
     canvas[y * x] = color;
   }
 }
@@ -90,198 +90,198 @@ PAINTER(3) {
 
 PAINTER(4) {
   FORYX
-    canvas[y * xres + x] = MONO((x & y) & j);
+    canvas[y * width + x] = MONO((x & y) & j);
 }
 
 PAINTER(5) {
   FORYX
-    canvas[y * xres + x] = MONO((x | y) & j);
+    canvas[y * width + x] = MONO((x | y) & j);
 }
 
 PAINTER(6) {
   FORYX
-    canvas[y * xres + x] = MONO((x ^ y) & j);
+    canvas[y * width + x] = MONO((x ^ y) & j);
 }
 
 PAINTER(7) {
   FORYX
-    canvas[y * xres + x] = MONO((x * y) & j);
+    canvas[y * width + x] = MONO((x * y) & j);
 }
 
 // Class 2
 
 PAINTER(8) {
   FORYX
-    canvas[y * xres + x] = MONO((x & y) % j);
+    canvas[y * width + x] = MONO((x & y) % j);
 }
 
 PAINTER(9) {
   FORYX
-    canvas[y * xres + x] = MONO((x | y) % j);
+    canvas[y * width + x] = MONO((x | y) % j);
 }
 
 PAINTER(10) {
   FORYX
-    canvas[y * xres + x] = MONO((x ^ y) % j);
+    canvas[y * width + x] = MONO((x ^ y) % j);
 }
 
 PAINTER(11) {
   FORYX
-    canvas[y * xres + x] = MONO((x * y) % j);
+    canvas[y * width + x] = MONO((x * y) % j);
 }
 
 // Class 3
 
 PAINTER(12) {
   FORYX
-    canvas[y * xres + x] = MONO((x * x & y * y) & j);
+    canvas[y * width + x] = MONO((x * x & y * y) & j);
 }
 
 PAINTER(13) {
   FORYX
-    canvas[y * xres + x] = MONO((x * x | y * y) & j);
+    canvas[y * width + x] = MONO((x * x | y * y) & j);
 }
 
 PAINTER(14) {
   FORYX
-    canvas[y * xres + x] = MONO((x * x ^ y * y) & j);
+    canvas[y * width + x] = MONO((x * x ^ y * y) & j);
 }
 
 PAINTER(15) {
   FORYX
-    canvas[y * xres + x] = MONO((x * x * y * y) & j);
+    canvas[y * width + x] = MONO((x * x * y * y) & j);
 }
 
 // Class 4
 
 PAINTER(16) {
   FORYX
-    canvas[y * xres + x] = MONO((x * x & y * y) % j);
+    canvas[y * width + x] = MONO((x * x & y * y) % j);
 }
 
 PAINTER(17) {
   FORYX
-    canvas[y * xres + x] = MONO((x * x | y * y) % j);
+    canvas[y * width + x] = MONO((x * x | y * y) % j);
 }
 
 PAINTER(18) {
   FORYX
-    canvas[y * xres + x] = MONO((x * x ^ y * y) % j);
+    canvas[y * width + x] = MONO((x * x ^ y * y) % j);
 }
 
 PAINTER(19) {
   FORYX
-    canvas[y * xres + x] = MONO((x * x * y * y) % j);
+    canvas[y * width + x] = MONO((x * x * y * y) % j);
 }
 
 // Class 5
 
 PAINTER(20) {
   FORYX
-    canvas[y * xres + x] = MONO(((j & x) * x & (j & y) * y) & j);
+    canvas[y * width + x] = MONO(((j & x) * x & (j & y) * y) & j);
 }
 
 PAINTER(21) {
   FORYX
-    canvas[y * xres + x] = MONO(((j | x) * x & (j | y) * y) & j);
+    canvas[y * width + x] = MONO(((j | x) * x & (j | y) * y) & j);
 }
 
 PAINTER(22) {
   FORYX
-    canvas[y * xres + x] = MONO(((j ^ x) * x & (j ^ y) * y) & j);
+    canvas[y * width + x] = MONO(((j ^ x) * x & (j ^ y) * y) & j);
 }
 
 PAINTER(23) {
   FORYX
-    canvas[y * xres + x] = MONO(((j * x) * x & (j * y) * y) & j);
+    canvas[y * width + x] = MONO(((j * x) * x & (j * y) * y) & j);
 }
 
 // Class 6
 
 PAINTER(24) {
   FORYX
-    canvas[y * xres + x] = MONO(((j & x) * x & (j & y) * y) % j);
+    canvas[y * width + x] = MONO(((j & x) * x & (j & y) * y) % j);
 }
 
 PAINTER(25) {
   FORYX
-    canvas[y * xres + x] = MONO(((j | x) * x & (j | y) * y) % j);
+    canvas[y * width + x] = MONO(((j | x) * x & (j | y) * y) % j);
 }
 
 PAINTER(26) {
   FORYX
-    canvas[y * xres + x] = MONO(((j ^ x) * x & (j ^ y) * y) % j);
+    canvas[y * width + x] = MONO(((j ^ x) * x & (j ^ y) * y) % j);
 }
 
 PAINTER(27) {
   FORYX
-    canvas[y * xres + x] = MONO(((j * x) * x & (j * y) * y) % j);
+    canvas[y * width + x] = MONO(((j * x) * x & (j * y) * y) % j);
 }
 
 // Class 7
 
 PAINTER(28) {
   FORYX
-    canvas[y * xres + x] = MONO(((j & x) * x + (j & y) * y) & j);
+    canvas[y * width + x] = MONO(((j & x) * x + (j & y) * y) & j);
 }
 
 PAINTER(29) {
   FORYX
-    canvas[y * xres + x] = MONO(((j | x) * x + (j | y) * y) & j);
+    canvas[y * width + x] = MONO(((j | x) * x + (j | y) * y) & j);
 }
 
 PAINTER(30) {
   FORYX
-    canvas[y * xres + x] = MONO(((j ^ x) * x + (j ^ y) * y) & j);
+    canvas[y * width + x] = MONO(((j ^ x) * x + (j ^ y) * y) & j);
 }
 
 PAINTER(31) {
   FORYX
-    canvas[y * xres + x] = MONO(((j * x) * x + (j * y) * y) & j);
+    canvas[y * width + x] = MONO(((j * x) * x + (j * y) * y) & j);
 }
 
 // Class 8
 
 PAINTER(32) {
   FORYX
-    canvas[y * xres + x] = MONO(((j & x) * x + (j & y) * y) % j);
+    canvas[y * width + x] = MONO(((j & x) * x + (j & y) * y) % j);
 }
 
 PAINTER(33) {
   FORYX
-    canvas[y * xres + x] = MONO(((j | x) * x + (j | y) * y) % j);
+    canvas[y * width + x] = MONO(((j | x) * x + (j | y) * y) % j);
 }
 
 PAINTER(34) {
   FORYX
-    canvas[y * xres + x] = MONO(((j ^ x) * x + (j ^ y) * y) % j);
+    canvas[y * width + x] = MONO(((j ^ x) * x + (j ^ y) * y) % j);
 }
 
 PAINTER(35) {
   FORYX
-    canvas[y * xres + x] = MONO(((j * x) * x + (j * y) * y) % j);
+    canvas[y * width + x] = MONO(((j * x) * x + (j * y) * y) % j);
 }
 
 // Class 9
 
 PAINTER(36) {
   FORYX
-    canvas[y * xres + x] = RAMP((j & x) * x + (j & y) * y);
+    canvas[y * width + x] = RAMP((j & x) * x + (j & y) * y);
 }
 
 PAINTER(37) {
   FORYX
-    canvas[y * xres + x] = RAMP((j | x) * x + (j | y) * y);
+    canvas[y * width + x] = RAMP((j | x) * x + (j | y) * y);
 }
 
 PAINTER(38) {
   FORYX
-    canvas[y * xres + x] = RAMP((j ^ x) * x + (j ^ y) * y);
+    canvas[y * width + x] = RAMP((j ^ x) * x + (j ^ y) * y);
 }
 
 PAINTER(39) {
   FORYX
-    canvas[y * xres + x] = RAMP((j * x) * x + (j * y) * y);
+    canvas[y * width + x] = RAMP((j * x) * x + (j * y) * y);
 }
 
 static void (*fb_painters[])(unsigned, unsigned, unsigned, unsigned, unsigned[]) = {
