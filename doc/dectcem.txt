@@ -1,0 +1,5 @@
+NAME
+  dectcem.h - text cursor enable mode
+
+SYNOPSIS
+  #include "dectcem.h"

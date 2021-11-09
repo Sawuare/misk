@@ -113,40 +113,40 @@ int main(int argc, char *argv[]) {
   png_set_compression_level(structp, best ? Z_BEST_COMPRESSION : Z_DEFAULT_COMPRESSION);
   png_set_compression_strategy(structp, Z_DEFAULT_STRATEGY);
 
-  unsigned *original_image = malloc(area * 4);
-  png_byte *stripped_image = malloc(area * 3);
+  unsigned *original_canvas = malloc(area * 4);
+  png_byte *stripped_canvas = malloc(area * 3);
 
-  if (!original_image || !stripped_image) {
+  if (!original_canvas || !stripped_canvas) {
     png_destroy_write_struct(&structp, &infop);
-    free(original_image);
-    free(stripped_image);
+    free(original_canvas);
+    free(stripped_canvas);
     fclose(stream);
     remove(filename);
     return 6;
   }
 
-  fb_painters[id](j, color, width, height, original_image);
+  fb_painters[id](j, color, width, height, original_canvas);
 
   // Convert to RGB
   for (unsigned i = 0, j = 0; i < area; i += 1, j += 3) {
-    stripped_image[j    ] = FB_PX_TO_R_BYTE(original_image[i]);
-    stripped_image[j + 1] = FB_PX_TO_G_BYTE(original_image[i]);
-    stripped_image[j + 2] = FB_PX_TO_B_BYTE(original_image[i]);
+    stripped_canvas[j    ] = FB_PX_TO_R_BYTE(original_canvas[i]);
+    stripped_canvas[j + 1] = FB_PX_TO_G_BYTE(original_canvas[i]);
+    stripped_canvas[j + 2] = FB_PX_TO_B_BYTE(original_canvas[i]);
   }
 
-  free(original_image);
+  free(original_canvas);
 
   png_byte *row_pointers[height];
 
   for (unsigned y = 0; y < height; ++y)
-    row_pointers[y] = stripped_image + width * y * 3;
+    row_pointers[y] = &stripped_canvas[y * width * 3];
 
   png_write_info(structp, infop);
   png_write_image(structp, row_pointers);
   png_write_end(structp, 0);
 
   png_destroy_write_struct(&structp, &infop);
-  free(stripped_image);
+  free(stripped_canvas);
   fclose(stream);
 
   printf("Wrote %s\n", filename);

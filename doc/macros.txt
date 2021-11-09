@@ -1,0 +1,5 @@
+NAME
+  macros.h - miscellaneous useful macros
+
+SYNOPSIS
+  #include "macros.h"

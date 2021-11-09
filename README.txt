@@ -32,7 +32,7 @@ These are the folders and files in here:
   README.txt
     This file.
 
-For a one-line description of every program, execute this command line:
+For a one-line description of every program and module, execute this command line:
 
   awk "FNR==2;FNR==3{nextfile}" doc/*
 
