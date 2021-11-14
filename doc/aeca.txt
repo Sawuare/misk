@@ -15,7 +15,7 @@ DESCRIPTION
 
   aeca does that by invoking the external program "aplay":
 
-    aplay -t raw -f U8 -r 44100 -c 1 <filename>
+    $ aplay -t raw -f U8 -r 44100 -c 1 <filename>
 
   Playing and keeping the file is optional. See the options -q and -d.
 
@@ -24,9 +24,9 @@ DESCRIPTION
   See the option -s.
 
   The file has a name that encodes how it was produced. For example, a file with the
-  name c256g256r60s0.aeca.pcm can be reproduced by an invocation equivalent to this:
+  name c256g256r60s0.aeca.pcm can be reproduced by an invocation equivalent to
 
-    aeca -c 256 -g 256 -r 60 -s 0
+    $ aeca -c 256 -g 256 -r 60 -s 0
 
   A file generated from a random state could be irreproducible on different systems
   because of a possibly different implementation of the random number generator used.

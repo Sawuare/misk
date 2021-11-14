@@ -6,8 +6,8 @@ SYNOPSIS
 
 DESCRIPTION
   amorse reads signals consisting of dots and dashes in the same format printed by
-  the sister program morse. amorse encodes said signals into audio ones; square waves
-  of max amplitude. This is the standard spacing and length of the signals:
+  the sister program morse. amorse encodes the signals into audio ones; square waves
+  of max amplitude. The signals have standard spacing and length:
 
     A dash is equal to three dots.
     The space between the signals forming the same letter is equal to one dot.
@@ -22,7 +22,7 @@ DESCRIPTION
 
   amorse tries to play the file by invoking the external program "aplay":
 
-    aplay -t raw -f U8 -r 8000 -c 1 amorse.pcm
+    $ aplay -t raw -f U8 -r 8000 -c 1 amorse.pcm
 
   Playing and keeping the file is optional. See the options -q and -d.
 

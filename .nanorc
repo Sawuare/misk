@@ -24,7 +24,8 @@ bind M-C comment all
 bind M-L linenumbers all
 bind M-P curpos all
 bind M-W whitespacedisplay all
-# Workaround for the Linux console
+
+# Alternatives for the Linux terminal
 bind M-Y redo all
 bind M-Z undo all
 
@@ -43,10 +44,8 @@ comment "--"
 
 # Constructor identifier
 color lightcyan "\<([[:upper:]][[:alnum:]']*)\>"
-
 # Module identifier
 color lightcyan "\<(([[:upper:]][[:alnum:]']*.)*[[:upper:]][[:alnum:]']*)\>"
-
 # Reserved identifier
 color lightmagenta "\<(case|class|data|default|deriving|do|else|foreign|if|import|in|infix|infixl|infixr|instance|let|module|newtype|of|then|type|where|_)\>"
 

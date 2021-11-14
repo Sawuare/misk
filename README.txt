@@ -1,9 +1,9 @@
-Here is my hobby software, including programs about audio, images, patterns, physics,
-mathematics, utility, and fun, and modules useful for other programs. Some of them
-use features of POSIX, less use features of C, and even less use features of Linux.
-The external program "aplay", an ALSA utility, is recommended but not a dependency.
+Here is my hobby software, including modules for terminal control and programs about
+audio, graphics, patterns, physics, mathematics, utility, and fun. The programs only
+have terminal interfaces. Some programs use features of C, POSIX, or Linux, so I
+recommend GNU/Linux for using them.
 
-These are the folders and files in here:
+The folders and files in here are:
 
   dat/
     Data exported by the programs.
@@ -12,12 +12,12 @@ These are the folders and files in here:
     Documentation of the programs.
 
   src/
-    Sources and scripts in several languages.
+    Source code in several languages.
 
-    *.c  -> C files
+    *.c  -> C source files
     *.h  -> C headers
     *.hs -> Haskell files
-    *.py -> Python 3 scripts
+    *.py -> Python scripts
     *.sh -> POSIX shell scripts
 
   .bashrc
@@ -32,9 +32,9 @@ These are the folders and files in here:
   README.txt
     This file.
 
-For a one-line description of every program and module, execute this command line:
+For a one-line description of every module and program, execute
 
-  awk "FNR==2;FNR==3{nextfile}" doc/*
+  $ awk "FNR==2;FNR==3{nextfile}" doc/*
 
 To get started, read doc/build.txt then execute src/build.sh to build and install
 everything automatically or read it to learn how individual programs are compiled.

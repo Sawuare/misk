@@ -34,4 +34,4 @@ DESCRIPTION
     https://oeis.org/A171472
 
 SEE ALSO
-  fb2fb.txt, fb2png.txt, fb.txt
+  fb.txt, fb2fb.txt, fb2png.txt

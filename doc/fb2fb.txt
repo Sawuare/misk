@@ -61,8 +61,8 @@ EXIT STATUS
   0 otherwise;
 
 BUGS
-  The source fb.h is unportable; it makes assumptions about the framebuffer. For easy
-  adjustment, the assumptions are marked as UNPORTABLE.
+  The source code in fb.h is unportable; it makes assumptions about the framebuffer.
+  For easy adjustment, the assumptions are marked "UNPORTABLE".
 
 SEE ALSO
-  eca.txt, fb2png.txt, fbjs.txt, fb.txt
+  eca.txt, fb.txt, fb2png.txt, fbjs.txt

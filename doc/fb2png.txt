@@ -10,9 +10,9 @@ DESCRIPTION
 
   fb2png writes a fb image to a 24-bit RGB, non-interlaced PNG file. The file has a
   name that encodes how it was produced. For example, a file with the name
-  i0j0w512h512#ffffff.fb.png can be reproduced by an invocation equivalent to this:
+  i0j0w512h512#ffffff.fb.png can be reproduced by an invocation equivalent to
 
-    fb2png -i 0 -j 0 -w 512 -h 512 -# ffffff
+    $ fb2png -i 0 -j 0 -w 512 -h 512 -# ffffff
 
   Image areas greater than a gibipixel (i.e. 1073741824 pixels) are invalid.
 
@@ -60,4 +60,4 @@ EXIT STATUS
   0 otherwise;
 
 SEE ALSO
-  fb2fb.txt, fbjs.txt, fb.txt
+  fb.txt, fb2fb.txt, fbjs.txt
