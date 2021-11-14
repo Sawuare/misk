@@ -2,7 +2,6 @@
 // https://www.ecma-international.org/publications-and-standards/standards/ecma-48
 
 // Elements of the C0 set
-
 #define ACK "\x06"
 #define BEL "\x07"
 #define BS  "\x08"
@@ -39,7 +38,6 @@
 #define VT  "\x0b"
 
 // Elements of the C1 set
-
 #define APC ESC "_"
 #define BPH ESC "B"
 #define CCH ESC "T"
@@ -70,7 +68,6 @@
 #define VTS ESC "J"
 
 // Independent control functions
-
 #define CMD  ESC "d"
 #define DMI  ESC "`"
 #define EMI  ESC "b"
@@ -83,7 +80,6 @@
 #define RIS  ESC "c"
 
 // Control sequences
-
 #define CBT(p)  CSI p "Z"
 #define CHA(p)  CSI p "G"
 #define CHT(p)  CSI p "I"

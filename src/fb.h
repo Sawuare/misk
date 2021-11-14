@@ -32,13 +32,11 @@
   for (unsigned y = 0; y < height; ++y) \
   for (unsigned x = 0; x < width;  ++x)
 
-// UNPORTABLE
-#define MONO(px) !(px) * color
-#define RAMP(px)  (px) % 256 * color / 255
+#define MONO(px) (px) ? FB_BLACK : color
+#define RAMP(px) (px) % 256 * color / 255 // UNPORTABLE
 
-// UNPORTABLE
 static inline unsigned fb_rrggbb_to_color(const char *s) {
-  return strtoul(s, 0, 16);
+  return strtoul(s, 0, 16); // UNPORTABLE
 }
 
 static inline unsigned fb_letter_to_color(const char *s) {
