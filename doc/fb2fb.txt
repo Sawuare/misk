@@ -39,7 +39,7 @@ OPTIONS
     Defaults to w.
 
   -i <ID>
-    The nonnegative integer <ID> specifies the painter's ID and must be less than 40.
+    The nonnegative integer <ID> specifies the painter's ID and must be less than 50.
     Defaults to 0.
 
   -j <j-value>

@@ -10,17 +10,17 @@ DESCRIPTION
   The sequences are nonnegative integers less than 2 raised to 32, separated by
   spaces, and written to these files:
 
-    a22n1.fbjs.txt
-    a22p0.fbjs.txt
-    a22p1.fbjs.txt
-    a22p2.fbjs.txt
-    a22p3.fbjs.txt
-    a22p4.fbjs.txt
-    a22p5.fbjs.txt
-    a22p6.fbjs.txt
-    a22p7.fbjs.txt
-    a22p8.fbjs.txt
-    a22p9.fbjs.txt
+    a27n1.fbjs.txt
+    a27p0.fbjs.txt
+    a27p1.fbjs.txt
+    a27p2.fbjs.txt
+    a27p3.fbjs.txt
+    a27p4.fbjs.txt
+    a27p5.fbjs.txt
+    a27p6.fbjs.txt
+    a27p7.fbjs.txt
+    a27p8.fbjs.txt
+    a27p9.fbjs.txt
 
   Where "aN" denotes a sequence for a fb painter whose ID is N.
 
