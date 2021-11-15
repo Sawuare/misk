@@ -8,7 +8,7 @@ DESCRIPTION
   export.sh must be executed from ../src/. It exports the output of these programs,
   assuming that build.sh has been executed:
 
-    fbjs.py
+    hjjs.py
     mts.py
     print.py
     waves

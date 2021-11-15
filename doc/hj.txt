@@ -1,0 +1,24 @@
+NAME
+  hj.h - code for HJ images and macros for the framebuffer
+
+SYNOPSIS
+  #include "hj.h"
+
+DESCRIPTION
+  HJ images are painted by painters, which are functions of these parameters: a
+  canvas, its width and height, a color, and a J-value. Painters produce patterns
+  using arithmetic, bitwise, and logical operators on the canvas coordinates, the
+  color, and the J-value. Different painters produce different patterns, while
+  different J-values vary the patterns. Every painter is identified by a serial ID:
+  "PN" and "painter N" denote a painter whose ID is N.
+
+  There are 50 painters, 0 through 49, divided into 10 classes, 0 through 9. Painters
+  in classes 2, 4, 6, and 8 divide by the J-value, so J-value 0 is invalid for them.
+
+  Notes:
+
+    1. P0 does not use the J-value.
+    2. P1, P2, P3, and P4 do nothing; they are reserved for future implementation.
+
+SEE ALSO
+  hj2fb.txt, hj2png.txt, hjjs.txt

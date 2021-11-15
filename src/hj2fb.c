@@ -1,4 +1,4 @@
-// fb2fb.c - paint fb images on the Linux framebuffer device
+// hj2fb.c - paint HJ images on the Linux framebuffer device
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -11,7 +11,7 @@
 
 #include "dectcem.h"
 #include "ecma-48.h"
-#include "fb.h"
+#include "hj.h"
 
 #define PRINTL(id, j, warning) printf("i%-10u j%-10u " warning "\r", id, j)
 
@@ -20,18 +20,18 @@ int main(int argc, char *argv[]) {
   unsigned id    = 0;
   unsigned j     = 0;
   unsigned step  = 1;
-  unsigned color = FB_WHITE;
+  unsigned color = HJ_WHITE;
 
   int opt;
 
   while ((opt = getopt(argc, argv, "#:c:i:j:s:l")) != -1)
     switch (opt) {
       case '#':
-        color = fb_rrggbb_to_color(optarg);
+        color = hj_rrggbb_to_color(optarg);
         break;
 
       case 'c':
-        color = fb_letter_to_color(optarg);
+        color = hj_letter_to_color(optarg);
         break;
 
       case 'i':
@@ -80,8 +80,8 @@ int main(int argc, char *argv[]) {
   fputs(DECTCEM("l") ED("1") CUP(), stdout);
 
   while (1) {
-    if (fb_is_valid(id, j)) {
-      fb_painters[id](j, color, FB_WIDTH, FB_HEIGHT, fbm);
+    if (hj_is_valid(id, j)) {
+      hj_painters[id](j, color, FB_WIDTH, FB_HEIGHT, fbm);
     }
     else {
       PRINTL(id, j, "N/A");

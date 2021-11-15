@@ -1,0 +1,37 @@
+NAME
+  hjjs - write some interesting HJ J-sequences
+
+SYNOPSIS
+  hjjs
+
+DESCRIPTION
+  For a description of HJ J-values, see the beginning of hj.txt.
+
+  The sequences are nonnegative integers less than 2 raised to 32, separated by
+  spaces, and written to these files:
+
+    a27n1.hjjs.txt
+    a27p0.hjjs.txt
+    a27p1.hjjs.txt
+    a27p2.hjjs.txt
+    a27p3.hjjs.txt
+    a27p4.hjjs.txt
+    a27p5.hjjs.txt
+    a27p6.hjjs.txt
+    a27p7.hjjs.txt
+    a27p8.hjjs.txt
+    a27p9.hjjs.txt
+
+  Where "aN" denotes a sequence for an HJ painter whose ID is N.
+
+  The first 5 sequences are these sequences in the On-Line Encyclopedia of Integer
+  Sequences (OEIS):
+
+    https://oeis.org/A059153
+    https://oeis.org/A020522
+    https://oeis.org/A171476
+    https://oeis.org/A171499
+    https://oeis.org/A171472
+
+SEE ALSO
+  hj.txt, hj2fb.txt, hj2png.txt

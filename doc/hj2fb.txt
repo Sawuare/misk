@@ -1,30 +1,30 @@
 NAME
-  fb2fb - paint fb images on the Linux framebuffer device
+  hj2fb - paint HJ images on the Linux framebuffer device
 
 SYNOPSIS
-  fb2fb [-# <color-rrggbb>] [-c <color-letter>] [-i <ID>] [-j <j-value>] [-l]
+  hj2fb [-# <color-rrggbb>] [-c <color-letter>] [-i <ID>] [-j <J-value>] [-l]
         [-s <step>]
 
 DESCRIPTION
-  For a description of fb images, see the beginning of fb.txt.
+  For a description of HJ images, see the beginning of hj.txt.
 
-  fb2fb requires permission to read and write the Linux framebuffer device /dev/fb0,
+  hj2fb requires permission to read and write the Linux framebuffer device /dev/fb0,
   which likely requires being the superuser or being in the video group.
 
-  fb2fb should be executed in the Linux console (i.e. TERM=linux).
+  hj2fb should be executed in the Linux console (i.e. TERM=linux).
 
-  These keys can be used to navigate and control fb2fb during execution:
+  These keys can be used to navigate and control hj2fb during execution:
 
     { decrements the ID;
     } increments the ID;
-    [ decrements the j-value;
-    ] increments the j-value;
+    [ decrements the J-value;
+    ] increments the J-value;
     i sets the ID to the nonnegative integer entered next;
-    j sets the j-value to the nonnegative integer entered next;
+    j sets the J-value to the nonnegative integer entered next;
     l toggles the status line;
     e exits;
 
-  The status line shows the ID and j-value. If the ID is not available or the j-value
+  The status line shows the ID and J-value. If the ID is not available or the J-value
   is not applicable, a warning line is automatically printed.
 
 OPTIONS
@@ -42,15 +42,15 @@ OPTIONS
     The nonnegative integer <ID> specifies the painter's ID and must be less than 50.
     Defaults to 0.
 
-  -j <j-value>
-    The nonnegative integer <j-value> specifies the painter's j-value.
+  -j <J-value>
+    The nonnegative integer <J-value> specifies the painter's J-value.
     Defaults to 0.
 
   -l
     Enable the status line.
 
   -s <step>
-    The nonnegative integer <step> specifies the j-value decrement/increment.
+    The nonnegative integer <step> specifies the J-value decrement/increment.
     Defaults to 1.
 
 EXIT STATUS
@@ -61,8 +61,8 @@ EXIT STATUS
   0 otherwise;
 
 BUGS
-  The source code in fb.h is unportable; it makes assumptions about the framebuffer.
+  The source code in hj.h is unportable; it makes assumptions about the framebuffer.
   For easy adjustment, the assumptions are marked "UNPORTABLE".
 
 SEE ALSO
-  eca.txt, fb.txt, fb2png.txt, fbjs.txt
+  eca.txt, hj.txt, hj2png.txt, hjjs.txt

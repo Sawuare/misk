@@ -21,4 +21,4 @@ BUGS
   framebuffer. For easy adjustment, the assumptions are marked "UNPORTABLE".
 
 SEE ALSO
-  fb2fb.txt
+  hj2fb.txt

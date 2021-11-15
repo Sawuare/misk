@@ -1,6 +1,6 @@
 #! /usr/bin/env python3
 
-# fbjs.py - write some interesting fb j-sequences
+# hjjs.py - write some interesting HJ J-sequences
 
 J_MAX = 2 ** 32 - 1
 
@@ -22,39 +22,39 @@ def a27(f, m):
   print(*js, file = f)
 
 # https://oeis.org/A059153
-with open("a27n1.fbjs.txt", "w") as f:
+with open("a27n1.hjjs.txt", "w") as f:
   a27(f, -1)
 
 # https://oeis.org/A020522
-with open("a27p0.fbjs.txt", "w") as f:
+with open("a27p0.hjjs.txt", "w") as f:
   a27(f, 0)
 
 # https://oeis.org/A171476
-with open("a27p1.fbjs.txt", "w") as f:
+with open("a27p1.hjjs.txt", "w") as f:
   a27(f, 1)
 
 # https://oeis.org/A171499
-with open("a27p2.fbjs.txt", "w") as f:
+with open("a27p2.hjjs.txt", "w") as f:
   a27(f, 2)
 
 # https://oeis.org/A171472
-with open("a27p3.fbjs.txt", "w") as f:
+with open("a27p3.hjjs.txt", "w") as f:
   a27(f, 3)
 
-with open("a27p4.fbjs.txt", "w") as f:
+with open("a27p4.hjjs.txt", "w") as f:
   a27(f, 4)
 
-with open("a27p5.fbjs.txt", "w") as f:
+with open("a27p5.hjjs.txt", "w") as f:
   a27(f, 5)
 
-with open("a27p6.fbjs.txt", "w") as f:
+with open("a27p6.hjjs.txt", "w") as f:
   a27(f, 6)
 
-with open("a27p7.fbjs.txt", "w") as f:
+with open("a27p7.hjjs.txt", "w") as f:
   a27(f, 7)
 
-with open("a27p8.fbjs.txt", "w") as f:
+with open("a27p8.hjjs.txt", "w") as f:
   a27(f, 8)
 
-with open("a27p9.fbjs.txt", "w") as f:
+with open("a27p9.hjjs.txt", "w") as f:
   a27(f, 9)

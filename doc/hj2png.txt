@@ -1,18 +1,18 @@
 NAME
-  fb2png - write a fb image in the PNG format
+  hj2png - write an HJ image in the PNG format
 
 SYNOPSIS
-  fb2png [-# <color-rrggbb>] [-c <color-letter>] [-h <height>] [-i <ID>]
-         [-j <j-value>] [-v] [-w <width>] [-z]
+  hj2png [-# <color-rrggbb>] [-c <color-letter>] [-h <height>] [-i <ID>]
+         [-j <J-value>] [-v] [-w <width>] [-z]
 
 DESCRIPTION
-  For a description of fb images, see the beginning of fb.txt.
+  For a description of HJ images, see the beginning of hj.txt.
 
-  fb2png writes a fb image to a 24-bit RGB, non-interlaced PNG file. The file has a
+  hj2png writes an HJ image to a 24-bit RGB, non-interlaced PNG file. The file has a
   name that encodes how it was produced. For example, a file with the name
-  i0j0w512h512#ffffff.fb.png can be reproduced by an invocation equivalent to
+  i0j0w512h512#ffffff.hj.png can be reproduced by an invocation equivalent to
 
-    $ fb2png -i 0 -j 0 -w 512 -h 512 -# ffffff
+    $ hj2png -i 0 -j 0 -w 512 -h 512 -# ffffff
 
   Image areas greater than a gibipixel (i.e. 1073741824 pixels) are invalid.
 
@@ -35,8 +35,8 @@ OPTIONS
     The nonnegative integer <ID> specifies the painter's ID and must be less than 50.
     Defaults to 0.
 
-  -j <j-value>
-    The nonnegative integer <j-value> specifies the painter's j-value.
+  -j <J-value>
+    The nonnegative integer <J-value> specifies the painter's J-value.
     Defaults to 0.
 
   -v
@@ -60,4 +60,4 @@ EXIT STATUS
   0 otherwise;
 
 SEE ALSO
-  fb.txt, fb2fb.txt, fbjs.txt
+  hj.txt, hj2fb.txt, hjjs.txt

@@ -1,4 +1,4 @@
-// fb2png.c - write a fb image in the PNG format
+// hj2png.c - write an HJ image in the PNG format
 
 #include <setjmp.h>
 #include <stdio.h>
@@ -9,7 +9,7 @@
 #include <png.h>
 #include <zlib.h>
 
-#include "fb.h"
+#include "hj.h"
 #include "macros.h"
 
 static inline unsigned ddig(unsigned n) {
@@ -27,18 +27,18 @@ int main(int argc, char *argv[]) {
   unsigned j      = 0;
   unsigned width  = 512;
   unsigned height = 512;
-  unsigned color  = FB_WHITE;
+  unsigned color  = HJ_WHITE;
 
   int opt;
 
   while ((opt = getopt(argc, argv, "#:c:i:j:w:h:vz")) != -1)
     switch (opt) {
       case '#':
-        color = fb_rrggbb_to_color(optarg);
+        color = hj_rrggbb_to_color(optarg);
         break;
 
       case 'c':
-        color = fb_letter_to_color(optarg);
+        color = hj_letter_to_color(optarg);
         break;
 
       case 'i':
@@ -72,7 +72,7 @@ int main(int argc, char *argv[]) {
 
   unsigned area = width * height;
 
-  if (!fb_is_valid(id, j) || !area || area > 1 << 30 || color > 0xffffff)
+  if (!hj_is_valid(id, j) || !area || area > 1 << 30 || color > 0xffffff)
     return 2;
 
   png_struct *structp = png_create_write_struct(PNG_LIBPNG_VER_STRING, 0, 0, 0);
@@ -84,7 +84,7 @@ int main(int argc, char *argv[]) {
   }
 
   char filename[ddig(id) + ddig(j) + ddig(width) + ddig(height) + 19];
-  sprintf(filename, "i%uj%uw%uh%u#%06x.fb.png", id, j, width, height, color);
+  sprintf(filename, "i%uj%uw%uh%u#%06x.hj.png", id, j, width, height, color);
 
   FILE *stream = fopen(filename, "wb");
 
@@ -104,12 +104,12 @@ int main(int argc, char *argv[]) {
 
   png_text texts[] = {
     {.key = "Author",   .text = "Sawuare", .compression = PNG_TEXT_COMPRESSION_NONE},
-    {.key = "Software", .text = "fb2png",  .compression = PNG_TEXT_COMPRESSION_NONE}
+    {.key = "Software", .text = "hj2png",  .compression = PNG_TEXT_COMPRESSION_NONE}
   };
 
   png_set_IHDR(structp, infop, width, height, 8, PNG_COLOR_TYPE_RGB, PNG_INTERLACE_NONE, PNG_COMPRESSION_TYPE_BASE, PNG_FILTER_TYPE_BASE);
   png_set_text(structp, infop, texts, ARRLEN(texts));
-  png_set_filter(structp, PNG_FILTER_TYPE_BASE, FB_IS_MONO_XOR_RAMP(id) ? PNG_FILTER_NONE : PNG_FILTER_UP);
+  png_set_filter(structp, PNG_FILTER_TYPE_BASE, HJ_IS_MONO_XOR_RAMP(id) ? PNG_FILTER_NONE : PNG_FILTER_UP);
   png_set_compression_level(structp, best ? Z_BEST_COMPRESSION : Z_DEFAULT_COMPRESSION);
   png_set_compression_strategy(structp, Z_DEFAULT_STRATEGY);
 
@@ -125,13 +125,13 @@ int main(int argc, char *argv[]) {
     return 6;
   }
 
-  fb_painters[id](j, color, width, height, original_canvas);
+  hj_painters[id](j, color, width, height, original_canvas);
 
   // Convert to RGB
   for (unsigned i = 0, j = 0; i < area; i += 1, j += 3) {
-    stripped_canvas[j    ] = FB_PX_TO_R_BYTE(original_canvas[i]);
-    stripped_canvas[j + 1] = FB_PX_TO_G_BYTE(original_canvas[i]);
-    stripped_canvas[j + 2] = FB_PX_TO_B_BYTE(original_canvas[i]);
+    stripped_canvas[j    ] = HJ_PX_TO_R_BYTE(original_canvas[i]);
+    stripped_canvas[j + 1] = HJ_PX_TO_G_BYTE(original_canvas[i]);
+    stripped_canvas[j + 2] = HJ_PX_TO_B_BYTE(original_canvas[i]);
   }
 
   free(original_canvas);

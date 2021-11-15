@@ -1,4 +1,4 @@
-// fb.h - code for fb images and macros for the framebuffer
+// hj.h - code for HJ images and macros for the framebuffer
 
 #include <stdlib.h>
 
@@ -10,48 +10,48 @@
 #define FB_HEIGHT 768
 
 // UNPORTABLE
-#define FB_BLACK   0x000000
-#define FB_RED     0xff0000
-#define FB_GREEN   0x00ff00
-#define FB_BLUE    0x0000ff
-#define FB_CYAN    0x00ffff
-#define FB_MAGENTA 0xff00ff
-#define FB_YELLOW  0xffff00
-#define FB_WHITE   0xffffff
+#define HJ_BLACK   0x000000
+#define HJ_RED     0xff0000
+#define HJ_GREEN   0x00ff00
+#define HJ_BLUE    0x0000ff
+#define HJ_CYAN    0x00ffff
+#define HJ_MAGENTA 0xff00ff
+#define HJ_YELLOW  0xffff00
+#define HJ_WHITE   0xffffff
 
 // UNPORTABLE
-#define FB_PX_TO_R_BYTE(px) ((px) >> 16 & 255)
-#define FB_PX_TO_G_BYTE(px) ((px) >>  8 & 255)
-#define FB_PX_TO_B_BYTE(px) ((px)       & 255)
+#define HJ_PX_TO_R_BYTE(px) ((px) >> 16 & 255)
+#define HJ_PX_TO_G_BYTE(px) ((px) >>  8 & 255)
+#define HJ_PX_TO_B_BYTE(px) ((px)       & 255)
 
-#define FB_IS_MONO_XOR_RAMP(id) ((id) < 45)
+#define HJ_IS_MONO_XOR_RAMP(id) ((id) < 45)
 
-#define PAINTER(id) static inline void fb_p##id(unsigned j, unsigned color, unsigned width, unsigned height, unsigned canvas[])
+#define PAINTER(id) static inline void hj_p##id(unsigned j, unsigned color, unsigned width, unsigned height, unsigned canvas[])
 
 #define FORYX \
   for (unsigned y = 0; y < height; ++y) \
   for (unsigned x = 0; x < width;  ++x)
 
-#define MONO(px) (px) ? FB_BLACK : color
+#define MONO(px) (px) ? HJ_BLACK : color
 #define RAMP(px) (px) % 256 * color / 255 // UNPORTABLE
 
-static inline unsigned fb_rrggbb_to_color(const char *s) {
+static inline unsigned hj_rrggbb_to_color(const char *s) {
   return strtoul(s, 0, 16); // UNPORTABLE
 }
 
-static inline unsigned fb_letter_to_color(const char *s) {
+static inline unsigned hj_letter_to_color(const char *s) {
   switch (*s) {
-    case 'r': return FB_RED;
-    case 'g': return FB_GREEN;
-    case 'b': return FB_BLUE;
-    case 'c': return FB_CYAN;
-    case 'm': return FB_MAGENTA;
-    case 'y': return FB_YELLOW;
-    default:  return FB_WHITE;
+    case 'r': return HJ_RED;
+    case 'g': return HJ_GREEN;
+    case 'b': return HJ_BLUE;
+    case 'c': return HJ_CYAN;
+    case 'm': return HJ_MAGENTA;
+    case 'y': return HJ_YELLOW;
+    default:  return HJ_WHITE;
   }
 }
 
-static inline _Bool fb_is_valid(unsigned id, unsigned j) {
+static inline _Bool hj_is_valid(unsigned id, unsigned j) {
   if (id > 49)
     return 0;
 
@@ -70,7 +70,7 @@ static inline _Bool fb_is_valid(unsigned id, unsigned j) {
 
 PAINTER(0) {
   FORYX {
-    canvas[y * width + x] = FB_BLACK;
+    canvas[y * width + x] = HJ_BLACK;
     canvas[y * x] = color;
   }
 }
@@ -330,12 +330,12 @@ PAINTER(49) {
     canvas[y * width + x] = RAMP((j * x) * x + (j * y) * y);
 }
 
-static void (*fb_painters[])(unsigned, unsigned, unsigned, unsigned, unsigned[]) = {
-  fb_p0,  fb_p1,  fb_p2,  fb_p3,  fb_p4,  fb_p5,  fb_p6,  fb_p7,  fb_p8,  fb_p9,
-  fb_p10, fb_p11, fb_p12, fb_p13, fb_p14, fb_p15, fb_p16, fb_p17, fb_p18, fb_p19,
-  fb_p20, fb_p21, fb_p22, fb_p23, fb_p24, fb_p25, fb_p26, fb_p27, fb_p28, fb_p29,
-  fb_p30, fb_p31, fb_p32, fb_p33, fb_p34, fb_p35, fb_p36, fb_p37, fb_p38, fb_p39,
-  fb_p40, fb_p41, fb_p42, fb_p43, fb_p44, fb_p45, fb_p46, fb_p47, fb_p48, fb_p49
+static void (*hj_painters[])(unsigned, unsigned, unsigned, unsigned, unsigned[]) = {
+  hj_p0,  hj_p1,  hj_p2,  hj_p3,  hj_p4,  hj_p5,  hj_p6,  hj_p7,  hj_p8,  hj_p9,
+  hj_p10, hj_p11, hj_p12, hj_p13, hj_p14, hj_p15, hj_p16, hj_p17, hj_p18, hj_p19,
+  hj_p20, hj_p21, hj_p22, hj_p23, hj_p24, hj_p25, hj_p26, hj_p27, hj_p28, hj_p29,
+  hj_p30, hj_p31, hj_p32, hj_p33, hj_p34, hj_p35, hj_p36, hj_p37, hj_p38, hj_p39,
+  hj_p40, hj_p41, hj_p42, hj_p43, hj_p44, hj_p45, hj_p46, hj_p47, hj_p48, hj_p49
 };
 
 #undef PAINTER
