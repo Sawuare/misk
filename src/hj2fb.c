@@ -13,6 +13,13 @@
 #include "ecma-48.h"
 #include "hj.h"
 
+#define FB_PATH "/dev/fb0"
+
+// UNPORTABLE
+#define FB_SIZE   4227072
+#define FB_WIDTH  1376
+#define FB_HEIGHT 768
+
 #define PRINTL(id, j, warning) printf("i%-10u j%-10u " warning "\r", id, j)
 
 int main(int argc, char *argv[]) {

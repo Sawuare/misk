@@ -11,7 +11,7 @@ DESCRIPTION
   hj2fb requires permission to read and write the Linux framebuffer device /dev/fb0,
   which likely requires being the superuser or being in the video group.
 
-  hj2fb should be executed in the Linux console (i.e. TERM=linux).
+  hj2fb should be executed in the Linux terminal (i.e. TERM=linux).
 
   These keys can be used to navigate and control hj2fb during execution:
 
@@ -61,8 +61,8 @@ EXIT STATUS
   0 otherwise;
 
 BUGS
-  The source code in hj.h is unportable; it makes assumptions about the framebuffer.
-  For easy adjustment, the assumptions are marked "UNPORTABLE".
+  The source code in hj.h and hj2fb.c is unportable; it makes assumptions about the
+  framebuffer. For easy adjustment, the assumptions are marked "UNPORTABLE".
 
 SEE ALSO
   eca.txt, hj.txt, hj2png.txt, hjjs.txt

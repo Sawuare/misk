@@ -1,5 +1,5 @@
 NAME
-  hj.h - code for HJ images and macros for the framebuffer
+  hj.h - code for HJ images
 
 SYNOPSIS
   #include "hj.h"

@@ -1,8 +1,8 @@
 NAME
-  hjjs - write some interesting HJ J-sequences
+  hjjs.py - write some interesting HJ J-sequences
 
 SYNOPSIS
-  hjjs
+  hjjs.py
 
 DESCRIPTION
   For a description of HJ J-values, see the beginning of hj.txt.

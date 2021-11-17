@@ -1,13 +1,8 @@
-// hj.h - code for HJ images and macros for the framebuffer
+// hj.h - code for HJ images
 
 #include <stdlib.h>
 
-#define FB_PATH "/dev/fb0"
-
-// UNPORTABLE
-#define FB_SIZE   4227072
-#define FB_WIDTH  1376
-#define FB_HEIGHT 768
+// The HJ color format must match that of the framebuffer for hj2fb to work
 
 // UNPORTABLE
 #define HJ_BLACK   0x000000
