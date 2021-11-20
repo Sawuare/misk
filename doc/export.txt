@@ -10,7 +10,7 @@ DESCRIPTION
 
     hjjs.py
     mts.py
-    print.py
+    printable.py
     waves
 
 SEE ALSO

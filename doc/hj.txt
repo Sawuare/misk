@@ -8,7 +8,7 @@ DESCRIPTION
   HJ images are painted by painters, which are functions of these parameters: a
   canvas, its width and height, a color, and a J-value. Painters produce patterns
   using arithmetic, bitwise, and logical operators on the canvas coordinates, the
-  color, and the J-value. Different painters produce different patterns, while
+  color, and the J-value. Different painters produce different patterns, whereas
   different J-values vary the patterns. Every painter is identified by a serial ID:
   "PN" and "painter N" denote a painter whose ID is N.
 

@@ -12,8 +12,8 @@ echo "Exporting data"
 
 # Assume that build.sh has been executed
 hjjs.py
-mts.py   > mts.txt
-print.py > print.txt
+mts.py       > mts.txt
+printable.py > printable.txt
 waves
 
 echo "Done"
