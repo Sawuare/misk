@@ -1,11 +1,11 @@
 NAME
-  projectile.py - analyze dragless projectile motion on Earth
+  projectile - analyze dragless projectile motion on Earth
 
 SYNOPSIS
-  projectile.py
+  projectile
 
 DESCRIPTION
-  projectile.py prompts for these launch details of a projectile:
+  projectile prompts for these launch details of a projectile:
 
     1. Angle in degrees
     2. Speed in meters per second

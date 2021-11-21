@@ -1,8 +1,8 @@
 NAME
-  printable.py - print a table of printable ASCII characters in bin, oct, dec, and hex
+  printable - print a table of printable ASCII characters in bin, oct, dec, and hex
 
 SYNOPSIS
-  printable.py
+  printable
 
 DESCRIPTION
   From left to right, the table contains the binary, octal, decimal, hexadecimal, and

@@ -50,6 +50,11 @@ sudo mv qda $BIN
 
 echo "Copying Python programs"
 
-sudo cp --preserve=ownership *.py $BIN
+sudo cp --preserve=ownership eca.py        $BIN/eca
+sudo cp --preserve=ownership hjjs.py       $BIN/hjjs
+sudo cp --preserve=ownership k2cfr.py      $BIN/k2cfr
+sudo cp --preserve=ownership mts.py        $BIN/mts
+sudo cp --preserve=ownership printable.py  $BIN/printable
+sudo cp --preserve=ownership projectile.py $BIN/projectile
 
 echo "Done"

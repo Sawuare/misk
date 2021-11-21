@@ -1,8 +1,8 @@
 NAME
-  mts.py - print a table of MIDI-tuning-standard note number, notation, and frequency
+  mts - print a table of MIDI-tuning-standard note number, notation, and frequency
 
 SYNOPSIS
-  mts.py
+  mts
 
 DESCRIPTION
   From left to right, the table contains the number, scientific pitch notation, and

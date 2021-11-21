@@ -8,9 +8,9 @@ DESCRIPTION
   export.sh must be executed from ../src/. It exports the output of these programs,
   assuming that build.sh has been executed:
 
-    hjjs.py
-    mts.py
-    printable.py
+    hjjs
+    mts
+    printable
     waves
 
 SEE ALSO

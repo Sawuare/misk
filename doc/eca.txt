@@ -1,20 +1,20 @@
 NAME
-  eca.py - paint elementary cellular automata on the Linux framebuffer device
+  eca - paint elementary cellular automata on the Linux framebuffer device
 
 SYNOPSIS
-  eca.py
+  eca
 
 DESCRIPTION
-  Given a rule and a seed as nonnegative integers, eca.py paints an elementary
-  cellular automaton on the screen. Horizontal generations of cells are painted
-  vertically from top to bottom, with dead cells in black and alive cells in white.
-  The seed is used to randomize the 1st generation. Seed 0 is special; it does not
-  randomize the 1st generation but instead places only 1 alive cell in its middle.
+  Given a rule and a seed as nonnegative integers, eca paints an elementary cellular
+  automaton on the screen. Horizontal generations of cells are painted vertically
+  from top to bottom, with dead cells in black and alive cells in white. The seed is
+  used to randomize the 1st generation. Seed 0 is special; it does not randomize the
+  1st generation but instead places only 1 alive cell in its middle.
 
-  eca.py requires permission to write the Linux framebuffer device /dev/fb0, which
+  eca requires permission to write the Linux framebuffer device /dev/fb0, which
   likely requires being the superuser or being in the video group.
 
-  eca.py should be executed in the Linux terminal (i.e. TERM=linux).
+  eca should be executed in the Linux terminal (i.e. TERM=linux).
 
 BUGS
   The source code in eca.py is unportable; it makes assumptions about the
