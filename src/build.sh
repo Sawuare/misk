@@ -7,7 +7,24 @@ set -e
 BIN="/usr/local/bin/"
 INC="/usr/local/include/"
 
+# Python
+
+echo "Copying Python programs"
+
+OPT="--preserve=ownership"
+
+sudo cp $OPT eca.py        $BIN/eca
+sudo cp $OPT hjjs.py       $BIN/hjjs
+sudo cp $OPT k2cfr.py      $BIN/k2cfr
+sudo cp $OPT mts.py        $BIN/mts
+sudo cp $OPT printable.py  $BIN/printable
+sudo cp $OPT projectile.py $BIN/projectile
+
 # C
+
+echo "Copying C headers"
+
+sudo cp $OPT *.h $INC
 
 echo "Compiling C programs"
 
@@ -32,10 +49,6 @@ echo "Moving C programs"
 
 sudo mv aeca amorse ctime getendian getlocale hacc hj2fb hj2png limits morse pp waves $BIN
 
-echo "Copying C headers"
-
-sudo cp --preserve=ownership *.h $INC
-
 # Haskell
 
 echo "Compiling Haskell program"
@@ -45,16 +58,5 @@ ghc -no-keep-hi-files -no-keep-o-files -v0 -O2 -o qda qda.hs
 echo "Moving Haskell program"
 
 sudo mv qda $BIN
-
-# Python
-
-echo "Copying Python programs"
-
-sudo cp --preserve=ownership eca.py        $BIN/eca
-sudo cp --preserve=ownership hjjs.py       $BIN/hjjs
-sudo cp --preserve=ownership k2cfr.py      $BIN/k2cfr
-sudo cp --preserve=ownership mts.py        $BIN/mts
-sudo cp --preserve=ownership printable.py  $BIN/printable
-sudo cp --preserve=ownership projectile.py $BIN/projectile
 
 echo "Done"
