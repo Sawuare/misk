@@ -3,13 +3,19 @@ audio, graphics, patterns, physics, mathematics, utility, and fun. The programs 
 have terminal interfaces. Some programs use features of C, POSIX, or Linux, so I
 recommend GNU/Linux for using them.
 
-The folders and files in here are:
+The directories and files in here are:
 
   dat/
     Data exported by the programs.
 
   doc/
     Documentation of the programs and headers.
+
+  opt/
+    Optional utilities.
+    They must be executed from this directory.
+
+    *.sh -> POSIX shell scripts
 
   src/
     Source code in several languages.
@@ -18,7 +24,6 @@ The folders and files in here are:
     *.h  -> C headers
     *.hs -> Haskell files
     *.py -> Python scripts
-    *.sh -> POSIX shell scripts
 
   .bashrc
     My Bash configuration file.
@@ -32,11 +37,10 @@ The folders and files in here are:
   README.txt
     This file.
 
-For a one-line description of every program and header, execute
+For a summary of every program and header, execute
 
-  $ awk "FNR==2;FNR==3{nextfile}" doc/*
+  $ cd opt/ && ./summarize.sh
 
-To get started, read doc/build.txt then execute src/build.sh to build and install
-everything automatically or read it to learn how individual programs are compiled.
+To get started, see opt/build.sh.
 
 Questions and comments are welcome! Send them to sawuare@gmail.com.

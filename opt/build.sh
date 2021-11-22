@@ -2,7 +2,35 @@
 
 # build.sh - build some programs and get executables and headers to /usr/local/
 
+# Requires permission to write and execute /usr/local/bin/ and /usr/local/include/,
+# which likely requires being the superuser.
+#
+# Some programs depend on some of these compilers, interpreters, and libraries:
+#
+#   cc  (as either Clang or GCC)
+#   ghc (as the Galsgow Haskell Compiler)
+#
+#   python3
+#
+#   libFLAC
+#   libpng
+#   zlib
+#
+# To install them on Debian or a derivative of it, execute
+#
+#   # apt install clang ghc python3 libflac8 libflac-dev libpng16-16 libpng-dev \
+#   > zlib1g zlib1g-dev
+#
+# The external program "aplay", an ALSA utility, is recommended but not a dependency.
+# The programs aeca and amorse use it to play raw audio files. To install it, execute
+#
+#   # apt install alsa-utils
+
 set -e
+
+echo "Entering ../src/"
+
+cd ../src/
 
 BIN="/usr/local/bin/"
 INC="/usr/local/include/"

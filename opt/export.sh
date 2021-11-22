@@ -11,9 +11,9 @@ cd ../dat/
 echo "Exporting data"
 
 # Assume that build.sh has been executed
-hjjs.py
-mts.py       > mts.txt
-printable.py > printable.txt
+hjjs
+mts       > mts.txt
+printable > printable.txt
 waves
 
 echo "Done"
