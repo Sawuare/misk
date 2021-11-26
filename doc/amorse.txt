@@ -46,7 +46,7 @@ EXIT STATUS
   2 if an option argument is invalid;
   3 if opening the file fails;
   4 if an input character is invalid;
-  5 if allocating a buffer fails;
+  5 if allocating memory fails;
   6 if the host environment has no command processor;
   0 otherwise;
 

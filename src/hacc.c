@@ -11,18 +11,18 @@
 #include "dectcem.h"
 #include "ecma-48.h"
 
-_Noreturn static void bye(int unused) {
+_Noreturn static void stop(int unused) {
   fputs(RIS, stdout);
   exit(0);
 }
 
 int main(int argc, char *argv[]) {
-  long ns = argv[1] ? atol(argv[1]) : 125000000;
+  long pause = argv[1] ? atol(argv[1]) : 125000000;
 
-  if (ns < 0 || ns > 999999999)
+  if (pause < 0 || pause > 999999999)
     return 1;
 
-  struct timespec zzz = {.tv_nsec = ns};
+  struct timespec zzz = {.tv_nsec = pause};
 
   struct winsize ws;
 
@@ -30,7 +30,7 @@ int main(int argc, char *argv[]) {
     return 2;
 
   srand(time(0));
-  signal(SIGINT, bye);
+  signal(SIGINT, stop);
 
   fputs(DECTCEM("l") ED("2"), stdout);
 

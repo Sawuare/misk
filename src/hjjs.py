@@ -12,10 +12,10 @@ def a27(f, m):
   while True:
     j = 2 ** (2 * n + m) - 2 ** n
 
-    if j <= J_MAX:
-      js.append(j)
-    else:
+    if j > J_MAX:
       break
+
+    js.append(j)
 
     n += 1
 

@@ -53,10 +53,10 @@ OPTIONS
 EXIT STATUS
   1 if an option is invalid;
   2 if an option argument is invalid;
-  3 if creating the libpng structs fails;
+  3 if creating libpng structs fails;
   4 if opening the file fails;
   5 if another libpng error occurs;
-  6 if allocating a buffer fails;
+  6 if allocating memory fails;
   0 otherwise;
 
 SEE ALSO

@@ -6,8 +6,8 @@
 int main(void) {
   char *locale = setlocale(LC_ALL, "");
 
-  if (locale)
-    puts(locale);
-  else
+  if (!locale)
     return 1;
+
+  puts(locale);
 }
