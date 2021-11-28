@@ -3,7 +3,7 @@ NAME
 
 SYNOPSIS
   hj2png [-# <color-rrggbb>] [-c <color-letter>] [-h <height>] [-i <ID>]
-         [-j <J-value>] [-v] [-w <width>] [-z]
+         [-j <J-value>] [-l <length>] [-v] [-w <width>] [-z]
 
 DESCRIPTION
   For a description of HJ images, see the beginning of hj.txt.
@@ -38,6 +38,10 @@ OPTIONS
   -j <J-value>
     The nonnegative integer <J-value> specifies the painter's J-value.
     Defaults to 0.
+
+  -l <length>
+    This additional option is equivalent to -w <length> -h <length>, which specifies
+    a square image.
 
   -v
     Print libpng and zlib versions then exit.

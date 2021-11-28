@@ -10,24 +10,22 @@ DESCRIPTION
   The sequences are nonnegative integers less than 2 raised to 32, separated by
   spaces, and written to these files:
 
-    a27n1.hjjs.txt
-    a27p0.hjjs.txt
-    a27p1.hjjs.txt
-    a27p2.hjjs.txt
-    a27p3.hjjs.txt
-    a27p4.hjjs.txt
-    a27p5.hjjs.txt
-    a27p6.hjjs.txt
-    a27p7.hjjs.txt
-    a27p8.hjjs.txt
-    a27p9.hjjs.txt
+    i27m0.hjjs.txt
+    i27m1.hjjs.txt
+    i27m2.hjjs.txt
+    i27m3.hjjs.txt
+    i27m4.hjjs.txt
+    i27m5.hjjs.txt
+    i27m6.hjjs.txt
+    i27m7.hjjs.txt
+    i27m8.hjjs.txt
+    i27m9.hjjs.txt
 
-  Where "aN" denotes a sequence for an HJ painter whose ID is N.
+  Where "iN" denotes a sequence for an HJ painter whose ID is N.
 
-  The first 5 sequences are these sequences in the On-Line Encyclopedia of Integer
+  The first four sequences are these sequences in the On-Line Encyclopedia of Integer
   Sequences (OEIS):
 
-    https://oeis.org/A059153
     https://oeis.org/A020522
     https://oeis.org/A171476
     https://oeis.org/A171499

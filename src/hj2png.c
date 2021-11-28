@@ -31,7 +31,7 @@ int main(int argc, char *argv[]) {
 
   int opt;
 
-  while ((opt = getopt(argc, argv, "#:c:i:j:w:h:vz")) != -1)
+  while ((opt = getopt(argc, argv, "#:c:i:j:w:h:l:vz")) != -1)
     switch (opt) {
       case '#':
         color = hj_rrggbb_to_color(optarg);
@@ -57,9 +57,13 @@ int main(int argc, char *argv[]) {
         height = strtoul(optarg, 0, 10);
         break;
 
+      case 'l':
+        width = height = strtoul(optarg, 0, 10);
+        break;
+
       case 'v':
-        printf("Compiled with libpng %s and using libpng %s\n", PNG_LIBPNG_VER_STRING, png_libpng_ver);
-        printf("Compiled with zlib %s and using zlib %s\n", ZLIB_VERSION, zlib_version);
+        printf("Compiled with libpng %s and zlib %s\n", PNG_LIBPNG_VER_STRING, ZLIB_VERSION);
+        printf("Executed with libpng %s and zlib %s\n", png_libpng_ver, zlib_version);
         return 0;
 
       case 'z':
