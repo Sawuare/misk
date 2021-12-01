@@ -12,8 +12,7 @@ The directories and files in here are:
     Documentation of the programs and headers.
 
   opt/
-    Optional utilities.
-    They must be executed from this directory.
+    Optional utilities which must be executed from this directory.
 
     *.sh -> POSIX shell scripts
 

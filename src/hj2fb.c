@@ -64,32 +64,31 @@ int main(int argc, char *argv[]) {
   if (color > 0xffffff)
     return 2;
 
-  int fbd = open(FB_PATH, O_RDWR);
+  int fb_descriptor = open(FB_PATH, O_RDWR);
 
-  if (fbd == -1)
+  if (fb_descriptor == -1)
     return 3;
 
-  unsigned *fbm = mmap(0, FB_SIZE, PROT_WRITE, MAP_SHARED, fbd, 0);
+  unsigned *fb_map = mmap(0, FB_SIZE, PROT_WRITE, MAP_SHARED, fb_descriptor, 0);
 
-  close(fbd);
+  close(fb_descriptor);
 
-  if (fbm == MAP_FAILED)
+  if (fb_map == MAP_FAILED)
     return 4;
 
-  struct termios otty, ntty;
-  tcgetattr(STDIN_FILENO, &otty);
-  ntty = otty;
-  ntty.c_lflag &= ~(ECHO | ICANON);
-  tcsetattr(STDIN_FILENO, TCSANOW, &ntty);
+  struct termios old_term, new_term;
+  tcgetattr(STDIN_FILENO, &old_term);
+  new_term = old_term;
+  new_term.c_lflag &= ~(ECHO | ICANON);
+  tcsetattr(STDIN_FILENO, TCSANOW, &new_term);
 
   setbuf(stdout, 0);
 
   fputs(DECTCEM("l") ED("1") CUP(), stdout);
 
   while (1) {
-    if (hj_is_valid(id, j)) {
-      hj_painters[id](j, color, FB_WIDTH, FB_HEIGHT, fbm);
-    }
+    if (hj_is_valid(id, j))
+      hj_painters[id](j, color, FB_WIDTH, FB_HEIGHT, fb_map);
     else {
       PRINTL(id, j, "N/A");
       goto get;
@@ -144,6 +143,5 @@ get:
 
 exit:
   fputs(DECTCEM("h") ED("3"), stdout);
-  tcsetattr(STDIN_FILENO, TCSANOW, &otty);
-  munmap(fbm, FB_SIZE);
+  tcsetattr(STDIN_FILENO, TCSANOW, &old_term);
 }
