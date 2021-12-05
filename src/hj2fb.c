@@ -20,14 +20,14 @@
 #define FB_WIDTH  1376
 #define FB_HEIGHT 768
 
-#define PRINTL(id, j, warning) printf("i%-10u j%-10u " warning "\r", id, j)
+#define PRINTL(warning) printf("i%-10u j%-10u " warning "\r", id, j)
 
 int main(int argc, char *argv[]) {
-  _Bool    line  = 0;
-  unsigned id    = 0;
-  unsigned j     = 0;
-  unsigned step  = 1;
-  unsigned color = HJ_WHITE;
+  _Bool    line = 0;
+  unsigned step = 1;
+
+  width  = FB_WIDTH;
+  height = FB_HEIGHT;
 
   int opt;
 
@@ -69,11 +69,11 @@ int main(int argc, char *argv[]) {
   if (fb_descriptor == -1)
     return 3;
 
-  unsigned *fb_map = mmap(0, FB_SIZE, PROT_WRITE, MAP_SHARED, fb_descriptor, 0);
+  canvas = mmap(0, FB_SIZE, PROT_WRITE, MAP_SHARED, fb_descriptor, 0);
 
   close(fb_descriptor);
 
-  if (fb_map == MAP_FAILED)
+  if (canvas == MAP_FAILED)
     return 4;
 
   struct termios old_term, new_term;
@@ -88,15 +88,15 @@ int main(int argc, char *argv[]) {
 
   while (1) {
     if (hj_is_valid(id, j))
-      hj_painters[id](j, color, FB_WIDTH, FB_HEIGHT, fb_map);
+      hj_painters[id]();
     else {
-      PRINTL(id, j, "N/A");
+      PRINTL("N/A");
       goto get;
     }
 
     if (line)
 print:
-      PRINTL(id, j, "   ");
+      PRINTL("   ");
 
 get:
     switch (getchar()) {

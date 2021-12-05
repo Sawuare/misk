@@ -21,7 +21,7 @@
 
 #define HJ_IS_MONO_XOR_RAMP(id) ((id) < 45)
 
-#define PAINTER(id) static inline void hj_p##id(unsigned j, unsigned color, unsigned width, unsigned height, unsigned canvas[])
+#define PAINTER(id) static inline void hj_p##id(void)
 
 #define FORYX \
   for (unsigned y = 0; y < height; ++y) \
@@ -60,6 +60,8 @@ static inline _Bool hj_is_valid(unsigned id, unsigned j) {
 
   return 1;
 }
+
+static unsigned id = 0, j = 0, color = HJ_WHITE, width = 512, height = 512, *canvas = 0;
 
 // Class 0
 
@@ -325,7 +327,7 @@ PAINTER(49) {
     canvas[y * width + x] = RAMP((j * x) * x + (j * y) * y);
 }
 
-static void (*hj_painters[])(unsigned, unsigned, unsigned, unsigned, unsigned[]) = {
+static void (*hj_painters[])(void) = {
   hj_p0,  hj_p1,  hj_p2,  hj_p3,  hj_p4,  hj_p5,  hj_p6,  hj_p7,  hj_p8,  hj_p9,
   hj_p10, hj_p11, hj_p12, hj_p13, hj_p14, hj_p15, hj_p16, hj_p17, hj_p18, hj_p19,
   hj_p20, hj_p21, hj_p22, hj_p23, hj_p24, hj_p25, hj_p26, hj_p27, hj_p28, hj_p29,

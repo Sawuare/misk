@@ -22,12 +22,7 @@ static inline unsigned ddig(unsigned n) {
 }
 
 int main(int argc, char *argv[]) {
-  _Bool    best   = 0;
-  unsigned id     = 0;
-  unsigned j      = 0;
-  unsigned width  = 512;
-  unsigned height = 512;
-  unsigned color  = HJ_WHITE;
+  _Bool best = 0;
 
   int opt;
 
@@ -117,40 +112,41 @@ int main(int argc, char *argv[]) {
   png_set_compression_level(structp, best ? Z_BEST_COMPRESSION : Z_DEFAULT_COMPRESSION);
   png_set_compression_strategy(structp, Z_DEFAULT_STRATEGY);
 
-  unsigned *original_canvas = malloc(area * 4);
-  png_byte *stripped_canvas = malloc(area * 3);
+  png_byte *image;
 
-  if (!original_canvas || !stripped_canvas) {
+  image  = malloc(area * 3);
+  canvas = malloc(area * 4);
+
+  if (!image || !canvas) {
     png_destroy_write_struct(&structp, &infop);
-    free(original_canvas);
-    free(stripped_canvas);
+    free(image);
+    free(canvas);
     fclose(stream);
     remove(filename);
     return 6;
   }
 
-  hj_painters[id](j, color, width, height, original_canvas);
+  hj_painters[id]();
 
-  // Convert to RGB
   for (unsigned i = 0, j = 0; i < area; i += 1, j += 3) {
-    stripped_canvas[j    ] = HJ_PX_TO_R_BYTE(original_canvas[i]);
-    stripped_canvas[j + 1] = HJ_PX_TO_G_BYTE(original_canvas[i]);
-    stripped_canvas[j + 2] = HJ_PX_TO_B_BYTE(original_canvas[i]);
+    image[j    ] = HJ_PX_TO_R_BYTE(canvas[i]);
+    image[j + 1] = HJ_PX_TO_G_BYTE(canvas[i]);
+    image[j + 2] = HJ_PX_TO_B_BYTE(canvas[i]);
   }
 
-  free(original_canvas);
+  free(canvas);
 
   png_byte *row_pointers[height];
 
   for (unsigned y = 0; y < height; ++y)
-    row_pointers[y] = &stripped_canvas[y * width * 3];
+    row_pointers[y] = &image[y * width * 3];
 
   png_write_info(structp, infop);
   png_write_image(structp, row_pointers);
   png_write_end(structp, 0);
 
   png_destroy_write_struct(&structp, &infop);
-  free(stripped_canvas);
+  free(image);
   fclose(stream);
 
   printf("Wrote %s\n", filename);
