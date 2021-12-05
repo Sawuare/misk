@@ -15,12 +15,14 @@ DESCRIPTION
 
   These keys can be used to navigate and control hj2fb during execution:
 
-    { decrements the ID;
-    } increments the ID;
-    [ decrements the J-value;
-    ] increments the J-value;
-    i sets the ID to the nonnegative integer entered next;
-    j sets the J-value to the nonnegative integer entered next;
+    0 sets the ID and J-value to 0;
+    1 decrements the ID;
+    2 increments the ID;
+    3 decrements the J-value;
+    4 increments the J-value;
+    # sets the color to the argument entered next (like -# and its argument);
+    i sets the ID to the argument entered next (like -i and its argument);
+    j sets the J-value to the argument entered next (like -j and its argument);
     l toggles the status line;
     e exits;
 

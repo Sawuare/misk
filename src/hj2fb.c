@@ -88,6 +88,7 @@ int main(int argc, char *argv[]) {
 
   while (1) {
     if (hj_is_valid(id, j))
+paint:
       hj_painters[id]();
     else {
       PRINTL("N/A");
@@ -100,21 +101,29 @@ print:
 
 get:
     switch (getchar()) {
-      case '{':
+      case '0':
+        id = j = 0;
+        goto paint;
+
+      case '1':
         --id;
         break;
 
-      case '}':
+      case '2':
         ++id;
         break;
 
-      case '[':
+      case '3':
         j -= step;
         break;
 
-      case ']':
+      case '4':
         j += step;
         break;
+
+      case '#':
+        scanf("%6x", &color);
+        goto paint;
 
       case 'i':
         scanf("%u", &id);
@@ -127,7 +136,7 @@ get:
       case 'l':
         if (line) {
           line = 0;
-          break;
+          goto paint;
         }
 
         line = 1;
