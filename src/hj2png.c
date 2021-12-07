@@ -26,7 +26,7 @@ int main(int argc, char *argv[]) {
 
   int opt;
 
-  while ((opt = getopt(argc, argv, "#:c:i:j:w:h:l:vz")) != -1)
+  while ((opt = getopt(argc, argv, "#:c:i:j:x:y:o:w:h:l:vz")) != -1)
     switch (opt) {
       case '#':
         color = hj_rrggbb_to_color(optarg);
@@ -42,6 +42,18 @@ int main(int argc, char *argv[]) {
 
       case 'j':
         j = strtoul(optarg, 0, 10);
+        break;
+
+      case 'x':
+        x0 = strtoul(optarg, 0, 10);
+        break;
+
+      case 'y':
+        y0 = strtoul(optarg, 0, 10);
+        break;
+
+      case 'o':
+        x0 = y0 = strtoul(optarg, 0, 10);
         break;
 
       case 'w':
@@ -71,7 +83,7 @@ int main(int argc, char *argv[]) {
 
   unsigned area = width * height;
 
-  if (!hj_is_valid(id, j) || !area || area > 1 << 30 || color > 0xffffff)
+  if (!hj_is_valid() || !area || area > 1 << 30 || color > 0xffffff)
     return 2;
 
   png_struct *structp = png_create_write_struct(PNG_LIBPNG_VER_STRING, 0, 0, 0);
@@ -82,8 +94,8 @@ int main(int argc, char *argv[]) {
     return 3;
   }
 
-  char filename[ddig(id) + ddig(j) + ddig(width) + ddig(height) + 19];
-  sprintf(filename, "i%uj%uw%uh%u#%06x.hj.png", id, j, width, height, color);
+  char filename[ddig(id) + ddig(j) + ddig(x0) + ddig(y0) + ddig(width) + ddig(height) + 21];
+  sprintf(filename, "i%uj%ux%uy%uw%uh%u#%06x.hj.png", id, j, x0, y0, width, height, color);
 
   FILE *stream = fopen(filename, "wb");
 

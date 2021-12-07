@@ -3,16 +3,17 @@ NAME
 
 SYNOPSIS
   hj2png [-# <color-rrggbb>] [-c <color-letter>] [-h <height>] [-i <ID>]
-         [-j <J-value>] [-l <length>] [-v] [-w <width>] [-z]
+         [-j <J-value>] [-l <length>] [-o <offset>] [-v] [-w <width>] [-x <X-offset>]
+         [-y <Y-offset>] [-z]
 
 DESCRIPTION
   For a description of HJ images, see the beginning of hj.txt.
 
   hj2png writes an HJ image to a 24-bit RGB, non-interlaced PNG file. The file has a
   name that encodes how it was produced. For example, a file with the name
-  i0j0w512h512#ffffff.hj.png can be reproduced by an invocation equivalent to
+  i0j0x0y0w512h512#ffffff.hj.png can be reproduced by an invocation equivalent to
 
-    $ hj2png -i 0 -j 0 -w 512 -h 512 -# ffffff
+    $ hj2png -i 0 -j 0 -x 0 -y 0 -w 512 -h 512 -# ffffff
 
   Image areas greater than a gibipixel (i.e. 1073741824 pixels) are invalid.
 
@@ -43,12 +44,23 @@ OPTIONS
     This additional option is equivalent to -w <length> -h <length>, which specifies
     a square image.
 
+  -o <offset>
+    This additional option is equivalent to -x <offset> -y <offset>.
+
   -v
     Print libpng and zlib versions then exit.
 
   -w <width>
     The positive integer <width> specifies the image's width in pixels.
     Defaults to 512.
+
+  -x <X-offset>
+    The nonnegative integer <X-offset> specifies the painter's X-offset.
+    Defaults to 0.
+
+  -y <Y-offset>
+    The nonnegative integer <Y-offset> specifies the painter's Y-offset.
+    Defaults to 0.
 
   -z
     Use the best compression level instead of the default.

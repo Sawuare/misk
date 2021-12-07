@@ -3,7 +3,7 @@ NAME
 
 SYNOPSIS
   hj2fb [-# <color-rrggbb>] [-c <color-letter>] [-i <ID>] [-j <J-value>] [-l]
-        [-s <step>]
+        [-o <offset>] [-s <step>] [-x <X-offset>] [-y <Y-offset>]
 
 DESCRIPTION
   For a description of HJ images, see the beginning of hj.txt.
@@ -15,14 +15,20 @@ DESCRIPTION
 
   These keys can be used to navigate and control hj2fb during execution:
 
-    0 sets the ID and J-value to 0;
+    0 sets the ID, J-value, and offsets to 0;
     1 decrements the ID;
     2 increments the ID;
     3 decrements the J-value;
     4 increments the J-value;
+    5 decrements the X-offset;
+    6 increments the X-offset;
+    7 decrements the Y-offset;
+    8 increments the Y-offset;
     # sets the color to the argument entered next (like -# and its argument);
     i sets the ID to the argument entered next (like -i and its argument);
     j sets the J-value to the argument entered next (like -j and its argument);
+    x sets the X-offset to the argument entered next (like -x and its argument);
+    y sets the Y-offset to the argument entered next (like -y and its argument);
     l toggles the status line;
     e exits;
 
@@ -51,9 +57,20 @@ OPTIONS
   -l
     Enable the status line.
 
+  -o <offset>
+    This additional option is equivalent to -x <offset> -y <offset>.
+
   -s <step>
-    The nonnegative integer <step> specifies the J-value decrement/increment.
-    Defaults to 1.
+    The nonnegative integer <step> specifies the offsets' decrement/increment.
+    Defaults to 32.
+
+  -x <X-offset>
+    The nonnegative integer <X-offset> specifies the painter's X-offset.
+    Defaults to 0.
+
+  -y <Y-offset>
+    The nonnegative integer <Y-offset> specifies the painter's Y-offset.
+    Defaults to 0.
 
 EXIT STATUS
   1 if an option is invalid;
