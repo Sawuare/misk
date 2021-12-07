@@ -24,16 +24,18 @@
 #define PAINTER(id) static inline void hj_p##id(void)
 
 #define FORYX \
-  unsigned yn = y0 + height; \
-  unsigned xn = x0 + width; \
-  for (unsigned y = y0; y < yn; ++y) \
-  for (unsigned x = x0; x < xn; ++x)
+  unsigned yn = hj_y0 + hj_height; \
+  unsigned xn = hj_x0 + hj_width; \
+  for (unsigned y = hj_y0; y < yn; ++y) \
+  for (unsigned x = hj_x0; x < xn; ++x)
 
-#define SUBSCRIPT0 (y - y0) * width + (x - x0)
-#define SUBSCRIPT1 (y - y0) * (x - x0)
+#define SUBSCRIPT0 hj_canvas[(y - hj_y0) * hj_width + (x - hj_x0)]
+#define SUBSCRIPT1 hj_canvas[(y - hj_y0) * (x - hj_x0)]
 
-#define MONO(px) (px) ? HJ_BLACK : color
-#define RAMP(px) (px) % 256 * color / 255 // UNPORTABLE
+#define MONO(px) (px) ? HJ_BLACK : hj_color
+#define RAMP(px) (px) % 256 * hj_color / 255 // UNPORTABLE
+
+#define J hj_j
 
 static inline unsigned hj_rrggbb_to_color(const char *s) {
   return strtoul(s, 0, 16); // UNPORTABLE
@@ -51,16 +53,24 @@ static inline unsigned hj_letter_to_color(const char *s) {
   }
 }
 
-static unsigned id = 0, j = 0, color = HJ_WHITE, x0 = 0, y0 = 0, width = 512, height = 512, *canvas = 0;
+static unsigned
+  hj_id      = 0,
+  hj_j       = 0,
+  hj_color   = HJ_WHITE,
+  hj_x0      = 0,
+  hj_y0      = 0,
+  hj_width   = 512,
+  hj_height  = 512,
+  *hj_canvas = 0;
 
 static inline _Bool hj_is_valid(void) {
-  if (id > 49)
+  if (hj_id > 49)
     return 0;
 
-  if (j)
+  if (hj_j)
     return 1;
 
-  unsigned class = id / 5;
+  unsigned class = hj_id / 5;
 
   if (class == 2 || class == 4 || class == 6 || class == 8)
     return 0;
@@ -72,8 +82,8 @@ static inline _Bool hj_is_valid(void) {
 
 PAINTER(0) {
   FORYX {
-    canvas[SUBSCRIPT0] = HJ_BLACK;
-    canvas[SUBSCRIPT1] = color;
+    SUBSCRIPT0 = HJ_BLACK;
+    SUBSCRIPT1 = hj_color;
   }
 }
 
@@ -93,243 +103,243 @@ PAINTER(4) {
 
 PAINTER(5) {
   FORYX
-    canvas[SUBSCRIPT0] = MONO((x & y) & j);
+    SUBSCRIPT0 = MONO((x & y) & J);
 }
 
 PAINTER(6) {
   FORYX
-    canvas[SUBSCRIPT0] = MONO((x | y) & j);
+    SUBSCRIPT0 = MONO((x | y) & J);
 }
 
 PAINTER(7) {
   FORYX
-    canvas[SUBSCRIPT0] = MONO((x ^ y) & j);
+    SUBSCRIPT0 = MONO((x ^ y) & J);
 }
 
 PAINTER(8) {
   FORYX
-    canvas[SUBSCRIPT0] = MONO((x + y) & j);
+    SUBSCRIPT0 = MONO((x + y) & J);
 }
 
 PAINTER(9) {
   FORYX
-    canvas[SUBSCRIPT0] = MONO((x * y) & j);
+    SUBSCRIPT0 = MONO((x * y) & J);
 }
 
 // Class 2
 
 PAINTER(10) {
   FORYX
-    canvas[SUBSCRIPT0] = MONO((x & y) % j);
+    SUBSCRIPT0 = MONO((x & y) % J);
 }
 
 PAINTER(11) {
   FORYX
-    canvas[SUBSCRIPT0] = MONO((x | y) % j);
+    SUBSCRIPT0 = MONO((x | y) % J);
 }
 
 PAINTER(12) {
   FORYX
-    canvas[SUBSCRIPT0] = MONO((x ^ y) % j);
+    SUBSCRIPT0 = MONO((x ^ y) % J);
 }
 
 PAINTER(13) {
   FORYX
-    canvas[SUBSCRIPT0] = MONO((x + y) % j);
+    SUBSCRIPT0 = MONO((x + y) % J);
 }
 
 PAINTER(14) {
   FORYX
-    canvas[SUBSCRIPT0] = MONO((x * y) % j);
+    SUBSCRIPT0 = MONO((x * y) % J);
 }
 
 // Class 3
 
 PAINTER(15) {
   FORYX
-    canvas[SUBSCRIPT0] = MONO((x * x & y * y) & j);
+    SUBSCRIPT0 = MONO((x * x & y * y) & J);
 }
 
 PAINTER(16) {
   FORYX
-    canvas[SUBSCRIPT0] = MONO((x * x | y * y) & j);
+    SUBSCRIPT0 = MONO((x * x | y * y) & J);
 }
 
 PAINTER(17) {
   FORYX
-    canvas[SUBSCRIPT0] = MONO((x * x ^ y * y) & j);
+    SUBSCRIPT0 = MONO((x * x ^ y * y) & J);
 }
 
 PAINTER(18) {
   FORYX
-    canvas[SUBSCRIPT0] = MONO((x * x + y * y) & j);
+    SUBSCRIPT0 = MONO((x * x + y * y) & J);
 }
 
 PAINTER(19) {
   FORYX
-    canvas[SUBSCRIPT0] = MONO((x * x * y * y) & j);
+    SUBSCRIPT0 = MONO((x * x * y * y) & J);
 }
 
 // Class 4
 
 PAINTER(20) {
   FORYX
-    canvas[SUBSCRIPT0] = MONO((x * x & y * y) % j);
+    SUBSCRIPT0 = MONO((x * x & y * y) % J);
 }
 
 PAINTER(21) {
   FORYX
-    canvas[SUBSCRIPT0] = MONO((x * x | y * y) % j);
+    SUBSCRIPT0 = MONO((x * x | y * y) % J);
 }
 
 PAINTER(22) {
   FORYX
-    canvas[SUBSCRIPT0] = MONO((x * x ^ y * y) % j);
+    SUBSCRIPT0 = MONO((x * x ^ y * y) % J);
 }
 
 PAINTER(23) {
   FORYX
-    canvas[SUBSCRIPT0] = MONO((x * x + y * y) % j);
+    SUBSCRIPT0 = MONO((x * x + y * y) % J);
 }
 
 PAINTER(24) {
   FORYX
-    canvas[SUBSCRIPT0] = MONO((x * x * y * y) % j);
+    SUBSCRIPT0 = MONO((x * x * y * y) % J);
 }
 
 // Class 5
 
 PAINTER(25) {
   FORYX
-    canvas[SUBSCRIPT0] = MONO(((j & x) * x & (j & y) * y) & j);
+    SUBSCRIPT0 = MONO(((J & x) * x & (J & y) * y) & J);
 }
 
 PAINTER(26) {
   FORYX
-    canvas[SUBSCRIPT0] = MONO(((j | x) * x & (j | y) * y) & j);
+    SUBSCRIPT0 = MONO(((J | x) * x & (J | y) * y) & J);
 }
 
 PAINTER(27) {
   FORYX
-    canvas[SUBSCRIPT0] = MONO(((j ^ x) * x & (j ^ y) * y) & j);
+    SUBSCRIPT0 = MONO(((J ^ x) * x & (J ^ y) * y) & J);
 }
 
 PAINTER(28) {
   FORYX
-    canvas[SUBSCRIPT0] = MONO(((j + x) * x & (j + y) * y) & j);
+    SUBSCRIPT0 = MONO(((J + x) * x & (J + y) * y) & J);
 }
 
 PAINTER(29) {
   FORYX
-    canvas[SUBSCRIPT0] = MONO(((j * x) * x & (j * y) * y) & j);
+    SUBSCRIPT0 = MONO(((J * x) * x & (J * y) * y) & J);
 }
 
 // Class 6
 
 PAINTER(30) {
   FORYX
-    canvas[SUBSCRIPT0] = MONO(((j & x) * x & (j & y) * y) % j);
+    SUBSCRIPT0 = MONO(((J & x) * x & (J & y) * y) % J);
 }
 
 PAINTER(31) {
   FORYX
-    canvas[SUBSCRIPT0] = MONO(((j | x) * x & (j | y) * y) % j);
+    SUBSCRIPT0 = MONO(((J | x) * x & (J | y) * y) % J);
 }
 
 PAINTER(32) {
   FORYX
-    canvas[SUBSCRIPT0] = MONO(((j ^ x) * x & (j ^ y) * y) % j);
+    SUBSCRIPT0 = MONO(((J ^ x) * x & (J ^ y) * y) % J);
 }
 
 PAINTER(33) {
   FORYX
-    canvas[SUBSCRIPT0] = MONO(((j + x) * x & (j + y) * y) % j);
+    SUBSCRIPT0 = MONO(((J + x) * x & (J + y) * y) % J);
 }
 
 PAINTER(34) {
   FORYX
-    canvas[SUBSCRIPT0] = MONO(((j * x) * x & (j * y) * y) % j);
+    SUBSCRIPT0 = MONO(((J * x) * x & (J * y) * y) % J);
 }
 
 // Class 7
 
 PAINTER(35) {
   FORYX
-    canvas[SUBSCRIPT0] = MONO(((j & x) * x + (j & y) * y) & j);
+    SUBSCRIPT0 = MONO(((J & x) * x + (J & y) * y) & J);
 }
 
 PAINTER(36) {
   FORYX
-    canvas[SUBSCRIPT0] = MONO(((j | x) * x + (j | y) * y) & j);
+    SUBSCRIPT0 = MONO(((J | x) * x + (J | y) * y) & J);
 }
 
 PAINTER(37) {
   FORYX
-    canvas[SUBSCRIPT0] = MONO(((j ^ x) * x + (j ^ y) * y) & j);
+    SUBSCRIPT0 = MONO(((J ^ x) * x + (J ^ y) * y) & J);
 }
 
 PAINTER(38) {
   FORYX
-    canvas[SUBSCRIPT0] = MONO(((j + x) * x + (j + y) * y) & j);
+    SUBSCRIPT0 = MONO(((J + x) * x + (J + y) * y) & J);
 }
 
 PAINTER(39) {
   FORYX
-    canvas[SUBSCRIPT0] = MONO(((j * x) * x + (j * y) * y) & j);
+    SUBSCRIPT0 = MONO(((J * x) * x + (J * y) * y) & J);
 }
 
 // Class 8
 
 PAINTER(40) {
   FORYX
-    canvas[SUBSCRIPT0] = MONO(((j & x) * x + (j & y) * y) % j);
+    SUBSCRIPT0 = MONO(((J & x) * x + (J & y) * y) % J);
 }
 
 PAINTER(41) {
   FORYX
-    canvas[SUBSCRIPT0] = MONO(((j | x) * x + (j | y) * y) % j);
+    SUBSCRIPT0 = MONO(((J | x) * x + (J | y) * y) % J);
 }
 
 PAINTER(42) {
   FORYX
-    canvas[SUBSCRIPT0] = MONO(((j ^ x) * x + (j ^ y) * y) % j);
+    SUBSCRIPT0 = MONO(((J ^ x) * x + (J ^ y) * y) % J);
 }
 
 PAINTER(43) {
   FORYX
-    canvas[SUBSCRIPT0] = MONO(((j + x) * x + (j + y) * y) % j);
+    SUBSCRIPT0 = MONO(((J + x) * x + (J + y) * y) % J);
 }
 
 PAINTER(44) {
   FORYX
-    canvas[SUBSCRIPT0] = MONO(((j * x) * x + (j * y) * y) % j);
+    SUBSCRIPT0 = MONO(((J * x) * x + (J * y) * y) % J);
 }
 
 // Class 9
 
 PAINTER(45) {
   FORYX
-    canvas[SUBSCRIPT0] = RAMP((j & x) * x + (j & y) * y);
+    SUBSCRIPT0 = RAMP((J & x) * x + (J & y) * y);
 }
 
 PAINTER(46) {
   FORYX
-    canvas[SUBSCRIPT0] = RAMP((j | x) * x + (j | y) * y);
+    SUBSCRIPT0 = RAMP((J | x) * x + (J | y) * y);
 }
 
 PAINTER(47) {
   FORYX
-    canvas[SUBSCRIPT0] = RAMP((j ^ x) * x + (j ^ y) * y);
+    SUBSCRIPT0 = RAMP((J ^ x) * x + (J ^ y) * y);
 }
 
 PAINTER(48) {
   FORYX
-    canvas[SUBSCRIPT0] = RAMP((j + x) * x + (j + y) * y);
+    SUBSCRIPT0 = RAMP((J + x) * x + (J + y) * y);
 }
 
 PAINTER(49) {
   FORYX
-    canvas[SUBSCRIPT0] = RAMP((j * x) * x + (j * y) * y);
+    SUBSCRIPT0 = RAMP((J * x) * x + (J * y) * y);
 }
 
 static void (*hj_painters[])(void) = {
@@ -346,3 +356,4 @@ static void (*hj_painters[])(void) = {
 #undef SUBSCRIPT1
 #undef MONO
 #undef RAMP
+#undef J
