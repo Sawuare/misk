@@ -11,9 +11,9 @@ DESCRIPTION
 
   hj2png writes an HJ image to a 24-bit RGB, non-interlaced PNG file. The file has a
   name that encodes how it was produced. For example, a file with the name
-  i0j0x0y0w512h512#ffffff.hj.png can be reproduced by an invocation equivalent to
+  i0j1x0y0w512h512#ffffff.hj.png can be reproduced by an invocation equivalent to
 
-    $ hj2png -i 0 -j 0 -x 0 -y 0 -w 512 -h 512 -# ffffff
+    $ hj2png -i 0 -j 1 -x 0 -y 0 -w 512 -h 512 -# ffffff
 
   Image areas greater than a gibipixel (i.e. 1073741824 pixels) are invalid.
 
@@ -33,12 +33,12 @@ OPTIONS
     Defaults to 512.
 
   -i <ID>
-    The nonnegative integer <ID> specifies the painter's ID and must be less than 50.
+    The nonnegative integer <ID> specifies the painter's ID and must be less than 45.
     Defaults to 0.
 
   -j <J-value>
     The nonnegative integer <J-value> specifies the painter's J-value.
-    Defaults to 0.
+    Defaults to 1.
 
   -l <length>
     This additional option is equivalent to -w <length> -h <length>, which specifies

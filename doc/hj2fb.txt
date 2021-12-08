@@ -47,12 +47,12 @@ OPTIONS
     Defaults to w.
 
   -i <ID>
-    The nonnegative integer <ID> specifies the painter's ID and must be less than 50.
+    The nonnegative integer <ID> specifies the painter's ID and must be less than 45.
     Defaults to 0.
 
   -j <J-value>
     The nonnegative integer <J-value> specifies the painter's J-value.
-    Defaults to 0.
+    Defaults to 1.
 
   -l
     Enable the status line.

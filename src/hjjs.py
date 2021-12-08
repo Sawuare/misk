@@ -4,7 +4,7 @@
 
 J_MAX = 2 ** 32 - 1
 
-def i27(f, m):
+def i22(f, m):
   n = 0
 
   js = []
@@ -22,35 +22,35 @@ def i27(f, m):
   print(*js, file = f)
 
 # https://oeis.org/A020522
-with open("i27m0.hjjs.txt", "w") as f:
-  i27(f, 0)
+with open("i22m0.hjjs.txt", "w") as f:
+  i22(f, 0)
 
 # https://oeis.org/A171476
-with open("i27m1.hjjs.txt", "w") as f:
-  i27(f, 1)
+with open("i22m1.hjjs.txt", "w") as f:
+  i22(f, 1)
 
 # https://oeis.org/A171499
-with open("i27m2.hjjs.txt", "w") as f:
-  i27(f, 2)
+with open("i22m2.hjjs.txt", "w") as f:
+  i22(f, 2)
 
 # https://oeis.org/A171472
-with open("i27m3.hjjs.txt", "w") as f:
-  i27(f, 3)
+with open("i22m3.hjjs.txt", "w") as f:
+  i22(f, 3)
 
-with open("i27m4.hjjs.txt", "w") as f:
-  i27(f, 4)
+with open("i22m4.hjjs.txt", "w") as f:
+  i22(f, 4)
 
-with open("i27m5.hjjs.txt", "w") as f:
-  i27(f, 5)
+with open("i22m5.hjjs.txt", "w") as f:
+  i22(f, 5)
 
-with open("i27m6.hjjs.txt", "w") as f:
-  i27(f, 6)
+with open("i22m6.hjjs.txt", "w") as f:
+  i22(f, 6)
 
-with open("i27m7.hjjs.txt", "w") as f:
-  i27(f, 7)
+with open("i22m7.hjjs.txt", "w") as f:
+  i22(f, 7)
 
-with open("i27m8.hjjs.txt", "w") as f:
-  i27(f, 8)
+with open("i22m8.hjjs.txt", "w") as f:
+  i22(f, 8)
 
-with open("i27m9.hjjs.txt", "w") as f:
-  i27(f, 9)
+with open("i22m9.hjjs.txt", "w") as f:
+  i22(f, 9)
