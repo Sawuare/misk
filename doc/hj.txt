@@ -6,11 +6,15 @@ SYNOPSIS
 
 DESCRIPTION
   HJ images are painted by painters, which are functions of these parameters: a
-  canvas, its width and height, a color, and a J-value. Painters produce patterns
-  using arithmetic, bitwise, and logical operators on the canvas coordinates, the
-  color, and the J-value. Different painters produce different patterns, whereas
-  different J-values vary the patterns. Every painter is identified by a serial ID:
-  "PN" and "painter N" denote a painter whose ID is N.
+  canvas, its width and height, horizontal and vertical offsets ("X-offset" and
+  "Y-offset"), a color, and a J-value. Painters produce patterns using arithmetic,
+  bitwise, and conditional operators on the canvas coordinates, the color, and the
+  J-value. Different painters produce different patterns, whereas different J-values
+  vary the patterns. Every painter is identified by a serial ID: "painter #" denotes
+  the painter whose ID is #.
+
+  The ID, J-value, color, and offsets are nonnegative integers, whereas the width and
+  height are positive integers.
 
   There are 45 painters, 0 through 44, divided into 9 classes, 0 through 8. Painters
   in classes 1, 3, 5, and 7 divide by the J-value, so J-value 0 is invalid for them.

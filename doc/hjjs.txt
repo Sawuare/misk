@@ -21,7 +21,7 @@ DESCRIPTION
     i22m8.hjjs.txt
     i22m9.hjjs.txt
 
-  Where "iN" denotes a sequence for an HJ painter whose ID is N.
+  Where "i#" denotes a sequence for the HJ painter whose ID is #.
 
   The first four sequences are these sequences in the On-Line Encyclopedia of Integer
   Sequences (OEIS):

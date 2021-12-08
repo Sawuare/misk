@@ -21,18 +21,18 @@
 
 #define HJ_IS_MONO_XOR_RAMP(id) ((id) < 40)
 
-#define PAINTER(id) static inline void hj_p##id(void)
+#define PAINTER(id) static inline void hj_painter##id(void)
 
-#define FORYX \
+#define FOR_YX \
   unsigned yn = hj_y0 + hj_height; \
   unsigned xn = hj_x0 + hj_width; \
   for (unsigned y = hj_y0; y < yn; ++y) \
   for (unsigned x = hj_x0; x < xn; ++x)
 
-#define SUBSCRIPT0 hj_canvas[(y - hj_y0) * hj_width + (x - hj_x0)]
+#define CURRENT_PX hj_canvas[(y - hj_y0) * hj_width + x - hj_x0]
 
-#define MONO(px) (px) ? HJ_BLACK : hj_color
-#define RAMP(px) (px) % 256 * hj_color / 255 // UNPORTABLE
+#define MONO(value) (value) ? HJ_BLACK : hj_color
+#define RAMP(value) (value) % 256 * hj_color / 255 // UNPORTABLE
 
 #define J hj_j
 
@@ -80,257 +80,261 @@ static inline _Bool hj_is_valid(void) {
 // Class 0
 
 PAINTER(0) {
-  FORYX
-    SUBSCRIPT0 = MONO((x & y) & J);
+  FOR_YX
+    CURRENT_PX = MONO((x & y) & J);
 }
 
 PAINTER(1) {
-  FORYX
-    SUBSCRIPT0 = MONO((x | y) & J);
+  FOR_YX
+    CURRENT_PX = MONO((x | y) & J);
 }
 
 PAINTER(2) {
-  FORYX
-    SUBSCRIPT0 = MONO((x ^ y) & J);
+  FOR_YX
+    CURRENT_PX = MONO((x ^ y) & J);
 }
 
 PAINTER(3) {
-  FORYX
-    SUBSCRIPT0 = MONO((x + y) & J);
+  FOR_YX
+    CURRENT_PX = MONO((x + y) & J);
 }
 
 PAINTER(4) {
-  FORYX
-    SUBSCRIPT0 = MONO((x * y) & J);
+  FOR_YX
+    CURRENT_PX = MONO((x * y) & J);
 }
 
 // Class 1
 
 PAINTER(5) {
-  FORYX
-    SUBSCRIPT0 = MONO((x & y) % J);
+  FOR_YX
+    CURRENT_PX = MONO((x & y) % J);
 }
 
 PAINTER(6) {
-  FORYX
-    SUBSCRIPT0 = MONO((x | y) % J);
+  FOR_YX
+    CURRENT_PX = MONO((x | y) % J);
 }
 
 PAINTER(7) {
-  FORYX
-    SUBSCRIPT0 = MONO((x ^ y) % J);
+  FOR_YX
+    CURRENT_PX = MONO((x ^ y) % J);
 }
 
 PAINTER(8) {
-  FORYX
-    SUBSCRIPT0 = MONO((x + y) % J);
+  FOR_YX
+    CURRENT_PX = MONO((x + y) % J);
 }
 
 PAINTER(9) {
-  FORYX
-    SUBSCRIPT0 = MONO((x * y) % J);
+  FOR_YX
+    CURRENT_PX = MONO((x * y) % J);
 }
 
 // Class 2
 
 PAINTER(10) {
-  FORYX
-    SUBSCRIPT0 = MONO((x * x & y * y) & J);
+  FOR_YX
+    CURRENT_PX = MONO((x * x & y * y) & J);
 }
 
 PAINTER(11) {
-  FORYX
-    SUBSCRIPT0 = MONO((x * x | y * y) & J);
+  FOR_YX
+    CURRENT_PX = MONO((x * x | y * y) & J);
 }
 
 PAINTER(12) {
-  FORYX
-    SUBSCRIPT0 = MONO((x * x ^ y * y) & J);
+  FOR_YX
+    CURRENT_PX = MONO((x * x ^ y * y) & J);
 }
 
 PAINTER(13) {
-  FORYX
-    SUBSCRIPT0 = MONO((x * x + y * y) & J);
+  FOR_YX
+    CURRENT_PX = MONO((x * x + y * y) & J);
 }
 
 PAINTER(14) {
-  FORYX
-    SUBSCRIPT0 = MONO((x * x * y * y) & J);
+  FOR_YX
+    CURRENT_PX = MONO((x * x * y * y) & J);
 }
 
 // Class 3
 
 PAINTER(15) {
-  FORYX
-    SUBSCRIPT0 = MONO((x * x & y * y) % J);
+  FOR_YX
+    CURRENT_PX = MONO((x * x & y * y) % J);
 }
 
 PAINTER(16) {
-  FORYX
-    SUBSCRIPT0 = MONO((x * x | y * y) % J);
+  FOR_YX
+    CURRENT_PX = MONO((x * x | y * y) % J);
 }
 
 PAINTER(17) {
-  FORYX
-    SUBSCRIPT0 = MONO((x * x ^ y * y) % J);
+  FOR_YX
+    CURRENT_PX = MONO((x * x ^ y * y) % J);
 }
 
 PAINTER(18) {
-  FORYX
-    SUBSCRIPT0 = MONO((x * x + y * y) % J);
+  FOR_YX
+    CURRENT_PX = MONO((x * x + y * y) % J);
 }
 
 PAINTER(19) {
-  FORYX
-    SUBSCRIPT0 = MONO((x * x * y * y) % J);
+  FOR_YX
+    CURRENT_PX = MONO((x * x * y * y) % J);
 }
 
 // Class 4
 
 PAINTER(20) {
-  FORYX
-    SUBSCRIPT0 = MONO(((J & x) * x & (J & y) * y) & J);
+  FOR_YX
+    CURRENT_PX = MONO(((J & x) * x & (J & y) * y) & J);
 }
 
 PAINTER(21) {
-  FORYX
-    SUBSCRIPT0 = MONO(((J | x) * x & (J | y) * y) & J);
+  FOR_YX
+    CURRENT_PX = MONO(((J | x) * x & (J | y) * y) & J);
 }
 
 PAINTER(22) {
-  FORYX
-    SUBSCRIPT0 = MONO(((J ^ x) * x & (J ^ y) * y) & J);
+  FOR_YX
+    CURRENT_PX = MONO(((J ^ x) * x & (J ^ y) * y) & J);
 }
 
 PAINTER(23) {
-  FORYX
-    SUBSCRIPT0 = MONO(((J + x) * x & (J + y) * y) & J);
+  FOR_YX
+    CURRENT_PX = MONO(((J + x) * x & (J + y) * y) & J);
 }
 
 PAINTER(24) {
-  FORYX
-    SUBSCRIPT0 = MONO(((J * x) * x & (J * y) * y) & J);
+  FOR_YX
+    CURRENT_PX = MONO(((J * x) * x & (J * y) * y) & J);
 }
 
 // Class 5
 
 PAINTER(25) {
-  FORYX
-    SUBSCRIPT0 = MONO(((J & x) * x & (J & y) * y) % J);
+  FOR_YX
+    CURRENT_PX = MONO(((J & x) * x & (J & y) * y) % J);
 }
 
 PAINTER(26) {
-  FORYX
-    SUBSCRIPT0 = MONO(((J | x) * x & (J | y) * y) % J);
+  FOR_YX
+    CURRENT_PX = MONO(((J | x) * x & (J | y) * y) % J);
 }
 
 PAINTER(27) {
-  FORYX
-    SUBSCRIPT0 = MONO(((J ^ x) * x & (J ^ y) * y) % J);
+  FOR_YX
+    CURRENT_PX = MONO(((J ^ x) * x & (J ^ y) * y) % J);
 }
 
 PAINTER(28) {
-  FORYX
-    SUBSCRIPT0 = MONO(((J + x) * x & (J + y) * y) % J);
+  FOR_YX
+    CURRENT_PX = MONO(((J + x) * x & (J + y) * y) % J);
 }
 
 PAINTER(29) {
-  FORYX
-    SUBSCRIPT0 = MONO(((J * x) * x & (J * y) * y) % J);
+  FOR_YX
+    CURRENT_PX = MONO(((J * x) * x & (J * y) * y) % J);
 }
 
 // Class 6
 
 PAINTER(30) {
-  FORYX
-    SUBSCRIPT0 = MONO(((J & x) * x + (J & y) * y) & J);
+  FOR_YX
+    CURRENT_PX = MONO(((J & x) * x + (J & y) * y) & J);
 }
 
 PAINTER(31) {
-  FORYX
-    SUBSCRIPT0 = MONO(((J | x) * x + (J | y) * y) & J);
+  FOR_YX
+    CURRENT_PX = MONO(((J | x) * x + (J | y) * y) & J);
 }
 
 PAINTER(32) {
-  FORYX
-    SUBSCRIPT0 = MONO(((J ^ x) * x + (J ^ y) * y) & J);
+  FOR_YX
+    CURRENT_PX = MONO(((J ^ x) * x + (J ^ y) * y) & J);
 }
 
 PAINTER(33) {
-  FORYX
-    SUBSCRIPT0 = MONO(((J + x) * x + (J + y) * y) & J);
+  FOR_YX
+    CURRENT_PX = MONO(((J + x) * x + (J + y) * y) & J);
 }
 
 PAINTER(34) {
-  FORYX
-    SUBSCRIPT0 = MONO(((J * x) * x + (J * y) * y) & J);
+  FOR_YX
+    CURRENT_PX = MONO(((J * x) * x + (J * y) * y) & J);
 }
 
 // Class 7
 
 PAINTER(35) {
-  FORYX
-    SUBSCRIPT0 = MONO(((J & x) * x + (J & y) * y) % J);
+  FOR_YX
+    CURRENT_PX = MONO(((J & x) * x + (J & y) * y) % J);
 }
 
 PAINTER(36) {
-  FORYX
-    SUBSCRIPT0 = MONO(((J | x) * x + (J | y) * y) % J);
+  FOR_YX
+    CURRENT_PX = MONO(((J | x) * x + (J | y) * y) % J);
 }
 
 PAINTER(37) {
-  FORYX
-    SUBSCRIPT0 = MONO(((J ^ x) * x + (J ^ y) * y) % J);
+  FOR_YX
+    CURRENT_PX = MONO(((J ^ x) * x + (J ^ y) * y) % J);
 }
 
 PAINTER(38) {
-  FORYX
-    SUBSCRIPT0 = MONO(((J + x) * x + (J + y) * y) % J);
+  FOR_YX
+    CURRENT_PX = MONO(((J + x) * x + (J + y) * y) % J);
 }
 
 PAINTER(39) {
-  FORYX
-    SUBSCRIPT0 = MONO(((J * x) * x + (J * y) * y) % J);
+  FOR_YX
+    CURRENT_PX = MONO(((J * x) * x + (J * y) * y) % J);
 }
 
 // Class 8
 
 PAINTER(40) {
-  FORYX
-    SUBSCRIPT0 = RAMP((J & x) * x + (J & y) * y);
+  FOR_YX
+    CURRENT_PX = RAMP((J & x) * x + (J & y) * y);
 }
 
 PAINTER(41) {
-  FORYX
-    SUBSCRIPT0 = RAMP((J | x) * x + (J | y) * y);
+  FOR_YX
+    CURRENT_PX = RAMP((J | x) * x + (J | y) * y);
 }
 
 PAINTER(42) {
-  FORYX
-    SUBSCRIPT0 = RAMP((J ^ x) * x + (J ^ y) * y);
+  FOR_YX
+    CURRENT_PX = RAMP((J ^ x) * x + (J ^ y) * y);
 }
 
 PAINTER(43) {
-  FORYX
-    SUBSCRIPT0 = RAMP((J + x) * x + (J + y) * y);
+  FOR_YX
+    CURRENT_PX = RAMP((J + x) * x + (J + y) * y);
 }
 
 PAINTER(44) {
-  FORYX
-    SUBSCRIPT0 = RAMP((J * x) * x + (J * y) * y);
+  FOR_YX
+    CURRENT_PX = RAMP((J * x) * x + (J * y) * y);
 }
 
 static void (*hj_painters[])(void) = {
-  hj_p0,  hj_p1,  hj_p2,  hj_p3,  hj_p4,  hj_p5,  hj_p6,  hj_p7,  hj_p8,  hj_p9,
-  hj_p10, hj_p11, hj_p12, hj_p13, hj_p14, hj_p15, hj_p16, hj_p17, hj_p18, hj_p19,
-  hj_p20, hj_p21, hj_p22, hj_p23, hj_p24, hj_p25, hj_p26, hj_p27, hj_p28, hj_p29,
-  hj_p30, hj_p31, hj_p32, hj_p33, hj_p34, hj_p35, hj_p36, hj_p37, hj_p38, hj_p39,
-  hj_p40, hj_p41, hj_p42, hj_p43, hj_p44
+  hj_painter0,  hj_painter1,  hj_painter2,  hj_painter3,  hj_painter4,
+  hj_painter5,  hj_painter6,  hj_painter7,  hj_painter8,  hj_painter9,
+  hj_painter10, hj_painter11, hj_painter12, hj_painter13, hj_painter14,
+  hj_painter15, hj_painter16, hj_painter17, hj_painter18, hj_painter19,
+  hj_painter20, hj_painter21, hj_painter22, hj_painter23, hj_painter24,
+  hj_painter25, hj_painter26, hj_painter27, hj_painter28, hj_painter29,
+  hj_painter30, hj_painter31, hj_painter32, hj_painter33, hj_painter34,
+  hj_painter35, hj_painter36, hj_painter37, hj_painter38, hj_painter39,
+  hj_painter40, hj_painter41, hj_painter42, hj_painter43, hj_painter44
 };
 
 #undef PAINTER
-#undef FORYX
-#undef SUBSCRIPT0
+#undef FOR_YX
+#undef CURRENT_PX
 #undef MONO
 #undef RAMP
 #undef J
