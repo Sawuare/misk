@@ -20,7 +20,10 @@
 #define FB_WIDTH  1376
 #define FB_HEIGHT 768
 
-#define PRINTL(warning) printf("i%-10u j%-10u x%-10u y%-10u #%06x " warning "\r", hj_id, hj_j, hj_x0, hj_y0, hj_color)
+static inline void printl(_Bool warn) {
+  printf("i%-10u j%-10u x%-10u y%-10u #%06x%s\r",
+    hj_id, hj_j, hj_x0, hj_y0, hj_color, warn ? " N/A" : "");
+}
 
 int main(int argc, char *argv[]) {
   _Bool    line = 0;
@@ -102,13 +105,13 @@ int main(int argc, char *argv[]) {
     if (hj_is_valid())
       hj_painters[hj_id]();
     else {
-      PRINTL("N/A");
+      printl(1);
       goto get;
     }
 
     if (line)
 print:
-      PRINTL("   ");
+      printl(0);
 
 get:
     switch (getchar()) {
