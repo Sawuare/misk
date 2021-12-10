@@ -10,7 +10,6 @@
 #include <zlib.h>
 
 #include "hj.h"
-#include "macros.h"
 
 static inline unsigned ddig(unsigned n) {
   unsigned d = 1;
@@ -119,7 +118,7 @@ int main(int argc, char *argv[]) {
   };
 
   png_set_IHDR(structp, infop, hj_width, hj_height, 8, PNG_COLOR_TYPE_RGB, PNG_INTERLACE_NONE, PNG_COMPRESSION_TYPE_BASE, PNG_FILTER_TYPE_BASE);
-  png_set_text(structp, infop, texts, ARRLEN(texts));
+  png_set_text(structp, infop, texts, sizeof texts / sizeof *texts);
   png_set_filter(structp, PNG_FILTER_TYPE_BASE, HJ_IS_MONO_XOR_RAMP(hj_id) ? PNG_FILTER_NONE : PNG_FILTER_UP);
   png_set_compression_level(structp, best ? Z_BEST_COMPRESSION : Z_DEFAULT_COMPRESSION);
   png_set_compression_strategy(structp, Z_DEFAULT_STRATEGY);
