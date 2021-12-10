@@ -1,5 +1,9 @@
 // pp.c - print a penis incrementally
 
+#if __STDC_NO_THREADS__ == 1
+#error "No thrd_sleep()!"
+#endif
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <threads.h>

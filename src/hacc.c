@@ -1,5 +1,9 @@
 // hacc.c - print random characters in random colors and positions until interrupted
 
+#if __STDC_NO_THREADS__ == 1
+#error "No thrd_sleep()!"
+#endif
+
 #include <signal.h>
 #include <stdio.h>
 #include <stdlib.h>

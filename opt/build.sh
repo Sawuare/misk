@@ -56,9 +56,7 @@ sudo cp $OPT *.h $INC
 
 echo "Compiling C programs"
 
-OPT="-std=c11 -march=native -O3"
-
-cc $OPT -fsyntax-only test.c
+OPT="-std=c17 -march=native -O3"
 
 cc $OPT -o aeca       aeca.c
 cc $OPT -o amorse     amorse.c

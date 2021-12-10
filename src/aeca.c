@@ -2,11 +2,18 @@
 
 // Unsigned 8 bit, Rate 44100 Hz, Mono
 
+#if __STDC_NO_VLA__ == 1
+#error "No VLA!"
+#endif
+
+#include <limits.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
 #include <getopt.h>
+
+_Static_assert(CHAR_BIT == 8, "char is not 8 bits!");
 
 static inline unsigned ddig(unsigned n) {
   unsigned d = 1;

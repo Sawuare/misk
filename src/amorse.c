@@ -2,6 +2,7 @@
 
 // Unsigned 8 bit, Rate 8000 Hz, Mono
 
+#include <limits.h>
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -10,6 +11,8 @@
 #define FILENAME "amorse.pcm"
 
 #define RATE 8000 // Default aplay rate
+
+_Static_assert(CHAR_BIT == 8, "char is not 8 bits!");
 
 int main(int argc, char *argv[]) {
   _Bool    delet     = 0;

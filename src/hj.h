@@ -2,6 +2,8 @@
 
 #include <stdlib.h>
 
+_Static_assert(sizeof (unsigned) == 4, "unsigned is not 4 bytes!");
+
 // The HJ color format must match that of the framebuffer for hj2fb to work
 
 // UNPORTABLE

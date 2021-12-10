@@ -1,5 +1,9 @@
 // hj2png.c - write an HJ image in the PNG format
 
+#if __STDC_NO_VLA__ == 1
+#error "No VLA!"
+#endif
+
 #include <setjmp.h>
 #include <stdio.h>
 #include <stdlib.h>
