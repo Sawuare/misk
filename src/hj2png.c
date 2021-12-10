@@ -127,15 +127,17 @@ int main(int argc, char *argv[]) {
   png_set_compression_level(structp, best ? Z_BEST_COMPRESSION : Z_DEFAULT_COMPRESSION);
   png_set_compression_strategy(structp, Z_DEFAULT_STRATEGY);
 
-  png_byte *image;
+  png_byte *image, **rows;
 
-  image     = malloc(area * 3);
-  hj_canvas = malloc(area * 4);
+  hj_canvas = malloc(area * sizeof *hj_canvas);
+  image = malloc(3 * area * sizeof *image);
+  rows = malloc(hj_height * sizeof *rows);
 
-  if (!image || !hj_canvas) {
+  if (!hj_canvas || !image || !rows) {
     png_destroy_write_struct(&structp, &infop);
-    free(image);
     free(hj_canvas);
+    free(image);
+    free(rows);
     fclose(stream);
     remove(filename);
     return 6;
@@ -151,17 +153,16 @@ int main(int argc, char *argv[]) {
 
   free(hj_canvas);
 
-  png_byte *row_pointers[hj_height];
-
-  for (unsigned y = 0; y < hj_height; ++y)
-    row_pointers[y] = &image[y * hj_width * 3];
+  while (hj_height--)
+    rows[hj_height] = &image[hj_height * hj_width * 3];
 
   png_write_info(structp, infop);
-  png_write_image(structp, row_pointers);
+  png_write_image(structp, rows);
   png_write_end(structp, 0);
 
   png_destroy_write_struct(&structp, &infop);
   free(image);
+  free(rows);
   fclose(stream);
 
   printf("Wrote %s\n", filename);
