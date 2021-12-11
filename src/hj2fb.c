@@ -1,5 +1,7 @@
 // hj2fb.c - paint HJ images on the Linux framebuffer device
 
+#include <inttypes.h>
+#include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -21,13 +23,13 @@
 #define FB_HEIGHT 768
 
 static inline void printl(_Bool warn) {
-  printf("i%-10u j%-10u x%-10u y%-10u #%06x%s\r",
-    hj_id, hj_j, hj_x0, hj_y0, hj_color, warn ? " N/A" : "");
+  printf("i%-10" PRIu32 " j%-10" PRIu32 " x%-10" PRIu32 " y%-10" PRIu32 " #%06" PRIx32 " %s\r",
+    hj_id, hj_j, hj_x0, hj_y0, hj_color, warn ? "N/A" : "   ");
 }
 
 int main(int argc, char *argv[]) {
   _Bool    line = 0;
-  unsigned step = 32;
+  uint32_t step = 32;
 
   hj_width  = FB_WIDTH;
   hj_height = FB_HEIGHT;
@@ -152,23 +154,23 @@ get:
         break;
 
       case '#':
-        scanf("%6x", &hj_color);
+        scanf("%6" PRIx32, &hj_color);
         break;
 
       case 'i':
-        scanf("%u", &hj_id);
+        scanf("%" PRIu32, &hj_id);
         break;
 
       case 'j':
-        scanf("%u", &hj_j);
+        scanf("%" PRIu32, &hj_j);
         break;
 
       case 'x':
-        scanf("%u", &hj_x0);
+        scanf("%" PRIu32, &hj_x0);
         break;
 
       case 'y':
-        scanf("%u", &hj_y0);
+        scanf("%" PRIu32, &hj_y0);
         break;
 
       case 'l':

@@ -1,9 +1,6 @@
 // hj2png.c - write an HJ image in the PNG format
 
-#if __STDC_NO_VLA__ == 1
-#error "No VLA!"
-#endif
-
+#include <inttypes.h>
 #include <setjmp.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -14,15 +11,6 @@
 #include <zlib.h>
 
 #include "hj.h"
-
-static inline unsigned ddig(unsigned n) {
-  unsigned d = 1;
-
-  while (n /= 10)
-    ++d;
-
-  return d;
-}
 
 int main(int argc, char *argv[]) {
   _Bool best = 0;
@@ -84,7 +72,7 @@ int main(int argc, char *argv[]) {
         return 1;
     }
 
-  unsigned area = hj_width * hj_height;
+  size_t area = hj_width * hj_height;
 
   if (!hj_is_valid() || !area || area > 1 << 30 || hj_color > 0xffffff)
     return 2;
@@ -97,8 +85,10 @@ int main(int argc, char *argv[]) {
     return 3;
   }
 
-  char filename[ddig(hj_id) + ddig(hj_j) + ddig(hj_x0) + ddig(hj_y0) + ddig(hj_width) + ddig(hj_height) + 21];
-  sprintf(filename, "i%uj%ux%uy%uw%uh%u#%06x.hj.png", hj_id, hj_j, hj_x0, hj_y0, hj_width, hj_height, hj_color);
+  // The longest filename is i10j1000000000x1000000000y1000000000w1000000000h1000000000#100000.hj.png
+  char filename[73];
+  sprintf(filename, "i%" PRIu32 "j%" PRIu32 "x%" PRIu32 "y%" PRIu32 "w%" PRIu32 "h%" PRIu32 "#%06" PRIx32 ".hj.png",
+    hj_id, hj_j, hj_x0, hj_y0, hj_width, hj_height, hj_color);
 
   FILE *stream = fopen(filename, "wb");
 
@@ -145,7 +135,7 @@ int main(int argc, char *argv[]) {
 
   hj_painters[hj_id]();
 
-  for (unsigned i = 0, j = 0; i < area; i += 1, j += 3) {
+  for (size_t i = 0, j = 0; i < area; i += 1, j += 3) {
     image[j    ] = HJ_PX_TO_R_BYTE(hj_canvas[i]);
     image[j + 1] = HJ_PX_TO_G_BYTE(hj_canvas[i]);
     image[j + 2] = HJ_PX_TO_B_BYTE(hj_canvas[i]);

@@ -1,8 +1,7 @@
 // hj.h - code for HJ images
 
+#include <stdint.h>
 #include <stdlib.h>
-
-_Static_assert(sizeof (unsigned) == 4, "unsigned is not 4 bytes!");
 
 // The HJ color format must match that of the framebuffer for hj2fb to work
 
@@ -26,10 +25,10 @@ _Static_assert(sizeof (unsigned) == 4, "unsigned is not 4 bytes!");
 #define PAINTER(id) static inline void hj_painter##id(void)
 
 #define FOR_YX \
-  unsigned yn = hj_y0 + hj_height; \
-  unsigned xn = hj_x0 + hj_width; \
-  for (unsigned y = hj_y0; y < yn; ++y) \
-  for (unsigned x = hj_x0; x < xn; ++x)
+  uint32_t yn = hj_y0 + hj_height; \
+  uint32_t xn = hj_x0 + hj_width; \
+  for (uint32_t y = hj_y0; y < yn; ++y) \
+  for (uint32_t x = hj_x0; x < xn; ++x)
 
 #define CURRENT_PX hj_canvas[(y - hj_y0) * hj_width + x - hj_x0]
 
@@ -38,11 +37,11 @@ _Static_assert(sizeof (unsigned) == 4, "unsigned is not 4 bytes!");
 
 #define J hj_j
 
-static inline unsigned hj_rrggbb_to_color(const char *s) {
+static inline uint32_t hj_rrggbb_to_color(const char *s) {
   return strtoul(s, 0, 16); // UNPORTABLE
 }
 
-static inline unsigned hj_letter_to_color(const char *s) {
+static inline uint32_t hj_letter_to_color(const char *s) {
   switch (*s) {
     case 'r': return HJ_RED;
     case 'g': return HJ_GREEN;
@@ -54,7 +53,7 @@ static inline unsigned hj_letter_to_color(const char *s) {
   }
 }
 
-static unsigned
+static uint32_t
   hj_id      = 0,
   hj_j       = 1,
   hj_color   = HJ_WHITE,
@@ -71,7 +70,7 @@ static inline _Bool hj_is_valid(void) {
   if (hj_j)
     return 1;
 
-  unsigned class = hj_id / 5;
+  uint32_t class = hj_id / 5;
 
   if (class == 1 || class == 3 || class == 5 || class == 7)
     return 0;
