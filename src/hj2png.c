@@ -12,6 +12,8 @@
 
 #include "hj.h"
 
+#define LENGTH_MAX 1048576 // This limit of one mebipixel replaces the libpng default limit of one megapixel
+
 int main(int argc, char *argv[]) {
   _Bool best = 0;
 
@@ -74,7 +76,7 @@ int main(int argc, char *argv[]) {
 
   size_t area = hj_width * hj_height;
 
-  if (!hj_is_valid() || !area || area > 1 << 30 || hj_color > 0xffffff)
+  if (!hj_is_valid() || !area || hj_width > LENGTH_MAX || hj_height > LENGTH_MAX || hj_color > 0xffffff)
     return 2;
 
   png_struct *structp = png_create_write_struct(PNG_LIBPNG_VER_STRING, 0, 0, 0);
@@ -85,8 +87,7 @@ int main(int argc, char *argv[]) {
     return 3;
   }
 
-  // The longest filename is i10j1000000000x1000000000y1000000000w1000000000h1000000000#100000.hj.png
-  char filename[73];
+  char filename[73]; // The longest filename is i10j1000000000x1000000000y1000000000w1000000000h1000000000#100000.hj.png
   sprintf(filename, "i%" PRIu32 "j%" PRIu32 "x%" PRIu32 "y%" PRIu32 "w%" PRIu32 "h%" PRIu32 "#%06" PRIx32 ".hj.png",
     hj_id, hj_j, hj_x0, hj_y0, hj_width, hj_height, hj_color);
 
@@ -104,18 +105,17 @@ int main(int argc, char *argv[]) {
     return 5;
   }
 
-  png_init_io(structp, stream);
-
   png_text texts[] = {
     {.key = "Author",   .text = "Sawuare", .compression = PNG_TEXT_COMPRESSION_NONE},
     {.key = "Software", .text = "hj2png",  .compression = PNG_TEXT_COMPRESSION_NONE}
   };
 
-  png_set_IHDR(structp, infop, hj_width, hj_height, 8, PNG_COLOR_TYPE_RGB, PNG_INTERLACE_NONE, PNG_COMPRESSION_TYPE_BASE, PNG_FILTER_TYPE_BASE);
-  png_set_text(structp, infop, texts, sizeof texts / sizeof *texts);
-  png_set_filter(structp, PNG_FILTER_TYPE_BASE, HJ_IS_MONO_XOR_RAMP(hj_id) ? PNG_FILTER_NONE : PNG_FILTER_UP);
-  png_set_compression_level(structp, best ? Z_BEST_COMPRESSION : Z_DEFAULT_COMPRESSION);
   png_set_compression_strategy(structp, Z_DEFAULT_STRATEGY);
+  png_set_compression_level(structp, best ? Z_BEST_COMPRESSION : Z_DEFAULT_COMPRESSION);
+  png_set_user_limits(structp, LENGTH_MAX, LENGTH_MAX);
+  png_set_filter(structp, PNG_FILTER_TYPE_BASE, HJ_IS_MONO_XOR_RAMP(hj_id) ? PNG_FILTER_NONE : PNG_FILTER_UP);
+  png_set_text(structp, infop, texts, sizeof texts / sizeof *texts);
+  png_set_IHDR(structp, infop, hj_width, hj_height, 8, PNG_COLOR_TYPE_RGB, PNG_INTERLACE_NONE, PNG_COMPRESSION_TYPE_BASE, PNG_FILTER_TYPE_BASE);
 
   png_byte *image, **rows;
 
@@ -146,6 +146,7 @@ int main(int argc, char *argv[]) {
   while (hj_height--)
     rows[hj_height] = &image[hj_height * hj_width * 3];
 
+  png_init_io(structp, stream);
   png_write_info(structp, infop);
   png_write_image(structp, rows);
   png_write_end(structp, 0);

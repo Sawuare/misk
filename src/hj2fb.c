@@ -117,10 +117,6 @@ print:
 
 get:
     switch (getchar()) {
-      case '0':
-        hj_id = hj_j = hj_x0 = hj_y0 = 0;
-        break;
-
       case '1':
         --hj_id;
         break;

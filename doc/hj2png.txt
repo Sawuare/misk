@@ -15,8 +15,6 @@ DESCRIPTION
 
     $ hj2png -i 0 -j 1 -x 0 -y 0 -w 512 -h 512 -# ffffff
 
-  Image areas greater than a gibipixel (i.e. 1073741824 pixels) are invalid.
-
 OPTIONS
   -# <color-rrggbb>
     The hexadecimal nonnegative integer <color-rrggbb> specifies the painting color
@@ -29,7 +27,8 @@ OPTIONS
     Defaults to w.
 
   -h <height>
-    The positive integer <height> specifies the image's height in pixels.
+    The positive integer <height> specifies the image's height in pixels and must be
+    less than or equal to 1048576 (i.e. one mebipixel).
     Defaults to 512.
 
   -i <ID>
@@ -51,7 +50,8 @@ OPTIONS
     Print libpng and zlib versions then exit.
 
   -w <width>
-    The positive integer <width> specifies the image's width in pixels.
+    The positive integer <width> specifies the image's width in pixels and must be
+    less than or equal to 1048576 (i.e. one mebipixel).
     Defaults to 512.
 
   -x <X-offset>
