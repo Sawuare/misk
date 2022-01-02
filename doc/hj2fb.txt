@@ -31,8 +31,8 @@ DESCRIPTION
     l toggles the status line;
     e exits;
 
-  The status line shows the ID and J-value. If the ID is not available or the J-value
-  is not applicable, a warning line is automatically printed.
+  The status line shows the ID, J-value, X-offset, Y-offset, and color. If the ID is
+  not available or the J-value is not applicable, a warning line is printed.
 
 OPTIONS
   -# <color-rrggbb>

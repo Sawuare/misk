@@ -7,35 +7,38 @@ import random
 RULE = int(input("Rule = "))
 SEED = int(input("Seed = "))
 
-# UNPORTABLE
-BLACK = b"\x00\x00\x00\x00"
-WHITE = b"\xff\xff\xff\x00"
+FB_PATH = "/dev/fb0"
 
 # UNPORTABLE
-XRES = 1376
-YRES = 768
+FB_BLACK = b"\x00\x00\x00\x00"
+FB_WHITE = b"\xff\xff\xff\x00"
 
-cells = XRES * [0]
-clone = XRES * [0]
+# UNPORTABLE
+FB_WIDTH  = 1376
+FB_HEIGHT = 768
+
+cells = FB_WIDTH * [0]
+clone = FB_WIDTH * [0]
 
 if (SEED):
   random.seed(SEED)
-  for x in range(XRES):
+  for x in range(FB_WIDTH):
     cells[x] = random.randint(0, 1)
 else:
-  cells[XRES // 2] = 1
+  cells[FB_WIDTH // 2] = 1
 
 # Disable the text cursor
 print("\x1b[?25l", end = "", flush = True)
 
-with open("/dev/fb0", "wb") as fb:
-  for y in range(YRES):
-    for x in range(XRES):
-      fb.write(WHITE if cells[x] else BLACK)
+with open(FB_PATH, "wb") as fb:
+  for y in range(FB_HEIGHT):
+    for x in range(FB_WIDTH):
+      fb.write(FB_WHITE if cells[x] else FB_BLACK)
 
+      # The neighbors
       p = cells[x - 1]
       q = cells[x]
-      r = cells[(x + 1) % XRES]
+      r = cells[(x + 1) % FB_WIDTH]
 
       clone[x] = RULE >> (p << 2 | q << 1 | r) & 1
 
@@ -43,5 +46,5 @@ with open("/dev/fb0", "wb") as fb:
 
 input()
 
-# Enable the text cursor and clear the screen
-print("\x1b[?25h\x1b[3J", end = "")
+# Enable the text cursor, reset its position, and clear the screen
+print("\x1b[?25h\x1b[H\x1b[3J", end = "")

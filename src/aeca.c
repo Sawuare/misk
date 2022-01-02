@@ -90,6 +90,7 @@ int main(int argc, char *argv[]) {
     for (unsigned c = 0; c < cell_count; ++c) {
       audio[g * cell_count + c] = cells[c] ? 255 : 0;
 
+      // The neighbors
       unsigned char p = cells[c ? c - 1 : cell_count - 1];
       unsigned char q = cells[c];
       unsigned char r = cells[(c + 1) % cell_count];

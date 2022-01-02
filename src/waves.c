@@ -7,17 +7,19 @@
 
 #include <FLAC/stream_encoder.h>
 
-#define MAX +32767
-#define MIN -32767
+#define WAVE_COUNT "2"
 
 #define RATE 44100
 #define FREQ 440
+
+#define MAX 32767
+#define MIN -MAX
 
 static FLAC__int32 wave[RATE];
 static FLAC__StreamEncoder *encoder;
 
 static void write_wave(const char *filename) {
-  FLAC__stream_encoder_set_verify(encoder, true);
+  FLAC__stream_encoder_set_verify(encoder, 1);
   FLAC__stream_encoder_set_channels(encoder, 1);
   FLAC__stream_encoder_set_sample_rate(encoder, RATE);
   FLAC__stream_encoder_set_bits_per_sample(encoder, 16);
@@ -33,9 +35,9 @@ static void write_wave(const char *filename) {
   if (!FLAC__stream_encoder_finish(encoder))
     exit(4);
 
-  static int counter = 1;
+  static int wave_counter = 1;
 
-  printf("Wrote %d of 2: %s\n", counter++, filename);
+  printf("Wrote %d of " WAVE_COUNT ": %s\n", wave_counter++, filename);
 }
 
 int main(void) {

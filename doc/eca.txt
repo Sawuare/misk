@@ -11,6 +11,8 @@ DESCRIPTION
   used to randomize the 1st generation. Seed 0 is special; it does not randomize the
   1st generation but instead places only 1 alive cell in its middle.
 
+  Pressing Enter exits eca after it finishes painting.
+
   eca requires permission to write the Linux framebuffer device /dev/fb0, which
   likely requires being the superuser or being in the video group.
 

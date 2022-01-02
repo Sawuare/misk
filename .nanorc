@@ -18,7 +18,7 @@ bind ^S savefile all
 bind ^V paste all
 bind ^X cut all
 bind ^Y redo all
-bind ^Z undo all
+bind ^Z undo all # This fails on the Linux terminal before nano 6
 
 bind M-C comment all
 bind M-L linenumbers all
