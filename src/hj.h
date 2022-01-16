@@ -3,9 +3,8 @@
 #include <stdint.h>
 #include <stdlib.h>
 
-// The HJ color format must match that of the framebuffer for hj2fb to work
+// The color format is 24-bit RGB
 
-// UNPORTABLE
 #define HJ_BLACK   0x000000
 #define HJ_RED     0xff0000
 #define HJ_GREEN   0x00ff00
@@ -15,7 +14,6 @@
 #define HJ_YELLOW  0xffff00
 #define HJ_WHITE   0xffffff
 
-// UNPORTABLE
 #define HJ_PX_TO_R_BYTE(px) ((px) >> 16 & 255)
 #define HJ_PX_TO_G_BYTE(px) ((px) >>  8 & 255)
 #define HJ_PX_TO_B_BYTE(px) ((px)       & 255)
@@ -33,12 +31,12 @@
 #define CURRENT_PX hj_canvas[(y - hj_y0) * hj_width + x - hj_x0]
 
 #define MONO(value) (value) ? HJ_BLACK : hj_color
-#define RAMP(value) (value) % 256 * hj_color / 255 // UNPORTABLE
+#define RAMP(value) (value) % 256 * hj_color / 255
 
 #define J hj_j
 
 static inline uint32_t hj_rrggbb_to_color(const char *s) {
-  return strtoul(s, 0, 16); // UNPORTABLE
+  return strtoul(s, 0, 16);
 }
 
 static inline uint32_t hj_letter_to_color(const char *s) {
@@ -63,7 +61,7 @@ static uint32_t
   hj_height  = 512,
   *hj_canvas = 0;
 
-static inline _Bool hj_is_valid(void) {
+static inline _Bool hj_is_defined(void) {
   if (hj_id > 44)
     return 0;
 

@@ -76,7 +76,7 @@ int main(int argc, char *argv[]) {
 
   size_t area = hj_width * hj_height;
 
-  if (!hj_is_valid() || !area || hj_width > LENGTH_MAX || hj_height > LENGTH_MAX || hj_color > 0xffffff)
+  if (!hj_is_defined() || !area || hj_width > LENGTH_MAX || hj_height > LENGTH_MAX || hj_color > 0xffffff)
     return 2;
 
   png_struct *structp = png_create_write_struct(PNG_LIBPNG_VER_STRING, 0, 0, 0);

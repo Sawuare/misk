@@ -31,8 +31,9 @@ DESCRIPTION
     l toggles the status line;
     e exits;
 
-  The status line shows the ID, J-value, X-offset, Y-offset, and color. If the ID is
-  not available or the J-value is not applicable, a warning line is printed.
+  The status line shows the ID, J-value, X-offset, Y-offset, and color. If the ID or
+  J-value are undefined, the status line is automatically printed with an exclamation
+  mark (!) as the last character.
 
 OPTIONS
   -# <color-rrggbb>
@@ -79,7 +80,9 @@ EXIT STATUS
   0 otherwise;
 
 BUGS
-  The source code in hj.h and hj2fb.c is unportable; it makes assumptions about the
+  hj2fb requires a framebuffer whose color format is 32-bit ARGB.
+
+  The source code in hj2fb.c is unportable; it makes assumptions about the
   framebuffer. For easy adjustment, the assumptions are marked "UNPORTABLE".
 
 SEE ALSO

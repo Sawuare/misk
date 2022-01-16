@@ -23,8 +23,8 @@
 #define FB_HEIGHT 768
 
 static inline void printl(_Bool warn) {
-  printf("i%-10" PRIu32 " j%-10" PRIu32 " x%-10" PRIu32 " y%-10" PRIu32 " #%06" PRIx32 " %s\r",
-    hj_id, hj_j, hj_x0, hj_y0, hj_color, warn ? "N/A" : "   ");
+  printf("i%-10" PRIu32 " j%-10" PRIu32 " x%-10" PRIu32 " y%-10" PRIu32 " #%06" PRIx32 " %c\r",
+    hj_id, hj_j, hj_x0, hj_y0, hj_color, warn ? '!' : ' ');
 }
 
 int main(int argc, char *argv[]) {
@@ -104,7 +104,7 @@ int main(int argc, char *argv[]) {
   fputs(DECTCEM("l") ED("1") CUP(), stdout);
 
   while (1) {
-    if (hj_is_valid())
+    if (hj_is_defined())
       hj_painters[hj_id]();
     else {
       printl(1);

@@ -5,9 +5,8 @@ SYNOPSIS
   pp [<length>]
 
 DESCRIPTION
-  If given, the integer <length>, which must be greater than or equal to 3, specifies
-  the character length of the penis, which is otherwise a random integer in the range
-  [3, 85].
+  If given, the integer <length>, which must be in the range [3, 80], specifies the
+  character length of the penis, which is otherwise a random integer in this range.
 
   pp pauses for 1/length of a second between characters.
 

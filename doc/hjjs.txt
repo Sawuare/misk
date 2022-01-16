@@ -1,5 +1,5 @@
 NAME
-  hjjs - write some interesting HJ J-sequences
+  hjjs - write some HJ J-sequences
 
 SYNOPSIS
   hjjs

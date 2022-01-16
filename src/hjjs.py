@@ -1,6 +1,6 @@
 #! /usr/bin/env python3
 
-# hjjs.py - write some interesting HJ J-sequences
+# hjjs.py - write some HJ J-sequences
 
 J_MAX = 2 ** 32 - 1
 
