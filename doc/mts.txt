@@ -1,9 +1,0 @@
-NAME
-  mts - print a table of MIDI-tuning-standard note number, notation, and frequency
-
-SYNOPSIS
-  mts
-
-DESCRIPTION
-  From left to right, the table contains the number, scientific pitch notation, and
-  frequency in hertz of MIDI notes.

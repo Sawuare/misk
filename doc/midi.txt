@@ -1,0 +1,9 @@
+NAME
+  midi - print a table of MIDI note number, notation, and frequency
+
+SYNOPSIS
+  midi
+
+DESCRIPTION
+  From left to right, the table contains the number, scientific pitch notation, and
+  frequency in hertz of every MIDI note.

@@ -12,7 +12,7 @@ echo "Exporting data"
 
 # Assume that build.sh has been executed
 hjjs
-mts       > mts.txt
+midi      > midi.txt
 printable > printable.txt
 waves
 
