@@ -5,16 +5,16 @@ recommend GNU/Linux for using them.
 
 The directories and files in here are:
 
+  aux/
+    Auxiliary utilities which must be executed from this directory.
+
+    *.sh -> POSIX shell scripts
+
   dat/
     Data exported by the programs.
 
   doc/
     Documentation of the programs and headers.
-
-  opt/
-    Optional utilities which must be executed from this directory.
-
-    *.sh -> POSIX shell scripts
 
   src/
     Source code in several languages.
