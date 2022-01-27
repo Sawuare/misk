@@ -17,8 +17,8 @@ _Static_assert(CHAR_BIT == 8, "char is not 8 bits!");
 int main(int argc, char *argv[]) {
   _Bool    delet     = 0;
   _Bool    quiet     = 0;
-  unsigned frequency = 400; // In Hz
-  unsigned length    = 100; // In ms
+  unsigned frequency = 400; // In hertz
+  unsigned length    = 100; // In milliseconds
 
   int opt;
 

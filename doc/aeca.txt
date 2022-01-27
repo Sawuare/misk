@@ -7,7 +7,7 @@ SYNOPSIS
 DESCRIPTION
   aeca generates generations of cells that evolve according to an elementary cellular
   automata rule. The generations are concatenated and converted to a raw audio stream
-  consisting of unsigned 8 bit samples. Dead cells become samples with amplitude 0,
+  consisting of unsigned 8-bit samples. Dead cells become samples with amplitude 0,
   and alive cells become samples with amplitude 255. aeca writes the stream to a file
   and tries to play it as if it has this format:
 

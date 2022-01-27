@@ -44,7 +44,7 @@ OPT="--preserve=ownership"
 sudo cp $OPT eca.py        $BIN/eca
 sudo cp $OPT hjjs.py       $BIN/hjjs
 sudo cp $OPT k2cfr.py      $BIN/k2cfr
-sudo cp $OPT mts.py        $BIN/mts
+sudo cp $OPT midi.py       $BIN/midi
 sudo cp $OPT printable.py  $BIN/printable
 sudo cp $OPT projectile.py $BIN/projectile
 

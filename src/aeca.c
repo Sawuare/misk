@@ -64,10 +64,10 @@ int main(int argc, char *argv[]) {
         return 1;
     }
 
-  if (!cell_count || !gen_count || rule > 255)
-    return 2;
-
   unsigned sample_count = gen_count * cell_count;
+
+  if (!sample_count || rule > 255)
+    return 2;
 
   unsigned char *audio = malloc(sample_count);
   unsigned char *cells = malloc(cell_count);
