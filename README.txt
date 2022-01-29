@@ -6,7 +6,7 @@ recommend GNU/Linux for using them.
 The directories and files in here are:
 
   aux/
-    Auxiliary utilities which must be executed from this directory.
+    Auxiliary scripts which must be executed from this directory.
 
     *.sh -> POSIX shell scripts
 

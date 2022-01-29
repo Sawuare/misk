@@ -9,7 +9,7 @@
 #include <threads.h>
 
 #define LEN_MIN 3
-#define LEN_MAX 80
+#define LEN_MAX 85
 
 int main(int argc, char *argv[]) {
   int len;

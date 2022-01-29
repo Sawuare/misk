@@ -12,7 +12,8 @@
 
 #include "hj.h"
 
-#define LENGTH_MAX 1048576 // This limit of one mebipixel replaces the libpng default limit of one megapixel
+// This limit of one mebipixel replaces the libpng default limit of one megapixel
+#define LENGTH_MAX 1048576
 
 int main(int argc, char *argv[]) {
   _Bool best = 0;
@@ -87,7 +88,9 @@ int main(int argc, char *argv[]) {
     return 3;
   }
 
-  char filename[73]; // The longest filename is i10j1000000000x1000000000y1000000000w1000000000h1000000000#100000.hj.png
+  // The longest filename is
+  // i10j1000000000x1000000000y1000000000w1000000000h1000000000#100000.hj.png
+  char filename[73];
   sprintf(filename, "i%" PRIu32 "j%" PRIu32 "x%" PRIu32 "y%" PRIu32 "w%" PRIu32 "h%" PRIu32 "#%06" PRIx32 ".hj.png",
     hj_id, hj_j, hj_x0, hj_y0, hj_width, hj_height, hj_color);
 

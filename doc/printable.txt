@@ -1,5 +1,5 @@
 NAME
-  printable - print a table of printable ASCII characters in bin, oct, dec, and hex
+  printable - print a table of printable ASCII characters in base 2, 8, 10, and 16
 
 SYNOPSIS
   printable
