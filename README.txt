@@ -38,8 +38,8 @@ The directories and files in here are:
 
 For a summary of every program and header, execute
 
-  $ cd opt/ && ./summarize.sh
+  $ cd aux/ && ./summarize.sh
 
-To get started, see opt/build.sh.
+To get started, see aux/build.sh.
 
 Questions and comments are welcome! Send them to sawuare@gmail.com.
