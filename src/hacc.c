@@ -21,12 +21,18 @@ _Noreturn static void stop(int unused) {
 }
 
 int main(int argc, char *argv[]) {
-  long pause = argv[1] ? atol(argv[1]) : 125000000;
+  int pause; // In milliseconds
 
-  if (pause < 0 || pause > 999999999)
-    return 1;
+  if (argv[1]) {
+    pause = atoi(argv[1]);
 
-  struct timespec zzz = {.tv_nsec = pause};
+    if (pause < 0 || pause > 999)
+      return 1;
+  }
+  else
+    pause = 125;
+
+  struct timespec zzz = {.tv_nsec = 1000000 * pause};
 
   struct winsize ws;
 

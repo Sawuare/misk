@@ -16,7 +16,7 @@
 #define LENGTH_MAX 1048576
 
 int main(int argc, char *argv[]) {
-  _Bool best = 0;
+  _Bool best_compression = 0;
 
   int opt;
 
@@ -68,7 +68,7 @@ int main(int argc, char *argv[]) {
         return 0;
 
       case 'z':
-        best = 1;
+        best_compression = 1;
         break;
 
       default:
@@ -114,7 +114,7 @@ int main(int argc, char *argv[]) {
   };
 
   png_set_compression_strategy(structp, Z_DEFAULT_STRATEGY);
-  png_set_compression_level(structp, best ? Z_BEST_COMPRESSION : Z_DEFAULT_COMPRESSION);
+  png_set_compression_level(structp, best_compression ? Z_BEST_COMPRESSION : Z_DEFAULT_COMPRESSION);
   png_set_user_limits(structp, LENGTH_MAX, LENGTH_MAX);
   png_set_filter(structp, PNG_FILTER_TYPE_BASE, HJ_IS_MONO_XOR_RAMP(hj_id) ? PNG_FILTER_NONE : PNG_FILTER_UP);
   png_set_text(structp, infop, texts, sizeof texts / sizeof *texts);

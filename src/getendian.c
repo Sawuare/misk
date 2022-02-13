@@ -2,8 +2,10 @@
 
 #include <stdio.h>
 
-int main(void) {
-  union {int i; unsigned char bytes[sizeof (int)];} one = {1};
+_Static_assert(sizeof (long long) > 1, "The size of `long long` is not greater than 1 byte!");
 
-  puts(one.bytes[0] ? "little" : "big");
+int main(void) {
+  union {long long ll; unsigned char bytes[sizeof (long long)];} one = {1};
+
+  puts(one.bytes[0] ? "Little" : "Big");
 }

@@ -13,7 +13,7 @@
 
 #include <getopt.h>
 
-_Static_assert(CHAR_BIT == 8, "char is not 8 bits!");
+_Static_assert(CHAR_BIT == 8, "The width of `unsigned char` is not 8 bits!");
 
 static inline unsigned ddig(unsigned n) {
   unsigned d = 1;

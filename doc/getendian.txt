@@ -5,7 +5,7 @@ SYNOPSIS
   getendian
 
 DESCRIPTION
-  Either "little" (for little-endian) or "big" (for big-endian) is printed.
+  Either "Little" (for little-endian) or "Big" (for big-endian) is printed.
 
 SEE ALSO
   getlocale.txt
