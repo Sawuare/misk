@@ -11,9 +11,9 @@
 #include <termios.h>
 #include <unistd.h>
 
-#include "dectcem.h"
-#include "ecma-48.h"
+#include "ecma48.h"
 #include "hj.h"
+#include "tcem.h"
 
 #define FB_PATH "/dev/fb0"
 
@@ -101,7 +101,7 @@ int main(int argc, char *argv[]) {
 
   setbuf(stdout, 0);
 
-  fputs(DECTCEM("l") ED("1") CUP(), stdout);
+  fputs(TCEM("l") ECMA48_ED("1") ECMA48_CUP(), stdout);
 
   while (1) {
     if (hj_is_defined())
@@ -187,6 +187,6 @@ get:
   }
 
 exit:
-  fputs(DECTCEM("h") ED("3"), stdout);
+  fputs(TCEM("h") ECMA48_ED("3"), stdout);
   tcsetattr(STDIN_FILENO, TCSANOW, &old_term);
 }

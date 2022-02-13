@@ -1,0 +1,8 @@
+NAME
+  tcem.h - text cursor enable mode
+
+SYNOPSIS
+  #include "tcem.h"
+
+SEE ALSO
+  ecma48.txt

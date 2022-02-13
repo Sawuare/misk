@@ -1,0 +1,8 @@
+NAME
+  ecma48.h - control functions for coded character sets in 7-bit codes
+
+SYNOPSIS
+  #include "ecma48.h"
+
+SEE ALSO
+  tcem.txt

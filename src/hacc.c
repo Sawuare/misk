@@ -12,11 +12,11 @@
 #include <sys/ioctl.h>
 #include <unistd.h>
 
-#include "dectcem.h"
-#include "ecma-48.h"
+#include "ecma48.h"
+#include "tcem.h"
 
 _Noreturn static void stop(int unused) {
-  fputs(RIS, stdout);
+  fputs(ECMA48_RIS, stdout);
   exit(0);
 }
 
@@ -42,7 +42,7 @@ int main(int argc, char *argv[]) {
   srand(time(0));
   signal(SIGINT, stop);
 
-  fputs(DECTCEM("l") ED("2"), stdout);
+  fputs(TCEM("l") ECMA48_ED("2"), stdout);
 
   while (1) {
     int row = rand() % ws.ws_row +  1;
@@ -50,7 +50,7 @@ int main(int argc, char *argv[]) {
     int clr = rand() %         8 + 30;
     int chr = rand() %        94 + 33;
 
-    printf(CUP("%d;%d") SGR("%d") "%c", row, col, clr, chr);
+    printf(ECMA48_CUP("%d;%d") ECMA48_SGR("%d") "%c", row, col, clr, chr);
     fflush(stdout);
 
     thrd_sleep(&zzz, 0);
