@@ -6,7 +6,6 @@ J_MAX = 2 ** 32 - 1
 
 def i22(f, m):
   n = 0
-
   js = []
 
   while True:
@@ -16,7 +15,6 @@ def i22(f, m):
       break
 
     js.append(j)
-
     n += 1
 
   print(*js, file = f)

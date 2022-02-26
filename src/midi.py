@@ -2,9 +2,13 @@
 
 # midi.py - print a table of MIDI note number, notation, and frequency
 
+# Sequence of pitch classes
 PCS = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"]
 
-PCL, N, A4N, A4F = 12, 128, 69, 440
+PCN = 12  # Number of pitch classes
+N   = 128 # Number of MIDI notes
+A4N = 69  # Number of note A4
+A4F = 440 # Frequency of note A4
 
 for n in range(N):
-  print(f"{n:03d} | {PCS[n % PCL]:2s}{n // PCL - 1:2d} | {pow(2, (n - A4N) / PCL) * A4F:#15.15g}")
+  print(f"{n:03d} | {PCS[n % PCN]:2s}{n // PCN - 1:2d} | {pow(2, (n - A4N) / PCN) * A4F:#15.15g}")

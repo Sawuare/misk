@@ -7,6 +7,7 @@ from math import radians, sin
 ANGLE = radians(float(input("Launch Angle    (deg) = ")))
 SPEED =         float(input("Launch Speed    (m/s) = "))
 
+# Standard acceleration due to gravity
 GN = 9.80665
 
 print(f"Flight Peak     (m)   = {pow(SPEED * sin(ANGLE), 2) / 2 / GN:g}")

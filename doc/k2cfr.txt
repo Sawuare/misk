@@ -1,9 +1,0 @@
-NAME
-  k2cfr - convert temperature from kelvin to Celsius, Fahrenheit, and Rankine
-
-SYNOPSIS
-  k2cfr
-
-DESCRIPTION
-  Enter a temperature in kelvin to convert it to degrees Celsius, degrees Fahrenheit,
-  and degrees Rankine.

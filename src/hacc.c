@@ -45,14 +45,13 @@ int main(int argc, char *argv[]) {
   fputs(TCEM("l") ECMA48_ED("2"), stdout);
 
   while (1) {
-    int row = rand() % ws.ws_row +  1;
-    int col = rand() % ws.ws_col +  1;
-    int clr = rand() %         8 + 30;
-    int chr = rand() %        94 + 33;
+    int row = rand() % ws.ws_row +  1; // [1, ws.ws_row]
+    int col = rand() % ws.ws_col +  1; // [1, ws.ws_col]
+    int clr = rand() %         8 + 30; // [30,       37]
+    int chr = rand() %        94 + 33; // [33,      126]
 
     printf(ECMA48_CUP("%d;%d") ECMA48_SGR("%d") "%c", row, col, clr, chr);
     fflush(stdout);
-
     thrd_sleep(&zzz, 0);
   }
 }

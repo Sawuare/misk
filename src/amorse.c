@@ -59,9 +59,8 @@ int main(int argc, char *argv[]) {
   char cbuf[256];
 
   while (fgets(cbuf, sizeof cbuf, stdin)) {
-    unsigned sample_count = 0;
-
     char *cptr = cbuf;
+    unsigned sample_count = 0;
 
     while (*cptr) {
       switch (*cptr) {
