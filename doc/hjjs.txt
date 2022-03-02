@@ -10,16 +10,16 @@ DESCRIPTION
   The sequences are nonnegative integers less than 2 raised to 32, separated by
   spaces, and written to these files:
 
-    i22m0.hjjs.txt
-    i22m1.hjjs.txt
-    i22m2.hjjs.txt
-    i22m3.hjjs.txt
-    i22m4.hjjs.txt
-    i22m5.hjjs.txt
-    i22m6.hjjs.txt
-    i22m7.hjjs.txt
-    i22m8.hjjs.txt
-    i22m9.hjjs.txt
+    i22a0.hjjs.txt
+    i22a1.hjjs.txt
+    i22a2.hjjs.txt
+    i22a3.hjjs.txt
+    i22a4.hjjs.txt
+    i22a5.hjjs.txt
+    i22a6.hjjs.txt
+    i22a7.hjjs.txt
+    i22a8.hjjs.txt
+    i22a9.hjjs.txt
 
   Where "i#" denotes a sequence for the HJ painter whose ID is #.
 
