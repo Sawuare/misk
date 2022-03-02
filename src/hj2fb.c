@@ -87,7 +87,6 @@ int main(int argc, char *argv[]) {
     return 3;
 
   hj_canvas = mmap(0, FB_SIZE, PROT_WRITE, MAP_SHARED, fb_descriptor, 0);
-
   close(fb_descriptor);
 
   if (hj_canvas == MAP_FAILED)
@@ -100,7 +99,6 @@ int main(int argc, char *argv[]) {
   tcsetattr(STDIN_FILENO, TCSANOW, &new_term);
 
   setbuf(stdout, 0);
-
   fputs(TCEM("l") ECMA48_ED("1") ECMA48_CUP(), stdout);
 
   while (1) {

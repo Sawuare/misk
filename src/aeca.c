@@ -13,7 +13,7 @@
 
 #include <getopt.h>
 
-_Static_assert(CHAR_BIT == 8, "The width of `unsigned char` is not 8 bits!");
+_Static_assert(CHAR_BIT == 8, "The width of (unsigned char) is not 8 bits!");
 
 static inline unsigned ddig(unsigned n) {
   unsigned d = 1;
@@ -78,6 +78,7 @@ int main(int argc, char *argv[]) {
 
   if (seed) {
     srand(seed);
+
     for (unsigned c = 0; c < cell_count; ++c)
       cells[c] = rand() & 1;
   }
@@ -116,9 +117,8 @@ int main(int argc, char *argv[]) {
   }
 
   fwrite(audio, 1, sample_count, stream);
-  fclose(stream);
   free(audio);
-
+  fclose(stream);
   printf("Wrote %s\n", filename);
 
   if (!quiet) {

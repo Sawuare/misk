@@ -158,6 +158,5 @@ int main(int argc, char *argv[]) {
   free(image);
   free(rows);
   fclose(stream);
-
   printf("Wrote %s\n", filename);
 }

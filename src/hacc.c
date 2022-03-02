@@ -41,7 +41,6 @@ int main(int argc, char *argv[]) {
 
   srand(time(0));
   signal(SIGINT, stop);
-
   fputs(TCEM("l") ECMA48_ED("2"), stdout);
 
   while (1) {

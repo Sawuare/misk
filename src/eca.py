@@ -22,6 +22,7 @@ clone = FB_WIDTH * [0]
 
 if (SEED):
   random.seed(SEED)
+
   for x in range(FB_WIDTH):
     cells[x] = random.randint(0, 1)
 else:

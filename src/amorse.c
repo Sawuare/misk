@@ -12,7 +12,7 @@
 
 #define RATE 8000 // Default aplay rate
 
-_Static_assert(CHAR_BIT == 8, "The width of `unsigned char` is not 8 bits!");
+_Static_assert(CHAR_BIT == 8, "The width of (unsigned char) is not 8 bits!");
 
 int main(int argc, char *argv[]) {
   _Bool    delet     = 0;
@@ -139,7 +139,6 @@ int main(int argc, char *argv[]) {
   }
 
   fclose(stream);
-
   puts("Wrote " FILENAME);
 
   if (!quiet) {
