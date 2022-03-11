@@ -18,8 +18,6 @@
 #define HJ_PX_TO_G_BYTE(px) ((px) >>  8 & 255)
 #define HJ_PX_TO_B_BYTE(px) ((px)       & 255)
 
-#define HJ_IS_MONO_XOR_RAMP(id) ((id) < 40)
-
 #define PAINTER(id, formula)                                     \
   static inline void hj_painter##id(void) {                      \
     uint32_t yn = hj_y0 + hj_height;                             \
@@ -60,6 +58,10 @@ static uint32_t
   hj_width   = 512,
   hj_height  = 512,
   *hj_canvas = 0;
+
+static inline _Bool hj_is_mono_xor_ramp(void) {
+  return hj_id < 40;
+}
 
 static inline _Bool hj_is_defined(void) {
   if (hj_id > 44)
