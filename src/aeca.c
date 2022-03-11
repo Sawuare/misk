@@ -27,29 +27,29 @@ static inline unsigned ddig(unsigned n) {
 int main(int argc, char *argv[]) {
   _Bool    delet      = 0;
   _Bool    quiet      = 0;
-  unsigned cell_count = 256;
-  unsigned gen_count  = 256;
   unsigned rule       = 60;
   unsigned seed       = 0;
+  unsigned cell_count = 256;
+  unsigned gen_count  = 256;
 
   int opt;
 
-  while ((opt = getopt(argc, argv, "c:g:r:s:dq")) != -1)
+  while ((opt = getopt(argc, argv, "r:s:c:g:dq")) != -1)
     switch (opt) {
-      case 'c':
-        cell_count = strtoul(optarg, 0, 10);
-        break;
-
-      case 'g':
-        gen_count = strtoul(optarg, 0, 10);
-        break;
-
       case 'r':
         rule = strtoul(optarg, 0, 10);
         break;
 
       case 's':
         seed = strtoul(optarg, 0, 10);
+        break;
+
+      case 'c':
+        cell_count = strtoul(optarg, 0, 10);
+        break;
+
+      case 'g':
+        gen_count = strtoul(optarg, 0, 10);
         break;
 
       case 'd':
@@ -107,7 +107,7 @@ int main(int argc, char *argv[]) {
 
   unsigned filename_size = ddig(cell_count) + ddig(gen_count) + ddig(rule) + ddig(seed) + 14;
   char filename[filename_size];
-  sprintf(filename, "c%ug%ur%us%u.aeca.pcm", cell_count, gen_count, rule, seed);
+  sprintf(filename, "r%us%uc%ug%u.aeca.pcm", rule, seed, cell_count, gen_count);
 
   FILE *stream = fopen(filename, "wb");
 
