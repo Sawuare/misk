@@ -142,15 +142,16 @@ PAINTER(43, RAMP((J + x) * x + (J + y) * y))
 PAINTER(44, RAMP((J * x) * x + (J * y) * y))
 
 static void (*hj_painters[])(void) = {
-  hj_painter0,  hj_painter1,  hj_painter2,  hj_painter3,  hj_painter4,
-  hj_painter5,  hj_painter6,  hj_painter7,  hj_painter8,  hj_painter9,
-  hj_painter10, hj_painter11, hj_painter12, hj_painter13, hj_painter14,
-  hj_painter15, hj_painter16, hj_painter17, hj_painter18, hj_painter19,
-  hj_painter20, hj_painter21, hj_painter22, hj_painter23, hj_painter24,
-  hj_painter25, hj_painter26, hj_painter27, hj_painter28, hj_painter29,
-  hj_painter30, hj_painter31, hj_painter32, hj_painter33, hj_painter34,
-  hj_painter35, hj_painter36, hj_painter37, hj_painter38, hj_painter39,
-  hj_painter40, hj_painter41, hj_painter42, hj_painter43, hj_painter44
+  // AND           OR            XOR           ADD           MUL
+  hj_painter0,  hj_painter1,  hj_painter2,  hj_painter3,  hj_painter4,  // Class 0
+  hj_painter5,  hj_painter6,  hj_painter7,  hj_painter8,  hj_painter9,  // Class 1
+  hj_painter10, hj_painter11, hj_painter12, hj_painter13, hj_painter14, // Class 2
+  hj_painter15, hj_painter16, hj_painter17, hj_painter18, hj_painter19, // Class 3
+  hj_painter20, hj_painter21, hj_painter22, hj_painter23, hj_painter24, // Class 4
+  hj_painter25, hj_painter26, hj_painter27, hj_painter28, hj_painter29, // Class 5
+  hj_painter30, hj_painter31, hj_painter32, hj_painter33, hj_painter34, // Class 6
+  hj_painter35, hj_painter36, hj_painter37, hj_painter38, hj_painter39, // Class 7
+  hj_painter40, hj_painter41, hj_painter42, hj_painter43, hj_painter44  // Class 8
 };
 
 #undef PAINTER

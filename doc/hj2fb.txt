@@ -77,6 +77,8 @@ EXIT STATUS
   2 if an option argument is invalid;
   3 if opening /dev/fb0 failed;
   4 if mapping /dev/fb0 failed;
+  5 if getting terminal attributes fails;
+  6 if setting terminal attributes fails;
   0 otherwise;
 
 BUGS

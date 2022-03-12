@@ -91,25 +91,34 @@ int main(int argc, char *argv[]) {
     return 4;
 
   struct termios old_term, new_term;
-  tcgetattr(STDIN_FILENO, &old_term);
+
+  if (!tcgetattr(STDIN_FILENO, &old_term))
+    return 5;
+
   new_term = old_term;
   new_term.c_lflag &= ~(ECHO | ICANON);
-  tcsetattr(STDIN_FILENO, TCSANOW, &new_term);
+
+  if (!tcsetattr(STDIN_FILENO, TCSANOW, &new_term))
+    return 6;
 
   setbuf(stdout, 0);
   fputs(TCEM("l") ECMA48_ED("1") ECMA48_CUP(), stdout);
 
   while (1) {
-    if (hj_is_defined())
+    _Bool warn;
+
+    if (hj_is_defined()) {
       hj_painters[hj_id]();
+      warn = 0;
+    }
     else {
-      printl(1);
-      goto get;
+      warn = 1;
+      goto print;
     }
 
     if (line)
 print:
-      printl(0);
+      printl(warn);
 
 get:
     switch (getchar()) {
