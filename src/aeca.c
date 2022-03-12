@@ -2,10 +2,7 @@
 
 // Unsigned 8 bit, Rate 44100 Hz, Mono
 
-#if __STDC_NO_VLA__ == 1
-#error "No VLA!"
-#endif
-
+#include <inttypes.h>
 #include <limits.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -13,24 +10,17 @@
 
 #include <getopt.h>
 
+#include "eca.h"
+
 _Static_assert(CHAR_BIT == 8, "The width of (unsigned char) is not 8 bits!");
-
-static inline unsigned ddig(unsigned n) {
-  unsigned d = 1;
-
-  while (n /= 10)
-    ++d;
-
-  return d;
-}
 
 int main(int argc, char *argv[]) {
   _Bool    delet      = 0;
   _Bool    quiet      = 0;
-  unsigned rule       = 60;
-  unsigned seed       = 0;
-  unsigned cell_count = 256;
-  unsigned gen_count  = 256;
+  uint8_t  rule       = 60;
+  uint32_t seed       = 0;
+  uint32_t cell_count = 256;
+  uint32_t gen_count  = 256;
 
   int opt;
 
@@ -64,39 +54,40 @@ int main(int argc, char *argv[]) {
         return 1;
     }
 
-  unsigned sample_count = gen_count * cell_count;
+  size_t sample_count = gen_count * cell_count;
 
-  if (!sample_count || rule > 255)
+  if (!sample_count)
     return 2;
 
   unsigned char *audio = malloc(sample_count);
-  unsigned char *cells = malloc(cell_count);
-  unsigned char *clone = malloc(cell_count);
+
+  _Bool *cells = malloc(cell_count);
+  _Bool *clone = malloc(cell_count);
 
   if (!audio || !cells || !clone)
     return 3;
 
   if (seed) {
-    srand(seed);
+    eca_srand(seed);
 
-    for (unsigned c = 0; c < cell_count; ++c)
-      cells[c] = rand() & 1;
+    for (uint32_t c = 0; c < cell_count; ++c)
+      cells[c] = eca_rand() & 1;
   }
   else {
     memset(cells, 0, cell_count);
     cells[cell_count / 2] = 1;
   }
 
-  for (unsigned g = 0; g < gen_count; ++g) {
-    for (unsigned c = 0; c < cell_count; ++c) {
+  for (uint32_t g = 0; g < gen_count; ++g) {
+    for (uint32_t c = 0; c < cell_count; ++c) {
       audio[g * cell_count + c] = cells[c] ? 255 : 0;
 
       // The neighbors
-      unsigned char p = cells[c ? c - 1 : cell_count - 1];
-      unsigned char q = cells[c];
-      unsigned char r = cells[(c + 1) % cell_count];
+      _Bool p = cells[c == 0 ? cell_count - 1 : c - 1];
+      _Bool q = cells[c];
+      _Bool r = cells[c == cell_count - 1 ? 0 : c + 1];
 
-      clone[c] = rule >> (p << 2 | q << 1 | r) & 1;
+      clone[c] = eca_rule(rule, p, q, r);
     }
 
     memcpy(cells, clone, cell_count);
@@ -105,9 +96,11 @@ int main(int argc, char *argv[]) {
   free(cells);
   free(clone);
 
-  unsigned filename_size = ddig(cell_count) + ddig(gen_count) + ddig(rule) + ddig(seed) + 14;
-  char filename[filename_size];
-  sprintf(filename, "r%us%uc%ug%u.aeca.pcm", rule, seed, cell_count, gen_count);
+  // The longest filename is
+  // r100s1000000000c1000000000g1000000000.aeca.pcm
+  char filename[47];
+  sprintf(filename, "r%" PRIu8 "s%" PRIu32 "c%" PRIu32 "g%" PRIu32 ".aeca.pcm",
+    rule, seed, cell_count, gen_count);
 
   FILE *stream = fopen(filename, "wb");
 
@@ -123,7 +116,7 @@ int main(int argc, char *argv[]) {
 
   if (!quiet) {
     if (system(0)) {
-      char command[filename_size + 33];
+      char command[sizeof filename + 33];
       sprintf(command, "aplay -t raw -f U8 -r 44100 -c 1 %s", filename);
       system(command);
     }

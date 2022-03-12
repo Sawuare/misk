@@ -24,12 +24,9 @@ DESCRIPTION
   See the option -s.
 
   The file has a name that encodes how it was produced. For example, a file with the
-  name c256g256r60s0.aeca.pcm can be reproduced by an invocation equivalent to
+  name r60s0c256g256.aeca.pcm can be reproduced by an invocation equivalent to
 
-    $ aeca -c 256 -g 256 -r 60 -s 0
-
-  A file generated from a random state could be irreproducible on different systems
-  because of a possibly different implementation of the random number generator used.
+    $ aeca -r 60 -s 0 -c 256 -g 256
 
 OPTIONS
   -c <cells>
