@@ -57,18 +57,18 @@ echo "Compiling C programs"
 
 OPT="-std=c17 -march=native -O3"
 
-cc $OPT -o aeca       aeca.c
+cc $OPT -o aeca       aeca.c eca.c
 cc $OPT -o amorse     amorse.c
 cc $OPT -o ctime      ctime.c
 cc $OPT -o getendian  getendian.c
 cc $OPT -o getlocale  getlocale.c
 cc $OPT -o hacc       hacc.c
 cc $OPT -o hj2fb      hj2fb.c
-cc $OPT -o hj2png     hj2png.c    -lpng -lz
+cc $OPT -o hj2png     hj2png.c -lpng -lz
 cc $OPT -o limits     limits.c
 cc $OPT -o morse      morse.c
 cc $OPT -o pp         pp.c
-cc $OPT -o waves      waves.c     -lFLAC
+cc $OPT -o waves      waves.c -lFLAC
 
 echo "Moving C programs"
 
