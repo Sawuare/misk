@@ -92,13 +92,13 @@ int main(int argc, char *argv[]) {
 
   struct termios old_term, new_term;
 
-  if (!tcgetattr(STDIN_FILENO, &old_term))
+  if (tcgetattr(STDIN_FILENO, &old_term) == -1)
     return 5;
 
   new_term = old_term;
   new_term.c_lflag &= ~(ECHO | ICANON);
 
-  if (!tcsetattr(STDIN_FILENO, TCSANOW, &new_term))
+  if (tcsetattr(STDIN_FILENO, TCSANOW, &new_term) == -1)
     return 6;
 
   setbuf(stdout, 0);
@@ -193,5 +193,7 @@ get:
 
 exit:
   fputs(TCEM("h") ECMA48_ED("3"), stdout);
-  tcsetattr(STDIN_FILENO, TCSANOW, &old_term);
+
+  if (tcsetattr(STDIN_FILENO, TCSANOW, &old_term) == -1)
+    return 6;
 }

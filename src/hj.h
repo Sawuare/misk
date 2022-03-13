@@ -33,12 +33,12 @@
 
 #define J hj_j
 
-static inline uint32_t hj_rrggbb_to_color(const char *s) {
-  return strtoul(s, 0, 16);
+static inline uint32_t hj_rrggbb_to_color(const char *rrggbb) {
+  return strtoul(rrggbb, 0, 16);
 }
 
-static inline uint32_t hj_letter_to_color(const char *s) {
-  switch (*s) {
+static inline uint32_t hj_letter_to_color(const char *letter) {
+  switch (*letter) {
     case 'r': return HJ_RED;
     case 'g': return HJ_GREEN;
     case 'b': return HJ_BLUE;
@@ -59,10 +59,6 @@ static uint32_t
   hj_height  = 512,
   *hj_canvas = 0;
 
-static inline _Bool hj_is_mono_xor_ramp(void) {
-  return hj_id < 40;
-}
-
 static inline _Bool hj_is_defined(void) {
   if (hj_id > 44)
     return 0;
@@ -76,6 +72,10 @@ static inline _Bool hj_is_defined(void) {
     return 0;
 
   return 1;
+}
+
+static inline _Bool hj_is_mono_xor_ramp(void) {
+  return hj_id < 40;
 }
 
 // Class 0
