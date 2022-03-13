@@ -4,6 +4,73 @@ NAME
 SYNOPSIS
   #include "hj.h"
 
+  HJ_BLACK
+  HJ_RED
+  HJ_GREEN
+  HJ_BLUE
+  HJ_CYAN
+  HJ_MAGENTA
+  HJ_YELLOW
+  HJ_WHITE
+
+  HJ_PX_TO_R_BYTE(px)
+  HJ_PX_TO_G_BYTE(px)
+  HJ_PX_TO_B_BYTE(px)
+
+  uint32_t hj_rrggbb_to_color(const char *rrggbb);
+  uint32_t hj_letter_to_color(const char *letter);
+
+  _Bool hj_is_defined(void);
+  _Bool hj_is_mono_xor_ramp(void);
+
+  void hj_painter0(void);
+  void hj_painter1(void);
+  void hj_painter2(void);
+  void hj_painter3(void);
+  void hj_painter4(void);
+  void hj_painter5(void);
+  void hj_painter6(void);
+  void hj_painter7(void);
+  void hj_painter8(void);
+  void hj_painter9(void);
+  void hj_painter10(void);
+  void hj_painter11(void);
+  void hj_painter12(void);
+  void hj_painter13(void);
+  void hj_painter14(void);
+  void hj_painter15(void);
+  void hj_painter16(void);
+  void hj_painter17(void);
+  void hj_painter18(void);
+  void hj_painter19(void);
+  void hj_painter20(void);
+  void hj_painter21(void);
+  void hj_painter22(void);
+  void hj_painter23(void);
+  void hj_painter24(void);
+  void hj_painter25(void);
+  void hj_painter26(void);
+  void hj_painter27(void);
+  void hj_painter28(void);
+  void hj_painter29(void);
+  void hj_painter30(void);
+  void hj_painter31(void);
+  void hj_painter32(void);
+  void hj_painter33(void);
+  void hj_painter34(void);
+  void hj_painter35(void);
+  void hj_painter36(void);
+  void hj_painter37(void);
+  void hj_painter38(void);
+  void hj_painter39(void);
+  void hj_painter40(void);
+  void hj_painter41(void);
+  void hj_painter42(void);
+  void hj_painter43(void);
+  void hj_painter44(void);
+
+  void (*hj_painters[])(void);
+
 DESCRIPTION
   HJ images are painted by painters, which are functions of these parameters: a
   canvas, its width and height, horizontal and vertical offsets ("X-offset" and

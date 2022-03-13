@@ -4,5 +4,7 @@ NAME
 SYNOPSIS
   #include "tcem.h"
 
+  TCEM(p)
+
 SEE ALSO
   ecma48.txt
