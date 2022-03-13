@@ -47,12 +47,12 @@ OPTIONS
     Defaults to w.
 
   -i <ID>
-    The nonnegative integer <ID> specifies the painter's ID and must be less than 45.
-    Defaults to 0.
+    The nonnegative integer <ID> specifies the painter's ID.
+    Defaults to 0. Must be less than 45.
 
   -j <J-value>
     The nonnegative integer <J-value> specifies the painter's J-value.
-    Defaults to 1.
+    Defaults to 1. Must be less than 4294967296.
 
   -l
     Enable the status line.
@@ -62,15 +62,15 @@ OPTIONS
 
   -s <step>
     The nonnegative integer <step> specifies the offsets' decrement/increment.
-    Defaults to 32.
+    Defaults to 32. Must be less than 4294967296.
 
   -x <X-offset>
     The nonnegative integer <X-offset> specifies the painter's X-offset.
-    Defaults to 0.
+    Defaults to 0. Must be less than 4294967296.
 
   -y <Y-offset>
     The nonnegative integer <Y-offset> specifies the painter's Y-offset.
-    Defaults to 0.
+    Defaults to 0. Must be less than 4294967296.
 
 EXIT STATUS
   1 if an option is invalid;

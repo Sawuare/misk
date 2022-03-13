@@ -27,17 +27,16 @@ OPTIONS
     Defaults to w.
 
   -h <height>
-    The positive integer <height> specifies the image's height in pixels and must be
-    less than or equal to 1048576 (i.e. one mebipixel).
-    Defaults to 512.
+    The positive integer <height> specifies the image's height in pixels.
+    Defaults to 512. Must be less than or equal to 1048576 (i.e. one mebipixel).
 
   -i <ID>
-    The nonnegative integer <ID> specifies the painter's ID and must be less than 45.
-    Defaults to 0.
+    The nonnegative integer <ID> specifies the painter's ID.
+    Defaults to 0. Must be less than 45.
 
   -j <J-value>
     The nonnegative integer <J-value> specifies the painter's J-value.
-    Defaults to 1.
+    Defaults to 1. Must be less than 4294967296.
 
   -l <length>
     This additional option is equivalent to -w <length> -h <length>, which specifies
@@ -50,17 +49,16 @@ OPTIONS
     Print libpng and zlib versions then exit.
 
   -w <width>
-    The positive integer <width> specifies the image's width in pixels and must be
-    less than or equal to 1048576 (i.e. one mebipixel).
-    Defaults to 512.
+    The positive integer <width> specifies the image's width in pixels.
+    Defaults to 512. Must be less than or equal to 1048576 (i.e. one mebipixel).
 
   -x <X-offset>
     The nonnegative integer <X-offset> specifies the painter's X-offset.
-    Defaults to 0.
+    Defaults to 0. Must be less than 4294967296.
 
   -y <Y-offset>
     The nonnegative integer <Y-offset> specifies the painter's Y-offset.
-    Defaults to 0.
+    Defaults to 0. Must be less than 4294967296.
 
   -z
     Use the best compression level instead of the default.

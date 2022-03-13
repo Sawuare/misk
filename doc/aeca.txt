@@ -31,27 +31,27 @@ DESCRIPTION
 OPTIONS
   -c <cells>
     The positive integer <cells> specifies the number of cells in a generation.
-    Defaults to 256.
+    Defaults to 256. Must be less than 4294967296.
 
   -d
     Delete the file after trying to play it.
 
   -g <generations>
     The positive integer <generations> specifies the number of generations.
-    Defaults to 256.
+    Defaults to 256. Must be less than 4294967296.
 
   -q
     Be quiet by not trying to play the file.
 
   -r <rule>
-    The nonnegative integer <rule> specifies the rule and must be less than 256.
-    Defaults to 60.
+    The nonnegative integer <rule> specifies the rule.
+    Defaults to 60. Must be less than 256.
 
   -s <seed>
     The nonnegative integer <seed> specifies the seed used to randomize the 1st
     generation. Seed 0 is special; it does not randomize the 1st generation but
     instead places only 1 alive cell in its middle.
-    Defaults to 0.
+    Defaults to 0. Must be less than 4294967296.
 
 EXIT STATUS
   1 if an option is invalid;
