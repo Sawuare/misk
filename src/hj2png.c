@@ -76,7 +76,7 @@ int main(int argc, char *argv[]) {
 
   size_t area = hj_width * hj_height;
 
-  if (!hj_is_defined() || !area || hj_width > LENGTH_MAX || hj_height > LENGTH_MAX || hj_color > 0xffffff)
+  if (!hj_defined() || !area || hj_width > LENGTH_MAX || hj_height > LENGTH_MAX || hj_color > 0xffffff)
     return 2;
 
   png_struct *structp = png_create_write_struct(PNG_LIBPNG_VER_STRING, 0, 0, 0);
@@ -115,7 +115,7 @@ int main(int argc, char *argv[]) {
   png_set_compression_strategy(structp, Z_DEFAULT_STRATEGY);
   png_set_compression_level(structp, best_compression ? Z_BEST_COMPRESSION : Z_DEFAULT_COMPRESSION);
   png_set_user_limits(structp, LENGTH_MAX, LENGTH_MAX);
-  png_set_filter(structp, PNG_FILTER_TYPE_BASE, hj_is_mono_xor_ramp() ? PNG_FILTER_NONE : PNG_FILTER_UP);
+  png_set_filter(structp, PNG_FILTER_TYPE_BASE, hj_mono_xor_ramp() ? PNG_FILTER_NONE : PNG_FILTER_UP);
   png_set_text(structp, infop, texts, sizeof texts / sizeof *texts);
   png_set_IHDR(structp, infop, hj_width, hj_height, 8, PNG_COLOR_TYPE_RGB, PNG_INTERLACE_NONE, PNG_COMPRESSION_TYPE_BASE, PNG_FILTER_TYPE_BASE);
 

@@ -59,7 +59,7 @@ static uint32_t
   hj_height  = 512,
   *hj_canvas = 0;
 
-static inline _Bool hj_is_defined(void) {
+static inline _Bool hj_defined(void) {
   if (hj_id > 44)
     return 0;
 
@@ -74,7 +74,7 @@ static inline _Bool hj_is_defined(void) {
   return 1;
 }
 
-static inline _Bool hj_is_mono_xor_ramp(void) {
+static inline _Bool hj_mono_xor_ramp(void) {
   return hj_id < 40;
 }
 

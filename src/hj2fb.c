@@ -107,7 +107,7 @@ int main(int argc, char *argv[]) {
   while (1) {
     _Bool warn;
 
-    if (hj_is_defined()) {
+    if (hj_defined()) {
       hj_painters[hj_id]();
       warn = 0;
     }
