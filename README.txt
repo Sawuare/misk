@@ -5,8 +5,8 @@ recommend GNU/Linux for using them.
 
 The directories and files in here are:
 
-  aux/
-    Auxiliary scripts which must be executed from this directory.
+  add/
+    Additional scripts which must be executed from this directory.
 
     *.sh -> POSIX shell scripts
 
