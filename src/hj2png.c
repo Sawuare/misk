@@ -21,44 +21,34 @@ int main(int argc, char *argv[]) {
 
   while ((opt = getopt(argc, argv, "#:c:i:j:x:y:o:w:h:l:vz")) != -1)
     switch (opt) {
-      case '#':
-        hj_color = hj_rrggbb_to_color(optarg);
+      case '#': hj_color = hj_rrggbb_to_color(optarg);
         break;
 
-      case 'c':
-        hj_color = hj_letter_to_color(optarg);
+      case 'c': hj_color = hj_letter_to_color(optarg);
         break;
 
-      case 'i':
-        hj_id = strtoul(optarg, 0, 10);
+      case 'i': hj_id = strtoul(optarg, 0, 10);
         break;
 
-      case 'j':
-        hj_j = strtoul(optarg, 0, 10);
+      case 'j': hj_j = strtoul(optarg, 0, 10);
         break;
 
-      case 'x':
-        hj_x0 = strtoul(optarg, 0, 10);
+      case 'x': hj_x0 = strtoul(optarg, 0, 10);
         break;
 
-      case 'y':
-        hj_y0 = strtoul(optarg, 0, 10);
+      case 'y': hj_y0 = strtoul(optarg, 0, 10);
         break;
 
-      case 'o':
-        hj_x0 = hj_y0 = strtoul(optarg, 0, 10);
+      case 'o': hj_x0 = hj_y0 = strtoul(optarg, 0, 10);
         break;
 
-      case 'w':
-        hj_width = strtoul(optarg, 0, 10);
+      case 'w': hj_width = strtoul(optarg, 0, 10);
         break;
 
-      case 'h':
-        hj_height = strtoul(optarg, 0, 10);
+      case 'h': hj_height = strtoul(optarg, 0, 10);
         break;
 
-      case 'l':
-        hj_width = hj_height = strtoul(optarg, 0, 10);
+      case 'l': hj_width = hj_height = strtoul(optarg, 0, 10);
         break;
 
       case 'v':
@@ -66,12 +56,10 @@ int main(int argc, char *argv[]) {
         printf("Executed with libpng %s and zlib %s\n", png_libpng_ver, zlib_version);
         return 0;
 
-      case 'z':
-        best_compression = 1;
+      case 'z': best_compression = 1;
         break;
 
-      default:
-        return 1;
+      default: return 1;
     }
 
   size_t area = hj_width * hj_height;

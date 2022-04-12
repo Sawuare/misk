@@ -24,24 +24,19 @@ int main(int argc, char *argv[]) {
 
   while ((opt = getopt(argc, argv, "f:l:dq")) != -1)
     switch (opt) {
-      case 'f':
-        frequency = strtoul(optarg, 0, 10);
+      case 'f': frequency = strtoul(optarg, 0, 10);
         break;
 
-      case 'l':
-        length = strtoul(optarg, 0, 10);
+      case 'l': length = strtoul(optarg, 0, 10);
         break;
 
-      case 'd':
-        delet = 1;
+      case 'd': delet = 1;
         break;
 
-      case 'q':
-        quiet = 1;
+      case 'q': quiet = 1;
         break;
 
-      default:
-        return 1;
+      default: return 1;
     }
 
   if (!frequency || !length)
@@ -64,17 +59,14 @@ int main(int argc, char *argv[]) {
 
     while (*cptr) {
       switch (*cptr) {
-        case '.':
-          sample_count += dit;
+        case '.': sample_count += dit;
           break;
 
         case '-':
-        case ' ':
-          sample_count += dah;
+        case ' ': sample_count += dah;
           break;
 
-        case '\n':
-          sample_count += gap;
+        case '\n': sample_count += gap;
           break;
 
         default:
@@ -119,12 +111,10 @@ int main(int argc, char *argv[]) {
           for (unsigned j = 0; j < dah; ++j)
             audio[i + j] = j / period_2 % 2 ? 0 : 255;
 
-        case ' ':
-          i += dah;
+        case ' ': i += dah;
           break;
 
-        case '\n':
-          i += gap;
+        case '\n': i += gap;
           break;
       }
 

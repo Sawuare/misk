@@ -26,32 +26,25 @@ int main(int argc, char *argv[]) {
 
   while ((opt = getopt(argc, argv, "r:s:c:g:dq")) != -1)
     switch (opt) {
-      case 'r':
-        rule = strtoul(optarg, 0, 10);
+      case 'r': rule = strtoul(optarg, 0, 10);
         break;
 
-      case 's':
-        seed = strtoul(optarg, 0, 10);
+      case 's': seed = strtoul(optarg, 0, 10);
         break;
 
-      case 'c':
-        cell_count = strtoul(optarg, 0, 10);
+      case 'c': cell_count = strtoul(optarg, 0, 10);
         break;
 
-      case 'g':
-        gen_count = strtoul(optarg, 0, 10);
+      case 'g': gen_count = strtoul(optarg, 0, 10);
         break;
 
-      case 'd':
-        delet = 1;
+      case 'd': delet = 1;
         break;
 
-      case 'q':
-        quiet = 1;
+      case 'q': quiet = 1;
         break;
 
-      default:
-        return 1;
+      default: return 1;
     }
 
   size_t sample_count = gen_count * cell_count;

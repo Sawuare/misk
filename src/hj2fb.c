@@ -36,44 +36,34 @@ int main(int argc, char *argv[]) {
 
   while ((opt = getopt(argc, argv, "#:c:i:j:x:y:o:s:l")) != -1)
     switch (opt) {
-      case '#':
-        hj_color = hj_rrggbb_to_color(optarg);
+      case '#': hj_color = hj_rrggbb_to_color(optarg);
         break;
 
-      case 'c':
-        hj_color = hj_letter_to_color(optarg);
+      case 'c': hj_color = hj_letter_to_color(optarg);
         break;
 
-      case 'i':
-        hj_id = strtoul(optarg, 0, 10);
+      case 'i': hj_id = strtoul(optarg, 0, 10);
         break;
 
-      case 'j':
-        hj_j = strtoul(optarg, 0, 10);
+      case 'j': hj_j = strtoul(optarg, 0, 10);
         break;
 
-      case 'x':
-        hj_x0 = strtoul(optarg, 0, 10);
+      case 'x': hj_x0 = strtoul(optarg, 0, 10);
         break;
 
-      case 'y':
-        hj_y0 = strtoul(optarg, 0, 10);
+      case 'y': hj_y0 = strtoul(optarg, 0, 10);
         break;
 
-      case 'o':
-        hj_x0 = hj_y0 = strtoul(optarg, 0, 10);
+      case 'o': hj_x0 = hj_y0 = strtoul(optarg, 0, 10);
         break;
 
-      case 's':
-        step = strtoul(optarg, 0, 10);
+      case 's': step = strtoul(optarg, 0, 10);
         break;
 
-      case 'l':
-        line = 1;
+      case 'l': line = 1;
         break;
 
-      default:
-        return 1;
+      default: return 1;
     }
 
   if (hj_color > 0xffffff)
@@ -122,56 +112,43 @@ print:
 
 get:
     switch (getchar()) {
-      case '1':
-        --hj_id;
+      case '1': --hj_id;
         break;
 
-      case '2':
-        ++hj_id;
+      case '2': ++hj_id;
         break;
 
-      case '3':
-        --hj_j;
+      case '3': --hj_j;
         break;
 
-      case '4':
-        ++hj_j;
+      case '4': ++hj_j;
         break;
 
-      case '5':
-        hj_x0 -= step;
+      case '5': hj_x0 -= step;
         break;
 
-      case '6':
-        hj_x0 += step;
+      case '6': hj_x0 += step;
         break;
 
-      case '7':
-        hj_y0 -= step;
+      case '7': hj_y0 -= step;
         break;
 
-      case '8':
-        hj_y0 += step;
+      case '8': hj_y0 += step;
         break;
 
-      case '#':
-        scanf("%6" PRIx32, &hj_color);
+      case '#': scanf("%6" PRIx32, &hj_color);
         break;
 
-      case 'i':
-        scanf("%" PRIu32, &hj_id);
+      case 'i': scanf("%" PRIu32, &hj_id);
         break;
 
-      case 'j':
-        scanf("%" PRIu32, &hj_j);
+      case 'j': scanf("%" PRIu32, &hj_j);
         break;
 
-      case 'x':
-        scanf("%" PRIu32, &hj_x0);
+      case 'x': scanf("%" PRIu32, &hj_x0);
         break;
 
-      case 'y':
-        scanf("%" PRIu32, &hj_y0);
+      case 'y': scanf("%" PRIu32, &hj_y0);
         break;
 
       case 'l':
@@ -183,11 +160,9 @@ get:
         line = 1;
         goto print;
 
-      case 'e':
-        goto exit;
+      case 'e': goto exit;
 
-      default:
-        goto get;
+      default: goto get;
     }
   }
 
