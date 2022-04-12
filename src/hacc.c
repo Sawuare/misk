@@ -1,13 +1,9 @@
 // hacc.c - print random characters in random colors and positions until interrupted
 
-#if __STDC_NO_THREADS__ == 1
-#error "No thrd_sleep()!"
-#endif
-
 #include <signal.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <threads.h>
+#include <time.h>
 
 #include <sys/ioctl.h>
 #include <unistd.h>
@@ -51,6 +47,6 @@ int main(int argc, char *argv[]) {
 
     printf(ECMA48_CUP("%d;%d") ECMA48_SGR("%d") "%c", row, col, clr, chr);
     fflush(stdout);
-    thrd_sleep(&zzz, 0);
+    nanosleep(&zzz, 0);
   }
 }

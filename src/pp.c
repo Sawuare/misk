@@ -1,12 +1,8 @@
 // pp.c - print a penis incrementally
 
-#if __STDC_NO_THREADS__ == 1
-#error "No thrd_sleep()!"
-#endif
-
 #include <stdio.h>
 #include <stdlib.h>
-#include <threads.h>
+#include <time.h>
 
 #define LEN_MIN 3
 #define LEN_MAX 85
@@ -32,11 +28,11 @@ int main(int argc, char *argv[]) {
   setbuf(stdout, 0);
 
   putchar('8');
-  thrd_sleep(&zzz, 0);
+  nanosleep(&zzz, 0);
 
   while (len--) {
     putchar('=');
-    thrd_sleep(&zzz, 0);
+    nanosleep(&zzz, 0);
   }
 
   putchar('D');
