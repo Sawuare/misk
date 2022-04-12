@@ -1,7 +1,6 @@
-Here is my hobby software, including headers for terminal control and programs about
-audio, graphics, patterns, physics, mathematics, utility, and fun. The programs only
-have terminal interfaces. Some programs use features of POSIX or Linux, so I
-recommend GNU/Linux for using them.
+Here is my terminal software, including headers for terminal control and programs
+about audio, graphics, patterns, physics, mathematics, utility, and fun. Some
+programs use features of POSIX or Linux, so I recommend GNU/Linux for using them.
 
 The directories and files in here are:
 
@@ -38,8 +37,8 @@ The directories and files in here are:
 
 For a summary of every program and header, execute
 
-  $ cd aux/ && ./summarize.sh
+  $ cd add/ && ./summarize.sh
 
-To get started, see aux/build.sh.
+To get started, see add/build.sh.
 
 Questions and comments are welcome! Send them to sawuare@gmail.com.
