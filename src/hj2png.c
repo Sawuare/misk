@@ -138,9 +138,9 @@ int main(int argc, char *argv[]) {
   hj_painters[hj_id]();
 
   for (size_t i = 0, j = 0; i < area; i += 1, j += 3) {
-    image[j    ] = HJ_PX_TO_R_BYTE(hj_canvas[i]);
-    image[j + 1] = HJ_PX_TO_G_BYTE(hj_canvas[i]);
-    image[j + 2] = HJ_PX_TO_B_BYTE(hj_canvas[i]);
+    image[j    ] = HJ_R_SAMPLE(hj_canvas[i]);
+    image[j + 1] = HJ_G_SAMPLE(hj_canvas[i]);
+    image[j + 2] = HJ_B_SAMPLE(hj_canvas[i]);
   }
 
   free(hj_canvas);

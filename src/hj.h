@@ -14,9 +14,9 @@
 #define HJ_YELLOW  0xffff00
 #define HJ_WHITE   0xffffff
 
-#define HJ_PX_TO_R_BYTE(px) ((px) >> 16 & 255)
-#define HJ_PX_TO_G_BYTE(px) ((px) >>  8 & 255)
-#define HJ_PX_TO_B_BYTE(px) ((px)       & 255)
+#define HJ_R_SAMPLE(px) ((px) >> 16 & 255)
+#define HJ_G_SAMPLE(px) ((px) >>  8 & 255)
+#define HJ_B_SAMPLE(px) ((px)       & 255)
 
 #define PAINTER(id, formula)                                     \
   static inline void hj_painter##id(void) {                      \

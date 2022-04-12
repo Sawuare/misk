@@ -13,9 +13,9 @@ SYNOPSIS
   HJ_YELLOW
   HJ_WHITE
 
-  HJ_PX_TO_R_BYTE(px)
-  HJ_PX_TO_G_BYTE(px)
-  HJ_PX_TO_B_BYTE(px)
+  HJ_R_SAMPLE(px)
+  HJ_G_SAMPLE(px)
+  HJ_B_SAMPLE(px)
 
   uint32_t hj_rrggbb_to_color(const char *rrggbb);
   uint32_t hj_letter_to_color(const char *letter);
