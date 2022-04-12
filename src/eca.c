@@ -2,7 +2,6 @@
 
 #include "eca.h"
 
-#define RAND_BITS       32
 #define RAND_BITS_LESS1 31
 
 static uint32_t random = 1;
@@ -10,7 +9,7 @@ static uint32_t random = 1;
 uint32_t eca_rand(void) {
   uint32_t accumulator = 0;
 
-  for (int b = 0; b < RAND_BITS; ++b)
+  for (int b = 0; b <= RAND_BITS_LESS1; ++b)
     accumulator |= (uint32_t) eca_rule30(
       (uint32_t) 1 << (b == RAND_BITS_LESS1 ? 0 : b + 1) & random,
       (uint32_t) 1 <<                             b      & random,
