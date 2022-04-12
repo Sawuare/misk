@@ -75,12 +75,10 @@ int main(int argc, char *argv[]) {
     for (uint32_t c = 0; c < cell_count; ++c) {
       audio[g * cell_count + c] = cells[c] ? 255 : 0;
 
-      // The neighbors
-      _Bool p = cells[c == 0 ? cell_count - 1 : c - 1];
-      _Bool q = cells[c];
-      _Bool r = cells[c == cell_count - 1 ? 0 : c + 1];
-
-      clone[c] = eca_rule(rule, p, q, r);
+      clone[c] = eca_rule(rule,
+        cells[c == 0 ? cell_count - 1 : c - 1],
+        cells[c],
+        cells[c == cell_count - 1 ? 0 : c + 1]);
     }
 
     memcpy(cells, clone, cell_count);
