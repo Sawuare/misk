@@ -60,6 +60,7 @@ OPT="-march=native -O3"
 cc $OPT -o aeca       aeca.c eca.c
 cc $OPT -o amorse     amorse.c
 cc $OPT -o ctime      ctime.c
+cc $OPT -o eca2txt    eca2txt.c eca.c
 cc $OPT -o getendian  getendian.c
 cc $OPT -o getlocale  getlocale.c
 cc $OPT -o hacc       hacc.c
@@ -72,7 +73,7 @@ cc $OPT -o waves      waves.c -lFLAC
 
 echo "Moving C programs"
 
-sudo mv aeca amorse ctime getendian getlocale hacc hj2fb hj2png limits morse pp waves $BIN
+sudo mv aeca amorse ctime eca2txt getendian getlocale hacc hj2fb hj2png limits morse pp waves $BIN
 
 # Haskell
 
