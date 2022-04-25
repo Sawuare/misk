@@ -70,7 +70,7 @@ int main(int argc, char *argv[]) {
   png_struct *structp = png_create_write_struct(PNG_LIBPNG_VER_STRING, 0, 0, 0);
   png_info *infop = png_create_info_struct(structp);
 
-  if (!structp || !infop) {
+  if (!(structp && infop)) {
     png_destroy_write_struct(&structp, &infop);
     return 3;
   }
@@ -113,7 +113,7 @@ int main(int argc, char *argv[]) {
   image = malloc(3 * area * sizeof *image);
   rows = malloc(hj_height * sizeof *rows);
 
-  if (!hj_canvas || !image || !rows) {
+  if (!(hj_canvas && image && rows)) {
     png_destroy_write_struct(&structp, &infop);
     free(hj_canvas);
     free(image);

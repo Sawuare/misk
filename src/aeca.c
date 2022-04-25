@@ -57,7 +57,7 @@ int main(int argc, char *argv[]) {
   _Bool *cells = malloc(cell_count);
   _Bool *clone = malloc(cell_count);
 
-  if (!audio || !cells || !clone)
+  if (!(audio && cells && clone))
     return 3;
 
   if (seed) {

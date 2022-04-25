@@ -39,7 +39,7 @@ int main(int argc, char *argv[]) {
       default: return 1;
     }
 
-  if (!frequency || !length)
+  if (!(frequency && length))
     return 2;
 
   FILE *stream = fopen(FILENAME, "wb");
