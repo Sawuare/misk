@@ -53,6 +53,9 @@ int main(int argc, char *argv[]) {
       default: return 1;
     }
 
+  // Optionally print the rule like this:
+  // 111 110 101 100 011 010 001 000
+  //  0   0   1   1   1   1   0   0
   if (icons) {
     for (int h = GREATEST_HOOD; h >= SMALLEST_HOOD; --h) {
       if (h != GREATEST_HOOD)
