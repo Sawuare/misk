@@ -74,4 +74,4 @@ EXIT STATUS
   0 otherwise;
 
 SEE ALSO
-  hj.txt, hj2fb.txt, hjjs.txt
+  hj2fb.txt, hjjs.txt, hj.txt
