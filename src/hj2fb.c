@@ -5,6 +5,8 @@
 
 #include <fcntl.h>
 #include <getopt.h>
+#include <linux/fb.h>
+#include <sys/ioctl.h>
 #include <sys/mman.h>
 #include <termios.h>
 #include <unistd.h>
@@ -12,13 +14,6 @@
 #include "ecma48.h"
 #include "hj.h"
 #include "tcem.h"
-
-#define FB_PATH "/dev/fb0"
-
-// UNPORTABLE
-#define FB_SIZE   4227072
-#define FB_WIDTH  1376
-#define FB_HEIGHT 768
 
 static inline void printl(_Bool warn) {
   printf("i%-10" PRIu32 " j%-10" PRIu32 " x%-10" PRIu32 " y%-10" PRIu32 " #%06" PRIx32 " %c\r",
@@ -28,9 +23,6 @@ static inline void printl(_Bool warn) {
 int main(int argc, char *argv[]) {
   _Bool    line = 0;
   uint32_t step = 32;
-
-  hj_width  = FB_WIDTH;
-  hj_height = FB_HEIGHT;
 
   int opt;
 
@@ -69,27 +61,37 @@ int main(int argc, char *argv[]) {
   if (hj_color > 0xffffff)
     return 2;
 
-  int fb_descriptor = open(FB_PATH, O_RDWR);
+  int fb_descriptor = open("/dev/fb0", O_RDWR);
 
   if (fb_descriptor == -1)
     return 3;
 
-  hj_canvas = mmap(0, FB_SIZE, PROT_WRITE, MAP_SHARED, fb_descriptor, 0);
+  struct fb_fix_screeninfo fscreeninfo;
+  struct fb_var_screeninfo vscreeninfo;
+
+  if (ioctl(fb_descriptor, FBIOGET_FSCREENINFO, &fscreeninfo) == -1 ||
+      ioctl(fb_descriptor, FBIOGET_VSCREENINFO, &vscreeninfo) == -1)
+    return 4;
+
+  hj_width  = fscreeninfo.line_length / 4;
+  hj_height = vscreeninfo.yres;
+
+  hj_canvas = mmap(0, fscreeninfo.smem_len, PROT_WRITE, MAP_SHARED, fb_descriptor, 0);
   close(fb_descriptor);
 
   if (hj_canvas == MAP_FAILED)
-    return 4;
+    return 5;
 
   struct termios old_term, new_term;
 
   if (tcgetattr(STDIN_FILENO, &old_term) == -1)
-    return 5;
+    return 6;
 
   new_term = old_term;
   new_term.c_lflag &= ~(ECHO | ICANON);
 
   if (tcsetattr(STDIN_FILENO, TCSANOW, &new_term) == -1)
-    return 6;
+    return 7;
 
   setbuf(stdout, 0);
   fputs(TCEM("l") ECMA48_ED("1") ECMA48_CUP(), stdout);
@@ -170,5 +172,5 @@ exit:
   fputs(TCEM("h") ECMA48_ED("3"), stdout);
 
   if (tcsetattr(STDIN_FILENO, TCSANOW, &old_term) == -1)
-    return 6;
+    return 7;
 }

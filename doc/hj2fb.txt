@@ -75,17 +75,15 @@ OPTIONS
 EXIT STATUS
   1 if an option is invalid;
   2 if an option argument is invalid;
-  3 if opening /dev/fb0 failed;
-  4 if mapping /dev/fb0 failed;
-  5 if getting terminal attributes fails;
-  6 if setting terminal attributes fails;
+  3 if opening the framebuffer device fails;
+  4 if getting framebuffer attributes fails;
+  5 if mapping the framebuffer device fails;
+  6 if getting terminal attributes fails;
+  7 if setting terminal attributes fails;
   0 otherwise;
 
 BUGS
   hj2fb requires a framebuffer whose color format is 32-bit ARGB.
-
-  The source code in hj2fb.c is unportable; it makes assumptions about the
-  framebuffer. For easy adjustment, the assumptions are marked "UNPORTABLE".
 
 SEE ALSO
   eca.txt, hj.txt, hj2png.txt, hjjs.txt

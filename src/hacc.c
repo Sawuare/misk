@@ -30,9 +30,9 @@ int main(int argc, char *argv[]) {
 
   struct timespec zzz = {.tv_nsec = 1000000 * pause};
 
-  struct winsize ws;
+  struct winsize winsz;
 
-  if (ioctl(STDOUT_FILENO, TIOCGWINSZ, &ws) == -1)
+  if (ioctl(STDOUT_FILENO, TIOCGWINSZ, &winsz) == -1)
     return 2;
 
   srand(time(0));
@@ -41,10 +41,10 @@ int main(int argc, char *argv[]) {
 
   while (1) {
     printf(ECMA48_CUP("%d;%d") ECMA48_SGR("%d") "%c",
-      rand() % ws.ws_row +  1,  // [1, ws.ws_row]
-      rand() % ws.ws_col +  1,  // [1, ws.ws_col]
-      rand() %         8 + 30,  // [30,       37]
-      rand() %        94 + 33); // [33,      126]
+      rand() % winsz.ws_row +  1,  // [1, winsz.ws_row]
+      rand() % winsz.ws_col +  1,  // [1, winsz.ws_col]
+      rand() %            8 + 30,  // [30,          37]
+      rand() %           94 + 33); // [33,         126]
 
     fflush(stdout);
     nanosleep(&zzz, 0);
