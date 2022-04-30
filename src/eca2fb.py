@@ -39,7 +39,7 @@ with open(FB_PATH, "wb") as fb:
       # The neighbors
       p = cells[x - 1]
       q = cells[x]
-      r = cells[x + 1 if x != FB_WIDTH - 1 else 0]
+      r = cells[(x + 1) % FB_WIDTH]
 
       accumulators[x] = RULE >> (p << 2 | q << 1 | r) & 1
 

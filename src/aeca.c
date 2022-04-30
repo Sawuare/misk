@@ -71,14 +71,16 @@ int main(int argc, char *argv[]) {
     cells[cell_count / 2] = 1;
   }
 
+  uint32_t last_cell_pos = cell_count - 1;
+
   for (uint32_t g = 0; g < gen_count; ++g) {
     for (uint32_t c = 0; c < cell_count; ++c) {
       audio[g * cell_count + c] = cells[c] ? 255 : 0;
 
       accumulators[c] = eca_rule(rule,
-        cells[c == 0 ? cell_count - 1 : c - 1],
+        cells[c == 0 ? last_cell_pos : c - 1],
         cells[c],
-        cells[c == cell_count - 1 ? 0 : c + 1]);
+        cells[c == last_cell_pos ? 0 : c + 1]);
     }
 
     memcpy(cells, accumulators, cell_count);
