@@ -18,7 +18,7 @@ FB_WIDTH  = 1376
 FB_HEIGHT = 768
 
 cells = FB_WIDTH * [0]
-clone = FB_WIDTH * [0]
+accumulators = [*cells]
 
 if (SEED):
   random.seed(SEED)
@@ -41,9 +41,9 @@ with open(FB_PATH, "wb") as fb:
       q = cells[x]
       r = cells[x + 1 if x != FB_WIDTH - 1 else 0]
 
-      clone[x] = RULE >> (p << 2 | q << 1 | r) & 1
+      accumulators[x] = RULE >> (p << 2 | q << 1 | r) & 1
 
-    cells = [*clone]
+    cells = [*accumulators]
 
 input()
 

@@ -81,16 +81,16 @@ int main(int argc, char *argv[]) {
   sprintf(filename, "i%" PRIu32 "j%" PRIu32 "x%" PRIu32 "y%" PRIu32 "w%" PRIu32 "h%" PRIu32 "#%06" PRIx32 ".hj.png",
     hj_id, hj_j, hj_x0, hj_y0, hj_width, hj_height, hj_color);
 
-  FILE *stream = fopen(filename, "wb");
+  FILE *file = fopen(filename, "wb");
 
-  if (!stream) {
+  if (!file) {
     png_destroy_write_struct(&structp, &infop);
     return 4;
   }
 
   if (setjmp(png_jmpbuf(structp))) {
     png_destroy_write_struct(&structp, &infop);
-    fclose(stream);
+    fclose(file);
     remove(filename);
     return 5;
   }
@@ -118,7 +118,7 @@ int main(int argc, char *argv[]) {
     free(hj_canvas);
     free(image);
     free(rows);
-    fclose(stream);
+    fclose(file);
     remove(filename);
     return 6;
   }
@@ -136,7 +136,7 @@ int main(int argc, char *argv[]) {
   while (hj_height--)
     rows[hj_height] = &image[hj_height * hj_width * 3];
 
-  png_init_io(structp, stream);
+  png_init_io(structp, file);
   png_write_info(structp, infop);
   png_write_image(structp, rows);
   png_write_end(structp, 0);
@@ -144,6 +144,6 @@ int main(int argc, char *argv[]) {
   png_destroy_write_struct(&structp, &infop);
   free(image);
   free(rows);
-  fclose(stream);
+  fclose(file);
   printf("Wrote %s\n", filename);
 }

@@ -42,9 +42,9 @@ int main(int argc, char *argv[]) {
   if (!(frequency && length))
     return 2;
 
-  FILE *stream = fopen(FILENAME, "wb");
+  FILE *file = fopen(FILENAME, "wb");
 
-  if (!stream)
+  if (!file)
     return 3;
 
   unsigned dit = RATE * length / 1000;
@@ -70,7 +70,7 @@ int main(int argc, char *argv[]) {
           break;
 
         default:
-          fclose(stream);
+          fclose(file);
           remove(FILENAME);
           return 4;
       }
@@ -84,7 +84,7 @@ int main(int argc, char *argv[]) {
     unsigned char *audio = malloc(sample_count);
 
     if (!audio) {
-      fclose(stream);
+      fclose(file);
       remove(FILENAME);
       return 5;
     }
@@ -124,11 +124,11 @@ int main(int argc, char *argv[]) {
         i += dit;
     }
 
-    fwrite(audio, 1, sample_count, stream);
+    fwrite(audio, 1, sample_count, file);
     free(audio);
   }
 
-  fclose(stream);
+  fclose(file);
   puts("Wrote " FILENAME);
 
   if (!quiet) {

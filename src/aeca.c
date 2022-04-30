@@ -54,10 +54,10 @@ int main(int argc, char *argv[]) {
 
   unsigned char *audio = malloc(sample_count);
 
-  _Bool *cells = malloc(cell_count);
-  _Bool *clone = malloc(cell_count);
+  _Bool *cells        = malloc(cell_count);
+  _Bool *accumulators = malloc(cell_count);
 
-  if (!(audio && cells && clone))
+  if (!(audio && cells && accumulators))
     return 3;
 
   if (seed) {
@@ -75,17 +75,17 @@ int main(int argc, char *argv[]) {
     for (uint32_t c = 0; c < cell_count; ++c) {
       audio[g * cell_count + c] = cells[c] ? 255 : 0;
 
-      clone[c] = eca_rule(rule,
+      accumulators[c] = eca_rule(rule,
         cells[c == 0 ? cell_count - 1 : c - 1],
         cells[c],
         cells[c == cell_count - 1 ? 0 : c + 1]);
     }
 
-    memcpy(cells, clone, cell_count);
+    memcpy(cells, accumulators, cell_count);
   }
 
   free(cells);
-  free(clone);
+  free(accumulators);
 
   // The longest filename is
   // r100s1000000000c1000000000g1000000000.aeca.pcm
@@ -93,16 +93,16 @@ int main(int argc, char *argv[]) {
   sprintf(filename, "r%" PRIu8 "s%" PRIu32 "c%" PRIu32 "g%" PRIu32 ".aeca.pcm",
     rule, seed, cell_count, gen_count);
 
-  FILE *stream = fopen(filename, "wb");
+  FILE *file = fopen(filename, "wb");
 
-  if (!stream) {
+  if (!file) {
     free(audio);
     return 4;
   }
 
-  fwrite(audio, 1, sample_count, stream);
+  fwrite(audio, 1, sample_count, file);
   free(audio);
-  fclose(stream);
+  fclose(file);
   printf("Wrote %s\n", filename);
 
   if (!quiet) {
