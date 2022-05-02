@@ -57,10 +57,10 @@ echo "Compiling C programs"
 
 OPT="-march=native -O3"
 
-cc $OPT -o aeca       aeca.c eca.c
+cc $OPT -o aeca       aeca.c
 cc $OPT -o amorse     amorse.c
 cc $OPT -o ctime      ctime.c
-cc $OPT -o eca2txt    eca2txt.c eca.c
+cc $OPT -o eca2txt    eca2txt.c
 cc $OPT -o getendian  getendian.c
 cc $OPT -o getlocale  getlocale.c
 cc $OPT -o hacc       hacc.c
