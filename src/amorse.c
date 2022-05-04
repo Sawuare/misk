@@ -3,16 +3,14 @@
 // Unsigned 8 bit, Rate 8000 Hz, Mono
 
 #include <limits.h>
-#include <stdio.h>
-#include <stdlib.h>
 
 #include <getopt.h>
 
-#define FILENAME "amorse.pcm"
+#include "wafer.h"
+
+#define FILENAME "amorse.wav"
 
 #define RATE 8000 // Default aplay rate
-
-_Static_assert(CHAR_BIT == 8, "The width of (unsigned char) is not 8 bits!");
 
 int main(int argc, char *argv[]) {
   _Bool    delet     = 0;
@@ -42,10 +40,14 @@ int main(int argc, char *argv[]) {
   if (!(frequency && length))
     return 2;
 
-  FILE *file = fopen(FILENAME, "wb");
+  wafer_wave *wave = wafer_open(FILENAME);
 
-  if (!file)
+  if (!wave)
     return 3;
+
+  wafer_set_channels(wave, 1);
+  wafer_set_samples_per_sec(wave, RATE);
+  wafer_write_metadata(wave);
 
   unsigned dit = RATE * length / 1000;
   unsigned dah = 3 * dit;
@@ -70,7 +72,6 @@ int main(int argc, char *argv[]) {
           break;
 
         default:
-          fclose(file);
           remove(FILENAME);
           return 4;
       }
@@ -81,10 +82,9 @@ int main(int argc, char *argv[]) {
         sample_count += dit;
     }
 
-    unsigned char *audio = malloc(sample_count);
+    uint8_t *audio = malloc(sample_count);
 
     if (!audio) {
-      fclose(file);
       remove(FILENAME);
       return 5;
     }
@@ -124,16 +124,16 @@ int main(int argc, char *argv[]) {
         i += dit;
     }
 
-    fwrite(audio, 1, sample_count, file);
+    wafer_write_data(audio, sample_count, wave);
     free(audio);
   }
 
-  fclose(file);
+  wafer_close(wave);
   puts("Wrote " FILENAME);
 
   if (!quiet) {
     if (system(0))
-      system("aplay -t raw -f U8 -r 8000 -c 1 " FILENAME);
+      system("aplay " FILENAME);
     else
       return 6;
   }

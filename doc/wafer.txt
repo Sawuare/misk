@@ -1,0 +1,8 @@
+NAME
+  wafer.h - code for writing 8-bit PCM WAVE files
+
+SYNOPSIS
+  #include "wafer.h"
+
+DESCRIPTION
+  wafer.h includes stdint.h, stdio.h, and stdlib.h.

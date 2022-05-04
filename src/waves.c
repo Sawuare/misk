@@ -1,39 +1,27 @@
-// waves.c - write some fixed audio waves in the FLAC format
+// waves.c - write some fixed audio waves in the WAVE format
 
-// Signed 16 bit, Rate 44100 Hz, Mono
+// Unsigned 8 bit, Rate 44100 Hz, Mono
 
-#include <stdio.h>
-#include <stdlib.h>
-
-#include <FLAC/stream_encoder.h>
+#include "wafer.h"
 
 #define WAVE_COUNT "2"
 
 #define RATE 44100
 #define FREQ 440
 
-#define MAX 32767
-#define MIN -MAX
+#define MAX 255
+#define MID 128
+#define MIN 1
 
-static FLAC__int32 wave[RATE];
-static FLAC__StreamEncoder *encoder;
+static uint8_t data[RATE];
 
 static void write_wave(const char *filename) {
-  FLAC__stream_encoder_set_verify(encoder, 1);
-  FLAC__stream_encoder_set_channels(encoder, 1);
-  FLAC__stream_encoder_set_sample_rate(encoder, RATE);
-  FLAC__stream_encoder_set_bits_per_sample(encoder, 16);
-  FLAC__stream_encoder_set_compression_level(encoder, 0);
-  FLAC__stream_encoder_set_total_samples_estimate(encoder, RATE);
-
-  if (FLAC__stream_encoder_init_file(encoder, filename, 0, 0) != FLAC__STREAM_ENCODER_INIT_STATUS_OK)
-    exit(2);
-
-  if (!FLAC__stream_encoder_process_interleaved(encoder, wave, RATE))
-    exit(3);
-
-  if (!FLAC__stream_encoder_finish(encoder))
-    exit(4);
+  wafer_wave *wave = wafer_open(filename);
+  wafer_set_channels(wave, 1);
+  wafer_set_samples_per_sec(wave, RATE);
+  wafer_write_metadata(wave);
+  wafer_write_data(data, RATE, wave);
+  wafer_close(wave);
 
   static int wave_counter = 1;
 
@@ -41,30 +29,24 @@ static void write_wave(const char *filename) {
 }
 
 int main(void) {
-  encoder = FLAC__stream_encoder_new();
-
-  if (!encoder)
-    return 1;
-
-  FLAC__int32 i, j;
-  FLAC__int32 period_2 = RATE / FREQ / 2, period_4 = period_2 / 2;
+  int i, j;
+  int period_2 = RATE / FREQ / 2, period_4 = period_2 / 2;
+  int max_offset = MID - 1;
 
   // Square wave
 
   for (i = 0; i < RATE; ++i)
-    wave[i] = i / period_2 % 2 ? MIN : MAX;
+    data[i] = i / period_2 % 2 ? MIN : MAX;
 
-  write_wave("sqr.flac");
+  write_wave("sqr.wav");
 
   // Triangle wave
 
   for (i = 0; i < RATE; ++i) {
-    j = i % period_4 * (MAX / period_4);
-    j = i / period_4 % 2 ? MAX - j : j;
-    wave[i] = i / period_2 % 2 ? -j : j;
+    j = i % period_4 * max_offset / period_4;
+    j = i / period_4 % 2 ? max_offset - j : j;
+    data[i] = i / period_2 % 2 ? MID - j : MID + j;
   }
 
-  write_wave("tri.flac");
-
-  FLAC__stream_encoder_delete(encoder);
+  write_wave("tri.wav");
 }

@@ -4,15 +4,12 @@
 
 #include <inttypes.h>
 #include <limits.h>
-#include <stdio.h>
-#include <stdlib.h>
 #include <string.h>
 
 #include <getopt.h>
 
 #include "eca.h"
-
-_Static_assert(CHAR_BIT == 8, "The width of (unsigned char) is not 8 bits!");
+#include "wafer.h"
 
 int main(int argc, char *argv[]) {
   _Bool    delet      = 0;
@@ -52,7 +49,7 @@ int main(int argc, char *argv[]) {
   if (!sample_count)
     return 2;
 
-  unsigned char *audio = malloc(sample_count);
+  uint8_t *audio = malloc(sample_count);
 
   _Bool *cells        = malloc(cell_count);
   _Bool *accumulators = malloc(cell_count);
@@ -90,27 +87,30 @@ int main(int argc, char *argv[]) {
   free(accumulators);
 
   // The longest filename is
-  // r100s1000000000c1000000000g1000000000.aeca.pcm
+  // r100s1000000000c1000000000g1000000000.aeca.wav
   char filename[47];
-  sprintf(filename, "r%" PRIu8 "s%" PRIu32 "c%" PRIu32 "g%" PRIu32 ".aeca.pcm",
+  sprintf(filename, "r%" PRIu8 "s%" PRIu32 "c%" PRIu32 "g%" PRIu32 ".aeca.wav",
     rule, seed, cell_count, gen_count);
 
-  FILE *file = fopen(filename, "wb");
+  wafer_wave *wave = wafer_open(filename);
 
-  if (!file) {
+  if (!wave) {
     free(audio);
     return 4;
   }
 
-  fwrite(audio, 1, sample_count, file);
+  wafer_set_channels(wave, 1);
+  wafer_set_samples_per_sec(wave, 44100);
+  wafer_write_metadata(wave);
+  wafer_write_data(audio, sample_count, wave);
+  wafer_close(wave);
   free(audio);
-  fclose(file);
   printf("Wrote %s\n", filename);
 
   if (!quiet) {
     if (system(0)) {
-      char command[sizeof filename + 33];
-      sprintf(command, "aplay -t raw -f U8 -r 44100 -c 1 %s", filename);
+      char command[sizeof filename + 6];
+      sprintf(command, "aplay %s", filename);
       system(command);
     }
     else

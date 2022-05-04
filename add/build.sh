@@ -12,14 +12,12 @@
 #
 #   python3
 #
-#   libFLAC
 #   libpng
 #   zlib
 #
 # To install them on Debian or a derivative of it, execute
 #
-#   # apt install clang ghc python3 libflac8 libflac-dev libpng16-16 libpng-dev \
-#   > zlib1g zlib1g-dev
+#   # apt install clang ghc python3 libpng16-16 libpng-dev zlib1g zlib1g-dev
 #
 # The external program "aplay", an ALSA utility, is recommended but not a dependency.
 # The programs aeca and amorse use it to play raw audio files. To install it, execute
@@ -69,7 +67,7 @@ cc $OPT -o hj2png     hj2png.c -lpng -lz
 cc $OPT -o limits     limits.c
 cc $OPT -o morse      morse.c
 cc $OPT -o pp         pp.c
-cc $OPT -o waves      waves.c -lFLAC
+cc $OPT -o waves      waves.c
 
 echo "Moving C programs"
 
