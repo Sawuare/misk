@@ -72,7 +72,7 @@ int main(int argc, char *argv[]) {
 
   for (uint32_t g = 0; g < gen_count; ++g) {
     for (uint32_t c = 0; c < cell_count; ++c) {
-      audio[g * cell_count + c] = cells[c] ? 255 : 0;
+      audio[g * cell_count + c] = cells[c] ? 255 : 1;
 
       accumulators[c] = eca_rule(rule,
         cells[c == 0 ? last_cell_pos : c - 1],

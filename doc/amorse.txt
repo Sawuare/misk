@@ -16,13 +16,13 @@ DESCRIPTION
 
   As you can see, the dot is the basic unit of length here. See the option -l.
 
-  amorse writes the signals to a file named amorse.pcm with this format:
+  amorse writes the signals to a WAVE file named amorse.wav with this format:
 
-    Unsigned 8 bit, Rate 8000 Hz, Mono
+    Unsigned 8 bit, Rate 11025 Hz, Mono
 
   amorse tries to play the file by invoking the external program "aplay":
 
-    $ aplay -t raw -f U8 -r 8000 -c 1 amorse.pcm
+    $ aplay amorse.wav
 
   Playing and keeping the file is optional. See the options -q and -d.
 
@@ -32,7 +32,7 @@ OPTIONS
 
   -f <frequency>
     The positive integer <frequency> specifies the wave frequency in hertz.
-    Defaults to 400.
+    Defaults to 440.
 
   -q
     Be quiet by not trying to play the file.

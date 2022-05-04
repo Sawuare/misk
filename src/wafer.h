@@ -28,11 +28,7 @@ static wafer_wave *wafer_open(const char *filename) {
 
   wave->data_written = 0;
   wave->file = fopen(filename, "wb");
-
-  if (!wave->file)
-    return 0;
-
-  return wave;
+  return wave->file ? wave : 0;
 }
 
 static void wafer_set_channels(wafer_wave *wave, uint16_t channels) {

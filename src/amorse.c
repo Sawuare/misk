@@ -1,6 +1,6 @@
 // amorse.c - encode input into audio adapted International Morse code
 
-// Unsigned 8 bit, Rate 8000 Hz, Mono
+// Unsigned 8 bit, Rate 11025 Hz, Mono
 
 #include <limits.h>
 
@@ -10,12 +10,12 @@
 
 #define FILENAME "amorse.wav"
 
-#define RATE 8000 // Default aplay rate
+#define RATE 11025
 
 int main(int argc, char *argv[]) {
   _Bool    delet     = 0;
   _Bool    quiet     = 0;
-  unsigned frequency = 400; // In hertz
+  unsigned frequency = 440; // In hertz
   unsigned length    = 100; // In milliseconds
 
   int opt;
@@ -102,14 +102,14 @@ int main(int argc, char *argv[]) {
       switch (*cptr) {
         case '.':
           for (unsigned j = 0; j < dit; ++j)
-            audio[i + j] = j / period_2 % 2 ? 0 : 255;
+            audio[i + j] = j / period_2 % 2 ? 1 : 255;
 
           i += dit;
           break;
 
         case '-':
           for (unsigned j = 0; j < dah; ++j)
-            audio[i + j] = j / period_2 % 2 ? 0 : 255;
+            audio[i + j] = j / period_2 % 2 ? 1 : 255;
 
         case ' ': i += dah;
           break;

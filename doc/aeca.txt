@@ -6,16 +6,16 @@ SYNOPSIS
 
 DESCRIPTION
   aeca generates generations of cells that evolve according to an elementary cellular
-  automata rule. The generations are concatenated and converted to a raw audio stream
-  consisting of unsigned 8-bit samples. Dead cells become samples with amplitude 0,
-  and alive cells become samples with amplitude 255. aeca writes the stream to a file
-  and tries to play it as if it has this format:
+  automata rule. The generations are concatenated and converted to a PCM audio stream
+  consisting of unsigned 8-bit samples. Dead cells become samples with amplitude 1,
+  and alive cells become samples with amplitude 255. aeca writes the stream to a WAVE
+  file with this format:
 
     Unsigned 8 bit, Rate 44100 Hz, Mono
 
-  aeca does that by invoking the external program "aplay":
+  aeca tries to play the file by invoking the external program "aplay":
 
-    $ aplay -t raw -f U8 -r 44100 -c 1 <filename>
+    $ aplay <filename>
 
   Playing and keeping the file is optional. See the options -q and -d.
 
@@ -24,7 +24,7 @@ DESCRIPTION
   See the option -s.
 
   The file has a name that encodes how it was produced. For example, a file with the
-  name r60s0c256g256.aeca.pcm can be reproduced by an invocation equivalent to
+  name r60s0c256g256.aeca.wav can be reproduced by an invocation equivalent to
 
     $ aeca -r 60 -s 0 -c 256 -g 256
 

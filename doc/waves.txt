@@ -1,5 +1,5 @@
 NAME
-  waves - write some fixed audio waves in the FLAC format
+  waves - write some fixed audio waves in the WAVE format
 
 SYNOPSIS
   waves
@@ -7,18 +7,11 @@ SYNOPSIS
 DESCRIPTION
   These are the waves and the files they are written to:
 
-    Square wave   -> sqr.flac
-    Triangle wave -> tri.flac
+    Square wave   -> sqr.wav
+    Triangle wave -> tri.wav
 
   Each wave has an amplitude of 0 dBFS, a duration of 1 s, and a frequency of 440 Hz.
 
   Each file has this format:
 
-    Signed 16 bit, Rate 44100 Hz, Mono
-
-EXIT STATUS
-  1 if creating an encoder instance fails;
-  2 if initializing the encoder instance fails;
-  3 if submitting data for encoding fails;
-  4 if finishing the encoding process fails;
-  0 otherwise;
+    Unsigned 8 bit, Rate 44100 Hz, Mono
