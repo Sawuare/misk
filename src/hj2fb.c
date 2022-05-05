@@ -1,7 +1,9 @@
 // hj2fb.c - paint HJ images on the Linux framebuffer device
 
 #include <inttypes.h>
+#include <stdint.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 #include <fcntl.h>
 #include <getopt.h>

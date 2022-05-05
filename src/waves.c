@@ -2,6 +2,9 @@
 
 // Unsigned 8 bit, Rate 44100 Hz, Mono
 
+#include <stdint.h>
+#include <stdio.h>
+
 #include "wafer.h"
 
 #define WAVE_COUNT "2"
