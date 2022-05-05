@@ -33,12 +33,8 @@
 
 #define J hj_j
 
-static inline uint32_t hj_rrggbb_to_color(const char *rrggbb) {
-  return strtoul(rrggbb, 0, 16);
-}
-
-static inline uint32_t hj_letter_to_color(const char *letter) {
-  switch (*letter) {
+static inline uint32_t hj_letter_to_color(char letter) {
+  switch (letter) {
     case 'r': return HJ_RED;
     case 'g': return HJ_GREEN;
     case 'b': return HJ_BLUE;

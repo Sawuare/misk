@@ -28,10 +28,10 @@ int main(int argc, char *argv[]) {
 
   while ((opt = getopt(argc, argv, "#:c:i:j:x:y:o:s:l")) != -1)
     switch (opt) {
-      case '#': hj_color = hj_rrggbb_to_color(optarg);
+      case '#': hj_color = strtoul(optarg, 0, 16);
         break;
 
-      case 'c': hj_color = hj_letter_to_color(optarg);
+      case 'c': hj_color = hj_letter_to_color(optarg[0]);
         break;
 
       case 'i': hj_id = strtoul(optarg, 0, 10);

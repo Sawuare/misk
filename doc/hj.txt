@@ -17,8 +17,7 @@ SYNOPSIS
   HJ_G_SAMPLE(px)
   HJ_B_SAMPLE(px)
 
-  uint32_t hj_rrggbb_to_color(const char *rrggbb);
-  uint32_t hj_letter_to_color(const char *letter);
+  uint32_t hj_letter_to_color(char letter);
 
   _Bool hj_defined(void);
   _Bool hj_mono_xor_ramp(void);
