@@ -7,7 +7,7 @@ SYNOPSIS
 DESCRIPTION
   morse2wav reads signals consisting of dots and dashes in the same format printed by
   the sister program morse2txt. morse2wav encodes the signals into audio ones; square
-  waves of max amplitude. The signals have standard spacing and length:
+  waves of maximum amplitude. The signals have standard spacing and length:
 
     A dash is equal to three dots.
     The space between the signals forming the same letter is equal to one dot.

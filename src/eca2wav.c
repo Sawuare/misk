@@ -71,11 +71,12 @@ int main(int argc, char *argv[]) {
     cells[cell_count / 2] = 1;
   }
 
+  _Bool up = 0;
   uint32_t last_cell_pos = cell_count - 1;
 
   for (uint32_t g = 0; g < gen_count; ++g) {
     for (uint32_t c = 0; c < cell_count; ++c) {
-      audio[g * cell_count + c] = cells[c] ? 255 : 1;
+      audio[g * cell_count + c] = cells[c] ? (up = !up) ? 255 : 1 : 128;
 
       accumulators[c] = eca_rule(rule,
         cells[c == 0 ? last_cell_pos : c - 1],

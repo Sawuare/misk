@@ -6,10 +6,9 @@ SYNOPSIS
 
 DESCRIPTION
   eca2wav generates generations of cells that evolve according to an elementary
-  cellular automata rule. The generations are concatenated and converted to a PCM
-  audio stream consisting of unsigned 8-bit samples. Dead cells become samples with
-  amplitude 1, and alive cells become samples with amplitude 255. eca2wav writes the
-  stream to a WAVE file with this format:
+  cellular automata rule. The generations are concatenated and converted to an audio
+  stream. Dead cells become silence, and alive cells alternate up and down between
+  the maximum amplitudes. eca2wav writes the stream to a WAVE file with this format:
 
     Unsigned 8 bit, Rate 44100 Hz, Mono
 
