@@ -87,9 +87,9 @@ int main(int argc, char *argv[]) {
   free(accumulators);
 
   // The longest filename is
-  // r100s1000000000c1000000000g1000000000.aeca.wav
-  char filename[47];
-  sprintf(filename, "r%" PRIu8 "s%" PRIu32 "c%" PRIu32 "g%" PRIu32 ".aeca.wav",
+  // r100s1000000000c1000000000g1000000000.eca.wav
+  char filename[46];
+  sprintf(filename, "r%" PRIu8 "s%" PRIu32 "c%" PRIu32 "g%" PRIu32 ".eca.wav",
     rule, seed, cell_count, gen_count);
 
   wafer_wave *wave = wafer_open(filename);

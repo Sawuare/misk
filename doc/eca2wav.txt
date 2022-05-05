@@ -1,19 +1,19 @@
 NAME
-  aeca - play audio elementary cellular automata
+  eca2wav - play audio elementary cellular automata
 
 SYNOPSIS
-  aeca [-c <cells>] [-d] [-g <generations>] [-q] [-r <rule>] [-s <seed>]
+  eca2wav [-c <cells>] [-d] [-g <generations>] [-q] [-r <rule>] [-s <seed>]
 
 DESCRIPTION
-  aeca generates generations of cells that evolve according to an elementary cellular
-  automata rule. The generations are concatenated and converted to a PCM audio stream
-  consisting of unsigned 8-bit samples. Dead cells become samples with amplitude 1,
-  and alive cells become samples with amplitude 255. aeca writes the stream to a WAVE
-  file with this format:
+  eca2wav generates generations of cells that evolve according to an elementary
+  cellular automata rule. The generations are concatenated and converted to a PCM
+  audio stream consisting of unsigned 8-bit samples. Dead cells become samples with
+  amplitude 1, and alive cells become samples with amplitude 255. eca2wav writes the
+  stream to a WAVE file with this format:
 
     Unsigned 8 bit, Rate 44100 Hz, Mono
 
-  aeca tries to play the file by invoking the external program "aplay":
+  eca2wav tries to play the file by invoking the external program aplay:
 
     $ aplay <filename>
 
@@ -24,9 +24,9 @@ DESCRIPTION
   See the option -s.
 
   The file has a name that encodes how it was produced. For example, a file with the
-  name r60s0c256g256.aeca.wav can be reproduced by an invocation equivalent to
+  name r60s0c256g256.eca.wav can be reproduced by an invocation equivalent to
 
-    $ aeca -r 60 -s 0 -c 256 -g 256
+    $ eca2wav -r 60 -s 0 -c 256 -g 256
 
 OPTIONS
   -c <cells>
@@ -62,4 +62,4 @@ EXIT STATUS
   0 otherwise;
 
 SEE ALSO
-  aplay(1), eca2fb.txt, eca.txt
+  aplay(1), eca2fb.txt, eca2txt.txt

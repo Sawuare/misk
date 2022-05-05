@@ -1,13 +1,13 @@
 NAME
-  amorse - encode input into audio adapted International Morse code
+  morse2wav - encode input into audio adapted International Morse code
 
 SYNOPSIS
-  amorse [-d] [-f <frequency>] [-l <length>] [-q]
+  morse2wav [-d] [-f <frequency>] [-l <length>] [-q]
 
 DESCRIPTION
-  amorse reads signals consisting of dots and dashes in the same format printed by
-  the sister program morse. amorse encodes the signals into audio ones; square waves
-  of max amplitude. The signals have standard spacing and length:
+  morse2wav reads signals consisting of dots and dashes in the same format printed by
+  the sister program morse2txt. morse2wav encodes the signals into audio ones; square
+  waves of max amplitude. The signals have standard spacing and length:
 
     A dash is equal to three dots.
     The space between the signals forming the same letter is equal to one dot.
@@ -16,13 +16,13 @@ DESCRIPTION
 
   As you can see, the dot is the basic unit of length here. See the option -l.
 
-  amorse writes the signals to a WAVE file named amorse.wav with this format:
+  morse2wav writes the signals to a WAVE file named morse.wav with this format:
 
     Unsigned 8 bit, Rate 11025 Hz, Mono
 
-  amorse tries to play the file by invoking the external program "aplay":
+  morse2wav tries to play the file by invoking the external program aplay:
 
-    $ aplay amorse.wav
+    $ aplay morse.wav
 
   Playing and keeping the file is optional. See the options -q and -d.
 
@@ -51,4 +51,4 @@ EXIT STATUS
   0 otherwise;
 
 SEE ALSO
-  aplay(1), morse.txt
+  aplay(1), morse2txt.txt

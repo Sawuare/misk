@@ -32,4 +32,4 @@ DESCRIPTION
     https://oeis.org/A171472
 
 SEE ALSO
-  hj2fb.txt, hj2png.txt, hj.txt
+  hj2fb.txt, hj2png.txt

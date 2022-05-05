@@ -1,4 +1,4 @@
-// amorse.c - encode input into audio adapted International Morse code
+// morse2wav.c - encode input into audio adapted International Morse code
 
 // Unsigned 8 bit, Rate 11025 Hz, Mono
 
@@ -8,7 +8,7 @@
 
 #include "wafer.h"
 
-#define FILENAME "amorse.wav"
+#define FILENAME "morse.wav"
 
 #define RATE 11025
 

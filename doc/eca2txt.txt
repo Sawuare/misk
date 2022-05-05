@@ -1,0 +1,46 @@
+NAME
+  eca2txt - print an elementary cellular automaton
+
+SYNOPSIS
+  eca2txt [-a <alive>] [-c <cells>] [-d <dead>] [-g <generations>] [-r <rule>]
+          [-s <seed>] [-t]
+
+OPTIONS
+  -a <alive>
+    The string of characters <alive> specifies what to print for alive cells.
+    Defaults to the Unicode character FULL BLOCK.
+
+  -c <cells>
+    The positive integer <cells> specifies the number of cells in a generation.
+    Defaults to the number of columns in the terminal window.
+
+  -d <dead>
+    The string of characters <dead> specifies what to print for dead cells.
+    Defaults to the Unicode character LIGHT SHADE.
+
+  -g <generations>
+    The positive integer <generations> specifies the number of generations.
+    Defaults to the number of rows in the terminal window minus 1.
+
+  -r <rule>
+    The nonnegative integer <rule> specifies the rule.
+    Defaults to 60. Must be less than 256.
+
+  -s <seed>
+    The nonnegative integer <seed> specifies the seed used to randomize the 1st
+    generation. Seed 0 is special; it does not randomize the 1st generation but
+    instead places only 1 alive cell in its middle.
+    Defaults to 0.
+
+  -t
+    Print the rule as a truth table then exit.
+
+EXIT STATUS
+  1 if an option is invalid;
+  2 if an option argument is invalid;
+  3 if getting the terminal window size fails;
+  4 if allocating memory fails;
+  0 otherwise;
+
+SEE ALSO
+  eca2fb.txt, eca2wav.txt

@@ -86,4 +86,4 @@ BUGS
   hj2fb requires a framebuffer whose color format is 32-bit ARGB.
 
 SEE ALSO
-  eca2fb.txt, hj2png.txt, hjjs.txt, hj.txt
+  eca2fb.txt, hj2png.txt, hjjs.txt

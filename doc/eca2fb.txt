@@ -23,4 +23,4 @@ BUGS
   framebuffer. For easy adjustment, the assumptions are marked "UNPORTABLE".
 
 SEE ALSO
-  hj2fb.txt
+  eca2txt.txt, eca2wav.txt, hj2fb.txt

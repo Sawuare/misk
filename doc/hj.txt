@@ -84,6 +84,3 @@ DESCRIPTION
 
   There are 45 painters, 0 through 44, divided into 9 classes, 0 through 8. Painters
   in classes 1, 3, 5, and 7 divide by the J-value, so J-value 0 is invalid for them.
-
-SEE ALSO
-  hj2fb.txt, hj2png.txt, hjjs.txt
