@@ -19,7 +19,7 @@
 #define HJ_B_SAMPLE(px) ((px)       & 255)
 
 #define PAINTER(id, formula)                                     \
-  static inline void hj_painter##id(void) {                      \
+  static void hj_painter##id(void) {                             \
     uint32_t yn = hj_y0 + hj_height;                             \
     uint32_t xn = hj_x0 + hj_width;                              \
                                                                  \
@@ -33,7 +33,7 @@
 
 #define J hj_j
 
-static inline uint32_t hj_letter_to_color(char letter) {
+static uint32_t hj_letter_to_color(char letter) {
   switch (letter) {
     case 'r': return HJ_RED;
     case 'g': return HJ_GREEN;
@@ -55,7 +55,7 @@ static uint32_t
   hj_height  = 512,
   *hj_canvas = 0;
 
-static inline _Bool hj_defined(void) {
+static _Bool hj_defined(void) {
   if (hj_id > 44)
     return 0;
 
@@ -70,7 +70,7 @@ static inline _Bool hj_defined(void) {
   return 1;
 }
 
-static inline _Bool hj_mono_xor_ramp(void) {
+static _Bool hj_mono_xor_ramp(void) {
   return hj_id < 40;
 }
 

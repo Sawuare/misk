@@ -88,16 +88,16 @@ int main(int argc, char *argv[]) {
   _Bool bad_gen_count  = gen_count  < 1;
 
   if (bad_cell_count || bad_gen_count) {
-    struct winsize ws;
+    struct winsize winsz;
 
-    if (ioctl(STDOUT_FILENO, TIOCGWINSZ, &ws) == -1)
+    if (ioctl(STDOUT_FILENO, TIOCGWINSZ, &winsz) == -1)
       return 3;
 
     if (bad_cell_count)
-      cell_count = ws.ws_col;
+      cell_count = winsz.ws_col;
 
     if (bad_gen_count)
-      gen_count = ws.ws_row - 1;
+      gen_count = winsz.ws_row - 1;
   }
 
   _Bool *cells        = malloc(cell_count);
