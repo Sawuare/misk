@@ -1,21 +1,21 @@
 NAME
-  morse2txt - encode arguments into printable adapted International Morse code
+  morse - encode arguments into printable adapted International Morse code
 
 SYNOPSIS
-  morse2txt <word>...
+  morse <word>...
 
 DESCRIPTION
-  morse2txt regards arguments as words consisting of these valid letters:
+  morse regards arguments as words consisting of these valid letters:
 
     a b c d e f g h i j k l m n o p q r s t u v w x y z
     A B C D E F G H I J K L M N O P Q R S T U V W X Y Z
     1 2 3 4 5 6 7 8 9 0
     . , : ? ' - / ( ) " = + @
 
-  For performance, morse2txt does not test for invalid letters and will probably
-  crash if any are given.
+  For performance, morse does not test for invalid letters and will probably crash if
+  any are given.
 
-  morse2txt prints signals consisting of dots and dashes. The signals have adapted
+  morse prints signals consisting of dots and dashes. The signals have adapted
   spacing and length:
 
     A dash is equal to a dot.
@@ -53,6 +53,3 @@ NOTES
 
     T (w, l) = O(l)
      P
-
-SEE ALSO
-  morse2wav.txt
