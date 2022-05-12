@@ -18,11 +18,6 @@
 # To install them on Debian or a derivative of it, execute
 #
 #   # apt install clang ghc python3 libpng16-16 libpng-dev zlib1g zlib1g-dev
-#
-# The external program aplay, an ALSA utility, is recommended but not a dependency.
-# eca2wav and morse2wav use it to play WAVE audio files. To install it, execute
-#
-#   # apt install alsa-utils
 
 set -e
 

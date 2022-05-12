@@ -1,22 +1,15 @@
 NAME
-  eca2wav - play audio elementary cellular automata
+  eca2wav - write an audio elementary cellular automaton to a WAVE file
 
 SYNOPSIS
-  eca2wav [-c <cells>] [-d] [-g <generations>] [-q] [-r <rule>] [-s <seed>]
+  eca2wav [-c <cells>] [-g <generations>] [-r <rule>] [-s <seed>]
 
 DESCRIPTION
   eca2wav generates generations of cells that evolve according to an elementary
   cellular automata rule. The generations are concatenated and converted to an audio
   stream. Dead cells become silence, and alive cells alternate up and down between
-  the maximum amplitudes. eca2wav writes the stream to a WAVE file with this format:
-
-    Unsigned 8 bit, Rate 44100 Hz, Mono
-
-  eca2wav tries to play the file by invoking the external program aplay:
-
-    $ aplay <filename>
-
-  Playing and keeping the file is optional. See the options -q and -d.
+  the maximum amplitudes. eca2wav writes the stream to a WAVE file. The file has 1
+  channel, unsigned 8-bit samples, and 44100 samples per second.
 
   Evolutions start from either a fixed state or a random state that is seeded
   manually. The former tend to sound tonal, whereas the latter tend to sound atonal.
@@ -32,15 +25,9 @@ OPTIONS
     The positive integer <cells> specifies the number of cells in a generation.
     Defaults to 256. Must be less than 4294967296.
 
-  -d
-    Delete the file after trying to play it.
-
   -g <generations>
     The positive integer <generations> specifies the number of generations.
     Defaults to 256. Must be less than 4294967296.
-
-  -q
-    Be quiet by not trying to play the file.
 
   -r <rule>
     The nonnegative integer <rule> specifies the rule.
@@ -61,4 +48,4 @@ EXIT STATUS
   0 otherwise;
 
 SEE ALSO
-  aplay(1), eca2fb.txt, eca2txt.txt
+  eca2fb.txt, eca2txt.txt

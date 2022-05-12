@@ -1,6 +1,4 @@
-// aeca.c - play audio elementary cellular automata
-
-// Unsigned 8 bit, Rate 44100 Hz, Mono
+// eca2wav.c - write an audio elementary cellular automaton to a WAVE file
 
 #include <inttypes.h>
 #include <limits.h>
@@ -15,8 +13,6 @@
 #include "wafer.h"
 
 int main(int argc, char *argv[]) {
-  _Bool    delet      = 0;
-  _Bool    quiet      = 0;
   uint8_t  rule       = 60;
   uint32_t seed       = 0;
   uint32_t cell_count = 256;
@@ -24,7 +20,7 @@ int main(int argc, char *argv[]) {
 
   int opt;
 
-  while ((opt = getopt(argc, argv, "r:s:c:g:dq")) != -1)
+  while ((opt = getopt(argc, argv, "r:s:c:g:")) != -1)
     switch (opt) {
       case 'r': rule = strtoul(optarg, 0, 10);
         break;
@@ -36,12 +32,6 @@ int main(int argc, char *argv[]) {
         break;
 
       case 'g': gen_count = strtoul(optarg, 0, 10);
-        break;
-
-      case 'd': delet = 1;
-        break;
-
-      case 'q': quiet = 1;
         break;
 
       default: return 1;
@@ -110,19 +100,4 @@ int main(int argc, char *argv[]) {
   wafer_close(wave);
   free(audio);
   printf("Wrote %s\n", filename);
-
-  if (!quiet) {
-    if (system(0)) {
-      char command[sizeof filename + 6];
-      sprintf(command, "aplay %s", filename);
-      system(command);
-    }
-    else
-      return 5;
-  }
-
-  if (delet) {
-    remove(filename);
-    printf("Deleted %s\n", filename);
-  }
 }

@@ -1,6 +1,4 @@
-// waves.c - write some fixed audio waves in the WAVE format
-
-// Unsigned 8 bit, Rate 44100 Hz, Mono
+// waves.c - write some fixed audio waves to WAVE files
 
 #include <stdint.h>
 #include <stdio.h>

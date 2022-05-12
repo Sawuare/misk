@@ -1,5 +1,5 @@
 NAME
-  waves - write some fixed audio waves in the WAVE format
+  waves - write some fixed audio waves to WAVE files
 
 SYNOPSIS
   waves
@@ -11,7 +11,4 @@ DESCRIPTION
     Triangle wave -> tri.wav
 
   Each wave has an amplitude of 0 dBFS, a duration of 1 s, and a frequency of 440 Hz.
-
-  Each file has this format:
-
-    Unsigned 8 bit, Rate 44100 Hz, Mono
+  Each file has 1 channel, unsigned 8-bit samples, and 44100 samples per second.

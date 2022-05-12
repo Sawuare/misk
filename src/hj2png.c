@@ -1,4 +1,4 @@
-// hj2png.c - write an HJ image in the PNG format
+// hj2png.c - write an HJ image to a PNG file
 
 #include <inttypes.h>
 #include <setjmp.h>

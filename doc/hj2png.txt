@@ -1,5 +1,5 @@
 NAME
-  hj2png - write an HJ image in the PNG format
+  hj2png - write an HJ image to a PNG file
 
 SYNOPSIS
   hj2png [-# <color-rrggbb>] [-c <color-letter>] [-h <height>] [-i <ID>]
