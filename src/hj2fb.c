@@ -17,11 +17,6 @@
 #include "hj.h"
 #include "tcem.h"
 
-static inline void printl(_Bool warn) {
-  printf("i%-10" PRIu32 " j%-10" PRIu32 " x%-10" PRIu32 " y%-10" PRIu32 " #%06" PRIx32 " %c\r",
-    hj_id, hj_j, hj_x0, hj_y0, hj_color, warn ? '!' : ' ');
-}
-
 int main(int argc, char *argv[]) {
   _Bool    line = 0;
   uint32_t step = 32;
@@ -112,7 +107,8 @@ int main(int argc, char *argv[]) {
 
     if (line)
 print:
-      printl(warn);
+      printf("i%-10" PRIu32 " j%-10" PRIu32 " x%-10" PRIu32 " y%-10" PRIu32 " #%06" PRIx32 "%s\r",
+        hj_id, hj_j, hj_x0, hj_y0, hj_color, warn ? " !" : "");
 
 get:
     switch (getchar()) {

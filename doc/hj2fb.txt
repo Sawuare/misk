@@ -32,8 +32,7 @@ DESCRIPTION
     e exits;
 
   The status line shows the ID, J-value, X-offset, Y-offset, and color. If the ID or
-  J-value are undefined, the status line is automatically printed with an exclamation
-  mark (!) as the last character.
+  J-value are undefined, the status line is automatically printed with " !" appended.
 
 OPTIONS
   -# <color-rrggbb>
