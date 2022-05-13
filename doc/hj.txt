@@ -23,49 +23,7 @@ SYNOPSIS
   _Bool hj_mono_xor_ramp(void);
 
   void hj_painter0(void);
-  void hj_painter1(void);
-  void hj_painter2(void);
-  void hj_painter3(void);
-  void hj_painter4(void);
-  void hj_painter5(void);
-  void hj_painter6(void);
-  void hj_painter7(void);
-  void hj_painter8(void);
-  void hj_painter9(void);
-  void hj_painter10(void);
-  void hj_painter11(void);
-  void hj_painter12(void);
-  void hj_painter13(void);
-  void hj_painter14(void);
-  void hj_painter15(void);
-  void hj_painter16(void);
-  void hj_painter17(void);
-  void hj_painter18(void);
-  void hj_painter19(void);
-  void hj_painter20(void);
-  void hj_painter21(void);
-  void hj_painter22(void);
-  void hj_painter23(void);
-  void hj_painter24(void);
-  void hj_painter25(void);
-  void hj_painter26(void);
-  void hj_painter27(void);
-  void hj_painter28(void);
-  void hj_painter29(void);
-  void hj_painter30(void);
-  void hj_painter31(void);
-  void hj_painter32(void);
-  void hj_painter33(void);
-  void hj_painter34(void);
-  void hj_painter35(void);
-  void hj_painter36(void);
-  void hj_painter37(void);
-  void hj_painter38(void);
-  void hj_painter39(void);
-  void hj_painter40(void);
-  void hj_painter41(void);
-  void hj_painter42(void);
-  void hj_painter43(void);
+  ...
   void hj_painter44(void);
 
   void (*hj_painters[])(void);
@@ -82,5 +40,6 @@ DESCRIPTION
   The ID, J-value, color, and offsets are nonnegative integers, whereas the width and
   height are positive integers.
 
-  There are 45 painters, 0 through 44, divided into 9 classes, 0 through 8. Painters
-  in classes 1, 3, 5, and 7 divide by the J-value, so J-value 0 is invalid for them.
+  There are 45 defined painters, 0 through 44, divided into 9 classes, 0 through 8.
+  Painters in classes 1, 3, 5, and 7 divide by the J-value, so J-value 0 is undefined
+  for them.
