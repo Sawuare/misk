@@ -37,9 +37,24 @@ DESCRIPTION
   vary the patterns. Every painter is identified by a serial ID: "painter #" denotes
   the painter whose ID is #.
 
-  The ID, J-value, color, and offsets are nonnegative integers, whereas the width and
-  height are positive integers.
+  In theory, the ID, J-value, color, and offsets are nonnegative integers, whereas
+  the width and height are positive integers. In practice, they are all unsigned
+  32-bit integers.
+
+  The color format is 24-bit RGB. For example, the color red is hexadecimal ff0000.
 
   There are 45 defined painters, 0 through 44, divided into 9 classes, 0 through 8.
   Painters in classes 1, 3, 5, and 7 divide by the J-value, so J-value 0 is undefined
-  for them.
+  for them. Painters in different classes use different formulas, whereas painters in
+  the same class differ by the main operation they use. Painters cycle through the
+  following main operations in order:
+
+    0. AND: Bitwise AND
+    1.  OR: Bitwise inclusive OR
+    2. XOR: Bitwise exclusive OR
+    3. ADD: Addition
+    4. MUL: Multiplication
+
+  Since there are 5 main operations, an ID modulo 5 gives the main operation of its
+  painter as an index in the list above, whereas an ID divided by 5 gives the class
+  of its painter.
