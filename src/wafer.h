@@ -94,10 +94,8 @@ static _Bool wafer_close(wafer_wave *wave) {
   };
 
   if (fseek(wave->file, 4, SEEK_SET) ||
-      fwrite(riff_chunck_size, 1, 4, wave->file) != 4)
-    return 0;
-
-  if (fclose(wave->file) == EOF)
+      fwrite(riff_chunck_size, 1, 4, wave->file) != 4 ||
+      fclose(wave->file) == EOF)
     return 0;
 
   free(wave);
