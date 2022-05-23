@@ -20,7 +20,7 @@ typedef struct wafer_wave {
   uint16_t channels;
 } wafer_wave;
 
-static wafer_wave *wafer_open(const char *filename) {
+static wafer_wave *wafer_open(const char filename[]) {
   wafer_wave *wave = malloc(sizeof *wave);
 
   if (!wave)

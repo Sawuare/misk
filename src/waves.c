@@ -17,7 +17,7 @@
 
 static uint8_t audio[RATE];
 
-static void write_wave(const char *filename) {
+static void write_wave(const char filename[]) {
   wafer_wave *wave = wafer_open(filename);
   wafer_set_channels(wave, 1);
   wafer_set_samples_per_sec(wave, RATE);
