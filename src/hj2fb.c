@@ -18,7 +18,7 @@
 #include "tcem.h"
 
 int main(int argc, char *argv[]) {
-  _Bool    line = 0;
+  _Bool    line = 1;
   uint32_t step = 32;
 
   int opt;
@@ -49,7 +49,7 @@ int main(int argc, char *argv[]) {
       case 's': step = strtoul(optarg, 0, 10);
         break;
 
-      case 'l': line = 1;
+      case 'l': line = 0;
         break;
 
       default: return 1;

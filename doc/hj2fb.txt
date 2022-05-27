@@ -54,7 +54,7 @@ OPTIONS
     Defaults to 1. Must be less than 4294967296.
 
   -l
-    Enable the status line.
+    Disable the status line.
 
   -o <offset>
     This additional option is equivalent to -x <offset> -y <offset>.
