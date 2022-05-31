@@ -19,11 +19,7 @@ DESCRIPTION
     Interquartile Range
     Mid-Hinge
     Arithmetic Mean
-    Quadratic Mean
     Geometric Mean
-    Harmonic Mean
-    Variance
     Standard Deviation
-    Relative Standard Deviation
     Skewness
     Kurtosis

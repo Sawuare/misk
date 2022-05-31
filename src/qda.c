@@ -22,8 +22,6 @@ int main(int argc, char *argv[]) {
 
   double ds[count];
   double total = 0;
-  double sum_of_squares = 0;
-  double sum_of_reciprocals = 0;
   double product = 1;
 
   ++argv;
@@ -31,8 +29,6 @@ int main(int argc, char *argv[]) {
   for (int i = 0; i < count; ++i) {
     ds[i] = atof(argv[i]);
     total += ds[i];
-    sum_of_squares += ds[i] * ds[i];
-    sum_of_reciprocals += 1 / ds[i];
     product *= ds[i];
   }
 
@@ -58,8 +54,6 @@ int main(int argc, char *argv[]) {
 
   double am = total / count;
   double gm = pow(product, 1.0 / count);
-  double qm = sqrt(sum_of_squares / count);
-  double hm = 1 / (sum_of_reciprocals / count);
 
   double sum_of_deviation_to_2 = 0;
   double sum_of_deviation_to_3 = 0;
@@ -74,9 +68,7 @@ int main(int argc, char *argv[]) {
     sum_of_deviation_to_4 += deviation_to_2 * deviation_to_2;
   }
 
-  double var = sum_of_deviation_to_2 / count;
-  double sd  = sqrt(var);
-  double rsd = sd / fabs(am);
+  double sd  = sqrt(sum_of_deviation_to_2 / count);
 
   double sd_to_3 = sd * sd * sd;
   double sd_to_4 = sd_to_3 * sd;
@@ -85,24 +77,20 @@ int main(int argc, char *argv[]) {
   double kurtosis = sum_of_deviation_to_4 / count / sd_to_4;
 
   // 10 is the precision of my CASIO fx-991ES PLUS calculator
-  printf("                      Count = %d\n",    count);
-  printf("                      Total = %.10g\n", total);
-  printf("                    Minimum = %.10g\n", min);
-  printf("                    Maximum = %.10g\n", max);
-  printf("                      Range = %.10g\n", range);
-  printf("                  Mid-Range = %.10g\n", mid_range);
-  printf("             First Quartile = %.10g\n", q1);
-  printf("            Second Quartile = %.10g\n", q2);
-  printf("             Third Quartile = %.10g\n", q3);
-  printf("        Interquartile Range = %.10g\n", iqr);
-  printf("                  Mid-Hinge = %.10g\n", mid_hinge);
-  printf("            Arithmetic Mean = %.10g\n", am);
-  printf("             Quadratic Mean = %.10g\n", qm);
-  printf("             Geometric Mean = %.10g\n", gm);
-  printf("              Harmonic Mean = %.10g\n", hm);
-  printf("                   Variance = %.10g\n", var);
-  printf("         Standard Deviation = %.10g\n", sd);
-  printf("Relative Standard Deviation = %.10g\n", rsd);
-  printf("                   Skewness = %.10g\n", skewness);
-  printf("                   Kurtosis = %.10g\n", kurtosis);
+  printf("              Count = %d\n",    count);
+  printf("              Total = %.10g\n", total);
+  printf("            Minimum = %.10g\n", min);
+  printf("            Maximum = %.10g\n", max);
+  printf("              Range = %.10g\n", range);
+  printf("          Mid-Range = %.10g\n", mid_range);
+  printf("     First Quartile = %.10g\n", q1);
+  printf("    Second Quartile = %.10g\n", q2);
+  printf("     Third Quartile = %.10g\n", q3);
+  printf("Interquartile Range = %.10g\n", iqr);
+  printf("          Mid-Hinge = %.10g\n", mid_hinge);
+  printf("    Arithmetic Mean = %.10g\n", am);
+  printf("     Geometric Mean = %.10g\n", gm);
+  printf(" Standard Deviation = %.10g\n", sd);
+  printf("           Skewness = %.10g\n", skewness);
+  printf("           Kurtosis = %.10g\n", kurtosis);
 }
