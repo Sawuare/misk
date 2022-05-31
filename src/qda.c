@@ -84,6 +84,7 @@ int main(int argc, char *argv[]) {
   double skewness = sum_of_deviation_to_3 / count / sd_to_3;
   double kurtosis = sum_of_deviation_to_4 / count / sd_to_4;
 
+  // 10 is the precision of my CASIO fx-991ES PLUS calculator
   printf("                      Count = %d\n",    count);
   printf("                      Total = %.10g\n", total);
   printf("                    Minimum = %.10g\n", min);
