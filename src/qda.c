@@ -19,6 +19,9 @@ static double median(const double ds[], int count) {
 
 int main(int argc, char *argv[]) {
   int count = argc - 1;
+  int half = count / 2;
+
+  _Bool single_element = count == 1;
 
   double ds[count];
   double total = 0;
@@ -40,12 +43,7 @@ int main(int argc, char *argv[]) {
   double range     =  max - min;
   double mid_range = (max + min) / 2;
 
-  int half = count / 2;
-
   double q2 = median(ds, count);
-
-  _Bool single_element = count == 1;
-
   double q1 = single_element ? q2 : median(ds, half);
   double q3 = single_element ? q2 : median(ds + count - half, half);
 
@@ -60,7 +58,7 @@ int main(int argc, char *argv[]) {
   double sum_of_deviation_to_4 = 0;
 
   for (int i = 0; i < count; ++i) {
-    double deviation = ds[i] - am;
+    double deviation      = ds[i] - am;
     double deviation_to_2 = deviation * deviation;
 
     sum_of_deviation_to_2 += deviation_to_2;
@@ -68,8 +66,7 @@ int main(int argc, char *argv[]) {
     sum_of_deviation_to_4 += deviation_to_2 * deviation_to_2;
   }
 
-  double sd  = sqrt(sum_of_deviation_to_2 / count);
-
+  double sd      = sqrt(sum_of_deviation_to_2 / count);
   double sd_to_3 = sd * sd * sd;
   double sd_to_4 = sd_to_3 * sd;
 
