@@ -5,7 +5,8 @@ SYNOPSIS
   qda
 
 DESCRIPTION
-  qda reads a line of space-separated numbers then prints these statistics:
+  qda reads a line of space-separated numbers then prints the following statistics
+  with up to 10 significant digits:
 
     Count
     Total
