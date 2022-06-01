@@ -11,15 +11,15 @@ static int compare(const void *p1, const void *p2) {
   return d1 < d2 ? -1 : d1 > d2 ? 1 : 0;
 }
 
-static double median(const double ds[], int count) {
-  int mid = count / 2;
+static double median(const double ds[], size_t count) {
+  size_t mid = count / 2;
 
   return count % 2 ? ds[mid] : (ds[mid] + ds[mid - 1]) / 2;
 }
 
 int main(int argc, char *argv[]) {
-  int count = argc - 1;
-  int half = count / 2;
+  size_t count = argc - 1;
+  size_t half = count / 2;
 
   _Bool single_element = count == 1;
 
@@ -29,7 +29,7 @@ int main(int argc, char *argv[]) {
 
   ++argv;
 
-  for (int i = 0; i < count; ++i) {
+  for (size_t i = 0; i < count; ++i) {
     ds[i] = atof(argv[i]);
     total += ds[i];
     product *= ds[i];
@@ -57,7 +57,7 @@ int main(int argc, char *argv[]) {
   double sum_of_deviation_to_3 = 0;
   double sum_of_deviation_to_4 = 0;
 
-  for (int i = 0; i < count; ++i) {
+  for (size_t i = 0; i < count; ++i) {
     double deviation      = ds[i] - am;
     double deviation_to_2 = deviation * deviation;
 
@@ -74,7 +74,7 @@ int main(int argc, char *argv[]) {
   double kurtosis = sum_of_deviation_to_4 / count / sd_to_4;
 
   // 10 is the precision of my CASIO fx-991ES PLUS calculator
-  printf("              Count = %d\n",    count);
+  printf("              Count = %zu\n",   count);
   printf("              Total = %.10g\n", total);
   printf("            Minimum = %.10g\n", min);
   printf("            Maximum = %.10g\n", max);
