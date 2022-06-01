@@ -16,11 +16,10 @@ The directories and files in here are:
     Documentation of the programs and headers.
 
   src/
-    Source code in several languages.
+    Source code in a few programming languages.
 
     *.c  -> C source files
     *.h  -> C headers
-    *.hs -> Haskell files
     *.py -> Python scripts
 
   .bashrc

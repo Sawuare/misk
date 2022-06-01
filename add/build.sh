@@ -8,7 +8,6 @@
 # Some programs depend on some of these compilers, interpreters, and libraries:
 #
 #   cc  (as either Clang or GCC)
-#   ghc (as the Galsgow Haskell Compiler)
 #
 #   python3
 #
@@ -17,7 +16,7 @@
 #
 # To install them on Debian or a derivative of it, execute
 #
-#   # apt install clang ghc python3 libpng16-16 libpng-dev zlib1g zlib1g-dev
+#   # apt install clang python3 libpng16-16 libpng-dev zlib1g zlib1g-dev
 
 set -e
 
@@ -66,15 +65,5 @@ cc $OPT -o waves     waves.c
 echo "Moving C programs"
 
 sudo mv ctime eca2txt eca2wav getendian getlocale hacc hj2fb hj2png limits morse pp waves $BIN
-
-# Haskell
-
-echo "Compiling Haskell program"
-
-ghc -no-keep-hi-files -no-keep-o-files -v0 -O2 -o qda qda.hs
-
-echo "Moving Haskell program"
-
-sudo mv qda $BIN
 
 echo "Done"

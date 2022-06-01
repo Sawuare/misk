@@ -36,31 +36,3 @@ include /usr/local/share/nano/nanohelp.nanorc
 include /usr/local/share/nano/nanorc.nanorc
 include /usr/local/share/nano/python.nanorc
 include /usr/local/share/nano/sh.nanorc
-
-
-syntax haskell "\.hs$"
-
-comment "--"
-
-# Constructor identifier
-color lightcyan "\<([[:upper:]][[:alnum:]']*)\>"
-# Module identifier
-color lightcyan "\<(([[:upper:]][[:alnum:]']*.)*[[:upper:]][[:alnum:]']*)\>"
-# Reserved identifier
-color lightmagenta "\<(case|class|data|default|deriving|do|else|foreign|if|import|in|infix|infixl|infixr|instance|let|module|newtype|of|then|type|where|_)\>"
-
-# Reserved operator
-color lightyellow "\.\.|:|=|\\|\||<-|->|@|~|=>"
-
-# Character
-color cyan "'([^'\]|\\[^&]+)'"
-# String
-color cyan ""([^"\]|\\.+)*""
-
-# Ordinary comment
-color magenta "---*([^!#$%&*+./<=>?@\^|~:-].*)?$"
-# Nested comment
-color magenta start="\{-" end="-}"
-
-# Trailing space
-color ,yellow "[[:space:]]+$"
