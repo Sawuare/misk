@@ -16,14 +16,14 @@ DESCRIPTION
   See the option -s.
 
   The file has a name that encodes how it was produced. For example, a file with the
-  name r60s0c256g256.eca.wav can be reproduced by an invocation equivalent to
+  name r60s0c512g256.eca.wav can be reproduced by an invocation equivalent to
 
-    $ eca2wav -r 60 -s 0 -c 256 -g 256
+    $ eca2wav -r 60 -s 0 -c 512 -g 256
 
 OPTIONS
   -c <cells>
     The positive integer <cells> specifies the number of cells in a generation.
-    Defaults to 256. Must be less than 4294967296.
+    Defaults to 512. Must be less than 4294967296.
 
   -g <generations>
     The positive integer <generations> specifies the number of generations.
