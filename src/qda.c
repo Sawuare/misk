@@ -17,22 +17,22 @@ static double median(const double ds[], size_t count) {
   return count % 2 ? ds[mid] : (ds[mid] + ds[mid - 1]) / 2;
 }
 
-int main(int argc, char *argv[]) {
-  size_t count = argc - 1;
-  size_t half = count / 2;
+int main(void) {
+  size_t count = 0;
+  size_t capacity = 256;
 
-  _Bool single_element = count == 1;
-
-  double ds[count];
-  double total = 0;
+  double *ds = malloc(capacity * sizeof *ds);
+  double sum = 0;
   double product = 1;
 
-  ++argv;
+  while (scanf("%lg", &ds[count]) == 1) {
+    sum += ds[count];
+    product *= ds[count];
 
-  for (size_t i = 0; i < count; ++i) {
-    ds[i] = atof(argv[i]);
-    total += ds[i];
-    product *= ds[i];
+    if (++count >= capacity) {
+      capacity *= 2;
+      ds = realloc(ds, capacity * sizeof *ds);
+    }
   }
 
   qsort(ds, count, sizeof ds[0], compare);
@@ -43,6 +43,9 @@ int main(int argc, char *argv[]) {
   double range     =  max - min;
   double mid_range = (max + min) / 2;
 
+  size_t half = count / 2;
+  _Bool single_element = count == 1;
+
   double q2 = median(ds, count);
   double q1 = single_element ? q2 : median(ds, half);
   double q3 = single_element ? q2 : median(ds + count - half, half);
@@ -50,7 +53,7 @@ int main(int argc, char *argv[]) {
   double iqr       =  q3 - q1;
   double mid_hinge = (q3 + q1) / 2;
 
-  double am = total / count;
+  double am = sum / count;
   double gm = pow(product, 1.0 / count);
 
   double sum_of_deviation_to_2 = 0;
@@ -75,7 +78,7 @@ int main(int argc, char *argv[]) {
 
   // 10 is the precision of my CASIO fx-991ES PLUS calculator
   printf("              Count = %zu\n",   count);
-  printf("              Total = %.10g\n", total);
+  printf("                Sum = %.10g\n", sum);
   printf("            Minimum = %.10g\n", min);
   printf("            Maximum = %.10g\n", max);
   printf("              Range = %.10g\n", range);

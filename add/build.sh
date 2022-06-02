@@ -7,7 +7,7 @@
 #
 # Some programs depend on some of these compilers, interpreters, and libraries:
 #
-#   cc  (as either Clang or GCC)
+#   cc (as either Clang or GCC)
 #
 #   python3
 #
@@ -60,10 +60,11 @@ cc $OPT -o hj2png    hj2png.c -lpng -lz
 cc $OPT -o limits    limits.c
 cc $OPT -o morse     morse.c
 cc $OPT -o pp        pp.c
+cc $OPT -o qda       qda.c -lm
 cc $OPT -o waves     waves.c
 
 echo "Moving C programs"
 
-sudo mv ctime eca2txt eca2wav getendian getlocale hacc hj2fb hj2png limits morse pp waves $BIN
+sudo mv ctime eca2txt eca2wav getendian getlocale hacc hj2fb hj2png limits morse pp qda waves $BIN
 
 echo "Done"
