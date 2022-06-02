@@ -13,7 +13,7 @@
 #include "wafer.h"
 
 int main(int argc, char *argv[]) {
-  uint8_t  rule       = 60;
+  uint8_t  rule       = 18;
   uint32_t seed       = 0;
   uint32_t cell_count = 512;
   uint32_t gen_count  = 256;

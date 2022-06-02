@@ -18,7 +18,7 @@
 
 int main(int argc, char *argv[]) {
   _Bool table      = 0;
-  int   rule       = 60;
+  int   rule       = 18;
   int   seed       = 0;
   int   cell_count = 0;
   int   gen_count  = 0;

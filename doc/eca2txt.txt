@@ -24,7 +24,7 @@ OPTIONS
 
   -r <rule>
     The nonnegative integer <rule> specifies the rule.
-    Defaults to 60. Must be less than 256.
+    Defaults to 18. Must be less than 256.
 
   -s <seed>
     The nonnegative integer <seed> specifies the seed used to randomize the 1st

@@ -16,9 +16,9 @@ DESCRIPTION
   See the option -s.
 
   The file has a name that encodes how it was produced. For example, a file with the
-  name r60s0c512g256.eca.wav can be reproduced by an invocation equivalent to
+  name r18s0c512g256.eca.wav can be reproduced by an invocation equivalent to
 
-    $ eca2wav -r 60 -s 0 -c 512 -g 256
+    $ eca2wav -r 18 -s 0 -c 512 -g 256
 
 OPTIONS
   -c <cells>
@@ -31,7 +31,7 @@ OPTIONS
 
   -r <rule>
     The nonnegative integer <rule> specifies the rule.
-    Defaults to 60. Must be less than 256.
+    Defaults to 18. Must be less than 256.
 
   -s <seed>
     The nonnegative integer <seed> specifies the seed used to randomize the 1st
