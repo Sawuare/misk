@@ -1,13 +1,11 @@
 // hj2png.c - write an HJ image to a PNG file
 
+#include <getopt.h>
 #include <inttypes.h>
+#include <png.h>
 #include <setjmp.h>
 #include <stdio.h>
 #include <stdlib.h>
-
-#include <getopt.h>
-
-#include <png.h>
 #include <zlib.h>
 
 #include "hj.h"

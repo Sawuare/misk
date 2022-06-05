@@ -1,9 +1,8 @@
 // eca2txt.c - print an elementary cellular automaton
 
+#include <getopt.h>
 #include <stdio.h>
 #include <stdlib.h>
-
-#include <getopt.h>
 #include <sys/ioctl.h>
 #include <unistd.h>
 

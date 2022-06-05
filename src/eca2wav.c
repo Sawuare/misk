@@ -1,13 +1,12 @@
 // eca2wav.c - write an audio elementary cellular automaton to a WAVE file
 
+#include <getopt.h>
 #include <inttypes.h>
 #include <limits.h>
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
-#include <getopt.h>
 
 #include "eca.h"
 #include "wafer.h"
