@@ -69,10 +69,8 @@ int main(int argc, char *argv[]) {
   png_struct *structp = png_create_write_struct(PNG_LIBPNG_VER_STRING, 0, 0, 0);
   png_info *infop = png_create_info_struct(structp);
 
-  if (!(structp && infop)) {
-    png_destroy_write_struct(&structp, &infop);
+  if (!(structp && infop))
     return 3;
-  }
 
   // The longest filename is
   // i10j1000000000x1000000000y1000000000w1000000000h1000000000#100000.hj.png
@@ -82,14 +80,10 @@ int main(int argc, char *argv[]) {
 
   FILE *file = fopen(filename, "wb");
 
-  if (!file) {
-    png_destroy_write_struct(&structp, &infop);
+  if (!file)
     return 4;
-  }
 
   if (setjmp(png_jmpbuf(structp))) {
-    png_destroy_write_struct(&structp, &infop);
-    fclose(file);
     remove(filename);
     return 5;
   }
@@ -113,11 +107,6 @@ int main(int argc, char *argv[]) {
   rows = malloc(hj_height * sizeof *rows);
 
   if (!(hj_canvas && image && rows)) {
-    png_destroy_write_struct(&structp, &infop);
-    free(hj_canvas);
-    free(image);
-    free(rows);
-    fclose(file);
     remove(filename);
     return 6;
   }

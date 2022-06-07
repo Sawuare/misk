@@ -162,10 +162,8 @@ int main(int argc, char *argv[]) {
 
   wafer_wave *wave = wafer_open(filename);
 
-  if (!wave) {
-    free(audio);
+  if (!wave)
     return 4;
-  }
 
   wafer_set_channels(wave, 1);
   wafer_set_samples_per_sec(wave, 44100);
