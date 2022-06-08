@@ -85,7 +85,7 @@ int main(int argc, char *argv[]) {
   free(accumulators);
 
   _Bool no_alive_cells = 1;
-  size_t first_alive_cell_pos = 0, last_alive_cell_pos = 0, i = 0, last_sample_pos = sample_count - 1;
+  size_t first_alive_cell_pos, last_alive_cell_pos, i = 0, last_sample_pos = sample_count - 1;
 
   // Search for the first alive cell
   do {
