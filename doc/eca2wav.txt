@@ -44,7 +44,7 @@ EXIT STATUS
   2 if an option argument is invalid;
   3 if allocating memory fails;
   4 if opening the file fails;
-  5 if the host environment has no command processor;
+  5 if writing the file or closing it fails;
   0 otherwise;
 
 SEE ALSO

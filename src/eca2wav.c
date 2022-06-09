@@ -167,9 +167,14 @@ int main(int argc, char *argv[]) {
 
   wafer_set_channels(wave, 1);
   wafer_set_samples_per_sec(wave, 44100);
-  wafer_write_metadata(wave);
-  wafer_write_data(audio, sample_count, wave);
-  wafer_close(wave);
+
+  if (!(wafer_write_metadata(wave) &&
+        wafer_write_data(audio, sample_count, wave) &&
+        wafer_close(wave))) {
+    remove(filename);
+    return 5;
+  }
+
   free(audio);
   printf("Wrote %s\n", filename);
 }

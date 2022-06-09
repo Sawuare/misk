@@ -19,11 +19,19 @@ static uint8_t audio[RATE];
 
 static void write_wave(const char filename[]) {
   wafer_wave *wave = wafer_open(filename);
+
+  if (!wave)
+    exit(1);
+
   wafer_set_channels(wave, 1);
   wafer_set_samples_per_sec(wave, RATE);
-  wafer_write_metadata(wave);
-  wafer_write_data(audio, RATE, wave);
-  wafer_close(wave);
+
+  if (!(wafer_write_metadata(wave) &&
+        wafer_write_data(audio, RATE, wave) &&
+        wafer_close(wave))) {
+    remove(filename);
+    exit(2);
+  }
 
   static int wave_counter = 1;
 
