@@ -9,11 +9,11 @@ The directories and files in here are:
 
     *.sh -> POSIX shell scripts
 
-  dat/
-    Data exported by the programs.
-
   doc/
     Documentation of the programs and headers.
+
+  out/
+    Output of some of the programs.
 
   src/
     Source code in a few programming languages.

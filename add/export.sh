@@ -1,14 +1,14 @@
 #! /bin/sh
 
-# export.sh - export the output of some programs to ../dat/
+# export.sh - export the output of some programs to ../out/
 
 set -e
 
-echo "Entering ../dat/"
+echo "Entering ../out/"
 
-cd ../dat/
+cd ../out/
 
-echo "Exporting data"
+echo "Exporting output"
 
 # Assume that build.sh has been executed
 hjjs
