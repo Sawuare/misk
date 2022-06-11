@@ -33,9 +33,7 @@ static void write_wave(const char filename[]) {
     exit(2);
   }
 
-  static int wave_counter = 1;
-
-  printf("Wrote %d of 2: %s\n", wave_counter++, filename);
+  printf("Wrote %s\n", filename);
 }
 
 int main(void) {
@@ -47,6 +45,15 @@ int main(void) {
     audio[i] = i / PERIOD_2 % 2 ? MIN : MAX;
 
   write_wave("sqr.wav");
+
+  // Saw wave
+
+  for (i = 0; i < RATE; ++i) {
+    j = i % PERIOD_2 * AMP / PERIOD_2;
+    audio[i] = i / PERIOD_2 % 2 ? MIN + j : MID + j;
+  }
+
+  write_wave("saw.wav");
 
   // Triangle wave
 

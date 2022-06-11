@@ -8,6 +8,7 @@ DESCRIPTION
   These are the waves and the files they are written to:
 
     Square wave   -> sqr.wav
+    Saw wave      -> saw.wav
     Triangle wave -> tri.wav
 
   Each wave has an amplitude of 127/128, a duration of 1 second, and a frequency of
