@@ -14,6 +14,5 @@ echo "Exporting data"
 hjjs
 midi      > midi.txt
 printable > printable.txt
-waves
 
 echo "Done"
