@@ -15,7 +15,7 @@
 
 typedef struct wafer_wave {
   FILE     *file;
-  uint32_t data_written;
+  uint32_t data_size;
   uint32_t samples_per_sec;
   uint16_t channels;
 } wafer_wave;
@@ -26,7 +26,7 @@ static wafer_wave *wafer_open(const char filename[]) {
   if (!wave)
     return 0;
 
-  wave->data_written = 0;
+  wave->data_size = 0;
   wave->file = fopen(filename, "wb");
   return wave->file ? wave : 0;
 }
@@ -64,37 +64,32 @@ static _Bool wafer_write_metadata(wafer_wave *wave) {
 
 static _Bool wafer_write_data(const uint8_t data[], uint32_t length, wafer_wave *wave) {
   uint32_t written = fwrite(data, 1, length, wave->file);
-  wave->data_written += written;
+  wave->data_size += written;
   return written == length;
 }
 
 static _Bool wafer_close(wafer_wave *wave) {
-  if (wave->data_written & 1)
-    if (fwrite(&((uint8_t) {0}), 1, 1, wave->file) != 1)
-      return 0;
+  uint32_t form_size = 36 + wave->data_size;
 
-  uint8_t data_chunck_size[] = {
-    B0(wave->data_written),
-    B1(wave->data_written),
-    B2(wave->data_written),
-    B3(wave->data_written)
+  uint8_t riff_chunk_size[] = {
+    B0(form_size),
+    B1(form_size),
+    B2(form_size),
+    B3(form_size)
   };
 
-  if (fseek(wave->file, 40, SEEK_SET) ||
-      fwrite(data_chunck_size, 1, 4, wave->file) != 4)
-    return 0;
-
-  wave->data_written += 36;
-
-  uint8_t riff_chunck_size[] = {
-    B0(wave->data_written),
-    B1(wave->data_written),
-    B2(wave->data_written),
-    B3(wave->data_written)
+  uint8_t data_chunk_size[] = {
+    B0(wave->data_size),
+    B1(wave->data_size),
+    B2(wave->data_size),
+    B3(wave->data_size)
   };
 
-  if (fseek(wave->file, 4, SEEK_SET) ||
-      fwrite(riff_chunck_size, 1, 4, wave->file) != 4 ||
+  if (wave->data_size & 1 && fwrite(&((uint8_t) {0}), 1, 1, wave->file) != 1 ||
+      fseek(wave->file, 40, SEEK_SET) ||
+      fwrite(data_chunk_size, 1, 4, wave->file) != 4 ||
+      fseek(wave->file, 4, SEEK_SET) ||
+      fwrite(riff_chunk_size, 1, 4, wave->file) != 4 ||
       fclose(wave->file) == EOF)
     return 0;
 
