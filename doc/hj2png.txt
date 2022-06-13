@@ -3,8 +3,8 @@ NAME
 
 SYNOPSIS
   hj2png [-# <color-rrggbb>] [-c <color-letter>] [-h <height>] [-i <ID>]
-         [-j <J-value>] [-l <length>] [-o <offset>] [-v] [-w <width>] [-x <X-offset>]
-         [-y <Y-offset>] [-z]
+         [-j <J-value>] [-l <length>] [-m] [-o <offset>] [-v] [-w <width>]
+         [-x <X-offset>] [-y <Y-offset>] [-z]
 
 DESCRIPTION
   For a description of HJ images, see the beginning of hj.txt.
@@ -41,6 +41,10 @@ OPTIONS
   -l <length>
     This additional option is equivalent to -w <length> -h <length>, which specifies
     a square image.
+
+  -m
+    Place the origin in the middle of the image by setting the offsets.
+    Must not be specified before -h, -l, -o, -w, -x, or -y.
 
   -o <offset>
     This additional option is equivalent to -x <offset> -y <offset>.

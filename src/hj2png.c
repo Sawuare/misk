@@ -18,7 +18,7 @@ int main(int argc, char *argv[]) {
 
   int opt;
 
-  while ((opt = getopt(argc, argv, "#:c:i:j:x:y:o:w:h:l:vz")) != -1)
+  while ((opt = getopt(argc, argv, "#:c:i:j:x:y:o:w:h:l:mvz")) != -1)
     switch (opt) {
       case '#': hj_color = strtoul(optarg, 0, 16);
         break;
@@ -48,6 +48,12 @@ int main(int argc, char *argv[]) {
         break;
 
       case 'l': hj_width = hj_height = strtoul(optarg, 0, 10);
+        break;
+
+      // Place the origin in the middle of the image
+      case 'm':
+        hj_x0 = -(hj_width  / 2);
+        hj_y0 = -(hj_height / 2);
         break;
 
       case 'v':

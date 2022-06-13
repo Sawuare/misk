@@ -159,6 +159,12 @@ get:
         line = 1;
         goto print;
 
+      // Place the origin in the middle of the image
+      case 'm':
+        hj_x0 = -(hj_width  / 2);
+        hj_y0 = -(hj_height / 2);
+        break;
+
       case 'e': goto exit;
 
       default: goto get;
