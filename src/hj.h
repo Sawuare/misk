@@ -23,8 +23,8 @@
     uint32_t yn = hj_y0 + hj_height;                             \
     uint32_t xn = hj_x0 + hj_width;                              \
                                                                  \
-    for (uint32_t y = hj_y0; y < yn; ++y)                        \
-      for (uint32_t x = hj_x0; x < xn; ++x)                      \
+    for (uint32_t y = hj_y0; y != yn; ++y)                       \
+      for (uint32_t x = hj_x0; x != xn; ++x)                     \
         hj_canvas[(y - hj_y0) * hj_width + x - hj_x0] = formula; \
   }
 
