@@ -87,73 +87,58 @@ int main(int argc, char *argv[]) {
   free(accumulators);
 
   _Bool no_alive_cells = 1;
-  size_t first_alive_cell_pos, last_alive_cell_pos, i = 0, last_sample_pos = sample_count - 1;
+  size_t first_alive_cell_pos, last_alive_cell_pos, i;
 
   // Search for the first alive cell
-  do {
+  for (i = 0; i < sample_count; ++i)
     if (audio[i]) {
       no_alive_cells = 0;
       first_alive_cell_pos = i;
       break;
     }
-  } while (i++ != last_sample_pos);
 
   // Silence
-  if (no_alive_cells) {
-    i = 0;
-
-    do {
+  if (no_alive_cells)
+    for (i = 0; i < sample_count; ++i)
       audio[i] = MID;
-    } while (i++ != last_sample_pos);
-  }
   // Linear interpolation
   else {
-    i = last_sample_pos;
+    i = sample_count;
 
     // Search for the last alive cell
-    do {
+    while (i--)
       if (audio[i]) {
         last_alive_cell_pos = i;
         break;
       }
-    } while (i--);
 
     // First line
-    if (first_alive_cell_pos) {
-      i = 0;
-
-      do {
+    if (first_alive_cell_pos)
+      for (i = 0; i < first_alive_cell_pos; ++i)
         audio[i] = MID + i * AMP / first_alive_cell_pos;
-      } while (++i != first_alive_cell_pos);
-    }
 
     _Bool up = 0;
+    i = first_alive_cell_pos;
 
     // Mid lines
-    if (first_alive_cell_pos != last_alive_cell_pos) {
-      i = first_alive_cell_pos;
+    while (i < last_alive_cell_pos) {
+      size_t from = i;
 
-      do {
-        size_t from = i;
+      while (!audio[++i]);
 
-        while (!audio[++i]);
+      size_t span = i - from;
 
-        size_t span = i - from;
+      for (size_t j = 0; j < span; ++j)
+        audio[from + j] = up ? MIN + j * P2P / span : MAX - j * P2P / span;
 
-        for (size_t j = 0; j < span; ++j)
-          audio[from + j] = up ? MIN + j * P2P / span : MAX - j * P2P / span;
-
-        up = !up;
-      } while (i != last_alive_cell_pos);
+      up = !up;
     }
 
-    size_t last_few = sample_count - last_alive_cell_pos;
-    i = 0;
+    size_t span = sample_count - last_alive_cell_pos;
 
     // Last line
-    do {
-      audio[last_alive_cell_pos + i] = up ? MIN + i * AMP / last_few : MAX - i * AMP / last_few;
-    } while (++i != last_few);
+    for (i = 0; i < span; ++i)
+      audio[last_alive_cell_pos + i] = up ? MIN + i * AMP / span : MAX - i * AMP / span;
   }
 
   // The longest filename is
