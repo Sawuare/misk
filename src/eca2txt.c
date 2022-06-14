@@ -3,6 +3,7 @@
 #include <getopt.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <sys/ioctl.h>
 #include <unistd.h>
 
@@ -130,9 +131,7 @@ int main(int argc, char *argv[]) {
         cells[c == last_cell_pos ? 0 : c + 1]);
     }
 
-    for (int c = 0; c < cell_count; ++c)
-      cells[c] = accumulators[c];
-
+    memcpy(cells, accumulators, cell_count);
     putchar('\n');
   }
 }

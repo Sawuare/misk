@@ -62,7 +62,9 @@ int main(int argc, char *argv[]) {
       cells[c] = eca_rand() & 1;
   }
   else {
-    memset(cells, 0, cell_count);
+    for (uint32_t c = 0; c < cell_count; ++c)
+      cells[c] = 0;
+
     cells[cell_count / 2] = 1;
   }
 
