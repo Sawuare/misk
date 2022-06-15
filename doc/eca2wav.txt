@@ -48,4 +48,4 @@ EXIT STATUS
   0 otherwise;
 
 SEE ALSO
-  eca2fb.txt, eca2txt.txt
+  eca2txt.txt
