@@ -47,10 +47,9 @@ int main(int argc, char *argv[]) {
   if (!sample_count)
     return 2;
 
-  uint8_t *audio = malloc(sample_count);
-
-  _Bool *cells        = malloc(cell_count);
-  _Bool *accumulators = malloc(cell_count);
+  uint8_t *audio        = malloc(sample_count * sizeof *audio);
+  _Bool   *cells        = malloc(cell_count   * sizeof *cells);
+  _Bool   *accumulators = malloc(cell_count   * sizeof *accumulators);
 
   if (!(audio && cells && accumulators))
     return 3;
