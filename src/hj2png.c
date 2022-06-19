@@ -104,7 +104,8 @@ int main(int argc, char *argv[]) {
   png_set_user_limits(structp, LENGTH_MAX, LENGTH_MAX);
   png_set_filter(structp, PNG_FILTER_TYPE_BASE, hj_mono_xor_ramp() ? PNG_FILTER_NONE : PNG_FILTER_UP);
   png_set_text(structp, infop, texts, sizeof texts / sizeof *texts);
-  png_set_IHDR(structp, infop, hj_width, hj_height, 8, PNG_COLOR_TYPE_RGB, PNG_INTERLACE_NONE, PNG_COMPRESSION_TYPE_BASE, PNG_FILTER_TYPE_BASE);
+  png_set_IHDR(structp, infop, hj_width, hj_height, 8, PNG_COLOR_TYPE_RGB, PNG_INTERLACE_NONE,
+    PNG_COMPRESSION_TYPE_BASE, PNG_FILTER_TYPE_BASE);
 
   png_byte *image, **rows;
 

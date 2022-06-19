@@ -1,0 +1,43 @@
+NAME
+  eca2png - write an elementary cellular automaton to a PNG file
+
+SYNOPSIS
+  eca2png [-c <cells>] [-g <generations>] [-r <rule>] [-s <seed>] [-v] [-z]
+
+OPTIONS
+  -c <cells>
+    The positive integer <cells> specifies the number of cells in a generation.
+    Defaults to 512. Must be less than or equal to 1048576.
+
+  -g <generations>
+    The positive integer <generations> specifies the number of generations.
+    Defaults to 256. Must be less than or equal to 1048576.
+
+  -r <rule>
+    The nonnegative integer <rule> specifies the rule.
+    Defaults to 18. Must be less than 256.
+
+  -s <seed>
+    The nonnegative integer <seed> specifies the seed used to randomize the 1st
+    generation. Seed 0 is special; it does not randomize the 1st generation but
+    instead places only 1 alive cell in its middle.
+    Defaults to 0. Must be less than 4294967296.
+
+  -v
+    Print libpng and zlib versions then exit.
+
+  -z
+    Use the best compression level instead of the default.
+    The compression is lossless, so expect the same image in more time and less size.
+
+EXIT STATUS
+  1 if an option is invalid;
+  2 if an option argument is invalid;
+  3 if creating libpng structs fails;
+  4 if opening the file fails;
+  5 if another libpng error occurs;
+  6 if allocating memory fails;
+  0 otherwise;
+
+SEE ALSO
+  eca2txt.txt, eca2wav.txt

@@ -49,6 +49,7 @@ echo "Compiling C programs"
 OPT="-march=native -O3"
 
 cc $OPT -o ctime     ctime.c
+cc $OPT -o eca2png   eca2png.c -lpng -lz
 cc $OPT -o eca2txt   eca2txt.c
 cc $OPT -o eca2wav   eca2wav.c
 cc $OPT -o getendian getendian.c
@@ -63,6 +64,6 @@ cc $OPT -o qda       qda.c -lm
 
 echo "Moving C programs"
 
-sudo mv ctime eca2txt eca2wav getendian getlocale hacc hj2fb hj2png limits morse pp qda $BIN
+sudo mv ctime eca2png eca2txt eca2wav getendian getlocale hacc hj2fb hj2png limits morse pp qda $BIN
 
 echo "Done"

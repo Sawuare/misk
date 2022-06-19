@@ -43,4 +43,4 @@ EXIT STATUS
   0 otherwise;
 
 SEE ALSO
-  eca2wav.txt
+  eca2png.txt, eca2wav.txt
