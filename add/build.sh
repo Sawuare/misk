@@ -34,7 +34,6 @@ echo "Copying Python programs"
 OPT="--preserve=ownership"
 
 sudo cp $OPT hjjs.py       $BIN/hjjs
-sudo cp $OPT midi.py       $BIN/midi
 sudo cp $OPT printable.py  $BIN/printable
 sudo cp $OPT projectile.py $BIN/projectile
 
@@ -58,12 +57,13 @@ cc $OPT -o hacc      hacc.c
 cc $OPT -o hj2fb     hj2fb.c
 cc $OPT -o hj2png    hj2png.c -lpng -lz
 cc $OPT -o limits    limits.c
+cc $OPT -o midi      midi.c -lm
 cc $OPT -o morse     morse.c
 cc $OPT -o pp        pp.c
 cc $OPT -o qda       qda.c -lm
 
 echo "Moving C programs"
 
-sudo mv ctime eca2png eca2txt eca2wav getendian getlocale hacc hj2fb hj2png limits morse pp qda $BIN
+sudo mv ctime eca2png eca2txt eca2wav getendian getlocale hacc hj2fb hj2png limits midi morse pp qda $BIN
 
 echo "Done"
