@@ -26,7 +26,7 @@ SYNOPSIS
   ...
   void hj_painter44(void);
 
-  void (*hj_painters[])(void);
+  void (*hj_painters[45])(void);
 
 DESCRIPTION
   HJ images are painted by painters, which are functions of these parameters: a

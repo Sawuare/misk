@@ -43,7 +43,7 @@ static _Bool wafer_write_metadata(wafer_wave *wave) {
   uint32_t avg_bytes_per_sec = wave->channels * wave->samples_per_sec;
   uint16_t block_align = wave->channels;
 
-  uint8_t header[] = {
+  uint8_t header[44] = {
     82,                        73,                        70,                        70, // 'RIFF'
     NA,                        NA,                        NA,                        NA, // RIFF-chunk size
     87,                        65,                        86,                        69, // 'WAVE'
@@ -71,14 +71,14 @@ static _Bool wafer_write_data(const uint8_t data[], uint32_t length, wafer_wave 
 static _Bool wafer_close(wafer_wave *wave) {
   uint32_t form_size = 36 + wave->data_size;
 
-  uint8_t riff_chunk_size[] = {
+  uint8_t riff_chunk_size[4] = {
     B0(form_size),
     B1(form_size),
     B2(form_size),
     B3(form_size)
   };
 
-  uint8_t data_chunk_size[] = {
+  uint8_t data_chunk_size[4] = {
     B0(wave->data_size),
     B1(wave->data_size),
     B2(wave->data_size),

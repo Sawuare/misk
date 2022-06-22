@@ -137,7 +137,7 @@ PAINTER(42, RAMP((J ^ x) * x + (J ^ y) * y))
 PAINTER(43, RAMP((J + x) * x + (J + y) * y))
 PAINTER(44, RAMP((J * x) * x + (J * y) * y))
 
-static void (*hj_painters[])(void) = {
+static void (*hj_painters[45])(void) = {
   // AND           OR            XOR           ADD           MUL
   hj_painter0,  hj_painter1,  hj_painter2,  hj_painter3,  hj_painter4,  // Class 0
   hj_painter5,  hj_painter6,  hj_painter7,  hj_painter8,  hj_painter9,  // Class 1
