@@ -1,9 +1,13 @@
 NAME
-  printable - print a table of printable ASCII characters in base 2, 8, 10, and 16
+  printable - print a table of printable ASCII characters in bases 16 and 10
 
 SYNOPSIS
   printable
 
 DESCRIPTION
-  From left to right, the table contains the binary, octal, decimal, hexadecimal, and
-  printable representation of ASCII characters.
+  From left to right, the table contains the printable, hexadecimal, and decimal
+  representation of ASCII characters.
+
+EXIT STATUS
+  1 if setting the locale fails;
+  0 otherwise;
