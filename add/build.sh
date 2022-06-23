@@ -34,7 +34,6 @@ echo "Copying Python programs"
 OPT="--preserve=ownership"
 
 sudo cp $OPT hjjs.py       $BIN/hjjs
-sudo cp $OPT projectile.py $BIN/projectile
 
 # C
 
@@ -46,24 +45,25 @@ echo "Compiling C programs"
 
 OPT="-march=native -O3"
 
-cc $OPT -o ctime     ctime.c
-cc $OPT -o eca2png   eca2png.c -lpng -lz
-cc $OPT -o eca2txt   eca2txt.c
-cc $OPT -o eca2wav   eca2wav.c
-cc $OPT -o getendian getendian.c
-cc $OPT -o getlocale getlocale.c
-cc $OPT -o hacc      hacc.c
-cc $OPT -o hj2fb     hj2fb.c
-cc $OPT -o hj2png    hj2png.c -lpng -lz
-cc $OPT -o limits    limits.c
-cc $OPT -o midi      midi.c -lm
-cc $OPT -o morse     morse.c
-cc $OPT -o pp        pp.c
-cc $OPT -o printable printable.c
-cc $OPT -o qda       qda.c -lm
+cc $OPT -o ctime      ctime.c
+cc $OPT -o eca2png    eca2png.c -lpng -lz
+cc $OPT -o eca2txt    eca2txt.c
+cc $OPT -o eca2wav    eca2wav.c
+cc $OPT -o getendian  getendian.c
+cc $OPT -o getlocale  getlocale.c
+cc $OPT -o hacc       hacc.c
+cc $OPT -o hj2fb      hj2fb.c
+cc $OPT -o hj2png     hj2png.c -lpng -lz
+cc $OPT -o limits     limits.c
+cc $OPT -o midi       midi.c -lm
+cc $OPT -o morse      morse.c
+cc $OPT -o pp         pp.c
+cc $OPT -o printable  printable.c
+cc $OPT -o projectile projectile.c -lm
+cc $OPT -o qda        qda.c -lm
 
 echo "Moving C programs"
 
-sudo mv ctime eca2png eca2txt eca2wav getendian getlocale hacc hj2fb hj2png limits midi morse pp printable qda $BIN
+sudo mv ctime eca2png eca2txt eca2wav getendian getlocale hacc hj2fb hj2png limits midi morse pp printable projectile qda $BIN
 
 echo "Done"
