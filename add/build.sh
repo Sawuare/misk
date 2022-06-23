@@ -5,18 +5,15 @@
 # Requires permission to write and execute /usr/local/bin/ and /usr/local/include/,
 # which likely requires being the superuser.
 #
-# Some programs depend on some of these compilers, interpreters, and libraries:
+# Some programs depend on some of these compilers and libraries:
 #
 #   cc (as either Clang or GCC)
-#
-#   python3
-#
 #   libpng
 #   zlib
 #
 # To install them on Debian or a derivative of it, execute
 #
-#   # apt install clang python3 libpng16-16 libpng-dev zlib1g zlib1g-dev
+#   # apt install clang libpng16-16 libpng-dev zlib1g zlib1g-dev
 
 set -e
 
@@ -26,16 +23,6 @@ cd ../src/
 
 BIN="/usr/local/bin/"
 INC="/usr/local/include/"
-
-# Python
-
-echo "Copying Python programs"
-
-OPT="--preserve=ownership"
-
-sudo cp $OPT hjjs.py       $BIN/hjjs
-
-# C
 
 echo "Copying C headers"
 
@@ -54,6 +41,7 @@ cc $OPT -o getlocale  getlocale.c
 cc $OPT -o hacc       hacc.c
 cc $OPT -o hj2fb      hj2fb.c
 cc $OPT -o hj2png     hj2png.c -lpng -lz
+cc $OPT -o hjjs       hjjs.c
 cc $OPT -o limits     limits.c
 cc $OPT -o midi       midi.c -lm
 cc $OPT -o morse      morse.c
@@ -64,6 +52,6 @@ cc $OPT -o qda        qda.c -lm
 
 echo "Moving C programs"
 
-sudo mv ctime eca2png eca2txt eca2wav getendian getlocale hacc hj2fb hj2png limits midi morse pp printable projectile qda $BIN
+sudo mv ctime eca2png eca2txt eca2wav getendian getlocale hacc hj2fb hj2png hjjs limits midi morse pp printable projectile qda $BIN
 
 echo "Done"

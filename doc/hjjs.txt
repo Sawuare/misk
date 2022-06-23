@@ -31,5 +31,9 @@ DESCRIPTION
     https://oeis.org/A171499
     https://oeis.org/A171472
 
+EXIT STATUS
+  1 if opening a file fails;
+  0 otherwise;
+
 SEE ALSO
   hj2fb.txt, hj2png.txt

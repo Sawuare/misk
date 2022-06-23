@@ -16,11 +16,10 @@ The directories and files in here are:
     Output of some of the programs.
 
   src/
-    Source code in a few programming languages.
+    Source code in the C programming language.
 
     *.c  -> C source files
     *.h  -> C headers
-    *.py -> Python scripts
 
   .bashrc
     My Bash configuration file.
