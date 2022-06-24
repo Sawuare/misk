@@ -1,5 +1,5 @@
 NAME
-  ctime - print the local time now in the form Www Mmm dd hh:mm:ss yyyy
+  ctime - print the local time in the form Www Mmm dd hh:mm:ss yyyy
 
 SYNOPSIS
   ctime

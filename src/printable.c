@@ -1,4 +1,4 @@
-// printable.c - print a table of printable ASCII characters in bases 16 and 10
+// printable.c - print a table of printable ASCII characters and their codes
 
 #include <locale.h>
 #include <stdio.h>

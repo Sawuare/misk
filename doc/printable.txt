@@ -1,5 +1,5 @@
 NAME
-  printable - print a table of printable ASCII characters in bases 16 and 10
+  printable - print a table of printable ASCII characters and their codes
 
 SYNOPSIS
   printable
