@@ -10,6 +10,3 @@ EXIT STATUS
 
 NOTES
   Nothing is printed if querying the locale fails.
-
-SEE ALSO
-  getendian.txt
