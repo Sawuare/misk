@@ -69,6 +69,9 @@ int main(int argc, char *argv[]) {
       ioctl(fb_descriptor, FBIOGET_VSCREENINFO, &vscreeninfo) == -1)
     return 4;
 
+  uint32_t mid_x0 = 0x100000000 - vscreeninfo.xres / 2;
+  uint32_t mid_y0 = 0x100000000 - vscreeninfo.yres / 2;
+
   hj_width  = fscreeninfo.line_length / 4;
   hj_height = vscreeninfo.yres;
 
@@ -161,8 +164,8 @@ get:
 
       // Place the origin in the middle of the image
       case 'm':
-        hj_x0 = -(hj_width  / 2);
-        hj_y0 = -(hj_height / 2);
+        hj_x0 = mid_x0;
+        hj_y0 = mid_y0;
         break;
 
       case 'e': goto exit;
