@@ -21,12 +21,6 @@ The directories and files in here are:
     *.c  -> C source files
     *.h  -> C headers
 
-  .bashrc
-    My Bash configuration file.
-
-  .nanorc
-    My nano configuration file.
-
   LICENSE.txt
     The MIT License under which everything else is licensed.
 
