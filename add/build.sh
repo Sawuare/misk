@@ -26,7 +26,7 @@ INC="/usr/local/include/"
 
 echo "Copying C headers"
 
-sudo cp $OPT *.h $INC
+sudo cp --preserve=ownership *.h $INC
 
 echo "Compiling C programs"
 
