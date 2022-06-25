@@ -1,12 +1,12 @@
 NAME
-  qda - a quantitative data analyzer
+  sumber - print a statistical summary of input numbers
 
 SYNOPSIS
-  qda
+  sumber
 
 DESCRIPTION
-  qda reads space-separated numbers then prints the following statistics with up to
-  10 significant digits:
+  sumber reads space-separated numbers then prints the following statistics with up
+  to 10 significant digits:
 
     Count
     Sum

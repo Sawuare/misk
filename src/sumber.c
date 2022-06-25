@@ -1,4 +1,4 @@
-// qda.c - a quantitative data analyzer
+// sumber.c - print a statistical summary of input numbers
 
 #include <math.h>
 #include <stdio.h>
