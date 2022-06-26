@@ -1,34 +1,29 @@
 #! /bin/sh
 
-# build.sh - build some programs and get executables and headers to /usr/local/
+# build.sh - build programs and get executables and headers to /usr/local/
 
 # Requires permission to write and execute /usr/local/bin/ and /usr/local/include/,
 # which likely requires being the superuser.
 #
-# Some programs depend on some of these compilers and libraries:
+# All programs depend on the C compiler cc, which may be a link to GCC or Clang.
+# Some programs that write PNG files depend on the C libraries libpng and zlib.
 #
-#   cc (as either Clang or GCC)
-#   libpng
-#   zlib
-#
-# To install them on Debian or a derivative of it, execute
+# To install the dependencies on Debian or a derivative of it, execute
 #
 #   # apt install clang libpng16-16 libpng-dev zlib1g zlib1g-dev
 
 set -e
-
-echo "Entering ../src/"
 
 cd ../src/
 
 BIN="/usr/local/bin/"
 INC="/usr/local/include/"
 
-echo "Copying C headers"
+echo "Copying libraries"
 
 sudo cp --preserve=ownership *.h $INC
 
-echo "Compiling C programs"
+echo "Compiling programs"
 
 OPT="-march=native -O3"
 
@@ -49,7 +44,7 @@ cc $OPT -o printable  printable.c
 cc $OPT -o projectile projectile.c -lm
 cc $OPT -o sumber     sumber.c -lm
 
-echo "Moving C programs"
+echo "Moving programs"
 
 sudo mv ctime eca2png eca2txt eca2wav getlocale hacc hj2fb hj2png hjjs limits midi morse pp printable projectile sumber $BIN
 

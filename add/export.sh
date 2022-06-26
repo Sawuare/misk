@@ -4,8 +4,6 @@
 
 set -e
 
-echo "Entering ../out/"
-
 cd ../out/
 
 echo "Exporting output"
