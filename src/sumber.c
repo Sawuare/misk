@@ -1,6 +1,7 @@
 // sumber.c - print a statistical summary of input numbers
 
 #include <math.h>
+#include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -18,22 +19,30 @@ static double median(const double ds[], size_t count) {
 }
 
 int main(void) {
-  size_t count = 0;
+  size_t max_capacity = SIZE_MAX / sizeof (double);
   size_t capacity = 256;
+  size_t count = 0;
 
-  double *ds = malloc(capacity * sizeof *ds);
   double sum = 0;
   double product = 1;
+
+  double *ds = malloc(capacity * sizeof *ds);
+
+  if (!ds)
+    return 1;
 
   while (scanf("%lg", &ds[count]) == 1) {
     sum += ds[count];
     product *= ds[count];
 
-    if (++count >= capacity) {
-      capacity *= 2;
-      ds = realloc(ds, capacity * sizeof *ds);
-    }
+    if (++count == capacity)
+      if ((capacity *= 2) > max_capacity ||
+          !(ds = realloc(ds, capacity * sizeof *ds)))
+        return 2;
   }
+
+  if (count < 2)
+    return 3;
 
   qsort(ds, count, sizeof ds[0], compare);
 
@@ -44,11 +53,10 @@ int main(void) {
   double mid_range = (max + min) / 2;
 
   size_t half = count / 2;
-  _Bool single_element = count == 1;
 
+  double q1 = median(ds, half);
   double q2 = median(ds, count);
-  double q1 = single_element ? q2 : median(ds, half);
-  double q3 = single_element ? q2 : median(ds + count - half, half);
+  double q3 = median(ds + count - half, half);
 
   double iqr       =  q3 - q1;
   double mid_hinge = (q3 + q1) / 2;
@@ -68,6 +76,8 @@ int main(void) {
     sum_of_deviation_to_3 += deviation_to_2 * deviation;
     sum_of_deviation_to_4 += deviation_to_2 * deviation_to_2;
   }
+
+  free(ds);
 
   double sd      = sqrt(sum_of_deviation_to_2 / count);
   double sd_to_3 = sd * sd * sd;
