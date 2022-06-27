@@ -4,46 +4,26 @@ NAME
 SYNOPSIS
   #include "hj.h"
 
-  HJ_BLACK
-  HJ_RED
-  HJ_GREEN
-  HJ_BLUE
-  HJ_CYAN
-  HJ_MAGENTA
-  HJ_YELLOW
-  HJ_WHITE
-
-  HJ_R_SAMPLE(px)
-  HJ_G_SAMPLE(px)
-  HJ_B_SAMPLE(px)
-
-  uint32_t hj_letter_to_color(char letter);
-
   _Bool hj_defined(void);
-  _Bool hj_mono_xor_ramp(void);
 
   void hj_painter0(void);
   ...
-  void hj_painter44(void);
+  void hj_painter39(void);
 
-  void (*hj_painters[45])(void);
+  void (*hj_painters[40])(void);
 
 DESCRIPTION
   HJ images are painted by painters, which are functions of these parameters: a
   canvas, its width and height, horizontal and vertical offsets ("X-offset" and
-  "Y-offset"), a color, and a J-value. Painters produce patterns using arithmetic,
-  bitwise, and conditional operators on the canvas coordinates, the color, and the
-  J-value. Different painters produce different patterns, whereas different J-values
-  vary the patterns. Every painter is identified by a serial ID: "painter #" denotes
-  the painter whose ID is #.
+  "Y-offset"), and a J-value. Painters generate patterns using arithmetic and bitwise
+  operators on the canvas coordinates and the J-value. Different painters generate
+  different patterns, whereas different J-values vary the patterns. Every painter is
+  identified by a serial ID: "painter #" denotes the painter whose ID is #.
 
-  In theory, the ID, J-value, color, and offsets are nonnegative integers, whereas
-  the width and height are positive integers. In practice, they are all unsigned
-  32-bit integers.
+  In theory, the ID, J-value, and offsets are nonnegative integers, whereas the width
+  and height are positive integers. In practice, they are unsigned 32-bit integers.
 
-  The color format is 24-bit RGB. For example, the color red is hexadecimal ff0000.
-
-  There are 45 defined painters, 0 through 44, divided into 9 classes, 0 through 8.
+  There are 40 defined painters, 0 through 39, divided into 8 classes, 0 through 7.
   Painters in classes 1, 3, 5, and 7 divide by the J-value, so J-value 0 is undefined
   for them. Painters in different classes use different formulas, whereas painters in
   the same class differ by the main operation they use. Painters cycle through the

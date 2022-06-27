@@ -22,14 +22,8 @@ int main(int argc, char *argv[]) {
 
   int opt;
 
-  while ((opt = getopt(argc, argv, "#:c:i:j:x:y:o:s:l")) != -1)
+  while ((opt = getopt(argc, argv, "i:j:x:y:o:s:l")) != -1)
     switch (opt) {
-      case '#': hj_color = strtoul(optarg, 0, 16);
-        break;
-
-      case 'c': hj_color = hj_letter_to_color(optarg[0]);
-        break;
-
       case 'i': hj_id = strtoul(optarg, 0, 10);
         break;
 
@@ -54,20 +48,17 @@ int main(int argc, char *argv[]) {
       default: return 1;
     }
 
-  if (hj_color > 0xffffff)
-    return 2;
-
   int fb_descriptor = open("/dev/fb0", O_RDWR);
 
   if (fb_descriptor == -1)
-    return 3;
+    return 2;
 
   struct fb_fix_screeninfo fscreeninfo;
   struct fb_var_screeninfo vscreeninfo;
 
   if (ioctl(fb_descriptor, FBIOGET_FSCREENINFO, &fscreeninfo) == -1 ||
       ioctl(fb_descriptor, FBIOGET_VSCREENINFO, &vscreeninfo) == -1)
-    return 4;
+    return 3;
 
   uint32_t mid_x0 = 0x100000000 - vscreeninfo.xres / 2;
   uint32_t mid_y0 = 0x100000000 - vscreeninfo.yres / 2;
@@ -75,10 +66,16 @@ int main(int argc, char *argv[]) {
   hj_width  = fscreeninfo.line_length / 4;
   hj_height = vscreeninfo.yres;
 
-  hj_canvas = mmap(0, fscreeninfo.smem_len, PROT_WRITE, MAP_SHARED, fb_descriptor, 0);
+  uint32_t *fb_map = mmap(0, fscreeninfo.smem_len, PROT_WRITE, MAP_SHARED, fb_descriptor, 0);
   close(fb_descriptor);
 
-  if (hj_canvas == MAP_FAILED)
+  if (fb_map == MAP_FAILED)
+    return 4;
+
+  size_t area = hj_width * hj_height;
+  hj_canvas = malloc(area * sizeof *hj_canvas);
+
+  if (!hj_canvas)
     return 5;
 
   struct termios old_term, new_term;
@@ -99,8 +96,11 @@ int main(int argc, char *argv[]) {
     _Bool warn;
 
     if (hj_defined()) {
-      hj_painters[hj_id]();
       warn = 0;
+      hj_painters[hj_id]();
+
+      for (size_t i = 0; i < area; ++i)
+        fb_map[i] = hj_canvas[i] ? 0 : 0xffffff;
     }
     else {
       warn = 1;
@@ -109,8 +109,8 @@ int main(int argc, char *argv[]) {
 
     if (line)
 print:
-      printf("i%-10" PRIu32 " j%-10" PRIu32 " x%-10" PRIu32 " y%-10" PRIu32 " #%06" PRIx32 "%s\r",
-        hj_id, hj_j, hj_x0, hj_y0, hj_color, warn ? " !" : "");
+      printf("i%-10" PRIu32 " j%-10" PRIu32 " x%-10" PRIu32 " y%-10" PRIu32 "%s\r",
+        hj_id, hj_j, hj_x0, hj_y0, warn ? " !" : "");
 
 get:
     switch (getchar()) {
@@ -136,9 +136,6 @@ get:
         break;
 
       case '8': hj_y0 += step;
-        break;
-
-      case '#': scanf("%6" PRIx32, &hj_color);
         break;
 
       case 'i': scanf("%" PRIu32, &hj_id);
@@ -175,6 +172,8 @@ get:
   }
 
 exit:
+  free(hj_canvas);
+  munmap(fb_map, fscreeninfo.smem_len);
   fputs(TCEM("h") ECMA48_ED("3"), stdout);
 
   if (tcsetattr(STDIN_FILENO, TCSANOW, &old_term) == -1)

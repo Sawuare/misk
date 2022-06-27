@@ -2,37 +2,26 @@ NAME
   hj2png - write an HJ image to a PNG file
 
 SYNOPSIS
-  hj2png [-# <color-rrggbb>] [-c <color-letter>] [-h <height>] [-i <ID>]
-         [-j <J-value>] [-l <length>] [-m] [-o <offset>] [-v] [-w <width>]
-         [-x <X-offset>] [-y <Y-offset>] [-z]
+  hj2png [-h <height>] [-i <ID>] [-j <J-value>] [-l <length>] [-m] [-o <offset>] [-v]
+         [-w <width>] [-x <X-offset>] [-y <Y-offset>] [-z]
 
 DESCRIPTION
   For a description of HJ images, see the beginning of hj.txt.
 
-  hj2png writes an HJ image to a 24-bit RGB, non-interlaced PNG file. The file has a
-  name that encodes how it was produced. For example, a file with the name
-  i0j1x0y0w512h512#ffffff.hj.png can be reproduced by an invocation equivalent to
+  hj2png writes an HJ image to a 1-bit grayscale, non-interlaced PNG file. The file
+  has a name that encodes how it was produced. For example, a file with the name
+  i0j1x0y0w512h512.hj.png can be reproduced by an invocation equivalent to
 
-    $ hj2png -i 0 -j 1 -x 0 -y 0 -w 512 -h 512 -# ffffff
+    $ hj2png -i 0 -j 1 -x 0 -y 0 -w 512 -h 512
 
 OPTIONS
-  -# <color-rrggbb>
-    The hexadecimal nonnegative integer <color-rrggbb> specifies the painting color
-    in the form rrggbb. Leading 0s may be omitted.
-    Defaults to ffffff.
-
-  -c <color-letter>
-    The letter <color-letter> specifies the painting color and should be one of
-    (r|g|b|c|m|y|w) for red, green, blue, cyan, magenta, yellow, or white.
-    Defaults to w.
-
   -h <height>
     The positive integer <height> specifies the image's height in pixels.
     Defaults to 512. Must be less than or equal to 1048576.
 
   -i <ID>
     The nonnegative integer <ID> specifies the painter's ID.
-    Defaults to 0. Must be less than 45.
+    Defaults to 0. Must be less than 40.
 
   -j <J-value>
     The nonnegative integer <J-value> specifies the painter's J-value.

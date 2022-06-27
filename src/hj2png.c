@@ -18,14 +18,8 @@ int main(int argc, char *argv[]) {
 
   int opt;
 
-  while ((opt = getopt(argc, argv, "#:c:i:j:x:y:o:w:h:l:mvz")) != -1)
+  while ((opt = getopt(argc, argv, "i:j:x:y:o:w:h:l:mvz")) != -1)
     switch (opt) {
-      case '#': hj_color = strtoul(optarg, 0, 16);
-        break;
-
-      case 'c': hj_color = hj_letter_to_color(optarg[0]);
-        break;
-
       case 'i': hj_id = strtoul(optarg, 0, 10);
         break;
 
@@ -69,7 +63,7 @@ int main(int argc, char *argv[]) {
 
   size_t area = hj_width * hj_height;
 
-  if (!hj_defined() || !area || hj_width > LENGTH_MAX || hj_height > LENGTH_MAX || hj_color > 0xffffff)
+  if (!hj_defined() || !area || hj_width > LENGTH_MAX || hj_height > LENGTH_MAX)
     return 2;
 
   png_struct *structp = png_create_write_struct(PNG_LIBPNG_VER_STRING, 0, 0, 0);
@@ -79,10 +73,10 @@ int main(int argc, char *argv[]) {
     return 3;
 
   // The longest filename is
-  // i10j1000000000x1000000000y1000000000w1000000000h1000000000#100000.hj.png
-  char filename[73];
-  sprintf(filename, "i%" PRIu32 "j%" PRIu32 "x%" PRIu32 "y%" PRIu32 "w%" PRIu32 "h%" PRIu32 "#%06" PRIx32 ".hj.png",
-    hj_id, hj_j, hj_x0, hj_y0, hj_width, hj_height, hj_color);
+  // i10j1000000000x1000000000y1000000000w1000000000h1000000000.hj.png
+  char filename[66];
+  sprintf(filename, "i%" PRIu32 "j%" PRIu32 "x%" PRIu32 "y%" PRIu32 "w%" PRIu32 "h%" PRIu32 ".hj.png",
+    hj_id, hj_j, hj_x0, hj_y0, hj_width, hj_height);
 
   FILE *file = fopen(filename, "wb");
 
@@ -102,43 +96,39 @@ int main(int argc, char *argv[]) {
   png_set_compression_strategy(structp, Z_DEFAULT_STRATEGY);
   png_set_compression_level(structp, best_compression ? Z_BEST_COMPRESSION : Z_DEFAULT_COMPRESSION);
   png_set_user_limits(structp, LENGTH_MAX, LENGTH_MAX);
-  png_set_filter(structp, PNG_FILTER_TYPE_BASE, hj_mono_xor_ramp() ? PNG_FILTER_NONE : PNG_FILTER_UP);
+  png_set_filter(structp, PNG_FILTER_TYPE_BASE, PNG_FILTER_NONE);
   png_set_text(structp, infop, texts, 2);
-  png_set_IHDR(structp, infop, hj_width, hj_height, 8, PNG_COLOR_TYPE_RGB, PNG_INTERLACE_NONE,
+  png_set_IHDR(structp, infop, hj_width, hj_height, 1, PNG_COLOR_TYPE_GRAY, PNG_INTERLACE_NONE,
     PNG_COMPRESSION_TYPE_BASE, PNG_FILTER_TYPE_BASE);
 
-  png_byte *image, **rows;
-
   hj_canvas = malloc(area * sizeof *hj_canvas);
-  image = malloc(3 * area * sizeof *image);
-  rows = malloc(hj_height * sizeof *rows);
+  png_byte *row = malloc((hj_width + 7) / 8 * sizeof *row);
 
-  if (!(hj_canvas && image && rows)) {
+  if (!(hj_canvas && row)) {
     remove(filename);
     return 6;
   }
 
   hj_painters[hj_id]();
-
-  for (size_t i = 0, j = 0; i < area; i += 1, j += 3) {
-    image[j    ] = HJ_R_SAMPLE(hj_canvas[i]);
-    image[j + 1] = HJ_G_SAMPLE(hj_canvas[i]);
-    image[j + 2] = HJ_B_SAMPLE(hj_canvas[i]);
-  }
-
-  free(hj_canvas);
-
-  while (hj_height--)
-    rows[hj_height] = &image[hj_height * hj_width * 3];
-
   png_init_io(structp, file);
   png_write_info(structp, infop);
-  png_write_image(structp, rows);
-  png_write_end(structp, 0);
 
+  for (uint32_t y = 0; y < hj_height; ++y) {
+    for (uint32_t x = 0; x < hj_width; ++x) {
+      if (!(x % 8))
+        row[x / 8] = 0;
+
+      if (!hj_canvas[y * hj_width + x])
+        row[x / 8] |= 1 << (7 - x % 8);
+    }
+
+    png_write_row(structp, row);
+  }
+
+  png_write_end(structp, 0);
   png_destroy_write_struct(&structp, &infop);
-  free(image);
-  free(rows);
+  free(hj_canvas);
+  free(row);
   fclose(file);
   printf("Wrote %s\n", filename);
 }

@@ -2,8 +2,8 @@ NAME
   hj2fb - paint HJ images on the Linux framebuffer device
 
 SYNOPSIS
-  hj2fb [-# <color-rrggbb>] [-c <color-letter>] [-i <ID>] [-j <J-value>] [-l]
-        [-o <offset>] [-s <step>] [-x <X-offset>] [-y <Y-offset>]
+  hj2fb [-i <ID>] [-j <J-value>] [-l] [-o <offset>] [-s <step>] [-x <X-offset>]
+        [-y <Y-offset>]
 
 DESCRIPTION
   For a description of HJ images, see the beginning of hj.txt.
@@ -23,7 +23,6 @@ DESCRIPTION
     6 increments the X-offset;
     7 decrements the Y-offset;
     8 increments the Y-offset;
-    # sets the color to the argument entered next (like -# and its argument);
     i sets the ID to the argument entered next (like -i and its argument);
     j sets the J-value to the argument entered next (like -j and its argument);
     x sets the X-offset to the argument entered next (like -x and its argument);
@@ -32,23 +31,13 @@ DESCRIPTION
     m places the origin in the middle of the image by setting the offsets;
     e exits;
 
-  The status line shows the ID, J-value, X-offset, Y-offset, and color. If the ID or
-  J-value are undefined, the status line is automatically printed with " !" appended.
+  The status line shows the ID, J-value, X-offset, and Y-offset. If the ID or J-value
+  are undefined, the status line is automatically printed with " !" appended.
 
 OPTIONS
-  -# <color-rrggbb>
-    The hexadecimal nonnegative integer <color-rrggbb> specifies the painting color
-    in the form rrggbb. Leading 0s may be omitted.
-    Defaults to ffffff.
-
-  -c <color-letter>
-    The letter <color-letter> specifies the painting color and should be one of
-    (r|g|b|c|m|y|w) for red, green, blue, cyan, magenta, yellow, or white.
-    Defaults to w.
-
   -i <ID>
     The nonnegative integer <ID> specifies the painter's ID.
-    Defaults to 0. Must be less than 45.
+    Defaults to 0. Must be less than 40.
 
   -j <J-value>
     The nonnegative integer <J-value> specifies the painter's J-value.
@@ -74,10 +63,10 @@ OPTIONS
 
 EXIT STATUS
   1 if an option is invalid;
-  2 if an option argument is invalid;
-  3 if opening the framebuffer device fails;
-  4 if getting framebuffer attributes fails;
-  5 if mapping the framebuffer device fails;
+  2 if opening the framebuffer device fails;
+  3 if getting framebuffer attributes fails;
+  4 if mapping the framebuffer device fails;
+  5 if allocating memory fails;
   6 if getting terminal attributes fails;
   7 if setting terminal attributes fails;
   0 otherwise;
