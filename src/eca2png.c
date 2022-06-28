@@ -12,8 +12,8 @@
 
 #include "eca.h"
 
-// This limit of one mebipixel replaces the libpng default limit of one megapixel
-#define LENGTH_MAX 1048576
+// A max length equal to 1 << 15 for a max area equal to 1 << 30 (gibipixel)
+#define LENGTH_MAX 32768
 
 int main(int argc, char *argv[]) {
   _Bool    best_compression = 0;
@@ -59,8 +59,8 @@ int main(int argc, char *argv[]) {
     return 3;
 
   // The longest filename is
-  // r100s1000000000c1000000000g1000000000.eca.png
-  char filename[46];
+  // r100s1000000000c10000g10000.eca.png
+  char filename[36];
   sprintf(filename, "r%" PRIu8 "s%" PRIu32 "c%" PRIu32 "g%" PRIu32 ".eca.png",
     rule, seed, cell_count, gen_count);
 
@@ -81,7 +81,6 @@ int main(int argc, char *argv[]) {
 
   png_set_compression_strategy(structp, Z_DEFAULT_STRATEGY);
   png_set_compression_level(structp, best_compression ? Z_BEST_COMPRESSION : Z_DEFAULT_COMPRESSION);
-  png_set_user_limits(structp, LENGTH_MAX, LENGTH_MAX);
   png_set_filter(structp, PNG_FILTER_TYPE_BASE, PNG_FILTER_NONE);
   png_set_text(structp, infop, texts, 2);
   png_set_IHDR(structp, infop, cell_count, gen_count, 1, PNG_COLOR_TYPE_GRAY, PNG_INTERLACE_NONE,

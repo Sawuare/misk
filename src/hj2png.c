@@ -10,8 +10,8 @@
 
 #include "hj.h"
 
-// This limit of one mebipixel replaces the libpng default limit of one megapixel
-#define LENGTH_MAX 1048576
+// A max length equal to 1 << 15 for a max area equal to 1 << 30 (gibipixel)
+#define LENGTH_MAX 32768
 
 int main(int argc, char *argv[]) {
   _Bool best_compression = 0;
@@ -61,9 +61,7 @@ int main(int argc, char *argv[]) {
       default: return 1;
     }
 
-  size_t area = hj_width * hj_height;
-
-  if (!hj_defined() || !area || hj_width > LENGTH_MAX || hj_height > LENGTH_MAX)
+  if (!hj_defined() || !hj_width || !hj_height || hj_width > LENGTH_MAX || hj_height > LENGTH_MAX)
     return 2;
 
   png_struct *structp = png_create_write_struct(PNG_LIBPNG_VER_STRING, 0, 0, 0);
@@ -73,8 +71,8 @@ int main(int argc, char *argv[]) {
     return 3;
 
   // The longest filename is
-  // i10j1000000000x1000000000y1000000000w1000000000h1000000000.hj.png
-  char filename[66];
+  // i10j1000000000x1000000000y1000000000w10000h10000.hj.png
+  char filename[56];
   sprintf(filename, "i%" PRIu32 "j%" PRIu32 "x%" PRIu32 "y%" PRIu32 "w%" PRIu32 "h%" PRIu32 ".hj.png",
     hj_id, hj_j, hj_x0, hj_y0, hj_width, hj_height);
 
@@ -95,13 +93,12 @@ int main(int argc, char *argv[]) {
 
   png_set_compression_strategy(structp, Z_DEFAULT_STRATEGY);
   png_set_compression_level(structp, best_compression ? Z_BEST_COMPRESSION : Z_DEFAULT_COMPRESSION);
-  png_set_user_limits(structp, LENGTH_MAX, LENGTH_MAX);
   png_set_filter(structp, PNG_FILTER_TYPE_BASE, PNG_FILTER_NONE);
   png_set_text(structp, infop, texts, 2);
   png_set_IHDR(structp, infop, hj_width, hj_height, 1, PNG_COLOR_TYPE_GRAY, PNG_INTERLACE_NONE,
     PNG_COMPRESSION_TYPE_BASE, PNG_FILTER_TYPE_BASE);
 
-  hj_canvas = malloc(area * sizeof *hj_canvas);
+  hj_canvas = malloc(hj_width * hj_height * sizeof *hj_canvas);
   png_byte *row = malloc((hj_width + 7) / 8 * sizeof *row);
 
   if (!(hj_canvas && row)) {

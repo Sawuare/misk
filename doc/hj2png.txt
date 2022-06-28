@@ -17,7 +17,7 @@ DESCRIPTION
 OPTIONS
   -h <height>
     The positive integer <height> specifies the image's height in pixels.
-    Defaults to 512. Must be less than or equal to 1048576.
+    Defaults to 512. Must be less than or equal to 32768.
 
   -i <ID>
     The nonnegative integer <ID> specifies the painter's ID.
@@ -43,7 +43,7 @@ OPTIONS
 
   -w <width>
     The positive integer <width> specifies the image's width in pixels.
-    Defaults to 512. Must be less than or equal to 1048576.
+    Defaults to 512. Must be less than or equal to 32768.
 
   -x <X-offset>
     The nonnegative integer <X-offset> specifies the painter's X-offset.
