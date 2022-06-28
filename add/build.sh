@@ -36,6 +36,7 @@ cc $OPT -o hacc       hacc.c
 cc $OPT -o hj2fb      hj2fb.c
 cc $OPT -o hj2png     hj2png.c -lpng -lz
 cc $OPT -o hjjs       hjjs.c
+cc $OPT -o hxy        hxy.c -lpng -lz
 cc $OPT -o limits     limits.c
 cc $OPT -o midi       midi.c -lm
 cc $OPT -o morse      morse.c
@@ -46,6 +47,6 @@ cc $OPT -o sumber     sumber.c -lm
 
 echo "Moving programs"
 
-sudo mv ctime eca2png eca2txt eca2wav getlocale hacc hj2fb hj2png hjjs limits midi morse pp printable projectile sumber $BIN
+sudo mv ctime eca2png eca2txt eca2wav getlocale hacc hj2fb hj2png hjjs hxy limits midi morse pp printable projectile sumber $BIN
 
 echo "Done"
