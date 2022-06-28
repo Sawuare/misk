@@ -16,6 +16,7 @@ The programs and libraries in here are:
   hj2fb - paint HJ images on the Linux framebuffer device
   hj2png - write an HJ image to a PNG file
   hjjs - write some HJ J-sequences
+  hxy - write an HXY image to a PNG file
   limits - print every standard limit in <limits.h>
   midi - print a table of MIDI note number, notation, and frequency
   morse - encode arguments into printable adapted International Morse code
