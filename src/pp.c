@@ -4,33 +4,33 @@
 #include <stdlib.h>
 #include <time.h>
 
-#define LEN_MIN 3
-#define LEN_MAX 85
+#define LENGTH_MIN 3
+#define LENGTH_MAX 85
 
 int main(int argc, char *argv[]) {
-  int len;
+  int length;
 
   if (argv[1]) {
-    len = atoi(argv[1]);
+    length = atoi(argv[1]);
 
-    if (len < LEN_MIN || len > LEN_MAX)
+    if (length < LENGTH_MIN || length > LENGTH_MAX)
       return 1;
   }
   else {
     srand(time(0));
-    len = rand() % (LEN_MAX - LEN_MIN + 1) + LEN_MIN;
+    length = rand() % (LENGTH_MAX - LENGTH_MIN + 1) + LENGTH_MIN;
   }
 
-  struct timespec zzz = {.tv_nsec = 1000000000 / len};
+  struct timespec zzz = {.tv_nsec = 1000000000 / length};
 
-  len -= 2;
+  length -= 2;
 
   setbuf(stdout, 0);
 
   putchar('8');
   nanosleep(&zzz, 0);
 
-  while (len--) {
+  while (length--) {
     putchar('=');
     nanosleep(&zzz, 0);
   }
