@@ -91,7 +91,7 @@ int main(int argc, char *argv[]) {
 
   png_text texts[2] = {
     {.key = "Author",   .text = "Sawuare", .compression = PNG_TEXT_COMPRESSION_NONE},
-    {.key = "Software", .text = "hj2png",  .compression = PNG_TEXT_COMPRESSION_NONE}
+    {.key = "Software", .text = "hxy",     .compression = PNG_TEXT_COMPRESSION_NONE}
   };
 
   png_set_compression_strategy(structp, Z_DEFAULT_STRATEGY);
