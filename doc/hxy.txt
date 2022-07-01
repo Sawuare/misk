@@ -2,7 +2,7 @@ NAME
   hxy - write an HXY image to a PNG file
 
 SYNOPSIS
-  hxy [-h <height>] [-l <length>] [-s] [-v] [-w <width>] [-z]
+  hxy [-h <height>] [-l <length>] [-s] [-w <width>] [-z]
 
 DESCRIPTION
   An HXY image is a mathematical image that is uniquely determined by its dimensions.
@@ -34,9 +34,6 @@ OPTIONS
   -s
     Reveal a special shape by flood-filling in the top row with a filler color, then
     replacing white pixels with black, then replacing filler pixels with white.
-
-  -v
-    Print libpng and zlib versions then exit.
 
   -w <width>
     The positive integer <width> specifies the image's width in pixels.

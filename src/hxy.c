@@ -39,7 +39,7 @@ int main(int argc, char *argv[]) {
 
   int opt;
 
-  while ((opt = getopt(argc, argv, "w:h:l:svz")) != -1)
+  while ((opt = getopt(argc, argv, "w:h:l:sz")) != -1)
     switch (opt) {
       case 'w': width = strtoul(optarg, 0, 10);
         break;
@@ -52,11 +52,6 @@ int main(int argc, char *argv[]) {
 
       case 's': special_shape = 1;
         break;
-
-      case 'v':
-        printf("Compiled with libpng %s and zlib %s\n", PNG_LIBPNG_VER_STRING, ZLIB_VERSION);
-        printf("Executed with libpng %s and zlib %s\n", png_libpng_ver, zlib_version);
-        return 0;
 
       case 'z': best_compression = 1;
         break;

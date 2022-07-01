@@ -2,7 +2,7 @@ NAME
   hj2png - write an HJ image to a PNG file
 
 SYNOPSIS
-  hj2png [-h <height>] [-i <ID>] [-j <J-value>] [-l <length>] [-m] [-o <offset>] [-v]
+  hj2png [-h <height>] [-i <ID>] [-j <J-value>] [-l <length>] [-m] [-o <offset>]
          [-w <width>] [-x <X-offset>] [-y <Y-offset>] [-z]
 
 DESCRIPTION
@@ -37,9 +37,6 @@ OPTIONS
 
   -o <offset>
     This additional option is equivalent to -x <offset> -y <offset>.
-
-  -v
-    Print libpng and zlib versions then exit.
 
   -w <width>
     The positive integer <width> specifies the image's width in pixels.

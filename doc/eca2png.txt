@@ -2,7 +2,7 @@ NAME
   eca2png - write an elementary cellular automaton to a PNG file
 
 SYNOPSIS
-  eca2png [-c <cells>] [-g <generations>] [-r <rule>] [-s <seed>] [-v] [-z]
+  eca2png [-c <cells>] [-g <generations>] [-r <rule>] [-s <seed>] [-z]
 
 OPTIONS
   -c <cells>
@@ -22,9 +22,6 @@ OPTIONS
     generation. Seed 0 is special; it does not randomize the 1st generation but
     instead places only 1 alive cell in its middle.
     Defaults to 0. Must be less than 4294967296.
-
-  -v
-    Print libpng and zlib versions then exit.
 
   -z
     Use the best compression level instead of the default.

@@ -18,7 +18,7 @@ int main(int argc, char *argv[]) {
 
   int opt;
 
-  while ((opt = getopt(argc, argv, "i:j:x:y:o:w:h:l:mvz")) != -1)
+  while ((opt = getopt(argc, argv, "i:j:x:y:o:w:h:l:mz")) != -1)
     switch (opt) {
       case 'i': hj_id = strtoul(optarg, 0, 10);
         break;
@@ -49,11 +49,6 @@ int main(int argc, char *argv[]) {
         hj_x0 = -(hj_width  / 2);
         hj_y0 = -(hj_height / 2);
         break;
-
-      case 'v':
-        printf("Compiled with libpng %s and zlib %s\n", PNG_LIBPNG_VER_STRING, ZLIB_VERSION);
-        printf("Executed with libpng %s and zlib %s\n", png_libpng_ver, zlib_version);
-        return 0;
 
       case 'z': best_compression = 1;
         break;
