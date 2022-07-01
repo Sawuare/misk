@@ -17,6 +17,7 @@
 static unsigned width  = 512;
 static unsigned height = 512;
 
+// Flood-fill a white area with a filler color
 static void flood(png_byte image[], unsigned x, unsigned y) {
   unsigned long i = y * width + x;
 
@@ -25,6 +26,7 @@ static void flood(png_byte image[], unsigned x, unsigned y) {
 
   image[i] = FILLER;
 
+  // 4 directions
   flood(image, x - 1, y);
   flood(image, x + 1, y);
   flood(image, x, y - 1);
@@ -32,12 +34,12 @@ static void flood(png_byte image[], unsigned x, unsigned y) {
 }
 
 int main(int argc, char *argv[]) {
-  _Bool fill             = 0;
+  _Bool special_shape    = 0;
   _Bool best_compression = 0;
 
   int opt;
 
-  while ((opt = getopt(argc, argv, "w:h:l:fvz")) != -1)
+  while ((opt = getopt(argc, argv, "w:h:l:svz")) != -1)
     switch (opt) {
       case 'w': width = strtoul(optarg, 0, 10);
         break;
@@ -48,7 +50,7 @@ int main(int argc, char *argv[]) {
       case 'l': width = height = strtoul(optarg, 0, 10);
         break;
 
-      case 'f': fill = 1;
+      case 's': special_shape = 1;
         break;
 
       case 'v':
@@ -74,10 +76,10 @@ int main(int argc, char *argv[]) {
     return 3;
 
   // The longest filename is
-  // w10000h10000f.hxy.png
+  // w10000h10000s.hxy.png
   char filename[22];
   sprintf(filename, "w%uh%u%s.hxy.png",
-    width, height, fill ? "f" : "");
+    width, height, special_shape ? "s" : "");
 
   FILE *file = fopen(filename, "wb");
 
@@ -118,7 +120,7 @@ int main(int argc, char *argv[]) {
     for (unsigned j = i; j < longer; ++j)
       image[i * j] = WHITE;
 
-  if (fill) {
+  if (special_shape) {
     flood(image, 0, 0);
 
     for (unsigned long i = 0; i < area; ++i)
