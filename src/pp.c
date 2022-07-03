@@ -6,6 +6,7 @@
 
 #define LENGTH_MIN 3
 #define LENGTH_MAX 85
+#define LENGTHS    83 // == LENGTH_MAX - LENGTH_MIN + 1
 
 int main(int argc, char *argv[]) {
   int length;
@@ -18,7 +19,7 @@ int main(int argc, char *argv[]) {
   }
   else {
     srand(time(0));
-    length = rand() % (LENGTH_MAX - LENGTH_MIN + 1) + LENGTH_MIN;
+    length = rand() % LENGTHS + LENGTH_MIN;
   }
 
   struct timespec zzz = {.tv_nsec = 1000000000 / length};
@@ -26,7 +27,6 @@ int main(int argc, char *argv[]) {
   length -= 2;
 
   setbuf(stdout, 0);
-
   putchar('8');
   nanosleep(&zzz, 0);
 
