@@ -53,7 +53,7 @@ int main(int argc, char *argv[]) {
       default: return 1;
     }
 
-  if (rule > 255 || seed < 0)
+  if (rule > 255 || rule < 0 || seed < 0)
     return 2;
 
   // Optionally print the rule as a truth table like this:
