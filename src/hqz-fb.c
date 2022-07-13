@@ -1,4 +1,4 @@
-// hj2fb.c - paint HJ images on the Linux framebuffer device
+// hqz-fb.c - paint HQZ images on the Linux framebuffer device
 
 #include <fcntl.h>
 #include <getopt.h>
@@ -13,7 +13,7 @@
 #include <unistd.h>
 
 #include "ecma48.h"
-#include "hj.h"
+#include "hqz.h"
 #include "tcem.h"
 
 int main(int argc, char *argv[]) {
@@ -22,21 +22,21 @@ int main(int argc, char *argv[]) {
 
   int opt;
 
-  while ((opt = getopt(argc, argv, "i:j:x:y:o:s:l")) != -1)
+  while ((opt = getopt(argc, argv, "p:q:x:y:o:s:l")) != -1)
     switch (opt) {
-      case 'i': hj_id = strtoul(optarg, 0, 10);
+      case 'p': hqz_id = strtoul(optarg, 0, 10);
         break;
 
-      case 'j': hj_j = strtoul(optarg, 0, 10);
+      case 'q': hqz_q = strtoul(optarg, 0, 10);
         break;
 
-      case 'x': hj_x0 = strtoul(optarg, 0, 10);
+      case 'x': hqz_x0 = strtoul(optarg, 0, 10);
         break;
 
-      case 'y': hj_y0 = strtoul(optarg, 0, 10);
+      case 'y': hqz_y0 = strtoul(optarg, 0, 10);
         break;
 
-      case 'o': hj_x0 = hj_y0 = strtoul(optarg, 0, 10);
+      case 'o': hqz_x0 = hqz_y0 = strtoul(optarg, 0, 10);
         break;
 
       case 's': step = strtoul(optarg, 0, 10);
@@ -63,8 +63,8 @@ int main(int argc, char *argv[]) {
   uint32_t mid_x0 = 0x100000000 - vscreeninfo.xres / 2;
   uint32_t mid_y0 = 0x100000000 - vscreeninfo.yres / 2;
 
-  hj_width  = fscreeninfo.line_length / 4;
-  hj_height = vscreeninfo.yres;
+  hqz_width  = fscreeninfo.line_length / 4;
+  hqz_height = vscreeninfo.yres;
 
   uint32_t *fb_map = mmap(0, fscreeninfo.smem_len, PROT_WRITE, MAP_SHARED, fb_descriptor, 0);
   close(fb_descriptor);
@@ -72,10 +72,10 @@ int main(int argc, char *argv[]) {
   if (fb_map == MAP_FAILED)
     return 4;
 
-  size_t area = hj_width * hj_height;
-  hj_canvas = malloc(area * sizeof *hj_canvas);
+  size_t area = hqz_width * hqz_height;
+  hqz_canvas = malloc(area * sizeof *hqz_canvas);
 
-  if (!hj_canvas)
+  if (!hqz_canvas)
     return 5;
 
   struct termios old_term, new_term;
@@ -95,12 +95,12 @@ int main(int argc, char *argv[]) {
   while (1) {
     _Bool warn;
 
-    if (hj_defined()) {
+    if (hqz_defined()) {
       warn = 0;
-      hj_painters[hj_id]();
+      hqz_painters[hqz_id]();
 
       for (size_t i = 0; i < area; ++i)
-        fb_map[i] = hj_canvas[i] ? 0 : 0xffffff;
+        fb_map[i] = hqz_canvas[i] ? 0 : 0xffffff;
     }
     else {
       warn = 1;
@@ -109,45 +109,45 @@ int main(int argc, char *argv[]) {
 
     if (line)
 print:
-      printf("i%-10" PRIu32 " j%-10" PRIu32 " x%-10" PRIu32 " y%-10" PRIu32 "%s\r",
-        hj_id, hj_j, hj_x0, hj_y0, warn ? " !" : "");
+      printf("p%-10" PRIu32 " q%-10" PRIu32 " x%-10" PRIu32 " y%-10" PRIu32 "%s\r",
+        hqz_id, hqz_q, hqz_x0, hqz_y0, warn ? " !" : "");
 
 get:
     switch (getchar()) {
-      case '1': --hj_id;
+      case '1': --hqz_id;
         break;
 
-      case '2': ++hj_id;
+      case '2': ++hqz_id;
         break;
 
-      case '3': --hj_j;
+      case '3': --hqz_q;
         break;
 
-      case '4': ++hj_j;
+      case '4': ++hqz_q;
         break;
 
-      case '5': hj_x0 -= step;
+      case '5': hqz_x0 -= step;
         break;
 
-      case '6': hj_x0 += step;
+      case '6': hqz_x0 += step;
         break;
 
-      case '7': hj_y0 -= step;
+      case '7': hqz_y0 -= step;
         break;
 
-      case '8': hj_y0 += step;
+      case '8': hqz_y0 += step;
         break;
 
-      case 'i': scanf("%" PRIu32, &hj_id);
+      case 'p': scanf("%" PRIu32, &hqz_id);
         break;
 
-      case 'j': scanf("%" PRIu32, &hj_j);
+      case 'q': scanf("%" PRIu32, &hqz_q);
         break;
 
-      case 'x': scanf("%" PRIu32, &hj_x0);
+      case 'x': scanf("%" PRIu32, &hqz_x0);
         break;
 
-      case 'y': scanf("%" PRIu32, &hj_y0);
+      case 'y': scanf("%" PRIu32, &hqz_y0);
         break;
 
       case 'l':
@@ -161,8 +161,8 @@ get:
 
       // Place the origin in the middle of the image
       case 'm':
-        hj_x0 = mid_x0;
-        hj_y0 = mid_y0;
+        hqz_x0 = mid_x0;
+        hqz_y0 = mid_y0;
         break;
 
       case 'e': goto exit;
@@ -172,7 +172,7 @@ get:
   }
 
 exit:
-  free(hj_canvas);
+  free(hqz_canvas);
   munmap(fb_map, fscreeninfo.smem_len);
   fputs(TCEM("h") ECMA48_ED("3"), stdout);
 

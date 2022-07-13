@@ -1,4 +1,4 @@
-// eca2wav.c - write an audio elementary cellular automaton to a WAVE file
+// eca-wav.c - write an audio elementary cellular automaton to a WAVE file
 
 #include <getopt.h>
 #include <inttypes.h>

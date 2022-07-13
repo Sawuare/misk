@@ -1,23 +1,23 @@
-// hjjs.c - write some HJ J-sequences
+// hqz-seq.c - write some HQZ Q-sequences
 
 #include <stdio.h>
 
-#define J_MAX 0xffffffff
+#define Q_MAX 0xffffffff
 
 void i22a(FILE *f, int m) {
   int n = 0;
   _Bool first = 1;
 
   while (1) {
-    long long j = (1ll << (2 * n + m)) - (1ll << n);
+    long long q = (1ll << (2 * n + m)) - (1ll << n);
 
-    if (j > J_MAX)
+    if (q > Q_MAX)
       break;
 
     if (!first)
       fputc(' ', f);
 
-    fprintf(f, "%lld", j);
+    fprintf(f, "%lld", q);
     ++n;
     first = 0;
   }
@@ -26,7 +26,7 @@ void i22a(FILE *f, int m) {
 }
 
 int main(void) {
-  char filename[] = "i22a0.hjjs.txt";
+  char filename[] = "p22a0.hqz.txt";
 
   for (int m = 0; m <= 9; ++m) {
     filename[4] = '0' + m;

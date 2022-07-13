@@ -5,17 +5,17 @@ features of POSIX or Linux, so I recommend GNU/Linux for using them.
 The programs and libraries in here are:
 
   ctime - print the local time in the form Www Mmm dd hh:mm:ss yyyy
+  eca-png - write an elementary cellular automaton to a PNG file
+  eca-txt - print an elementary cellular automaton
+  eca-wav - write an audio elementary cellular automaton to a WAVE file
   eca.h - code for elementary cellular automata
-  eca2png - write an elementary cellular automaton to a PNG file
-  eca2txt - print an elementary cellular automaton
-  eca2wav - write an audio elementary cellular automaton to a WAVE file
   ecma48.h - control functions for coded character sets in 7-bit codes
   getlocale - print the current locale
   hacc - print random characters in random colors and positions until interrupted
-  hj.h - code for HJ images
-  hj2fb - paint HJ images on the Linux framebuffer device
-  hj2png - write an HJ image to a PNG file
-  hjjs - write some HJ J-sequences
+  hqz-fb - paint HQZ images on the Linux framebuffer device
+  hqz-png - write an HQZ image to a PNG file
+  hqz-seq - write some HQZ Q-sequences
+  hqz.h - code for HQZ images
   hxy - write an HXY image to a PNG file
   limits - print every standard limit in <limits.h>
   midi - print a table of MIDI note number, notation, and frequency

@@ -1,8 +1,8 @@
 NAME
-  eca2txt - print an elementary cellular automaton
+  eca-txt - print an elementary cellular automaton
 
 SYNOPSIS
-  eca2txt [-a <alive>] [-c <cells>] [-d <dead>] [-g <generations>] [-r <rule>]
+  eca-txt [-a <alive>] [-c <cells>] [-d <dead>] [-g <generations>] [-r <rule>]
           [-s <seed>] [-t]
 
 OPTIONS
@@ -43,4 +43,4 @@ EXIT STATUS
   0 otherwise;
 
 SEE ALSO
-  eca2png.txt, eca2wav.txt
+  eca-png.txt, eca-wav.txt

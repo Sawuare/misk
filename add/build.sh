@@ -28,14 +28,14 @@ echo "Compiling programs"
 OPT="-march=native -O3"
 
 cc $OPT -o ctime      ctime.c
-cc $OPT -o eca2png    eca2png.c -lpng -lz
-cc $OPT -o eca2txt    eca2txt.c
-cc $OPT -o eca2wav    eca2wav.c
+cc $OPT -o eca-png    eca-png.c -lpng -lz
+cc $OPT -o eca-txt    eca-txt.c
+cc $OPT -o eca-wav    eca-wav.c
 cc $OPT -o getlocale  getlocale.c
 cc $OPT -o hacc       hacc.c
-cc $OPT -o hj2fb      hj2fb.c
-cc $OPT -o hj2png     hj2png.c -lpng -lz
-cc $OPT -o hjjs       hjjs.c
+cc $OPT -o hqz-fb     hqz-fb.c
+cc $OPT -o hqz-png    hqz-png.c -lpng -lz
+cc $OPT -o hqz-seq    hqz-seq.c
 cc $OPT -o hxy        hxy.c -lpng -lz
 cc $OPT -o limits     limits.c
 cc $OPT -o midi       midi.c -lm
@@ -47,6 +47,6 @@ cc $OPT -o sumber     sumber.c -lm
 
 echo "Moving programs"
 
-sudo mv ctime eca2png eca2txt eca2wav getlocale hacc hj2fb hj2png hjjs hxy limits midi morse pp printable projectile sumber $BIN
+sudo mv ctime eca-png eca-txt eca-wav getlocale hacc hqz-fb hqz-png hqz-seq hxy limits midi morse pp printable projectile sumber $BIN
 
 echo "Done"

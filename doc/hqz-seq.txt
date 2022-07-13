@@ -1,27 +1,27 @@
 NAME
-  hjjs - write some HJ J-sequences
+  hqz-seq - write some HQZ Q-sequences
 
 SYNOPSIS
-  hjjs
+  hqz-seq
 
 DESCRIPTION
-  For a description of HJ J-values, see the beginning of hj.txt.
+  For a description of HQZ Q-values, see the beginning of hqz.txt.
 
   The sequences are nonnegative integers less than 2 raised to 32, separated by
   spaces, and written to these files:
 
-    i22a0.hjjs.txt
-    i22a1.hjjs.txt
-    i22a2.hjjs.txt
-    i22a3.hjjs.txt
-    i22a4.hjjs.txt
-    i22a5.hjjs.txt
-    i22a6.hjjs.txt
-    i22a7.hjjs.txt
-    i22a8.hjjs.txt
-    i22a9.hjjs.txt
+    p22a0.hqz.txt
+    p22a1.hqz.txt
+    p22a2.hqz.txt
+    p22a3.hqz.txt
+    p22a4.hqz.txt
+    p22a5.hqz.txt
+    p22a6.hqz.txt
+    p22a7.hqz.txt
+    p22a8.hqz.txt
+    p22a9.hqz.txt
 
-  Where "i#" denotes a sequence for the HJ painter whose ID is #.
+  Where "p#" denotes a sequence for the HQZ painter whose ID is #.
 
   The first four sequences are these sequences in the On-Line Encyclopedia of Integer
   Sequences (OEIS):
@@ -36,4 +36,4 @@ EXIT STATUS
   0 otherwise;
 
 SEE ALSO
-  hj2fb.txt, hj2png.txt
+  hqz-fb.txt, hqz-png.txt

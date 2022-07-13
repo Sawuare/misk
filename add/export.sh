@@ -9,7 +9,7 @@ cd ../out/
 echo "Exporting output"
 
 # Assume that build.sh has been executed
-hjjs
+hqz-seq
 midi      > midi.txt
 printable > printable.txt
 

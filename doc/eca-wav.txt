@@ -1,14 +1,14 @@
 NAME
-  eca2wav - write an audio elementary cellular automaton to a WAVE file
+  eca-wav - write an audio elementary cellular automaton to a WAVE file
 
 SYNOPSIS
-  eca2wav [-c <cells>] [-g <generations>] [-r <rule>] [-s <seed>]
+  eca-wav [-c <cells>] [-g <generations>] [-r <rule>] [-s <seed>]
 
 DESCRIPTION
-  eca2wav generates generations of cells that evolve according to an elementary
+  eca-wav generates generations of cells that evolve according to an elementary
   cellular automata rule. The generations are concatenated and converted to an audio
   stream. Dead cells become silence, and alive cells alternate up and down between
-  the maximum amplitudes. eca2wav writes the stream to a WAVE file. The file has 1
+  the maximum amplitudes. eca-wav writes the stream to a WAVE file. The file has 1
   channel, unsigned 8-bit samples, and 44100 samples per second.
 
   Evolutions start from either a fixed state or a random state that is seeded
@@ -18,7 +18,7 @@ DESCRIPTION
   The file has a name that encodes how it was produced. For example, a file with the
   name r18s0c512g256.eca.wav can be reproduced by an invocation equivalent to
 
-    $ eca2wav -r 18 -s 0 -c 512 -g 256
+    $ eca-wav -r 18 -s 0 -c 512 -g 256
 
 OPTIONS
   -c <cells>
@@ -48,4 +48,4 @@ EXIT STATUS
   0 otherwise;
 
 SEE ALSO
-  eca2png.txt, eca2txt.txt
+  eca-png.txt, eca-txt.txt

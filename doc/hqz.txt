@@ -1,30 +1,30 @@
 NAME
-  hj.h - code for HJ images
+  hqz.h - code for HQZ images
 
 SYNOPSIS
-  #include "hj.h"
+  #include "hqz.h"
 
-  _Bool hj_defined(void);
+  _Bool hqz_defined(void);
 
-  void hj_painter0(void);
+  void hqz_painter0(void);
   ...
-  void hj_painter39(void);
+  void hqz_painter39(void);
 
-  void (*hj_painters[40])(void);
+  void (*hqz_painters[40])(void);
 
 DESCRIPTION
-  HJ images are painted by painters, which are functions of these parameters: a
+  HQZ images are painted by painters, which are functions of these parameters: a
   canvas, its width and height, horizontal and vertical offsets ("X-offset" and
-  "Y-offset"), and a J-value. Painters generate patterns using arithmetic and bitwise
-  operators on the canvas coordinates and the J-value. Different painters generate
-  different patterns, whereas different J-values vary the patterns. Every painter is
+  "Y-offset"), and a Q-value. Painters generate patterns using arithmetic and bitwise
+  operators on the canvas coordinates and the Q-value. Different painters generate
+  different patterns, whereas different Q-values vary the patterns. Every painter is
   identified by a serial ID: "painter #" denotes the painter whose ID is #.
 
-  In theory, the ID, J-value, and offsets are nonnegative integers, whereas the width
+  In theory, the ID, Q-value, and offsets are nonnegative integers, whereas the width
   and height are positive integers. In practice, they are unsigned 32-bit integers.
 
   There are 40 defined painters, 0 through 39, divided into 8 classes, 0 through 7.
-  Painters in classes 1, 3, 5, and 7 divide by the J-value, so J-value 0 is undefined
+  Painters in classes 1, 3, 5, and 7 divide by the Q-value, so Q-value 0 is undefined
   for them. Painters in different classes use different formulas, whereas painters in
   the same class differ by the main operation they use. Painters cycle through the
   following main operations in order:

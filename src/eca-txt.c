@@ -1,4 +1,4 @@
-// eca2txt.c - print an elementary cellular automaton
+// eca-txt.c - print an elementary cellular automaton
 
 #include <getopt.h>
 #include <stdio.h>

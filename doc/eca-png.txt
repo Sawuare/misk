@@ -1,8 +1,8 @@
 NAME
-  eca2png - write an elementary cellular automaton to a PNG file
+  eca-png - write an elementary cellular automaton to a PNG file
 
 SYNOPSIS
-  eca2png [-c <cells>] [-g <generations>] [-r <rule>] [-s <seed>] [-z]
+  eca-png [-c <cells>] [-g <generations>] [-r <rule>] [-s <seed>] [-z]
 
 OPTIONS
   -c <cells>
@@ -37,4 +37,4 @@ EXIT STATUS
   0 otherwise;
 
 SEE ALSO
-  eca2txt.txt, eca2wav.txt
+  eca-txt.txt, eca-wav.txt

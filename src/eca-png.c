@@ -1,4 +1,4 @@
-// eca2png.c - write an elementary cellular automaton to a PNG file
+// eca-png.c - write an elementary cellular automaton to a PNG file
 
 #include <getopt.h>
 #include <inttypes.h>
@@ -71,7 +71,7 @@ int main(int argc, char *argv[]) {
 
   png_text texts[2] = {
     {.key = "Author",   .text = "Sawuare", .compression = PNG_TEXT_COMPRESSION_NONE},
-    {.key = "Software", .text = "eca2png", .compression = PNG_TEXT_COMPRESSION_NONE}
+    {.key = "Software", .text = "eca-png", .compression = PNG_TEXT_COMPRESSION_NONE}
   };
 
   png_set_compression_strategy(structp, Z_DEFAULT_STRATEGY);
