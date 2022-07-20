@@ -28,7 +28,6 @@ int main(int argc, char *argv[]) {
     pause = 125;
 
   struct timespec zzz = {.tv_nsec = 1000000 * pause};
-
   struct winsize winsz;
 
   if (ioctl(STDOUT_FILENO, TIOCGWINSZ, &winsz) == -1)
