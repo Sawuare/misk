@@ -1,4 +1,4 @@
-// hqz-fb.c - paint HQZ images on the Linux framebuffer device
+// hqz-fb.c - display HQZ images on the Linux framebuffer device
 
 #include <fcntl.h>
 #include <getopt.h>

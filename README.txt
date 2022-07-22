@@ -12,7 +12,7 @@ The programs and libraries in here are:
   ecma48.h - control functions for coded character sets in 7-bit codes
   getlocale - print the current locale
   hacc - print random characters in random colors and positions until interrupted
-  hqz-fb - paint HQZ images on the Linux framebuffer device
+  hqz-fb - display HQZ images on the Linux framebuffer device
   hqz-png - write an HQZ image to a PNG file
   hqz-seq - write some HQZ Q-sequences
   hqz.h - code for HQZ images

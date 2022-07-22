@@ -1,5 +1,5 @@
 NAME
-  hqz-fb - paint HQZ images on the Linux framebuffer device
+  hqz-fb - display HQZ images on the Linux framebuffer device
 
 SYNOPSIS
   hqz-fb [-l] [-o <offset>] [-p <ID>] [-q <Q-value>] [-s <step>] [-x <X-offset>]
