@@ -16,6 +16,9 @@
 #include "hqz.h"
 #include "tcem.h"
 
+#define BLACK 0x000000
+#define WHITE 0xffffff
+
 int main(int argc, char *argv[]) {
   _Bool    line = 1;
   uint32_t step = 32;
@@ -100,7 +103,7 @@ int main(int argc, char *argv[]) {
       hqz_painters[hqz_id]();
 
       for (size_t i = 0; i < area; ++i)
-        fb_map[i] = hqz_canvas[i] ? 0 : 0xffffff;
+        fb_map[i] = hqz_canvas[i] ? BLACK : WHITE;
     }
     else {
       warn = 1;
