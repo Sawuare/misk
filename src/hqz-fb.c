@@ -17,6 +17,7 @@
 #include "tcem.h"
 
 #define BLACK 0x000000
+#define RED   0xff0000
 #define WHITE 0xffffff
 
 int main(int argc, char *argv[]) {
@@ -152,6 +153,20 @@ get:
 
       case 'y': scanf("%" PRIu32, &hqz_y0);
         break;
+
+      // Draw a grid of squares
+      case 'g':
+        ; int side; scanf("%d", &side); if (side < 2) goto get;
+
+        for (int y = 0; y < hqz_height; y += side)
+          for (int x = 0; x < hqz_width; ++x)
+            fb_map[y * hqz_width + x] = RED;
+
+        for (int x = 0; x < hqz_width; x += side)
+          for (int y = 0; y < hqz_height; ++y)
+            fb_map[y * hqz_width + x] = RED;
+
+        goto get;
 
       case 'l':
         if (line) {
