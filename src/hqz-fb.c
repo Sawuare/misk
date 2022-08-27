@@ -21,8 +21,8 @@
 #define WHITE 0xffffff
 
 int main(int argc, char *argv[]) {
-  _Bool    line = 1;
-  uint32_t step = 32;
+  _Bool    status_line = 1;
+  uint32_t offset_step = 32;
 
   int opt;
 
@@ -43,10 +43,10 @@ int main(int argc, char *argv[]) {
       case 'o': hqz_x0 = hqz_y0 = strtoul(optarg, 0, 10);
         break;
 
-      case 's': step = strtoul(optarg, 0, 10);
+      case 's': offset_step = strtoul(optarg, 0, 10);
         break;
 
-      case 'l': line = 0;
+      case 'l': status_line = 0;
         break;
 
       default: return 1;
@@ -111,7 +111,7 @@ int main(int argc, char *argv[]) {
       goto print;
     }
 
-    if (line)
+    if (status_line)
 print:
       printf("p%-10" PRIu32 " q%-10" PRIu32 " x%-10" PRIu32 " y%-10" PRIu32 "%s\r",
         hqz_id, hqz_q, hqz_x0, hqz_y0, warn ? " !" : "");
@@ -130,16 +130,16 @@ get:
       case '4': ++hqz_q;
         break;
 
-      case '5': hqz_x0 -= step;
+      case '5': hqz_x0 -= offset_step;
         break;
 
-      case '6': hqz_x0 += step;
+      case '6': hqz_x0 += offset_step;
         break;
 
-      case '7': hqz_y0 -= step;
+      case '7': hqz_y0 -= offset_step;
         break;
 
-      case '8': hqz_y0 += step;
+      case '8': hqz_y0 += offset_step;
         break;
 
       case 'p': scanf("%" PRIu32, &hqz_id);
@@ -168,13 +168,14 @@ get:
 
         goto get;
 
+      // Toggle the status line
       case 'l':
-        if (line) {
-          line = 0;
+        if (status_line) {
+          status_line = 0;
           break;
         }
 
-        line = 1;
+        status_line = 1;
         goto print;
 
       // Place the origin in the middle of the image
