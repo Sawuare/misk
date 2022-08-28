@@ -26,11 +26,10 @@ static void flood(png_byte image[], unsigned x, unsigned y) {
 
   image[i] = FILLER;
 
-  // 4 directions
-  flood(image, x - 1, y);
-  flood(image, x + 1, y);
-  flood(image, x, y - 1);
-  flood(image, x, y + 1);
+  flood(image, x - 1, y); // Left
+  flood(image, x + 1, y); // Right
+  flood(image, x, y - 1); // Up
+  flood(image, x, y + 1); // Down
 }
 
 int main(int argc, char *argv[]) {

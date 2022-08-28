@@ -5,9 +5,9 @@ SYNOPSIS
   hxy [-h <height>] [-l <length>] [-s] [-w <width>] [-z]
 
 DESCRIPTION
-  An HXY image is a mathematical image that is uniquely determined by its dimensions.
+  An HXY image is a mathematical image. It is uniquely determined by its dimensions.
   Let the positive integers w and h be the width and height of the image in pixels,
-  respectively, and let X and Y be the sets of integers in the intervals [0, w) and
+  respectively. Let X and Y be the sets of integers in the intervals [0, w) and
   [0, h), respectively. Let P be the set of products of multiplying every element of
   X by every element of Y. Let the pixels of the image be numbered in row-major order
   by the sequence of integers in the interval [0, wh). If the number of a pixel is in
