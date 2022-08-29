@@ -1,11 +1,11 @@
 NAME
-  hqz-seq - write some HQZ Q-sequences
+  hqz-seq - write some HQZ q-sequences
 
 SYNOPSIS
   hqz-seq
 
 DESCRIPTION
-  For a description of HQZ Q-values, see the beginning of hqz.txt.
+  For a description of HQZ q-arguments, see hqz.txt.
 
   The sequences are nonnegative integers less than 2 raised to 32, separated by
   spaces, and written to these files:

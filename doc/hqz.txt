@@ -4,30 +4,39 @@ NAME
 SYNOPSIS
   #include "hqz.h"
 
+  uint32_t hqz_id     = 0;
+  uint32_t hqz_q      = 1;
+  uint32_t hqz_x0     = 0;
+  uint32_t hqz_y0     = 0;
+  uint32_t hqz_width  = 512,
+  uint32_t hqz_height = 512;
+
+  _Bool *hqz_canvas;
+
   _Bool hqz_defined(void);
 
-  void hqz_painter0(void);
+  void hqz_p0(void);
   ...
-  void hqz_painter39(void);
+  void hqz_p39(void);
 
   void (*hqz_painters[40])(void);
 
 DESCRIPTION
-  HQZ images are painted by painters, which are functions of these parameters: a
-  canvas, its width and height, horizontal and vertical offsets ("X-offset" and
-  "Y-offset"), and a Q-value. Painters generate patterns using arithmetic and bitwise
-  operators on the canvas coordinates and the Q-value. Different painters generate
-  different patterns, whereas different Q-values vary the patterns. Every painter is
-  identified by a serial ID: "painter #" denotes the painter whose ID is #.
+  An HQZ image is a mathematical image. A function called a painter and denoted
+  p#(q, x, y) is applied to every pixel in the image. The #, q, x, y, and value of
+  the painter are nonnegative integers. The # is the serial identifier (ID) of the
+  painter. The q is called the q-argument. The x and y are the horizontal and
+  vertical coordinates of a pixel, respectively. If p#(q, x, y) = 0, the pixel is
+  white, otherwise the pixel is black.
 
-  In theory, the ID, Q-value, and offsets are nonnegative integers, whereas the width
-  and height are positive integers. In practice, they are unsigned 32-bit integers.
+  p#(q, x, y) = p#(q, y, x) for any #, q, x, and y, so all HQZ images are symmetric
+  around the line x = y.
 
   There are 40 defined painters, 0 through 39, divided into 8 classes, 0 through 7.
-  Painters in classes 1, 3, 5, and 7 divide by the Q-value, so Q-value 0 is undefined
-  for them. Painters in different classes use different formulas, whereas painters in
-  the same class differ by the main operation they use. Painters cycle through the
-  following main operations in order:
+  Painters in classes 1, 3, 5, and 7 divide by the q-argument, so q-argument 0 is
+  undefined for them. Painters in different classes use different formulas, whereas
+  painters in the same class differ by the main operation they use. Painters cycle
+  through the following main operations in order:
 
     0. AND: Bitwise AND
     1.  OR: Bitwise inclusive OR

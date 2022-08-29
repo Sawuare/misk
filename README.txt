@@ -14,7 +14,7 @@ The programs and libraries in here are:
   hacc - print random characters in random colors and positions until interrupted
   hqz-fb - display HQZ images on the Linux framebuffer device
   hqz-png - write an HQZ image to a PNG file
-  hqz-seq - write some HQZ Q-sequences
+  hqz-seq - write some HQZ q-sequences
   hqz.h - code for HQZ images
   hxy - write an HXY image to a PNG file
   limits - print every standard limit in <limits.h>
