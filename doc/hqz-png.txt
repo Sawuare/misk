@@ -51,8 +51,8 @@ OPTIONS
     Defaults to 0. Must be less than 4294967296.
 
   -z
-    Use the best compression level instead of the default.
-    The compression is lossless, so expect the same image in more time and less size.
+    Use the best compression level instead of the default. The compression is
+    lossless, so expect the same image in more time and less size.
 
 EXIT STATUS
   1 if an option is invalid;
