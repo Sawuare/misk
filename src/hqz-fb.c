@@ -154,15 +154,15 @@ get:
       case 'y': scanf("%" PRIu32, &hqz_y0);
         break;
 
-      // Draw a grid of squares
+      // Draw a grid of lines
       case 'g':
-        ; int side; scanf("%d", &side); if (side < 2) goto get;
+        ; int spacing; scanf("%d", &spacing); if (spacing < 2) goto get;
 
-        for (int y = 0; y < hqz_height; y += side)
+        for (int y = 0; y < hqz_height; y += spacing)
           for (int x = 0; x < hqz_width; ++x)
             fb_map[y * hqz_width + x] = RED;
 
-        for (int x = 0; x < hqz_width; x += side)
+        for (int x = 0; x < hqz_width; x += spacing)
           for (int y = 0; y < hqz_height; ++y)
             fb_map[y * hqz_width + x] = RED;
 
