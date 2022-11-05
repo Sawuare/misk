@@ -43,10 +43,11 @@ cc $OPT -o morse      morse.c
 cc $OPT -o pp         pp.c
 cc $OPT -o printable  printable.c
 cc $OPT -o projectile projectile.c -lm
+cc $OPT -o rainbow    rainbow.c -lm
 cc $OPT -o sumber     sumber.c -lm
 
 echo "Moving programs"
 
-sudo mv ctime eca-png eca-txt eca-wav getlocale hacc hqz-fb hqz-png hqz-seq hxy limits midi morse pp printable projectile sumber $BIN
+sudo mv ctime eca-png eca-txt eca-wav getlocale hacc hqz-fb hqz-png hqz-seq hxy limits midi morse pp printable projectile rainbow sumber $BIN
 
 echo "Done"

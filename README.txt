@@ -23,6 +23,7 @@ The programs and libraries in here are:
   pp - print a penis icon incrementally
   printable - print a table of printable ASCII characters and their codes
   projectile - analyze dragless projectile motion on Earth
+  rainbow - print a sine-shaped 6-color rainbow
   sumber - print a statistical summary of input numbers
   tcem.h - text cursor enable mode
   wafer.h - code for writing 8-bit PCM WAVE files

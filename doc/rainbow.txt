@@ -1,0 +1,6 @@
+NAME
+  rainbow - print a sine-shaped 6-color rainbow
+
+EXIT STATUS
+  1 if getting the terminal window size fails;
+  0 otherwise;
