@@ -32,7 +32,6 @@ cc $OPT -o eca-png    eca-png.c -lpng -lz
 cc $OPT -o eca-txt    eca-txt.c
 cc $OPT -o eca-wav    eca-wav.c
 cc $OPT -o getlocale  getlocale.c
-cc $OPT -o hacc       hacc.c
 cc $OPT -o hqz-fb     hqz-fb.c
 cc $OPT -o hqz-png    hqz-png.c -lpng -lz
 cc $OPT -o hqz-seq    hqz-seq.c
@@ -48,6 +47,6 @@ cc $OPT -o sumber     sumber.c -lm
 
 echo "Moving programs"
 
-sudo mv ctime eca-png eca-txt eca-wav getlocale hacc hqz-fb hqz-png hqz-seq hxy limits midi morse pp printable projectile rainbow sumber $BIN
+sudo mv ctime eca-png eca-txt eca-wav getlocale hqz-fb hqz-png hqz-seq hxy limits midi morse pp printable projectile rainbow sumber $BIN
 
 echo "Done"

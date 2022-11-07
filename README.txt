@@ -11,7 +11,6 @@ The programs and libraries in here are:
   eca.h - code for elementary cellular automata
   ecma48.h - control functions for coded character sets in 7-bit codes
   getlocale - print the current locale
-  hacc - print random characters in random colors and positions until interrupted
   hqz-fb - display HQZ images on the Linux framebuffer device
   hqz-png - write an HQZ image to a PNG file
   hqz-seq - write some HQZ q-sequences
