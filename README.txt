@@ -1,6 +1,6 @@
-Here is my terminal software, including programs and libraries for terminal control,
-audio, graphics, patterns, physics, mathematics, utility, and fun. Some programs use
-features of POSIX or Linux, so I recommend GNU/Linux for using them.
+Here is my terminal software, including programs and libraries for terminal
+control, audio, graphics, physics, mathematics, utility, and fun. Some programs
+use features of POSIX or Linux, so I recommend GNU/Linux for using them.
 
 The programs and libraries in here are:
 
@@ -39,8 +39,8 @@ The directories and files in here are:
     Output of some of the programs.
 
   src/
-    Source code in the C programming language. Each source file is a program, and
-    each header is a library.
+    Source code in the C programming language. Each source file is a program,
+    and each header is a library.
 
   LICENSE.txt
     The MIT License under which everything else is licensed.

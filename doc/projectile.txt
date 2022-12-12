@@ -10,8 +10,8 @@ DESCRIPTION
     1. Angle in degrees
     2. Speed in meters per second
 
-  Then it prints flight details of the projectile, assuming no drag and a standard
-  acceleration due to gravity of 9.80665 meters per second per second:
+  Then it prints flight details of the projectile, assuming no drag and a
+  standard acceleration due to gravity of 9.80665 meters per second per second:
 
     1. Peak in meters
     2. Range in meters

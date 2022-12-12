@@ -5,8 +5,9 @@ SYNOPSIS
   pp [<length>]
 
 DESCRIPTION
-  If given, the integer <length>, which must be in the range [3, 85], specifies the
-  character length of the icon, which is otherwise a random integer in this range.
+  If given, the integer <length>, which must be in the range [3, 80], specifies
+  the character length of the icon, which is otherwise a random integer in this
+  range.
 
   pp pauses for 1/length of a second between characters.
 

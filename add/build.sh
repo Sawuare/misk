@@ -2,8 +2,8 @@
 
 # build.sh - build programs and get executables and headers to /usr/local/
 
-# Requires permission to write and execute /usr/local/bin/ and /usr/local/include/,
-# which likely requires being the superuser.
+# Requires permission to write and execute /usr/local/bin/ and
+# /usr/local/include/, which likely requires being the superuser.
 #
 # All programs depend on the C compiler cc, which may be a link to GCC or Clang.
 # Some programs that write PNG files depend on the C libraries libpng and zlib.

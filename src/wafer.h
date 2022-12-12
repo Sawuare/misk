@@ -62,10 +62,10 @@ static _Bool wafer_write_metadata(wafer_wave *wave) {
   return fwrite(header, 1, 44, wave->file) == 44;
 }
 
-static _Bool wafer_write_data(const uint8_t data[], uint32_t length, wafer_wave *wave) {
-  uint32_t written = fwrite(data, 1, length, wave->file);
+static _Bool wafer_write_data(const uint8_t data[], uint32_t len, wafer_wave *wave) {
+  uint32_t written = fwrite(data, 1, len, wave->file);
   wave->data_size += written;
-  return written == length;
+  return written == len;
 }
 
 static _Bool wafer_close(wafer_wave *wave) {

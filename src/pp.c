@@ -5,8 +5,8 @@
 #include <time.h>
 
 #define LENGTH_MIN 3
-#define LENGTH_MAX 85
-#define LENGTHS    83 // == LENGTH_MAX - LENGTH_MIN + 1
+#define LENGTH_MAX 80
+#define LENGTHS    78 // == LENGTH_MAX - LENGTH_MIN + 1
 
 int main(int argc, char *argv[]) {
   int length;

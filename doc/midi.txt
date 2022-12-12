@@ -5,5 +5,5 @@ SYNOPSIS
   midi
 
 DESCRIPTION
-  From left to right, the table contains the number, scientific pitch notation, and
-  frequency in hertz of every MIDI note.
+  From left to right, the table contains the number, scientific pitch notation,
+  and frequency in hertz of every MIDI note.

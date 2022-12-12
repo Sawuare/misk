@@ -2,14 +2,14 @@ NAME
   hqz-png - write an HQZ image to a PNG file
 
 SYNOPSIS
-  hqz-png [-h <height>] [-l <length>] [-m] [-o <offset>] [-p <ID>] [-q <q-argument>]
-          [-w <width>] [-x <x-offset>] [-y <y-offset>] [-z]
+  hqz-png [-h <height>] [-l <length>] [-m] [-o <offset>] [-p <ID>]
+          [-q <q-argument>] [-w <width>] [-x <x-offset>] [-y <y-offset>] [-z]
 
 DESCRIPTION
   For a description of HQZ images, see hqz.txt.
 
-  hqz-png writes an HQZ image to a 1-bit grayscale, non-interlaced PNG file. The file
-  has a name that encodes how it was produced. For example, a file with the name
+  hqz-png writes an HQZ image to a 1-bit grayscale, non-interlaced PNG file. The
+  file has a name that encodes how it was produced. For example, a file named
   p0q1x0y0w512h512.hqz.png can be reproduced by an invocation equivalent to
 
     $ hqz-png -p 0 -q 1 -x 0 -y 0 -w 512 -h 512
@@ -20,8 +20,8 @@ OPTIONS
     Defaults to 512. Must be less than or equal to 32768.
 
   -l <length>
-    This additional option is equivalent to -w <length> -h <length>, which specifies
-    a square image.
+    This additional option is equivalent to -w <length> -h <length>, which
+    specifies a square image.
 
   -m
     Place the origin in the middle of the image by setting the offsets.

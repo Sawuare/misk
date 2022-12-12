@@ -23,8 +23,8 @@ DESCRIPTION
 
   Where "p#" denotes a sequence for the HQZ painter whose ID is #.
 
-  The first four sequences are these sequences in the On-Line Encyclopedia of Integer
-  Sequences (OEIS):
+  The first four sequences are these sequences in the On-Line Encyclopedia of
+  Integer Sequences (OEIS):
 
     https://oeis.org/A020522
     https://oeis.org/A171476

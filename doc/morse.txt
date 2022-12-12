@@ -12,8 +12,8 @@ DESCRIPTION
     1 2 3 4 5 6 7 8 9 0
     . , : ? ' - / ( ) " = + @
 
-  For performance, morse does not test for invalid letters and will probably crash if
-  any are given.
+  For performance, morse does not test for invalid letters and will probably
+  crash if any are given.
 
   morse prints signals consisting of dots and dashes. The signals have adapted
   spacing and length:
