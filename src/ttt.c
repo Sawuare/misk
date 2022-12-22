@@ -78,7 +78,7 @@ int main(void) {
 
   // Play
   while (1) {
-    printf(ECMA48_CUP("7;1") "It's %c's turn.", player);
+    printf(ECMA48_CUP("7") "It's %c's turn.", player);
 
     while (1) {
       c = getchar();
@@ -94,7 +94,7 @@ int main(void) {
       }
     }
 
-    printf(ECMA48_CUP("%d;%d") ECMA48_SGR("%d") "%c" ECMA48_SGR("0"),
+    printf(ECMA48_CUP("%d;%d") ECMA48_SGR("%d") "%c" ECMA48_SGR(),
       c / GRID_COLS * 2 + 1,
       c % GRID_COLS * 2 + 1,
       player == 'X' ? RED_DISPLAY : GREEN_DISPLAY,
@@ -112,12 +112,12 @@ int main(void) {
             magic[c][i] % GRID_COLS * 2 + 1,
             player);
 
-        printf(ECMA48_SGR("0") ECMA48_CUP("7;1") ECMA48_EL("") "%c won!", player);
+        printf(ECMA48_SGR() ECMA48_CUP("7") ECMA48_EL() "%c won!", player);
         goto exit;
       } while ((magic[c] += 3)[0]);
 
       if (plays == GRID_AREA) {
-        fputs(ECMA48_CUP("7;1") ECMA48_EL("") "It's a tie.", stdout);
+        fputs(ECMA48_CUP("7") ECMA48_EL() "It's a tie.", stdout);
         goto exit;
       }
     }

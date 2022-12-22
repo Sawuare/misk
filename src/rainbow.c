@@ -17,7 +17,7 @@ int main(void) {
 
   --winsz.ws_row;
 
-  fputs(ECMA48_ED("2"), stdout);
+  fputs(ECMA48_ED("1"), stdout);
 
   for (int bow = 6; bow >= 1; --bow) {
     int last_col = winsz.ws_col - bow + 1;
@@ -32,5 +32,5 @@ int main(void) {
         color);
   }
 
-  fputs(ECMA48_SGR("0"), stdout);
+  fputs(ECMA48_SGR(), stdout);
 }
