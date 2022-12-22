@@ -44,9 +44,10 @@ cc $OPT -o printable  printable.c
 cc $OPT -o projectile projectile.c -lm
 cc $OPT -o rainbow    rainbow.c -lm
 cc $OPT -o sumber     sumber.c -lm
+cc $OPT -o ttt        ttt.c
 
 echo "Moving programs"
 
-sudo mv ctime eca-png eca-txt eca-wav getlocale hqz-fb hqz-png hqz-seq hxy limits midi morse pp printable projectile rainbow sumber $BIN
+sudo mv ctime eca-png eca-txt eca-wav getlocale hqz-fb hqz-png hqz-seq hxy limits midi morse pp printable projectile rainbow sumber ttt $BIN
 
 echo "Done"

@@ -1,0 +1,10 @@
+NAME
+  ttt - tic-tac-toe, aka noughts and crosses
+
+SYNOPSIS
+  ttt
+
+EXIT STATUS
+  1 if getting terminal attributes fails;
+  2 if setting terminal attributes fails;
+  0 otherwise;
