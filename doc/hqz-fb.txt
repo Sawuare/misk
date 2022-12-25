@@ -12,7 +12,7 @@ DESCRIPTION
   /dev/fb0, which likely requires being the superuser or being in the video
   group.
 
-  hqz-fb should be executed in the Linux terminal (i.e. TERM=linux).
+  hqz-fb should be executed in a Linux virtual terminal (i.e. TERM=linux).
 
   These keys can be used to navigate and control hqz-fb during execution:
 
