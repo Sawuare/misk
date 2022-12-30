@@ -1,5 +1,5 @@
 NAME
-  ttt - tic-tac-toe, aka noughts and crosses
+  ttt - tic-tac-toe, aka noughts-and-crosses
 
 SYNOPSIS
   ttt

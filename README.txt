@@ -25,7 +25,7 @@ The programs and libraries in here are:
   rainbow - print a sine-shaped 6-color rainbow
   sumber - print a statistical summary of input numbers
   tcem.h - text cursor enable mode
-  ttt - tic-tac-toe, aka noughts and crosses
+  ttt - tic-tac-toe, aka noughts-and-crosses
   wafer.h - code for writing 8-bit PCM WAVE files
 
 The directories and files in here are:

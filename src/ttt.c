@@ -1,4 +1,4 @@
-// ttt.c - tic-tac-toe, aka noughts and crosses
+// ttt.c - tic-tac-toe, aka noughts-and-crosses
 
 #include <stdio.h>
 #include <termios.h>
