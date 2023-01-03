@@ -12,7 +12,7 @@ DESCRIPTION
   file has a name that encodes how it was produced. For example, a file named
   p0q1x0y0w512h512.hqz.png can be reproduced by an invocation equivalent to
 
-    $ hqz-png -p 0 -q 1 -x 0 -y 0 -w 512 -h 512
+    hqz-png -p 0 -q 1 -x 0 -y 0 -w 512 -h 512
 
 OPTIONS
   -h <height>

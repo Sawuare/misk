@@ -1,12 +1,12 @@
 #! /bin/sh
 
-# export.sh - export the output of some programs to ../out/
+# output.sh - put the output of some programs in ../out/
 
 set -e
 
 cd ../out/
 
-echo "Exporting output"
+echo "Outputting"
 
 # Assume that build.sh has been executed
 hqz-seq

@@ -18,7 +18,7 @@ DESCRIPTION
   The file has a name that encodes how it was produced. For example, a file
   named r18s0c512g256.eca.wav can be reproduced by an invocation equivalent to
 
-    $ eca-wav -r 18 -s 0 -c 512 -g 256
+    eca-wav -r 18 -s 0 -c 512 -g 256
 
 OPTIONS
   -c <cells>

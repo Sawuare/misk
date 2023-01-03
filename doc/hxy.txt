@@ -35,7 +35,7 @@ DESCRIPTION
   file has a name that encodes how it was produced. For example, a file named
   w512h512s.hxy.png can be reproduced by an invocation equivalent to
 
-    $ hxy -w 512 -h 512 -s
+    hxy -w 512 -h 512 -s
 
 OPTIONS
   -h <height>

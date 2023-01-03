@@ -3,7 +3,3 @@ NAME
 
 SYNOPSIS
   ctime
-
-EXAMPLES
-  $ ctime
-  Sun Jun  6 13:00:00 2021

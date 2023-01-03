@@ -1,6 +1,6 @@
 #! /bin/sh
 
-# build.sh - build programs and get executables and headers to /usr/local/
+# build.sh - build programs and put programs and libraries in /usr/local/
 
 # Requires permission to write and execute /usr/local/bin/ and
 # /usr/local/include/, which likely requires being the superuser.
@@ -10,7 +10,7 @@
 #
 # To install the dependencies on Debian or a derivative of it, execute
 #
-#   # apt install clang libpng16-16 libpng-dev zlib1g zlib1g-dev
+#   apt install clang libpng16-16 libpng-dev zlib1g zlib1g-dev
 
 set -e
 
