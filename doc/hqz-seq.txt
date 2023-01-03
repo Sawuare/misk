@@ -10,16 +10,16 @@ DESCRIPTION
   The sequences are nonnegative integers less than 2 raised to 32, separated by
   spaces, and written to these files:
 
-    p22a0.hqz.txt
-    p22a1.hqz.txt
-    p22a2.hqz.txt
-    p22a3.hqz.txt
-    p22a4.hqz.txt
-    p22a5.hqz.txt
-    p22a6.hqz.txt
-    p22a7.hqz.txt
-    p22a8.hqz.txt
-    p22a9.hqz.txt
+    p22a0.hqz-seq.txt
+    p22a1.hqz-seq.txt
+    p22a2.hqz-seq.txt
+    p22a3.hqz-seq.txt
+    p22a4.hqz-seq.txt
+    p22a5.hqz-seq.txt
+    p22a6.hqz-seq.txt
+    p22a7.hqz-seq.txt
+    p22a8.hqz-seq.txt
+    p22a9.hqz-seq.txt
 
   Where "p#" denotes a sequence for the HQZ painter whose ID is #.
 

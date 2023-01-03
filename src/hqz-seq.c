@@ -26,7 +26,7 @@ void i22a(FILE *f, int m) {
 }
 
 int main(void) {
-  char filename[] = "p22a0.hqz.txt";
+  char filename[] = "p22a0.hqz-seq.txt";
 
   for (int m = 0; m <= 9; ++m) {
     filename[4] = '0' + m;

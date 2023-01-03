@@ -2,15 +2,19 @@
 
 # output.sh - put the output of some programs in ../out/
 
-set -e
+# Assumes that build.sh has been executed.
 
-cd ../out/
+set -e
 
 echo "Outputting"
 
-# Assume that build.sh has been executed
-hqz-seq
+cd ../out/
+
 midi      > midi.txt
 printable > printable.txt
+
+cd hqz-seq/
+
+hqz-seq
 
 echo "Done"
