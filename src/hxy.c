@@ -127,12 +127,12 @@ int main(int argc, char *argv[]) {
 
   for (unsigned y = 0; y < height; ++y) {
     for (unsigned x = 0; x < width; ++x) {
-      png_byte px = image[y * width + x];
+      png_byte pixel = image[y * width + x];
 
       if (!(x % 8))
         image[x / 8] = 0;
 
-      if (px)
+      if (pixel)
         image[x / 8] |= 1 << (7 - x % 8);
     }
 
