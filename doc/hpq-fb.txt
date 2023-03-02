@@ -1,20 +1,20 @@
 NAME
-  hqz-fb - display HQZ images on the Linux framebuffer device
+  hpq-fb - display HPQ images on the Linux framebuffer device
 
 SYNOPSIS
-  hqz-fb [-l] [-o <offset>] [-p <ID>] [-q <q-argument>] [-s <step>]
+  hpq-fb [-l] [-o <offset>] [-p <ID>] [-q <q-argument>] [-s <step>]
          [-x <x-offset>] [-y <y-offset>]
 
 DESCRIPTION
-  For a description of HQZ images, see hqz.txt.
+  For a description of HPQ images, see hpq.txt.
 
-  hqz-fb requires permission to read and write the Linux framebuffer device
+  hpq-fb requires permission to read and write the Linux framebuffer device
   /dev/fb0, which likely requires being the superuser or being in the video
   group.
 
-  hqz-fb should be executed in a Linux virtual terminal (i.e. TERM=linux).
+  hpq-fb should be executed in a Linux virtual terminal (i.e. TERM=linux).
 
-  These keys can be used to navigate and control hqz-fb during execution:
+  These keys can be used to navigate and control hpq-fb during execution:
 
     1 decrements the ID;
     2 increments the ID;
@@ -74,7 +74,7 @@ EXIT STATUS
   0 otherwise;
 
 BUGS
-  hqz-fb requires a framebuffer whose color format is 32-bit ARGB.
+  hpq-fb requires a framebuffer whose color format is 32-bit ARGB.
 
 SEE ALSO
-  hqz-png.txt, hqz-seq.txt
+  hpq-png.txt, hpq-seq.txt

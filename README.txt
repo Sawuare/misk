@@ -11,10 +11,10 @@ The programs and libraries in here are:
   eca.h - code for elementary cellular automata
   ecma48.h - control functions for coded character sets in 7-bit codes
   getlocale - print the current locale
-  hqz-fb - display HQZ images on the Linux framebuffer device
-  hqz-png - write an HQZ image to a PNG file
-  hqz-seq - write some HQZ q-sequences
-  hqz.h - code for HQZ images
+  hpq-fb - display HPQ images on the Linux framebuffer device
+  hpq-png - write an HPQ image to a PNG file
+  hpq-seq - write some HPQ q-sequences
+  hpq.h - code for HPQ images
   hxy - write an HXY image to a PNG file
   limits - print every standard limit in <limits.h>
   midi - print a table of MIDI note number, notation, and frequency

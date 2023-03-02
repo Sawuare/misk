@@ -1,27 +1,27 @@
 NAME
-  hqz-seq - write some HQZ q-sequences
+  hpq-seq - write some HPQ q-sequences
 
 SYNOPSIS
-  hqz-seq
+  hpq-seq
 
 DESCRIPTION
-  For a description of HQZ q-arguments, see hqz.txt.
+  For a description of HPQ q-arguments, see hpq.txt.
 
   The sequences are nonnegative integers less than 2 raised to 32, separated by
   spaces, and written to these files:
 
-    p22a0.hqz-seq.txt
-    p22a1.hqz-seq.txt
-    p22a2.hqz-seq.txt
-    p22a3.hqz-seq.txt
-    p22a4.hqz-seq.txt
-    p22a5.hqz-seq.txt
-    p22a6.hqz-seq.txt
-    p22a7.hqz-seq.txt
-    p22a8.hqz-seq.txt
-    p22a9.hqz-seq.txt
+    p22a0.hpq-seq.txt
+    p22a1.hpq-seq.txt
+    p22a2.hpq-seq.txt
+    p22a3.hpq-seq.txt
+    p22a4.hpq-seq.txt
+    p22a5.hpq-seq.txt
+    p22a6.hpq-seq.txt
+    p22a7.hpq-seq.txt
+    p22a8.hpq-seq.txt
+    p22a9.hpq-seq.txt
 
-  Where "p#" denotes a sequence for the HQZ painter whose ID is #.
+  Where "p#" denotes a sequence for the HPQ painter whose ID is #.
 
   The first four sequences are these sequences in the On-Line Encyclopedia of
   Integer Sequences (OEIS):
@@ -36,4 +36,4 @@ EXIT STATUS
   0 otherwise;
 
 SEE ALSO
-  hqz-fb.txt, hqz-png.txt
+  hpq-fb.txt, hpq-png.txt

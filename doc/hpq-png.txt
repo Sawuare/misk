@@ -1,18 +1,18 @@
 NAME
-  hqz-png - write an HQZ image to a PNG file
+  hpq-png - write an HPQ image to a PNG file
 
 SYNOPSIS
-  hqz-png [-h <height>] [-l <length>] [-m] [-o <offset>] [-p <ID>]
+  hpq-png [-h <height>] [-l <length>] [-m] [-o <offset>] [-p <ID>]
           [-q <q-argument>] [-w <width>] [-x <x-offset>] [-y <y-offset>] [-z]
 
 DESCRIPTION
-  For a description of HQZ images, see hqz.txt.
+  For a description of HPQ images, see hpq.txt.
 
-  hqz-png writes an HQZ image to a 1-bit grayscale, non-interlaced PNG file. The
+  hpq-png writes an HPQ image to a 1-bit grayscale, non-interlaced PNG file. The
   file has a name that encodes how it was produced. For example, a file named
-  p0q1x0y0w512h512.hqz.png can be reproduced by an invocation equivalent to
+  p0q1x0y0w512h512.hpq.png can be reproduced by an invocation equivalent to
 
-    hqz-png -p 0 -q 1 -x 0 -y 0 -w 512 -h 512
+    hpq-png -p 0 -q 1 -x 0 -y 0 -w 512 -h 512
 
 OPTIONS
   -h <height>
@@ -64,4 +64,4 @@ EXIT STATUS
   0 otherwise;
 
 SEE ALSO
-  hqz-fb.txt, hqz-seq.txt
+  hpq-fb.txt, hpq-seq.txt

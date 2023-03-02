@@ -1,32 +1,32 @@
-// hqz.h - code for HQZ images
+// hpq.h - code for HPQ images
 
 #include <stdint.h>
 #include <stdlib.h>
 
-#define Q hqz_q
+#define Q hpq_q
 
 #define P(id, formula)                                               \
-  static void hqz_p##id(void) {                                      \
-    uint32_t yn = hqz_y0 + hqz_height;                               \
-    uint32_t xn = hqz_x0 + hqz_width;                                \
+  static void hpq_p##id(void) {                                      \
+    uint32_t yn = hpq_y0 + hpq_height;                               \
+    uint32_t xn = hpq_x0 + hpq_width;                                \
                                                                      \
-    for (uint32_t y = hqz_y0; y != yn; ++y)                          \
-      for (uint32_t x = hqz_x0; x != xn; ++x)                        \
-        hqz_canvas[(y - hqz_y0) * hqz_width + x - hqz_x0] = formula; \
+    for (uint32_t y = hpq_y0; y != yn; ++y)                          \
+      for (uint32_t x = hpq_x0; x != xn; ++x)                        \
+        hpq_canvas[(y - hpq_y0) * hpq_width + x - hpq_x0] = formula; \
   }
 
 static uint32_t
-  hqz_id     = 0,
-  hqz_q      = 1,
-  hqz_x0     = 0,
-  hqz_y0     = 0,
-  hqz_width  = 512,
-  hqz_height = 512;
+  hpq_id     = 0,
+  hpq_q      = 1,
+  hpq_x0     = 0,
+  hpq_y0     = 0,
+  hpq_width  = 512,
+  hpq_height = 512;
 
-static _Bool *hqz_canvas;
+static _Bool *hpq_canvas;
 
-static _Bool hqz_defined(void) {
-  return hqz_id < 40 && (hqz_q || !(hqz_id / 5 % 2));
+static _Bool hpq_defined(void) {
+  return hpq_id < 40 && (hpq_q || !(hpq_id / 5 % 2));
 }
 
 P(0, (x & y) & Q)
@@ -77,16 +77,16 @@ P(37, ((Q ^ x) * x + (Q ^ y) * y) % Q)
 P(38, ((Q + x) * x + (Q + y) * y) % Q)
 P(39, ((Q * x) * x + (Q * y) * y) % Q)
 
-static void (*hqz_painters[40])(void) = {
+static void (*hpq_painters[40])(void) = {
   // AND   OR       XOR      ADD      MUL
-  hqz_p0,  hqz_p1,  hqz_p2,  hqz_p3,  hqz_p4,  // Class 0
-  hqz_p5,  hqz_p6,  hqz_p7,  hqz_p8,  hqz_p9,  // Class 1
-  hqz_p10, hqz_p11, hqz_p12, hqz_p13, hqz_p14, // Class 2
-  hqz_p15, hqz_p16, hqz_p17, hqz_p18, hqz_p19, // Class 3
-  hqz_p20, hqz_p21, hqz_p22, hqz_p23, hqz_p24, // Class 4
-  hqz_p25, hqz_p26, hqz_p27, hqz_p28, hqz_p29, // Class 5
-  hqz_p30, hqz_p31, hqz_p32, hqz_p33, hqz_p34, // Class 6
-  hqz_p35, hqz_p36, hqz_p37, hqz_p38, hqz_p39  // Class 7
+  hpq_p0,  hpq_p1,  hpq_p2,  hpq_p3,  hpq_p4,  // Class 0
+  hpq_p5,  hpq_p6,  hpq_p7,  hpq_p8,  hpq_p9,  // Class 1
+  hpq_p10, hpq_p11, hpq_p12, hpq_p13, hpq_p14, // Class 2
+  hpq_p15, hpq_p16, hpq_p17, hpq_p18, hpq_p19, // Class 3
+  hpq_p20, hpq_p21, hpq_p22, hpq_p23, hpq_p24, // Class 4
+  hpq_p25, hpq_p26, hpq_p27, hpq_p28, hpq_p29, // Class 5
+  hpq_p30, hpq_p31, hpq_p32, hpq_p33, hpq_p34, // Class 6
+  hpq_p35, hpq_p36, hpq_p37, hpq_p38, hpq_p39  // Class 7
 };
 
 #undef Q

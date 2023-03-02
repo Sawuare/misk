@@ -1,4 +1,4 @@
-// hqz-seq.c - write some HQZ Q-sequences
+// hpq-seq.c - write some HPQ Q-sequences
 
 #include <stdio.h>
 
@@ -26,7 +26,7 @@ void i22a(FILE *f, int m) {
 }
 
 int main(void) {
-  char filename[] = "p22a0.hqz-seq.txt";
+  char filename[] = "p22a0.hpq-seq.txt";
 
   for (int m = 0; m <= 9; ++m) {
     filename[4] = '0' + m;

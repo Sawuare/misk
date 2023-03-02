@@ -32,9 +32,9 @@ cc $OPT -o eca-png    eca-png.c -lpng -lz
 cc $OPT -o eca-txt    eca-txt.c
 cc $OPT -o eca-wav    eca-wav.c
 cc $OPT -o getlocale  getlocale.c
-cc $OPT -o hqz-fb     hqz-fb.c
-cc $OPT -o hqz-png    hqz-png.c -lpng -lz
-cc $OPT -o hqz-seq    hqz-seq.c
+cc $OPT -o hpq-fb     hpq-fb.c
+cc $OPT -o hpq-png    hpq-png.c -lpng -lz
+cc $OPT -o hpq-seq    hpq-seq.c
 cc $OPT -o hxy        hxy.c -lpng -lz
 cc $OPT -o limits     limits.c
 cc $OPT -o midi       midi.c -lm
@@ -48,6 +48,6 @@ cc $OPT -o ttt        ttt.c
 
 echo "Moving programs"
 
-sudo mv ctime eca-png eca-txt eca-wav getlocale hqz-fb hqz-png hqz-seq hxy limits midi morse pp printable projectile rainbow sumber ttt $BIN
+sudo mv ctime eca-png eca-txt eca-wav getlocale hpq-fb hpq-png hpq-seq hxy limits midi morse pp printable projectile rainbow sumber ttt $BIN
 
 echo "Done"

@@ -1,35 +1,35 @@
 NAME
-  hqz.h - code for HQZ images
+  hpq.h - code for HPQ images
 
 SYNOPSIS
-  #include "hqz.h"
+  #include "hpq.h"
 
-  uint32_t hqz_id     = 0;
-  uint32_t hqz_q      = 1;
-  uint32_t hqz_x0     = 0;
-  uint32_t hqz_y0     = 0;
-  uint32_t hqz_width  = 512,
-  uint32_t hqz_height = 512;
+  uint32_t hpq_id     = 0;
+  uint32_t hpq_q      = 1;
+  uint32_t hpq_x0     = 0;
+  uint32_t hpq_y0     = 0;
+  uint32_t hpq_width  = 512,
+  uint32_t hpq_height = 512;
 
-  _Bool *hqz_canvas;
+  _Bool *hpq_canvas;
 
-  _Bool hqz_defined(void);
+  _Bool hpq_defined(void);
 
-  void hqz_p0(void);
+  void hpq_p0(void);
   ...
-  void hqz_p39(void);
+  void hpq_p39(void);
 
-  void (*hqz_painters[40])(void);
+  void (*hpq_painters[40])(void);
 
 DESCRIPTION
-  An HQZ image is a mathematical image. A function called a painter and denoted
+  An HPQ image is a mathematical image. A function called a painter and denoted
   p#(q, x, y) is applied to every pixel in the image. The #, q, x, y, and value
   of the painter are nonnegative integers. The # is the serial identifier (ID)
   of the painter. The q is called the q-argument. The x and y are the horizontal
   and vertical coordinates of a pixel, respectively. If p#(q, x, y) = 0, the
   pixel is white, otherwise the pixel is black.
 
-  p#(q, x, y) = p#(q, y, x) for any #, q, x, and y, so all HQZ images are
+  p#(q, x, y) = p#(q, y, x) for any #, q, x, and y, so all HPQ images are
   symmetric around the line x = y.
 
   There are 40 defined painters, 0 through 39, divided into 8 classes, 0 through
