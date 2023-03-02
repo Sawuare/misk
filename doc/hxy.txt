@@ -28,6 +28,12 @@ DESCRIPTION
     Y = {0, 1, 2}
     P = {0, 1, 2, 3, 4, 6}
 
+  So, that image would have its pixels colored as follows:
+
+    White White White White
+    White Black White Black
+    Black Black Black Black
+
   The top row of any HXY image is white. Flood-filling the top row reveals a
   special shape. See the option -s.
 
