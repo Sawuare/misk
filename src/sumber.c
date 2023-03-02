@@ -12,10 +12,10 @@ static int compare(const void *p1, const void *p2) {
   return d1 < d2 ? -1 : d1 > d2 ? 1 : 0;
 }
 
-static double median(const double ds[], size_t count) {
+static double median(const double numbers[], size_t count) {
   size_t mid = count / 2;
 
-  return count % 2 ? ds[mid] : (ds[mid] + ds[mid - 1]) / 2;
+  return count % 2 ? numbers[mid] : (numbers[mid] + numbers[mid - 1]) / 2;
 }
 
 int main(void) {
@@ -26,37 +26,37 @@ int main(void) {
   double sum = 0;
   double product = 1;
 
-  double *ds = malloc(capacity * sizeof *ds);
+  double *numbers = malloc(capacity * sizeof *numbers);
 
-  if (!ds)
+  if (!numbers)
     return 1;
 
-  while (scanf("%lg", &ds[count]) == 1) {
-    sum += ds[count];
-    product *= ds[count];
+  while (scanf("%lg", &numbers[count]) == 1) {
+    sum += numbers[count];
+    product *= numbers[count];
 
     if (++count == capacity)
       if ((capacity *= 2) > max_capacity ||
-          !(ds = realloc(ds, capacity * sizeof *ds)))
+          !(numbers = realloc(numbers, capacity * sizeof *numbers)))
         return 2;
   }
 
   if (count < 2)
     return 3;
 
-  qsort(ds, count, sizeof ds[0], compare);
+  qsort(numbers, count, sizeof numbers[0], compare);
 
-  double min = ds[0];
-  double max = ds[count - 1];
+  double min = numbers[0];
+  double max = numbers[count - 1];
 
   double range     =  max - min;
   double mid_range = (max + min) / 2;
 
   size_t half = count / 2;
 
-  double q1 = median(ds, half);
-  double q2 = median(ds, count);
-  double q3 = median(ds + count - half, half);
+  double q1 = median(numbers, half);
+  double q2 = median(numbers, count);
+  double q3 = median(numbers + count - half, half);
 
   double iqr       =  q3 - q1;
   double mid_hinge = (q3 + q1) / 2;
@@ -69,7 +69,7 @@ int main(void) {
   double sum_of_deviation_to_4 = 0;
 
   for (size_t i = 0; i < count; ++i) {
-    double deviation      = ds[i] - am;
+    double deviation      = numbers[i] - am;
     double deviation_to_2 = deviation * deviation;
 
     sum_of_deviation_to_2 += deviation_to_2;
@@ -77,7 +77,7 @@ int main(void) {
     sum_of_deviation_to_4 += deviation_to_2 * deviation_to_2;
   }
 
-  free(ds);
+  free(numbers);
 
   double sd      = sqrt(sum_of_deviation_to_2 / count);
   double sd_to_3 = sd * sd * sd;
