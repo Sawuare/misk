@@ -273,22 +273,22 @@ RULE(253, p | q | !r)
 RULE(254, p | q | r)
 RULE(255, 1)
 
-static uint32_t eca_random = 1;
+static uint32_t eca_next = 1;
 
 static uint32_t eca_rand(void) {
   uint32_t accumulator = 0;
 
   for (int b = RAND_LSB; b <= RAND_MSB; ++b)
     accumulator |= (uint32_t) eca_rule30(
-      (uint32_t) 1 << (b == RAND_MSB ? RAND_LSB : b + 1) & eca_random,
-      (uint32_t) 1 <<                             b      & eca_random,
-      (uint32_t) 1 << (b == RAND_LSB ? RAND_MSB : b - 1) & eca_random) << b;
+      (uint32_t) 1 << (b == RAND_MSB ? RAND_LSB : b + 1) & eca_next,
+      (uint32_t) 1 <<                             b      & eca_next,
+      (uint32_t) 1 << (b == RAND_LSB ? RAND_MSB : b - 1) & eca_next) << b;
 
-  return eca_random = accumulator;
+  return eca_next = accumulator;
 }
 
 static void eca_srand(uint32_t seed) {
-  eca_random = seed;
+  eca_next = seed;
 }
 
 #undef RAND_LSB

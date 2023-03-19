@@ -1,6 +1,7 @@
-Here is my terminal software, including programs and libraries for terminal
-control, audio, graphics, physics, mathematics, utility, and fun. Some programs
-use features of POSIX or Linux, so I recommend GNU/Linux for using them.
+Misk is a collection of miscellaneous terminal software. It includes programs
+and libraries for terminal control, audio, graphics, mathematics, utility, and
+fun. Some programs use features of POSIX or Linux, so GNU/Linux is recommended
+for using them.
 
 The programs and libraries in here are:
 
@@ -49,4 +50,4 @@ The directories and files in here are:
   README.txt
     This file.
 
-To get started, see add/build.sh. To contact me, email sawuare@gmail.com.
+To get started, see add/build.sh.
