@@ -34,11 +34,13 @@ static void flood(png_byte image[], unsigned x, unsigned y) {
 
 int main(int argc, char *argv[]) {
   _Bool special_shape    = 0;
+  _Bool row_histogram    = 0;
+  _Bool column_histogram = 0;
   _Bool best_compression = 0;
 
   int opt;
 
-  while ((opt = getopt(argc, argv, "w:h:l:sz")) != -1)
+  while ((opt = getopt(argc, argv, "w:h:l:srcz")) != -1)
     switch (opt) {
       case 'w': width = strtoul(optarg, 0, 10);
         break;
@@ -50,6 +52,12 @@ int main(int argc, char *argv[]) {
         break;
 
       case 's': special_shape = 1;
+        break;
+
+      case 'r': row_histogram = 1;
+        break;
+
+      case 'c': column_histogram = 1;
         break;
 
       case 'z': best_compression = 1;
@@ -73,7 +81,7 @@ int main(int argc, char *argv[]) {
   // w10000h10000s.hxy.png
   char filename[22];
   sprintf(filename, "w%uh%u%s.hxy.png",
-    width, height, special_shape ? "s" : "");
+    width, height, special_shape ? "s" : row_histogram ? "r" : column_histogram ? "c" : "");
 
   FILE *file = fopen(filename, "wb");
 
@@ -121,6 +129,28 @@ int main(int argc, char *argv[]) {
       if (image[i] == WHITE)
         image[i] = BLACK;
   }
+  else if (row_histogram)
+    for (unsigned y = 0; y < height; ++y) {
+      unsigned colored = 0;
+
+      for (unsigned x = 0; x < width; ++x)
+        if (image[y * width + x] == WHITE)
+          image[y * width + colored++] = WHITE;
+
+      for (unsigned x = colored; x < width; ++x)
+        image[y * width + x] = BLACK;
+    }
+  else if (column_histogram)
+    for (unsigned x = 0; x < width; ++x) {
+      unsigned colored = 0;
+
+      for (unsigned y = 0; y < height; ++y)
+        if (image[y * width + x] == WHITE)
+          image[colored++ * width + x] = WHITE;
+
+      for (unsigned y = colored; y < height; ++y)
+        image[y * width + x] = BLACK;
+    }
 
   png_init_io(structp, file);
   png_write_info(structp, infop);
