@@ -35,7 +35,7 @@ The directories and files in here are:
     Additional POSIX shell scripts which must be executed from this directory.
 
   doc/
-    Documentation of the programs and headers.
+    Documentation of the programs and libraries.
 
   out/
     Output of some of the programs.
