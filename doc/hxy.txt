@@ -2,7 +2,7 @@ NAME
   hxy - write an HXY image to a PNG file
 
 SYNOPSIS
-  hxy [-c] [-h <height>] [-l <length>] [-r] [-s] [-w <width>] [-z]
+  hxy [-h <height>] [-H] [-l <length>] [-s] [-V] [-w <width>] [-z]
 
 DESCRIPTION
   An HXY image is a mathematical image. Let the positive integers w and h be the
@@ -44,25 +44,25 @@ DESCRIPTION
     hxy -w 512 -h 512 -s
 
 OPTIONS
-  -c
-    Create a "column histogram" as if by moving white pixels up and black pixels
-    down.
-
   -h <height>
     The positive integer <height> specifies the image's height in pixels.
     Defaults to 512. Must be less than or equal to 32768.
+
+  -H
+    Create a horizontal projection as if by moving white pixels up and black
+    pixels down.
 
   -l <length>
     This additional option is equivalent to -w <length> -h <length>, which
     specifies a square image.
 
-  -r
-    Create a "row histogram" as if by moving white pixels to the left and black
-    pixels to the right.
-
   -s
     Reveal a special shape by flood-filling the top row with a filler color,
     replacing white pixels with black, then replacing filler pixels with white.
+
+  -V
+    Create a vertical projection as if by moving white pixels to the left and
+    black pixels to the right.
 
   -w <width>
     The positive integer <width> specifies the image's width in pixels.

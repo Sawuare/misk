@@ -33,14 +33,14 @@ static void flood(png_byte image[], unsigned x, unsigned y) {
 }
 
 int main(int argc, char *argv[]) {
-  _Bool special_shape    = 0;
-  _Bool row_histogram    = 0;
-  _Bool column_histogram = 0;
-  _Bool best_compression = 0;
+  _Bool special_shape         = 0;
+  _Bool vertical_projection   = 0;
+  _Bool horizontal_projection = 0;
+  _Bool best_compression      = 0;
 
   int opt;
 
-  while ((opt = getopt(argc, argv, "w:h:l:srcz")) != -1)
+  while ((opt = getopt(argc, argv, "w:h:l:sVHz")) != -1)
     switch (opt) {
       case 'w': width = strtoul(optarg, 0, 10);
         break;
@@ -54,10 +54,10 @@ int main(int argc, char *argv[]) {
       case 's': special_shape = 1;
         break;
 
-      case 'r': row_histogram = 1;
+      case 'V': vertical_projection = 1;
         break;
 
-      case 'c': column_histogram = 1;
+      case 'H': horizontal_projection = 1;
         break;
 
       case 'z': best_compression = 1;
@@ -81,7 +81,7 @@ int main(int argc, char *argv[]) {
   // w10000h10000s.hxy.png
   char filename[22];
   sprintf(filename, "w%uh%u%s.hxy.png",
-    width, height, special_shape ? "s" : row_histogram ? "r" : column_histogram ? "c" : "");
+    width, height, special_shape ? "s" : vertical_projection ? "V" : horizontal_projection ? "H" : "");
 
   FILE *file = fopen(filename, "wb");
 
@@ -129,7 +129,7 @@ int main(int argc, char *argv[]) {
       if (image[i] == WHITE)
         image[i] = BLACK;
   }
-  else if (row_histogram)
+  else if (vertical_projection)
     for (unsigned y = 0; y < height; ++y) {
       unsigned colored = 0;
 
@@ -140,7 +140,7 @@ int main(int argc, char *argv[]) {
       for (unsigned x = colored; x < width; ++x)
         image[y * width + x] = BLACK;
     }
-  else if (column_histogram)
+  else if (horizontal_projection)
     for (unsigned x = 0; x < width; ++x) {
       unsigned colored = 0;
 
