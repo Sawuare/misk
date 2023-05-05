@@ -5,37 +5,9 @@ SYNOPSIS
   hxy [-h <height>] [-H] [-l <length>] [-s] [-V] [-w <width>] [-z]
 
 DESCRIPTION
-  An HXY image is a mathematical image. Let the positive integers w and h be the
-  width and height of the image in pixels, respectively. Let X and Y be the sets
-  of integers in the intervals [0, w) and [0, h), respectively. Let P be the set
-  of products of multiplying every element of X by every element of Y. Let the
-  pixels of the image be numbered in row-major order by the sequence of integers
-  in the interval [0, wh). If the number of a pixel is in P, the pixel is white,
-  otherwise the pixel is black.
+  A description of HXY images is available at
 
-  For example, the HXY image whose width is 4 pixels and height is 3 pixels
-  would have its pixels numbered as follows:
-
-    00 01 02 03
-    04 05 06 07
-    08 09 10 11
-
-  For that image, the variables and sets defined above would be:
-
-    w = 4
-    h = 3
-    X = {0, 1, 2, 3}
-    Y = {0, 1, 2}
-    P = {0, 1, 2, 3, 4, 6}
-
-  So, that image would have its pixels colored as follows:
-
-    White White White White
-    White Black White Black
-    Black Black Black Black
-
-  The top row of any HXY image is white. Flood-filling the top row reveals a
-  special shape. See the option -s.
+    https://sawuare.github.io/hxy-images.html
 
   hxy writes an HXY image to a 1-bit grayscale, non-interlaced PNG file. The
   file has a name that encodes how it was produced. For example, a file named
