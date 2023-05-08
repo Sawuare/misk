@@ -5,9 +5,7 @@ SYNOPSIS
   hxy [-h <height>] [-H] [-l <length>] [-s] [-V] [-w <width>] [-z]
 
 DESCRIPTION
-  A description of HXY images is available at
-
-    https://sawuare.github.io/hxy-images.html
+  HXY images are described at https://sawuare.github.io/hxy-images.html.
 
   hxy writes an HXY image to a 1-bit grayscale, non-interlaced PNG file. The
   file has a name that encodes how it was produced. For example, a file named
