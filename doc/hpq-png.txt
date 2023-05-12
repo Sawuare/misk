@@ -10,14 +10,14 @@ DESCRIPTION
 
   hpq-png writes an HPQ image to a 1-bit grayscale, non-interlaced PNG file. The
   file has a name that encodes how it was produced. For example, a file named
-  p0q1x0y0w512h512.hpq.png can be reproduced by an invocation equivalent to
+  p0q1x0y0w256h256.hpq.png can be reproduced by an invocation equivalent to
 
-    hpq-png -p 0 -q 1 -x 0 -y 0 -w 512 -h 512
+    hpq-png -p 0 -q 1 -x 0 -y 0 -w 256 -h 256
 
 OPTIONS
   -h <height>
     The positive integer <height> specifies the image's height in pixels.
-    Defaults to 512. Must be less than or equal to 32768.
+    Defaults to 256. Must be less than or equal to 32768.
 
   -l <length>
     This additional option is equivalent to -w <length> -h <length>, which
@@ -40,7 +40,7 @@ OPTIONS
 
   -w <width>
     The positive integer <width> specifies the image's width in pixels.
-    Defaults to 512. Must be less than or equal to 32768.
+    Defaults to 256. Must be less than or equal to 32768.
 
   -x <x-offset>
     The nonnegative integer <x-offset> specifies the painter's x-offset.

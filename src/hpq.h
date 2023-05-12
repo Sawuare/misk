@@ -20,8 +20,8 @@ static uint32_t
   hpq_q      = 1,
   hpq_x0     = 0,
   hpq_y0     = 0,
-  hpq_width  = 512,
-  hpq_height = 512;
+  hpq_width  = 256,
+  hpq_height = 256;
 
 static _Bool *hpq_canvas;
 

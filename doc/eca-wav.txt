@@ -16,18 +16,18 @@ DESCRIPTION
   atonal. See the option -s.
 
   The file has a name that encodes how it was produced. For example, a file
-  named r18s0c512g256.eca.wav can be reproduced by an invocation equivalent to
+  named r18s0c256g128.eca.wav can be reproduced by an invocation equivalent to
 
-    eca-wav -r 18 -s 0 -c 512 -g 256
+    eca-wav -r 18 -s 0 -c 256 -g 128
 
 OPTIONS
   -c <cells>
     The positive integer <cells> specifies the number of cells in a generation.
-    Defaults to 512. Must be less than 4294967296.
+    Defaults to 256. Must be less than 4294967296.
 
   -g <generations>
     The positive integer <generations> specifies the number of generations.
-    Defaults to 256. Must be less than 4294967296.
+    Defaults to 128. Must be less than 4294967296.
 
   -r <rule>
     The nonnegative integer <rule> specifies the rule.

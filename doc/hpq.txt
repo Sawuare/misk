@@ -8,8 +8,8 @@ SYNOPSIS
   uint32_t hpq_q      = 1;
   uint32_t hpq_x0     = 0;
   uint32_t hpq_y0     = 0;
-  uint32_t hpq_width  = 512,
-  uint32_t hpq_height = 512;
+  uint32_t hpq_width  = 256,
+  uint32_t hpq_height = 256;
 
   _Bool *hpq_canvas;
 

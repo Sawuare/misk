@@ -9,14 +9,14 @@ DESCRIPTION
 
   hxy writes an HXY image to a 1-bit grayscale, non-interlaced PNG file. The
   file has a name that encodes how it was produced. For example, a file named
-  w512h512s.hxy.png can be reproduced by an invocation equivalent to
+  w256h256s.hxy.png can be reproduced by an invocation equivalent to
 
-    hxy -w 512 -h 512 -s
+    hxy -w 256 -h 256 -s
 
 OPTIONS
   -h <height>
     The positive integer <height> specifies the image's height in pixels.
-    Defaults to 512. Must be less than or equal to 32768.
+    Defaults to 256. Must be less than or equal to 32768.
 
   -H
     Create a horizontal projection as if by moving white pixels up and black
@@ -36,7 +36,7 @@ OPTIONS
 
   -w <width>
     The positive integer <width> specifies the image's width in pixels.
-    Defaults to 512. Must be less than or equal to 32768.
+    Defaults to 256. Must be less than or equal to 32768.
 
   -z
     Use the best compression level instead of the default. The compression is

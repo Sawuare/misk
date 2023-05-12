@@ -14,8 +14,8 @@
 // A max length equal to 1 << 15 for a max area equal to 1 << 30 (gibipixel)
 #define LENGTH_MAX 32768
 
-static unsigned width  = 512;
-static unsigned height = 512;
+static unsigned width  = 256;
+static unsigned height = 256;
 
 // Flood-fill a white area with a filler color
 static void flood(png_byte image[], unsigned x, unsigned y) {
