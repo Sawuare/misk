@@ -7,6 +7,9 @@
 
 #include "ecma48.h"
 
+// Full-turn in radians
+#define TAU 6.28318530717958647692
+
 int main(void) {
   // Red, yellow, green, cyan, blue, magenta
   int sgr_colors[] = {31, 33, 32, 36, 34, 35};
@@ -27,7 +30,7 @@ int main(void) {
 
     for (int col = bow; col <= last_col; ++col)
       printf(ECMA48_CUP("%d;%d") ECMA48_SGR("%d") "\u2588", // FULL BLOCK
-        winsz.ws_row - (int) round(sin(M_PI * (col - bow) / width) * peak_row),
+        winsz.ws_row - (int) round(sin(TAU / 2 * (col - bow) / width) * peak_row),
         col,
         color);
   }

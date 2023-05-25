@@ -3,6 +3,9 @@
 #include <math.h>
 #include <stdio.h>
 
+// Full-turn in radians
+#define TAU 6.28318530717958647692
+
 // Standard acceleration due to gravity
 #define GN 9.80665
 
@@ -15,7 +18,7 @@ int main(void) {
   scanf("%lg", &speed);
 
   // Convert the angle from degrees to radians
-  angle *= M_PI / 180;
+  angle *= TAU / 360;
   yspeed = speed * sin(angle);
 
   printf("Flight Peak     (m)   = %g\n", yspeed * yspeed / (2 * GN));
