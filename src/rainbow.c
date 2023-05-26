@@ -7,7 +7,7 @@
 
 #include "ecma48.h"
 
-// Full-turn in radians
+// Full angle in radians
 #define TAU 6.28318530717958647692
 
 int main(void) {

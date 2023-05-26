@@ -3,7 +3,7 @@
 #include <math.h>
 #include <stdio.h>
 
-// Full-turn in radians
+// Full angle in radians
 #define TAU 6.28318530717958647692
 
 // Standard acceleration due to gravity
