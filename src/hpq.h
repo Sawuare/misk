@@ -78,7 +78,7 @@ P(38, ((Q + x) * x + (Q + y) * y) % Q)
 P(39, ((Q * x) * x + (Q * y) * y) % Q)
 
 static void (*hpq_painters[40])(void) = {
-  // AND   OR       XOR      ADD      MUL
+  // &        |        ^        +        *
   hpq_p0,  hpq_p1,  hpq_p2,  hpq_p3,  hpq_p4,  // Class 0
   hpq_p5,  hpq_p6,  hpq_p7,  hpq_p8,  hpq_p9,  // Class 1
   hpq_p10, hpq_p11, hpq_p12, hpq_p13, hpq_p14, // Class 2
