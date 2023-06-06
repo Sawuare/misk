@@ -10,16 +10,15 @@ DESCRIPTION
   The sequences are nonnegative integers less than 2 raised to 32, separated by
   spaces, and written to these files:
 
-    p22a0.hpq-seq.txt
-    p22a1.hpq-seq.txt
-    p22a2.hpq-seq.txt
-    p22a3.hpq-seq.txt
-    p22a4.hpq-seq.txt
-    p22a5.hpq-seq.txt
-    p22a6.hpq-seq.txt
-    p22a7.hpq-seq.txt
-    p22a8.hpq-seq.txt
-    p22a9.hpq-seq.txt
+    p22q0.hpq-seq.txt
+    p22q1.hpq-seq.txt
+    p22q3.hpq-seq.txt
+    p22q7.hpq-seq.txt
+    p22q15.hpq-seq.txt
+    p22q31.hpq-seq.txt
+    p22q63.hpq-seq.txt
+    p22q127.hpq-seq.txt
+    p22q255.hpq-seq.txt
 
   Where "p#" denotes a sequence for the HPQ painter whose ID is #.
 

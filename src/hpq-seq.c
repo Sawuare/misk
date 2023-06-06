@@ -1,41 +1,47 @@
-// hpq-seq.c - write some HPQ Q-sequences
+// hpq-seq.c - write some HPQ q-sequences
 
 #include <stdio.h>
+#include <stdlib.h>
 
 #define Q_MAX 0xffffffff
 
-void i22a(FILE *f, int m) {
-  int n = 0;
-  _Bool first = 1;
+void write_sequence(long long sequence[], int length, int painter) {
+  // The longest filename is
+  // p10q1000000000.hpq-seq.txt
+  char filename[27];
+  sprintf(filename, "p%dq%lld.hpq-seq.txt", painter, sequence[0]);
 
-  while (1) {
-    long long q = (1ll << (2 * n + m)) - (1ll << n);
+  FILE *file = fopen(filename, "w");
 
-    if (q > Q_MAX)
-      break;
+  if (!file)
+    exit(1);
 
-    if (!first)
-      fputc(' ', f);
+  --length;
 
-    fprintf(f, "%lld", q);
-    ++n;
-    first = 0;
-  }
+  for (int i = 0; i < length; ++i)
+    fprintf(file, "%lld ", sequence[i]);
 
-  fputc('\n', f);
+  fprintf(file, "%lld\n", sequence[length]);
+  fclose(file);
 }
 
 int main(void) {
-  char filename[] = "p22a0.hpq-seq.txt";
+  long long sequence[32];
 
-  for (int m = 0; m <= 9; ++m) {
-    filename[4] = '0' + m;
-    FILE *f = fopen(filename, "w");
+  // Sequences for painter 22
 
-    if (!f)
-      return 1;
+  for (int m = 0; m <= 8; ++m) {
+    int n = 0;
 
-    i22a(f, m);
-    fclose(f);
+    while (1) {
+      sequence[n] = (1ll << (2 * n + m)) - (1ll << n);
+
+      if (sequence[n] > Q_MAX)
+        break;
+
+      ++n;
+    }
+
+    write_sequence(sequence, n, 22);
   }
 }
