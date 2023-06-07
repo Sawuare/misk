@@ -30,7 +30,7 @@ int main(void) {
 
   // Sequences for painter 22
 
-  for (int m = 0; m <= 8; ++m) {
+  for (int m = 0; m < 10; ++m) {
     int n = 0;
 
     while (1) {
@@ -43,5 +43,22 @@ int main(void) {
     }
 
     write_sequence(sequence, n, 22);
+  }
+
+  // Sequences for painter 30
+
+  for (int m = 0; m < 10; ++m) {
+    int n = 0;
+
+    while (1) {
+      sequence[n] = (1ll << (2 * n + m)) + (1ll << n);
+
+      if (sequence[n] > Q_MAX)
+        break;
+
+      ++n;
+    }
+
+    write_sequence(sequence, n, 30);
   }
 }
