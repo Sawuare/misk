@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#define MAX_M 7
 #define MAX_Q 0xffffffff
 
 void write_sequence(long long sequence[], int length, int painter) {
@@ -30,7 +31,7 @@ int main(void) {
 
   // Sequences for painter 22
 
-  for (int m = 0; m < 10; ++m) {
+  for (int m = 0; m <= MAX_M; ++m) {
     int n = 0;
 
     while (1) {
@@ -47,7 +48,7 @@ int main(void) {
 
   // Sequences for painter 30
 
-  for (int m = 0; m < 10; ++m) {
+  for (int m = 0; m <= MAX_M; ++m) {
     int n = 0;
 
     while (1) {
