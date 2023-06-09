@@ -4,9 +4,9 @@
 #include <stdlib.h>
 #include <time.h>
 
-#define LENGTH_MIN 3
-#define LENGTH_MAX 80
-#define LENGTHS    78 // == LENGTH_MAX - LENGTH_MIN + 1
+#define MIN_LENGTH  3
+#define MAX_LENGTH  80
+#define ALL_LENGTHS 78 // == MAX_LENGTH - MIN_LENGTH + 1
 
 int main(int argc, char *argv[]) {
   int length;
@@ -14,12 +14,12 @@ int main(int argc, char *argv[]) {
   if (argv[1]) {
     length = atoi(argv[1]);
 
-    if (length < LENGTH_MIN || length > LENGTH_MAX)
+    if (length < MIN_LENGTH || length > MAX_LENGTH)
       return 1;
   }
   else {
     srand(time(0));
-    length = rand() % LENGTHS + LENGTH_MIN;
+    length = rand() % ALL_LENGTHS + MIN_LENGTH;
   }
 
   struct timespec zzz = {.tv_nsec = 1000000000 / length};

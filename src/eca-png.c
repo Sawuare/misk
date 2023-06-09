@@ -13,7 +13,7 @@
 #include "eca.h"
 
 // A max length equal to 1 << 15 for a max area equal to 1 << 30 (gibipixel)
-#define LENGTH_MAX 32768
+#define MAX_LENGTH 32768
 
 int main(int argc, char *argv[]) {
   _Bool    best_compression = 0;
@@ -44,7 +44,7 @@ int main(int argc, char *argv[]) {
       default: return 1;
     }
 
-  if (!cell_count || !gen_count || cell_count > LENGTH_MAX || gen_count > LENGTH_MAX)
+  if (!cell_count || !gen_count || cell_count > MAX_LENGTH || gen_count > MAX_LENGTH)
     return 2;
 
   png_struct *structp = png_create_write_struct(PNG_LIBPNG_VER_STRING, 0, 0, 0);

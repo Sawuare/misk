@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define Q_MAX 0xffffffff
+#define MAX_Q 0xffffffff
 
 void write_sequence(long long sequence[], int length, int painter) {
   // The longest filename is
@@ -36,7 +36,7 @@ int main(void) {
     while (1) {
       sequence[n] = (1ll << (2 * n + m)) - (1ll << n);
 
-      if (sequence[n] > Q_MAX)
+      if (sequence[n] > MAX_Q)
         break;
 
       ++n;
@@ -53,7 +53,7 @@ int main(void) {
     while (1) {
       sequence[n] = (1ll << (2 * n + m)) + (1ll << n);
 
-      if (sequence[n] > Q_MAX)
+      if (sequence[n] > MAX_Q)
         break;
 
       ++n;

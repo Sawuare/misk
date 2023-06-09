@@ -12,7 +12,7 @@
 #define FILLER 2
 
 // A max length equal to 1 << 15 for a max area equal to 1 << 30 (gibipixel)
-#define LENGTH_MAX 32768
+#define MAX_LENGTH 32768
 
 static unsigned width  = 256;
 static unsigned height = 256;
@@ -68,7 +68,7 @@ int main(int argc, char *argv[]) {
 
   unsigned long area = width * height;
 
-  if (!area || width > LENGTH_MAX || height > LENGTH_MAX)
+  if (!area || width > MAX_LENGTH || height > MAX_LENGTH)
     return 2;
 
   png_struct *structp = png_create_write_struct(PNG_LIBPNG_VER_STRING, 0, 0, 0);
