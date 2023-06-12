@@ -119,16 +119,16 @@ int main(int argc, char *argv[]) {
     cells[cell_count / 2] = 1;
   }
 
-  int last_cell_pos = cell_count - 1;
+  int last_cell_position = cell_count - 1;
 
   for (int g = 0; g < gen_count; ++g) {
     for (int c = 0; c < cell_count; ++c) {
       fputs(cells[c] ? alive : dead, stdout);
 
       accumulators[c] = eca_rule(rule,
-        cells[c == 0 ? last_cell_pos : c - 1],
+        cells[c == 0 ? last_cell_position : c - 1],
         cells[c],
-        cells[c == last_cell_pos ? 0 : c + 1]);
+        cells[c == last_cell_position ? 0 : c + 1]);
     }
 
     memcpy(cells, accumulators, cell_count);

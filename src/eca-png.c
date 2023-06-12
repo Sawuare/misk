@@ -106,7 +106,7 @@ int main(int argc, char *argv[]) {
     cells[cell_count / 2] = 1;
   }
 
-  uint32_t last_cell_pos = cell_count - 1;
+  uint32_t last_cell_position = cell_count - 1;
 
   for (uint32_t g = 0; g < gen_count; ++g) {
     for (uint32_t c = 0; c < cell_count; ++c) {
@@ -117,9 +117,9 @@ int main(int argc, char *argv[]) {
         row[c / 8] |= 1 << (7 - c % 8);
 
       accumulators[c] = eca_rule(rule,
-        cells[c == 0 ? last_cell_pos : c - 1],
+        cells[c == 0 ? last_cell_position : c - 1],
         cells[c],
-        cells[c == last_cell_pos ? 0 : c + 1]);
+        cells[c == last_cell_position ? 0 : c + 1]);
     }
 
     png_write_row(structp, row);

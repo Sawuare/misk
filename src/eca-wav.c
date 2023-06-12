@@ -67,16 +67,16 @@ int main(int argc, char *argv[]) {
     cells[cell_count / 2] = 1;
   }
 
-  uint32_t last_cell_pos = cell_count - 1;
+  uint32_t last_cell_position = cell_count - 1;
 
   for (uint32_t g = 0; g < gen_count; ++g) {
     for (uint32_t c = 0; c < cell_count; ++c) {
       audio[g * cell_count + c] = cells[c];
 
       accumulators[c] = eca_rule(rule,
-        cells[c == 0 ? last_cell_pos : c - 1],
+        cells[c == 0 ? last_cell_position : c - 1],
         cells[c],
-        cells[c == last_cell_pos ? 0 : c + 1]);
+        cells[c == last_cell_position ? 0 : c + 1]);
     }
 
     memcpy(cells, accumulators, cell_count);
@@ -86,13 +86,13 @@ int main(int argc, char *argv[]) {
   free(accumulators);
 
   _Bool no_alive_cells = 1;
-  size_t first_alive_cell_pos, last_alive_cell_pos, i;
+  size_t first_alive_cell_position, last_alive_cell_position, i;
 
   // Search for the first alive cell
   for (i = 0; i < sample_count; ++i)
     if (audio[i]) {
       no_alive_cells = 0;
-      first_alive_cell_pos = i;
+      first_alive_cell_position = i;
       break;
     }
 
@@ -107,20 +107,20 @@ int main(int argc, char *argv[]) {
     // Search for the last alive cell
     while (i--)
       if (audio[i]) {
-        last_alive_cell_pos = i;
+        last_alive_cell_position = i;
         break;
       }
 
     // First line
-    if (first_alive_cell_pos)
-      for (i = 0; i < first_alive_cell_pos; ++i)
-        audio[i] = MID + i * AMP / first_alive_cell_pos;
+    if (first_alive_cell_position)
+      for (i = 0; i < first_alive_cell_position; ++i)
+        audio[i] = MID + i * AMP / first_alive_cell_position;
 
     _Bool up = 0;
-    i = first_alive_cell_pos;
+    i = first_alive_cell_position;
 
     // Mid lines
-    while (i < last_alive_cell_pos) {
+    while (i < last_alive_cell_position) {
       size_t from = i;
 
       while (!audio[++i]);
@@ -128,16 +128,20 @@ int main(int argc, char *argv[]) {
       size_t span = i - from;
 
       for (size_t j = 0; j < span; ++j)
-        audio[from + j] = up ? MIN + j * P2P / span : MAX - j * P2P / span;
+        audio[from + j] = up ?
+          MIN + j * P2P / span :
+          MAX - j * P2P / span;
 
       up = !up;
     }
 
-    size_t span = sample_count - last_alive_cell_pos;
+    size_t span = sample_count - last_alive_cell_position;
 
     // Last line
     for (i = 0; i < span; ++i)
-      audio[last_alive_cell_pos + i] = up ? MIN + i * AMP / span : MAX - i * AMP / span;
+      audio[last_alive_cell_position + i] = up ?
+        MIN + i * AMP / span :
+        MAX - i * AMP / span;
   }
 
   // The longest filename is
