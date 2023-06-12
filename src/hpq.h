@@ -15,13 +15,12 @@
         hpq_canvas[(y - hpq_y0) * hpq_width + x - hpq_x0] = formula; \
   }
 
-static uint32_t
-  hpq_id     = 0,
-  hpq_q      = 1,
-  hpq_x0     = 0,
-  hpq_y0     = 0,
-  hpq_width  = 256,
-  hpq_height = 256;
+static uint32_t hpq_id     = 0;
+static uint32_t hpq_q      = 1;
+static uint32_t hpq_x0     = 0;
+static uint32_t hpq_y0     = 0;
+static uint32_t hpq_width  = 256;
+static uint32_t hpq_height = 256;
 
 static _Bool *hpq_canvas;
 

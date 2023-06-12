@@ -28,14 +28,14 @@ echo "Compiling programs"
 OPT="-march=native -O3"
 
 cc $OPT -o ctime      ctime.c
-cc $OPT -o eca-png    eca-png.c -lpng -lz
+cc $OPT -o eca-png    eca-png.c -lpng
 cc $OPT -o eca-txt    eca-txt.c
 cc $OPT -o eca-wav    eca-wav.c
 cc $OPT -o getlocale  getlocale.c
 cc $OPT -o hpq-fb     hpq-fb.c
-cc $OPT -o hpq-png    hpq-png.c -lpng -lz
+cc $OPT -o hpq-png    hpq-png.c -lpng
 cc $OPT -o hpq-seq    hpq-seq.c
-cc $OPT -o hxy        hxy.c -lpng -lz
+cc $OPT -o hxy        hxy.c -lpng
 cc $OPT -o limits     limits.c
 cc $OPT -o midi       midi.c -lm
 cc $OPT -o morse      morse.c

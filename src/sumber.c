@@ -25,7 +25,6 @@ int main(void) {
 
   double sum = 0;
   double product = 1;
-
   double *numbers = malloc(capacity * sizeof *numbers);
 
   if (!numbers)
@@ -49,7 +48,7 @@ int main(void) {
   double min = numbers[0];
   double max = numbers[count - 1];
 
-  double range     =  max - min;
+  double range = max - min;
   double mid_range = (max + min) / 2;
 
   size_t half = count / 2;
@@ -58,7 +57,7 @@ int main(void) {
   double q2 = median(numbers, count);
   double q3 = median(numbers + count - half, half);
 
-  double iqr       =  q3 - q1;
+  double iqr = q3 - q1;
   double mid_hinge = (q3 + q1) / 2;
 
   double am = sum / count;
@@ -69,7 +68,7 @@ int main(void) {
   double sum_of_deviation_to_4 = 0;
 
   for (size_t i = 0; i < count; ++i) {
-    double deviation      = numbers[i] - am;
+    double deviation = numbers[i] - am;
     double deviation_to_2 = deviation * deviation;
 
     sum_of_deviation_to_2 += deviation_to_2;
@@ -79,7 +78,7 @@ int main(void) {
 
   free(numbers);
 
-  double sd      = sqrt(sum_of_deviation_to_2 / count);
+  double sd = sqrt(sum_of_deviation_to_2 / count);
   double sd_to_3 = sd * sd * sd;
   double sd_to_4 = sd_to_3 * sd;
 

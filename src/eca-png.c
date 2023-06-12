@@ -84,9 +84,9 @@ int main(int argc, char *argv[]) {
   png_init_io(structp, file);
   png_write_info(structp, infop);
 
-  png_byte *row          = malloc((cell_count + 7) / 8 * sizeof *row);
-  _Bool    *cells        = malloc(cell_count           * sizeof *cells);
-  _Bool    *accumulators = malloc(cell_count           * sizeof *accumulators);
+  png_byte *row = malloc((cell_count + 7) / 8 * sizeof *row);
+  _Bool *cells = malloc(cell_count * sizeof *cells);
+  _Bool *accumulators = malloc(cell_count * sizeof *accumulators);
 
   if (!(row && cells && accumulators)) {
     remove(filename);

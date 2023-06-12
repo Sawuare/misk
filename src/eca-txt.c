@@ -100,7 +100,7 @@ int main(int argc, char *argv[]) {
       gen_count = winsz.ws_row - 1;
   }
 
-  _Bool *cells        = malloc(cell_count * sizeof *cells);
+  _Bool *cells = malloc(cell_count * sizeof *cells);
   _Bool *accumulators = malloc(cell_count * sizeof *accumulators);
 
   if (!(cells && accumulators))
