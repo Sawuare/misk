@@ -6,7 +6,7 @@ SYNOPSIS
           [-q <q-argument>] [-w <width>] [-x <x-offset>] [-y <y-offset>] [-z]
 
 DESCRIPTION
-  For a description of HPQ images, see hpq.txt.
+  HPQ images are described at https://sawuare.github.io/hpq-images.
 
   hpq-png writes an HPQ image to a 1-bit grayscale, non-interlaced PNG file. The
   file has a name that encodes how it was produced. For example, a file named
