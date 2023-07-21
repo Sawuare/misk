@@ -14,7 +14,7 @@ DESCRIPTION
 
   hpq-fb should be executed in a Linux virtual terminal (i.e. TERM=linux).
 
-  These keys can be used to navigate and control hpq-fb during execution:
+  The following keys can be used to control hpq-fb during execution:
 
     1 decrements the ID;
     2 increments the ID;

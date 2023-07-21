@@ -8,7 +8,7 @@ DESCRIPTION
   HPQ q-sequences are described at https://sawuare.github.io/hpq-images.
 
   The sequences are nonnegative integers less than 2 raised to 32, separated by
-  spaces, and written to these files:
+  spaces, and written to the following files:
 
     p22q0.hpq-seq.txt
     p22q1.hpq-seq.txt
@@ -19,8 +19,6 @@ DESCRIPTION
     p22q63.hpq-seq.txt
     p22q127.hpq-seq.txt
     p22q255.hpq-seq.txt
-
-  Where "p#" denotes a sequence for the HPQ painter whose ID is #.
 
   The first four sequences are these sequences in the On-Line Encyclopedia of
   Integer Sequences (OEIS):

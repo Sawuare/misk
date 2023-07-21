@@ -29,3 +29,4 @@ EXIT STATUS
   1 if allocating memory fails;
   2 if reallocating memory fails;
   3 if less than 2 numbers are read;
+  0 otherwise;

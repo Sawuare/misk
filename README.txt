@@ -3,7 +3,7 @@ and libraries for terminal control, audio, graphics, mathematics, utility, and
 fun. Some programs use features of POSIX or Linux, so GNU/Linux is recommended
 for using them.
 
-The programs and libraries in here are
+The programs and libraries in here are:
 
   ctime - print the local time in the form Www Mmm dd hh:mm:ss yyyy
   eca-png - write an elementary cellular automaton to a PNG file
@@ -29,7 +29,7 @@ The programs and libraries in here are
   ttt - tic-tac-toe, aka noughts-and-crosses
   wafer.h - code for writing 8-bit PCM WAVE files
 
-The directories and files in here are
+The directories and files in here are:
 
   add/
     Additional POSIX shell scripts which must be executed from this directory.
