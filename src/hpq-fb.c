@@ -154,6 +154,10 @@ get:
       case 'y': scanf("%" PRIu32, &hpq_y0);
         break;
 
+      // Double the q-argument
+      case 'd': hpq_q *= 2;
+        break;
+
       // Draw a grid of lines
       case 'g':
         ; int spacing; scanf("%d", &spacing); if (spacing < 2) goto get;

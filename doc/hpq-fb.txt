@@ -28,6 +28,7 @@ DESCRIPTION
     q sets the q-argument to what is entered next (like -q and its argument);
     x sets the x-offset to what is entered next (like -x and its argument);
     y sets the y-offset to what is entered next (like -y and its argument);
+    d doubles the q-argument;
     g draws a grid of lines whose spacing is entered next;
     l toggles the status line;
     m places the origin in the middle of the image by setting the offsets;
