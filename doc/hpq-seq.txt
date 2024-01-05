@@ -5,7 +5,7 @@ SYNOPSIS
   hpq-seq
 
 DESCRIPTION
-  HPQ q-sequences are described at https://sawuare.github.io/hpq-images.
+  HPQ q-sequences are described at https://sawuare.net/hpq-images.
 
   The sequences are nonnegative integers less than 2 raised to 32, separated by
   spaces, and written to the following files:

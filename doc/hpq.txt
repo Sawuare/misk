@@ -22,4 +22,4 @@ SYNOPSIS
   void (*hpq_painters[40])(void);
 
 DESCRIPTION
-  HPQ images are described at https://sawuare.github.io/hpq-images.
+  HPQ images are described at https://sawuare.net/hpq-images.

@@ -6,7 +6,7 @@ SYNOPSIS
          [-x <x-offset>] [-y <y-offset>]
 
 DESCRIPTION
-  HPQ images are described at https://sawuare.github.io/hpq-images.
+  HPQ images are described at https://sawuare.net/hpq-images.
 
   hpq-fb requires permission to read and write the Linux framebuffer device
   /dev/fb0, which likely requires being the superuser or being in the video
