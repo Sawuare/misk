@@ -117,7 +117,7 @@ int main(void) {
       } while ((magic[c] += 3)[0]);
 
       if (plays == GRID_AREA) {
-        fputs(ECMA48_CUP("7") "It is a draw.", stdout);
+        fputs(ECMA48_CUP("7") "It is a tie.", stdout);
         goto exit;
       }
     }
