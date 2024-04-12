@@ -4,11 +4,11 @@ NAME
 SYNOPSIS
   #include "wafer.h"
 
-  typedef struct wafer_wave wafer_wave;
+  typedef struct wafer_file wafer_file;
 
-  wafer_wave *wafer_open(const char filename[]);
-  void wafer_set_channels(wafer_wave *wave, uint16_t channels);
-  void wafer_set_samples_per_sec(wafer_wave *wave, uint32_t samples_per_sec);
-  _Bool wafer_write_metadata(wafer_wave *wave);
-  _Bool wafer_write_data(const uint8_t data[], uint32_t len, wafer_wave *wave);
-  _Bool wafer_close(wafer_wave *wave);
+  wafer_file *wafer_open(const char filename[]);
+  void wafer_set_channels(wafer_file *file, uint16_t channels);
+  void wafer_set_samples_per_sec(wafer_file *file, uint32_t samples_per_sec);
+  _Bool wafer_write_metadata(wafer_file *file);
+  _Bool wafer_write_data(const uint8_t data[], uint32_t len, wafer_file *file);
+  _Bool wafer_close(wafer_file *file);

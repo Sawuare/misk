@@ -150,17 +150,17 @@ int main(int argc, char *argv[]) {
   sprintf(filename, "r%" PRIu8 "s%" PRIu32 "c%" PRIu32 "g%" PRIu32 ".eca.wav",
     rule, seed, cell_count, gen_count);
 
-  wafer_wave *wave = wafer_open(filename);
+  wafer_file *file = wafer_open(filename);
 
-  if (!wave)
+  if (!file)
     return 4;
 
-  wafer_set_channels(wave, 1);
-  wafer_set_samples_per_sec(wave, 44100);
+  wafer_set_channels(file, 1);
+  wafer_set_samples_per_sec(file, 44100);
 
-  if (!(wafer_write_metadata(wave) &&
-        wafer_write_data(audio, sample_count, wave) &&
-        wafer_close(wave))) {
+  if (!(wafer_write_metadata(file) &&
+        wafer_write_data(audio, sample_count, file) &&
+        wafer_close(file))) {
     remove(filename);
     return 5;
   }
