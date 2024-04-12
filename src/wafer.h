@@ -1,4 +1,4 @@
-// wafer.h - code for writing 8-bit PCM WAVE files
+// wafer.h - library for writing 8-bit PCM WAVE files
 
 #include <stdint.h>
 #include <stdio.h>

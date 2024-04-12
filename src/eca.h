@@ -1,4 +1,4 @@
-// eca.h - code for elementary cellular automata
+// eca.h - library for elementary cellular automata
 
 #include <stdint.h>
 

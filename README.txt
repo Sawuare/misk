@@ -9,13 +9,13 @@ The programs and libraries in here are:
   eca-png - write an elementary cellular automaton to a PNG file
   eca-txt - print an elementary cellular automaton
   eca-wav - write an audio elementary cellular automaton to a WAVE file
-  eca.h - code for elementary cellular automata
+  eca.h - library for elementary cellular automata
   ecma48.h - control functions for coded character sets in 7-bit codes
   getlocale - print the current locale
   hpq-fb - display HPQ images on the Linux framebuffer device
   hpq-png - write an HPQ image to a PNG file
   hpq-seq - write some HPQ q-sequences
-  hpq.h - code for HPQ images
+  hpq.h - library for HPQ images
   hxy - write an HXY image to a PNG file
   limits - print every standard limit in <limits.h>
   midi - print a table of MIDI note number, notation, and frequency
@@ -27,7 +27,7 @@ The programs and libraries in here are:
   sumber - print a statistical summary of input numbers
   tcem.h - text cursor enable mode
   ttt - tic-tac-toe, aka noughts-and-crosses
-  wafer.h - code for writing 8-bit PCM WAVE files
+  wafer.h - library for writing 8-bit PCM WAVE files
 
 The directories and files in here are:
 

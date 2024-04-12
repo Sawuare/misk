@@ -1,5 +1,5 @@
 NAME
-  eca.h - code for elementary cellular automata
+  eca.h - library for elementary cellular automata
 
 SYNOPSIS
   #include "eca.h"

@@ -1,5 +1,5 @@
 NAME
-  hpq.h - code for HPQ images
+  hpq.h - library for HPQ images
 
 SYNOPSIS
   #include "hpq.h"

@@ -1,4 +1,4 @@
-// hpq.h - code for HPQ images
+// hpq.h - library for HPQ images
 
 #include <stdint.h>
 #include <stdlib.h>
