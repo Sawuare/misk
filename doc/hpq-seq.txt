@@ -10,15 +10,15 @@ DESCRIPTION
   The sequences are nonnegative integers less than 2 raised to 32, separated by
   spaces, and written to the following files:
 
-    p22q0.hpq-seq.txt
-    p22q1.hpq-seq.txt
-    p22q3.hpq-seq.txt
-    p22q7.hpq-seq.txt
-    p22q15.hpq-seq.txt
-    p22q31.hpq-seq.txt
-    p22q63.hpq-seq.txt
-    p22q127.hpq-seq.txt
-    p22q255.hpq-seq.txt
+    p32q0.hpq-seq.txt
+    p32q1.hpq-seq.txt
+    p32q3.hpq-seq.txt
+    p32q7.hpq-seq.txt
+    p32q15.hpq-seq.txt
+    p32q31.hpq-seq.txt
+    p32q63.hpq-seq.txt
+    p32q127.hpq-seq.txt
+    p32q255.hpq-seq.txt
 
   The first four sequences are these sequences in the On-Line Encyclopedia of
   Integer Sequences (OEIS):

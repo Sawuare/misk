@@ -25,7 +25,7 @@ static uint32_t hpq_height = 256;
 static _Bool *hpq_canvas;
 
 static _Bool hpq_defined(void) {
-  return hpq_id < 40 && (hpq_q || !(hpq_id / 5 % 2));
+  return hpq_id < 50 && (hpq_q || !(hpq_id / 5 % 2));
 }
 
 P(0, (x & y) & Q)
@@ -52,31 +52,43 @@ P(17, (x * x ^ y * y) % Q)
 P(18, (x * x + y * y) % Q)
 P(19, (x * x * y * y) % Q)
 
-P(20, ((Q & x) * x & (Q & y) * y) & Q)
-P(21, ((Q | x) * x & (Q | y) * y) & Q)
-P(22, ((Q ^ x) * x & (Q ^ y) * y) & Q)
-P(23, ((Q + x) * x & (Q + y) * y) & Q)
-P(24, ((Q * x) * x & (Q * y) * y) & Q)
+P(20, (Q * x & Q * y) & Q)
+P(21, (Q * x | Q * y) & Q)
+P(22, (Q * x ^ Q * y) & Q)
+P(23, (Q * x + Q * y) & Q)
+P(24, (Q * x * Q * y) & Q)
 
-P(25, ((Q & x) * x & (Q & y) * y) % Q)
-P(26, ((Q | x) * x & (Q | y) * y) % Q)
-P(27, ((Q ^ x) * x & (Q ^ y) * y) % Q)
-P(28, ((Q + x) * x & (Q + y) * y) % Q)
-P(29, ((Q * x) * x & (Q * y) * y) % Q)
+P(25, (Q * x & Q * y) % Q)
+P(26, (Q * x | Q * y) % Q)
+P(27, (Q * x ^ Q * y) % Q)
+P(28, (Q * x + Q * y) % Q)
+P(29, (Q * x * Q * y) % Q)
 
-P(30, ((Q & x) * x + (Q & y) * y) & Q)
-P(31, ((Q | x) * x + (Q | y) * y) & Q)
-P(32, ((Q ^ x) * x + (Q ^ y) * y) & Q)
-P(33, ((Q + x) * x + (Q + y) * y) & Q)
-P(34, ((Q * x) * x + (Q * y) * y) & Q)
+P(30, ((Q & x) * x & (Q & y) * y) & Q)
+P(31, ((Q | x) * x & (Q | y) * y) & Q)
+P(32, ((Q ^ x) * x & (Q ^ y) * y) & Q)
+P(33, ((Q + x) * x & (Q + y) * y) & Q)
+P(34, ((Q * x) * x & (Q * y) * y) & Q)
 
-P(35, ((Q & x) * x + (Q & y) * y) % Q)
-P(36, ((Q | x) * x + (Q | y) * y) % Q)
-P(37, ((Q ^ x) * x + (Q ^ y) * y) % Q)
-P(38, ((Q + x) * x + (Q + y) * y) % Q)
-P(39, ((Q * x) * x + (Q * y) * y) % Q)
+P(35, ((Q & x) * x & (Q & y) * y) % Q)
+P(36, ((Q | x) * x & (Q | y) * y) % Q)
+P(37, ((Q ^ x) * x & (Q ^ y) * y) % Q)
+P(38, ((Q + x) * x & (Q + y) * y) % Q)
+P(39, ((Q * x) * x & (Q * y) * y) % Q)
 
-static void (*hpq_painters[40])(void) = {
+P(40, ((Q & x) * x + (Q & y) * y) & Q)
+P(41, ((Q | x) * x + (Q | y) * y) & Q)
+P(42, ((Q ^ x) * x + (Q ^ y) * y) & Q)
+P(43, ((Q + x) * x + (Q + y) * y) & Q)
+P(44, ((Q * x) * x + (Q * y) * y) & Q)
+
+P(45, ((Q & x) * x + (Q & y) * y) % Q)
+P(46, ((Q | x) * x + (Q | y) * y) % Q)
+P(47, ((Q ^ x) * x + (Q ^ y) * y) % Q)
+P(48, ((Q + x) * x + (Q + y) * y) % Q)
+P(49, ((Q * x) * x + (Q * y) * y) % Q)
+
+static void (*hpq_painters[50])(void) = {
   // &        |        ^        +        *
   hpq_p0,  hpq_p1,  hpq_p2,  hpq_p3,  hpq_p4,  // Class 0
   hpq_p5,  hpq_p6,  hpq_p7,  hpq_p8,  hpq_p9,  // Class 1
@@ -85,7 +97,9 @@ static void (*hpq_painters[40])(void) = {
   hpq_p20, hpq_p21, hpq_p22, hpq_p23, hpq_p24, // Class 4
   hpq_p25, hpq_p26, hpq_p27, hpq_p28, hpq_p29, // Class 5
   hpq_p30, hpq_p31, hpq_p32, hpq_p33, hpq_p34, // Class 6
-  hpq_p35, hpq_p36, hpq_p37, hpq_p38, hpq_p39  // Class 7
+  hpq_p35, hpq_p36, hpq_p37, hpq_p38, hpq_p39, // Class 7
+  hpq_p40, hpq_p41, hpq_p42, hpq_p43, hpq_p44, // Class 8
+  hpq_p45, hpq_p46, hpq_p47, hpq_p48, hpq_p49  // Class 9
 };
 
 #undef Q

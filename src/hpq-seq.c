@@ -29,7 +29,7 @@ void write_sequence(long long sequence[], int length, int painter) {
 int main(void) {
   long long sequence[32];
 
-  // Sequences for painter 22
+  // Sequences for painter 32
 
   for (int m = 0; m <= MAX_M; ++m) {
     int n = 0;
@@ -43,10 +43,10 @@ int main(void) {
       ++n;
     }
 
-    write_sequence(sequence, n, 22);
+    write_sequence(sequence, n, 32);
   }
 
-  // Sequences for painter 30
+  // Sequences for painter 40
 
   for (int m = 0; m <= MAX_M; ++m) {
     int n = 0;
@@ -60,6 +60,6 @@ int main(void) {
       ++n;
     }
 
-    write_sequence(sequence, n, 30);
+    write_sequence(sequence, n, 40);
   }
 }

@@ -17,9 +17,9 @@ SYNOPSIS
 
   void hpq_p0(void);
   ...
-  void hpq_p39(void);
+  void hpq_p49(void);
 
-  void (*hpq_painters[40])(void);
+  void (*hpq_painters[50])(void);
 
 DESCRIPTION
   HPQ images are described at https://sawuare.net/hpq-images.

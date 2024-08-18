@@ -32,7 +32,7 @@ OPTIONS
 
   -p <ID>
     The nonnegative integer <ID> specifies the painter's ID.
-    Defaults to 0. Must be less than 40.
+    Defaults to 0. Must be less than 50.
 
   -q <q-argument>
     The nonnegative integer <q-argument> specifies the painter's q-argument.
