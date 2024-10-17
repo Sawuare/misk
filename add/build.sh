@@ -41,13 +41,12 @@ cc $OPT -o midi       midi.c -lm
 cc $OPT -o morse      morse.c
 cc $OPT -o pp         pp.c
 cc $OPT -o printable  printable.c
-cc $OPT -o projectile projectile.c -lm
 cc $OPT -o rainbow    rainbow.c -lm
 cc $OPT -o sumber     sumber.c -lm
 cc $OPT -o ttt        ttt.c
 
 echo "Moving programs"
 
-sudo mv ctime eca-png eca-txt eca-wav getlocale hpq-fb hpq-png hpq-seq hxy limits midi morse pp printable projectile rainbow sumber ttt $BIN
+sudo mv ctime eca-png eca-txt eca-wav getlocale hpq-fb hpq-png hpq-seq hxy limits midi morse pp printable rainbow sumber ttt $BIN
 
 echo "Done"
