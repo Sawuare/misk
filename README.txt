@@ -20,7 +20,6 @@ The programs and libraries in here are:
   limits - print every standard limit in <limits.h>
   midi - print a table of MIDI note number, notation, and frequency
   morse - encode arguments into printable adapted International Morse code
-  pp - print a penis icon incrementally
   printable - print a table of printable ASCII characters and their codes
   rainbow - print a sine-shaped 6-color rainbow
   sumber - print a statistical summary of input numbers
