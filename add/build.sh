@@ -27,22 +27,22 @@ echo "Compiling programs"
 
 OPT="-march=native -O3"
 
-cc $OPT -o ctime      ctime.c
-cc $OPT -o eca-png    eca-png.c -lpng
-cc $OPT -o eca-txt    eca-txt.c
-cc $OPT -o eca-wav    eca-wav.c
-cc $OPT -o getlocale  getlocale.c
-cc $OPT -o limits     limits.c
-cc $OPT -o midi       midi.c -lm
-cc $OPT -o morse      morse.c
-cc $OPT -o pq-fb      pq-fb.c
-cc $OPT -o pq-png     pq-png.c -lpng
-cc $OPT -o pq-seq     pq-seq.c
-cc $OPT -o printable  printable.c
-cc $OPT -o rainbow    rainbow.c -lm
-cc $OPT -o sumber     sumber.c -lm
-cc $OPT -o ttt        ttt.c
-cc $OPT -o xy-png     xy-png.c -lpng
+cc $OPT -o ctime     ctime.c
+cc $OPT -o eca-png   eca-png.c -lpng
+cc $OPT -o eca-txt   eca-txt.c
+cc $OPT -o eca-wav   eca-wav.c
+cc $OPT -o getlocale getlocale.c
+cc $OPT -o limits    limits.c
+cc $OPT -o midi      midi.c -lm
+cc $OPT -o morse     morse.c
+cc $OPT -o pq-fb     pq-fb.c
+cc $OPT -o pq-png    pq-png.c -lpng
+cc $OPT -o pq-seq    pq-seq.c
+cc $OPT -o printable printable.c
+cc $OPT -o rainbow   rainbow.c -lm
+cc $OPT -o sumber    sumber.c -lm
+cc $OPT -o ttt       ttt.c
+cc $OPT -o xy-png    xy-png.c -lpng
 
 echo "Moving programs"
 
