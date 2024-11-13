@@ -1,24 +1,24 @@
 NAME
-  hpq-seq - write some HPQ q-sequences
+  pq-seq - write some PQ q-sequences
 
 SYNOPSIS
-  hpq-seq
+  pq-seq
 
 DESCRIPTION
-  HPQ q-sequences are described at https://sawuare.net/hpq-images.
+  PQ q-sequences are described at https://sawuare.net/pq-images.
 
   The sequences are nonnegative integers less than 2 raised to 32, separated by
   spaces, and written to the following files:
 
-    p32q0.hpq-seq.txt
-    p32q1.hpq-seq.txt
-    p32q3.hpq-seq.txt
-    p32q7.hpq-seq.txt
-    p32q15.hpq-seq.txt
-    p32q31.hpq-seq.txt
-    p32q63.hpq-seq.txt
-    p32q127.hpq-seq.txt
-    p32q255.hpq-seq.txt
+    p32q0.pq-seq.txt
+    p32q1.pq-seq.txt
+    p32q3.pq-seq.txt
+    p32q7.pq-seq.txt
+    p32q15.pq-seq.txt
+    p32q31.pq-seq.txt
+    p32q63.pq-seq.txt
+    p32q127.pq-seq.txt
+    p32q255.pq-seq.txt
 
   The first four sequences are these sequences in the On-Line Encyclopedia of
   Integer Sequences (OEIS):
@@ -33,4 +33,4 @@ EXIT STATUS
   0 otherwise;
 
 SEE ALSO
-  hpq-fb.txt, hpq-png.txt
+  pq-fb.txt, pq-png.txt

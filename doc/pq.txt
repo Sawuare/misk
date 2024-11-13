@@ -1,0 +1,25 @@
+NAME
+  pq.h - library for PQ images
+
+SYNOPSIS
+  #include "pq.h"
+
+  uint32_t pq_id     = 0;
+  uint32_t pq_q      = 1;
+  uint32_t pq_x0     = 0;
+  uint32_t pq_y0     = 0;
+  uint32_t pq_width  = 256,
+  uint32_t pq_height = 256;
+
+  _Bool *pq_canvas;
+
+  _Bool pq_defined(void);
+
+  void pq_p0(void);
+  ...
+  void pq_p49(void);
+
+  void (*pq_painters[50])(void);
+
+DESCRIPTION
+  PQ images are described at https://sawuare.net/pq-images.

@@ -1,4 +1,4 @@
-// hpq-fb.c - display HPQ images on the Linux framebuffer device
+// pq-fb.c - display PQ images on the Linux framebuffer device
 
 #include <fcntl.h>
 #include <getopt.h>
@@ -13,7 +13,7 @@
 #include <unistd.h>
 
 #include "ecma48.h"
-#include "hpq.h"
+#include "pq.h"
 #include "tcem.h"
 
 #define BLACK 0x000000
@@ -28,19 +28,19 @@ int main(int argc, char *argv[]) {
 
   while ((opt = getopt(argc, argv, "p:q:x:y:o:s:l")) != -1)
     switch (opt) {
-      case 'p': hpq_id = strtoul(optarg, 0, 10);
+      case 'p': pq_id = strtoul(optarg, 0, 10);
         break;
 
-      case 'q': hpq_q = strtoul(optarg, 0, 10);
+      case 'q': pq_q = strtoul(optarg, 0, 10);
         break;
 
-      case 'x': hpq_x0 = strtoul(optarg, 0, 10);
+      case 'x': pq_x0 = strtoul(optarg, 0, 10);
         break;
 
-      case 'y': hpq_y0 = strtoul(optarg, 0, 10);
+      case 'y': pq_y0 = strtoul(optarg, 0, 10);
         break;
 
-      case 'o': hpq_x0 = hpq_y0 = strtoul(optarg, 0, 10);
+      case 'o': pq_x0 = pq_y0 = strtoul(optarg, 0, 10);
         break;
 
       case 's': offset_step = strtoul(optarg, 0, 10);
@@ -67,8 +67,8 @@ int main(int argc, char *argv[]) {
   uint32_t mid_x0 = 0x100000000 - vscreeninfo.xres / 2;
   uint32_t mid_y0 = 0x100000000 - vscreeninfo.yres / 2;
 
-  hpq_width  = fscreeninfo.line_length / 4;
-  hpq_height = vscreeninfo.yres;
+  pq_width  = fscreeninfo.line_length / 4;
+  pq_height = vscreeninfo.yres;
 
   uint32_t *fb_map = mmap(0, fscreeninfo.smem_len, PROT_WRITE, MAP_SHARED, fb_descriptor, 0);
   close(fb_descriptor);
@@ -76,10 +76,10 @@ int main(int argc, char *argv[]) {
   if (fb_map == MAP_FAILED)
     return 4;
 
-  size_t area = hpq_width * hpq_height;
-  hpq_canvas = malloc(area * sizeof *hpq_canvas);
+  size_t area = pq_width * pq_height;
+  pq_canvas = malloc(area * sizeof *pq_canvas);
 
-  if (!hpq_canvas)
+  if (!pq_canvas)
     return 5;
 
   struct termios old_term, new_term;
@@ -99,12 +99,12 @@ int main(int argc, char *argv[]) {
   while (1) {
     _Bool warn;
 
-    if (hpq_defined()) {
+    if (pq_defined()) {
       warn = 0;
-      hpq_painters[hpq_id]();
+      pq_painters[pq_id]();
 
       for (size_t i = 0; i < area; ++i)
-        fb_map[i] = hpq_canvas[i] ? BLACK : WHITE;
+        fb_map[i] = pq_canvas[i] ? BLACK : WHITE;
     }
     else {
       warn = 1;
@@ -114,61 +114,61 @@ int main(int argc, char *argv[]) {
     if (status_line)
 print:
       printf("p%-10" PRIu32 " q%-10" PRIu32 " x%-10" PRIu32 " y%-10" PRIu32 "%s\r",
-        hpq_id, hpq_q, hpq_x0, hpq_y0, warn ? " !" : "");
+        pq_id, pq_q, pq_x0, pq_y0, warn ? " !" : "");
 
 get:
     switch (getchar()) {
-      case '1': --hpq_id;
+      case '1': --pq_id;
         break;
 
-      case '2': ++hpq_id;
+      case '2': ++pq_id;
         break;
 
-      case '3': --hpq_q;
+      case '3': --pq_q;
         break;
 
-      case '4': ++hpq_q;
+      case '4': ++pq_q;
         break;
 
-      case '5': hpq_x0 -= offset_step;
+      case '5': pq_x0 -= offset_step;
         break;
 
-      case '6': hpq_x0 += offset_step;
+      case '6': pq_x0 += offset_step;
         break;
 
-      case '7': hpq_y0 -= offset_step;
+      case '7': pq_y0 -= offset_step;
         break;
 
-      case '8': hpq_y0 += offset_step;
+      case '8': pq_y0 += offset_step;
         break;
 
-      case 'p': scanf("%" PRIu32, &hpq_id);
+      case 'p': scanf("%" PRIu32, &pq_id);
         break;
 
-      case 'q': scanf("%" PRIu32, &hpq_q);
+      case 'q': scanf("%" PRIu32, &pq_q);
         break;
 
-      case 'x': scanf("%" PRIu32, &hpq_x0);
+      case 'x': scanf("%" PRIu32, &pq_x0);
         break;
 
-      case 'y': scanf("%" PRIu32, &hpq_y0);
+      case 'y': scanf("%" PRIu32, &pq_y0);
         break;
 
       // Double the q-argument
-      case 'd': hpq_q *= 2;
+      case 'd': pq_q *= 2;
         break;
 
       // Draw a grid of lines
       case 'g':
         ; int spacing; scanf("%d", &spacing); if (spacing < 2) goto get;
 
-        for (int y = 0; y < hpq_height; y += spacing)
-          for (int x = 0; x < hpq_width; ++x)
-            fb_map[y * hpq_width + x] = RED;
+        for (int y = 0; y < pq_height; y += spacing)
+          for (int x = 0; x < pq_width; ++x)
+            fb_map[y * pq_width + x] = RED;
 
-        for (int x = 0; x < hpq_width; x += spacing)
-          for (int y = 0; y < hpq_height; ++y)
-            fb_map[y * hpq_width + x] = RED;
+        for (int x = 0; x < pq_width; x += spacing)
+          for (int y = 0; y < pq_height; ++y)
+            fb_map[y * pq_width + x] = RED;
 
         goto get;
 
@@ -184,8 +184,8 @@ get:
 
       // Place the origin in the middle of the image
       case 'm':
-        hpq_x0 = mid_x0;
-        hpq_y0 = mid_y0;
+        pq_x0 = mid_x0;
+        pq_y0 = mid_y0;
         break;
 
       case 'e': goto exit;
@@ -195,7 +195,7 @@ get:
   }
 
 exit:
-  free(hpq_canvas);
+  free(pq_canvas);
   munmap(fb_map, fscreeninfo.smem_len);
   fputs(TCEM("h") ECMA48_ED("3"), stdout);
 

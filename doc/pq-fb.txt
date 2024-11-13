@@ -1,20 +1,20 @@
 NAME
-  hpq-fb - display HPQ images on the Linux framebuffer device
+  pq-fb - display PQ images on the Linux framebuffer device
 
 SYNOPSIS
-  hpq-fb [-l] [-o <offset>] [-p <ID>] [-q <q-argument>] [-s <step>]
-         [-x <x-offset>] [-y <y-offset>]
+  pq-fb [-l] [-o <offset>] [-p <ID>] [-q <q-argument>] [-s <step>]
+        [-x <x-offset>] [-y <y-offset>]
 
 DESCRIPTION
-  HPQ images are described at https://sawuare.net/hpq-images.
+  PQ images are described at https://sawuare.net/pq-images.
 
-  hpq-fb requires permission to read and write the Linux framebuffer device
+  pq-fb requires permission to read and write the Linux framebuffer device
   /dev/fb0, which likely requires being the superuser or being in the video
   group.
 
-  hpq-fb should be executed in a Linux virtual terminal (i.e. TERM=linux).
+  pq-fb should be executed in a Linux virtual terminal (i.e. TERM=linux).
 
-  The following keys can be used to control hpq-fb during execution:
+  The following keys can be used to control pq-fb during execution:
 
     1 decrements the ID;
     2 increments the ID;
@@ -75,7 +75,7 @@ EXIT STATUS
   0 otherwise;
 
 BUGS
-  hpq-fb requires a framebuffer whose color format is 32-bit ARGB.
+  pq-fb requires a framebuffer whose color format is 32-bit ARGB.
 
 SEE ALSO
-  hpq-png.txt, hpq-seq.txt
+  pq-png.txt, pq-seq.txt

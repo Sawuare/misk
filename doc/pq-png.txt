@@ -1,18 +1,18 @@
 NAME
-  hpq-png - write an HPQ image to a PNG file
+  pq-png - write a PQ image to a PNG file
 
 SYNOPSIS
-  hpq-png [-h <height>] [-l <length>] [-m] [-o <offset>] [-p <ID>]
-          [-q <q-argument>] [-w <width>] [-x <x-offset>] [-y <y-offset>] [-z]
+  pq-png [-h <height>] [-l <length>] [-m] [-o <offset>] [-p <ID>]
+         [-q <q-argument>] [-w <width>] [-x <x-offset>] [-y <y-offset>] [-z]
 
 DESCRIPTION
-  HPQ images are described at https://sawuare.net/hpq-images.
+  PQ images are described at https://sawuare.net/pq-images.
 
-  hpq-png writes an HPQ image to a 1-bit grayscale, non-interlaced PNG file. The
+  pq-png writes a PQ image to a 1-bit grayscale, non-interlaced PNG file. The
   file has a name that encodes how it was produced. For example, a file named
-  p0q1x0y0w256h256.hpq.png can be reproduced by an invocation equivalent to
+  p0q1x0y0w256h256.pq.png can be reproduced by an invocation equivalent to
 
-    hpq-png -p 0 -q 1 -x 0 -y 0 -w 256 -h 256
+    pq-png -p 0 -q 1 -x 0 -y 0 -w 256 -h 256
 
 OPTIONS
   -h <height>
@@ -64,4 +64,4 @@ EXIT STATUS
   0 otherwise;
 
 SEE ALSO
-  hpq-fb.txt, hpq-seq.txt
+  pq-fb.txt, pq-seq.txt

@@ -1,4 +1,4 @@
-// hpq-png.c - write an HPQ image to a PNG file
+// pq-png.c - write a PQ image to a PNG file
 
 #include <getopt.h>
 #include <inttypes.h>
@@ -8,7 +8,7 @@
 #include <stdlib.h>
 #include <zlib.h>
 
-#include "hpq.h"
+#include "pq.h"
 
 // A max length equal to 1 << 15 for a max area equal to 1 << 30 (gibipixel)
 #define MAX_LENGTH 32768
@@ -20,34 +20,34 @@ int main(int argc, char *argv[]) {
 
   while ((opt = getopt(argc, argv, "p:q:x:y:o:w:h:l:mz")) != -1)
     switch (opt) {
-      case 'p': hpq_id = strtoul(optarg, 0, 10);
+      case 'p': pq_id = strtoul(optarg, 0, 10);
         break;
 
-      case 'q': hpq_q = strtoul(optarg, 0, 10);
+      case 'q': pq_q = strtoul(optarg, 0, 10);
         break;
 
-      case 'x': hpq_x0 = strtoul(optarg, 0, 10);
+      case 'x': pq_x0 = strtoul(optarg, 0, 10);
         break;
 
-      case 'y': hpq_y0 = strtoul(optarg, 0, 10);
+      case 'y': pq_y0 = strtoul(optarg, 0, 10);
         break;
 
-      case 'o': hpq_x0 = hpq_y0 = strtoul(optarg, 0, 10);
+      case 'o': pq_x0 = pq_y0 = strtoul(optarg, 0, 10);
         break;
 
-      case 'w': hpq_width = strtoul(optarg, 0, 10);
+      case 'w': pq_width = strtoul(optarg, 0, 10);
         break;
 
-      case 'h': hpq_height = strtoul(optarg, 0, 10);
+      case 'h': pq_height = strtoul(optarg, 0, 10);
         break;
 
-      case 'l': hpq_width = hpq_height = strtoul(optarg, 0, 10);
+      case 'l': pq_width = pq_height = strtoul(optarg, 0, 10);
         break;
 
       // Place the origin in the middle of the image
       case 'm':
-        hpq_x0 = -(hpq_width  / 2);
-        hpq_y0 = -(hpq_height / 2);
+        pq_x0 = -(pq_width  / 2);
+        pq_y0 = -(pq_height / 2);
         break;
 
       case 'z': best_compression = 1;
@@ -56,7 +56,7 @@ int main(int argc, char *argv[]) {
       default: return 1;
     }
 
-  if (!hpq_defined() || !hpq_width || !hpq_height || hpq_width > MAX_LENGTH || hpq_height > MAX_LENGTH)
+  if (!pq_defined() || !pq_width || !pq_height || pq_width > MAX_LENGTH || pq_height > MAX_LENGTH)
     return 2;
 
   png_struct *structp = png_create_write_struct(PNG_LIBPNG_VER_STRING, 0, 0, 0);
@@ -66,10 +66,10 @@ int main(int argc, char *argv[]) {
     return 3;
 
   // The longest filename is
-  // p10q1000000000x1000000000y1000000000w10000h10000.hpq.png
-  char filename[57];
-  sprintf(filename, "p%" PRIu32 "q%" PRIu32 "x%" PRIu32 "y%" PRIu32 "w%" PRIu32 "h%" PRIu32 ".hpq.png",
-    hpq_id, hpq_q, hpq_x0, hpq_y0, hpq_width, hpq_height);
+  // p10q1000000000x1000000000y1000000000w10000h10000.pq.png
+  char filename[56];
+  sprintf(filename, "p%" PRIu32 "q%" PRIu32 "x%" PRIu32 "y%" PRIu32 "w%" PRIu32 "h%" PRIu32 ".pq.png",
+    pq_id, pq_q, pq_x0, pq_y0, pq_width, pq_height);
 
   FILE *file = fopen(filename, "wb");
 
@@ -83,34 +83,34 @@ int main(int argc, char *argv[]) {
 
   png_text texts[2] = {
     {.key = "Author",   .text = "Sawuare", .compression = PNG_TEXT_COMPRESSION_NONE},
-    {.key = "Software", .text = "hpq-png", .compression = PNG_TEXT_COMPRESSION_NONE}
+    {.key = "Software", .text = "pq-png",  .compression = PNG_TEXT_COMPRESSION_NONE}
   };
 
   png_set_compression_strategy(structp, Z_DEFAULT_STRATEGY);
   png_set_compression_level(structp, best_compression ? Z_BEST_COMPRESSION : Z_DEFAULT_COMPRESSION);
   png_set_filter(structp, PNG_FILTER_TYPE_BASE, PNG_FILTER_NONE);
   png_set_text(structp, infop, texts, 2);
-  png_set_IHDR(structp, infop, hpq_width, hpq_height, 1, PNG_COLOR_TYPE_GRAY, PNG_INTERLACE_NONE,
+  png_set_IHDR(structp, infop, pq_width, pq_height, 1, PNG_COLOR_TYPE_GRAY, PNG_INTERLACE_NONE,
     PNG_COMPRESSION_TYPE_BASE, PNG_FILTER_TYPE_BASE);
 
-  hpq_canvas = malloc(hpq_width * hpq_height * sizeof *hpq_canvas);
-  png_byte *row = malloc((hpq_width + 7) / 8 * sizeof *row);
+  pq_canvas = malloc(pq_width * pq_height * sizeof *pq_canvas);
+  png_byte *row = malloc((pq_width + 7) / 8 * sizeof *row);
 
-  if (!(hpq_canvas && row)) {
+  if (!(pq_canvas && row)) {
     remove(filename);
     return 6;
   }
 
-  hpq_painters[hpq_id]();
+  pq_painters[pq_id]();
   png_init_io(structp, file);
   png_write_info(structp, infop);
 
-  for (uint32_t y = 0; y < hpq_height; ++y) {
-    for (uint32_t x = 0; x < hpq_width; ++x) {
+  for (uint32_t y = 0; y < pq_height; ++y) {
+    for (uint32_t x = 0; x < pq_width; ++x) {
       if (!(x % 8))
         row[x / 8] = 0;
 
-      if (!hpq_canvas[y * hpq_width + x])
+      if (!pq_canvas[y * pq_width + x])
         row[x / 8] |= 1 << (7 - x % 8);
     }
 
@@ -119,7 +119,7 @@ int main(int argc, char *argv[]) {
 
   png_write_end(structp, 0);
   png_destroy_write_struct(&structp, &infop);
-  free(hpq_canvas);
+  free(pq_canvas);
   free(row);
   fclose(file);
   printf("Wrote %s\n", filename);

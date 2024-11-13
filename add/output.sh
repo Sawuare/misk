@@ -13,8 +13,8 @@ cd ../out/
 midi      > midi.txt
 printable > printable.txt
 
-cd hpq-seq/
+cd pq-seq/
 
-hpq-seq
+pq-seq
 
 echo "Done"

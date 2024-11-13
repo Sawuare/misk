@@ -1,4 +1,4 @@
-// hpq-seq.c - write some HPQ q-sequences
+// pq-seq.c - write some PQ q-sequences
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -8,9 +8,9 @@
 
 void write_sequence(long long sequence[], int length, int painter) {
   // The longest filename is
-  // p10q1000000000.hpq-seq.txt
-  char filename[27];
-  sprintf(filename, "p%dq%lld.hpq-seq.txt", painter, sequence[0]);
+  // p10q1000000000.pq-seq.txt
+  char filename[26];
+  sprintf(filename, "p%dq%lld.pq-seq.txt", painter, sequence[0]);
 
   FILE *file = fopen(filename, "w");
 

@@ -32,12 +32,12 @@ cc $OPT -o eca-png    eca-png.c -lpng
 cc $OPT -o eca-txt    eca-txt.c
 cc $OPT -o eca-wav    eca-wav.c
 cc $OPT -o getlocale  getlocale.c
-cc $OPT -o hpq-fb     hpq-fb.c
-cc $OPT -o hpq-png    hpq-png.c -lpng
-cc $OPT -o hpq-seq    hpq-seq.c
 cc $OPT -o limits     limits.c
 cc $OPT -o midi       midi.c -lm
 cc $OPT -o morse      morse.c
+cc $OPT -o pq-fb      pq-fb.c
+cc $OPT -o pq-png     pq-png.c -lpng
+cc $OPT -o pq-seq     pq-seq.c
 cc $OPT -o printable  printable.c
 cc $OPT -o rainbow    rainbow.c -lm
 cc $OPT -o sumber     sumber.c -lm
@@ -46,6 +46,6 @@ cc $OPT -o xy-png     xy-png.c -lpng
 
 echo "Moving programs"
 
-sudo mv ctime eca-png eca-txt eca-wav getlocale hpq-fb hpq-png hpq-seq limits midi morse printable rainbow sumber ttt xy-png $BIN
+sudo mv ctime eca-png eca-txt eca-wav getlocale limits midi morse pq-fb pq-png pq-seq printable rainbow sumber ttt xy-png $BIN
 
 echo "Done"
