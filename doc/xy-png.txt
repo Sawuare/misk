@@ -1,17 +1,17 @@
 NAME
-  hxy - write an HXY image to a PNG file
+  xy-png - write an XY image to a PNG file
 
 SYNOPSIS
-  hxy [-h <height>] [-H] [-l <length>] [-s] [-V] [-w <width>] [-z]
+  xy-png [-h <height>] [-H] [-l <length>] [-s] [-V] [-w <width>] [-z]
 
 DESCRIPTION
-  HXY images are described at https://sawuare.net/hxy-images.
+  XY images are described at https://sawuare.net/xy-images.
 
-  hxy writes an HXY image to a 1-bit grayscale, non-interlaced PNG file. The
+  xy-png writes an XY image to a 1-bit grayscale, non-interlaced PNG file. The
   file has a name that encodes how it was produced. For example, a file named
-  w256h256s.hxy.png can be reproduced by an invocation equivalent to
+  w256h256s.xy.png can be reproduced by an invocation equivalent to
 
-    hxy -w 256 -h 256 -s
+    xy-png -w 256 -h 256 -s
 
 OPTIONS
   -h <height>

@@ -1,4 +1,4 @@
-// hxy.c - write an HXY image to a PNG file
+// xy-png.c - write an XY image to a PNG file
 
 #include <getopt.h>
 #include <png.h>
@@ -78,9 +78,9 @@ int main(int argc, char *argv[]) {
     return 3;
 
   // The longest filename is
-  // w10000h10000s.hxy.png
-  char filename[22];
-  sprintf(filename, "w%uh%u%s.hxy.png",
+  // w10000h10000s.xy.png
+  char filename[21];
+  sprintf(filename, "w%uh%u%s.xy.png",
     width, height, special_shape ? "s" : vertical_projection ? "V" : horizontal_projection ? "H" : "");
 
   FILE *file = fopen(filename, "wb");
@@ -95,7 +95,7 @@ int main(int argc, char *argv[]) {
 
   png_text texts[2] = {
     {.key = "Author",   .text = "Sawuare", .compression = PNG_TEXT_COMPRESSION_NONE},
-    {.key = "Software", .text = "hxy",     .compression = PNG_TEXT_COMPRESSION_NONE}
+    {.key = "Software", .text = "xy-png",  .compression = PNG_TEXT_COMPRESSION_NONE}
   };
 
   png_set_compression_strategy(structp, Z_DEFAULT_STRATEGY);

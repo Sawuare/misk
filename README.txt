@@ -16,7 +16,6 @@ The programs and libraries in here are:
   hpq-png - write an HPQ image to a PNG file
   hpq-seq - write some HPQ q-sequences
   hpq.h - library for HPQ images
-  hxy - write an HXY image to a PNG file
   limits - print every standard limit in <limits.h>
   midi - print a table of MIDI note number, notation, and frequency
   morse - encode arguments into printable adapted International Morse code
@@ -26,6 +25,7 @@ The programs and libraries in here are:
   tcem.h - text cursor enable mode
   ttt - tic-tac-toe, aka noughts-and-crosses
   wafer.h - library for writing 8-bit PCM WAVE files
+  xy-png - write an XY image to a PNG file
 
 The directories and files in here are:
 
