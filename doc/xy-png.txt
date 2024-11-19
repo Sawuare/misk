@@ -27,7 +27,7 @@ OPTIONS
     specifies a square image.
 
   -s
-    Reveal a special shape by flood-filling the top row with a filler color,
+    Reveal stalactites by flood-filling the top row with a filler color,
     replacing white pixels with black, then replacing filler pixels with white.
 
   -V
